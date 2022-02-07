@@ -1,38 +1,83 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Alert, Breadcrumbs, Card} from "react-bootstrap";
-
-
-
+import React, { useState } from "react";
+import { Form } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import NewUserInfo from "../NewUserInfo";
+ 
+ 
+ 
 function LogInPage() {
-    return (
-        <div>
-            <Card className= "mb-3" style = {{ color: 'black'}}>
-            <h2>Log in to your member account</h2>
-            
-            <form action="/.">
-                <p>
-                    <label>Username or email address</label><br/>
-                    <input type="text" name="first_name" required />
-                </p>
-                <p>
-                    <label>Password</label>
-                    <Link to="/forget-password"><label className="right-label">Forget password?</label></Link>
-                    <br/>
-                    <input type="password" name="password" required />
-                </p>
-                <p>
-                    <button id="sub_btn" type="submit">Login</button>
-                </p>
-            </form>
-            <footer>
-                <p>First time? <Link to="/sign-up">Create an account</Link>.</p>
-                <p><Link to="/">Back to Homepage</Link>.</p>
-            </footer>
-            </Card>
-        </div>
-    )
-}
+ 
+   const [state, setState] = useState({
+       username: "",
+       email: "",
+       password: ""
+     });
+  
+     const handleInputChange = event => {
+       const { name, value } = event.target;
+       setState(prevState => ({
+         ...prevState,
+         [name]: value
+       }));
+    };
 
+
+    function submitHandler(event){
+        event.preventDefault();
+        console.log(event.target)
+    }
+     
+ 
+ 
+   return (
+       <div>
+     <h1>Log In Form</h1>
+     <Form className="register-form" onSubmit = {submitHandler}>
+       <Form.Group controlId="username">
+         <Form.Label>Username</Form.Label>
+         <Form.Control
+           type="text"
+           placeholder="Enter username"
+           name="username" required
+           onChange={handleInputChange}
+         />
+       </Form.Group>
+       <Form.Group controlId="email">
+         <Form.Label>Email</Form.Label>
+         <Form.Control
+           type="email"
+           placeholder="Enter email"
+           name="email" required
+           onChange={handleInputChange}
+         />
+       </Form.Group>
+       <Form.Group controlId="password">
+         <Form.Label>Password</Form.Label>
+         <Form.Control
+           type="password"
+           placeholder="Enter password"
+           name="password" required = {true}
+           onChange={handleInputChange}
+         />
+       </Form.Group>
+ 
+       <Link
+         className="btn btn-primary"
+         to={{
+           pathname: "/"
+         }}
+       >
+         Log In
+       </Link>
+     </Form>
+ 
+     <p>First time? <Link to="/sign-up">Create an account</Link>.</p>
+ 
+   </div>
+ 
+     
+ 
+   )
+}
+ 
 export default LogInPage;

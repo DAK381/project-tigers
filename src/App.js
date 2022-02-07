@@ -1,31 +1,32 @@
-import React, { Component } from "react";
-import { Route, Routes } from "react-router-dom";
-import NavBar from "./components/navbar";
-import About from "./components/about";
-import Events from "./components/events";
-import Grants from "./components/grants";
-import Home from "./components/home";
-import Membership from "./components/membership";
-import "./App.css";
+import { Route } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
+import Home from './pages/HomePage';
+import Layout from './component/layout/Layout';
+import LogInPage from './component/Forms/LogInForm';
+import SignUpForm from './component/Forms/SignUpForm';
+import ForgetPasswordPage from './component/Forms/Forget';
+import NewUserInfo from './component/NewUserInfo';
+import Scholarship from './pages/Scholarships';
+import EventPage from './pages/EventsPage';
+import Contact from './pages/ContactUs';
 
-class App extends Component {
-    render() {
-        return (
-            <div>
-                <NavBar />
-                <div className="content">
-                    <Routes>
-                        <Route path="/about" component={About} /> 
-                        <Route path="/membership" component={Membership} />
-                        <Route path="/grants" component={Grants} />
-                        <Route path="/events" component={Events} />
-                        <Route path="/" component={Home} />
-                    </Routes>
-                </div>
-            </div>
-          
-        );
-    }
+function App() {
+  return (
+
+   <Layout>
+      
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/log-in" element={<LogInPage />} />
+        <Route path="/sign-up" element={<SignUpForm />} />
+        <Route path="/forget-password" element={<ForgetPasswordPage />} />
+        <Route path="/new-user-info" element={<NewUserInfo/>} />
+        <Route path="/events" element={<EventPage/>} />
+        <Route path="/scholarship" element={<Scholarship/>} />
+        <Route path="/contact-us" element={<Contact/>} />
+      </Routes>
+
+      </Layout>
+  );
 }
-
 export default App;
