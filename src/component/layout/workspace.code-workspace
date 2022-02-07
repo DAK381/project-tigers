@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../../React start/react-learn"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
