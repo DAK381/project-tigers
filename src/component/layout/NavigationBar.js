@@ -41,6 +41,7 @@ return (
             <Nav.Link href = "log-in">Log In</Nav.Link>
             <Nav.Link href = "sign-up">Sign Up</Nav.Link>
             <Nav.Link href = "contact-us">Contact Us</Nav.Link>
+            <Nav.Link href = "profile">Profile</Nav.Link>
 
         </Nav>
 
