@@ -19,12 +19,14 @@ function LogInPage() {
          ...prevState,
          [name]: value
        }));
+
+      
     };
 
 
     function submitHandler(event){
         event.preventDefault();
-        console.log(event.target)
+        
     }
      
  
