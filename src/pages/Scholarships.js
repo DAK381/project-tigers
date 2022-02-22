@@ -1,4 +1,5 @@
-import { useState } from 'react';
+function Scholarship(){
+    import { useState } from 'react';
 import Button from './Button';
 import ScholarshipCard from './ScholarshipCard';
 
@@ -20,3 +21,4 @@ function Scholarship(){
     );
 }
 export default Scholarship;
+}
