@@ -1,77 +1,56 @@
-import { useState, useEffect } from "react"
-
-// const DUMMY_DATA = [
-//     {
-//       id: 'm1',
-//       title: 'This is a first meetup',
-//       image:
-//         'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg',
-//       address: 'Meetupstreet 5, 12345 Meetup City',
-//       description:
-//         'This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!',
-//     },
-//     {
-//       id: 'm2',
-//       title: 'This is a second meetup',
-//       image:
-//         'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/2560px-Stadtbild_M%C3%BCnchen.jpg',
-//       address: 'Meetupstreet 5, 12345 Meetup City',
-//       description:
-//         'This is a first, amazing meetup which you definitely should not miss. It will be a lot of fun!',
-//     },
-//   ];
+import Slider from "../component/layout/Slider";
+import { Link } from "react-router-dom";
+import UpcomingEvent from "./UpcomingEvent";
+import CardGroup from 'react-bootstrap/CardGroup'
+import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function Home() {
-// setIsLoading(true);
-// const [isLoading, setIsLoading] = useState(true);
-// const [loaded, setmeet] = useState([])
 
-// useEffect(
-//     () => {
-//         fetch(
-//             'https://react-learn-785d6-default-rtdb.firebaseio.com/meetups'
-        
-//         ).then (
-//             (response) => {
-//                 return response.json();
-//             }
-//         ).then((data) => {
-//             const meetups = [];
-
-//             for (const key in data)
-//             {
-//                 const meetup = {
-//                     id: key,
-//                     ...data[key]
-//                 };
-//                 meetups.push(meetup)
-//             }
-//         setIsLoading(false);
-//         setmeet(meetups);
-//         });
-
-//     },
-//     []
-// );
-
-
-
-
-// if(isLoading){
-//     return (
-//         <section>
-//             <p>
-//                 Loading...
-//             </p>
-//         </section>
-//     )
-// }
     return (
         <div>
             
-            HomePage
+        <Slider />
+
+        <section className = "section">
+            <div className = "container">
+                <div className = "row">
+
+                    <div classname = "col-md-12 text center">
+                        <h3 className = "heading">WELCOME</h3>
+
+                        <div className = "underline"></div>
+
+                        <p className = "description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+                    </div>
+              
+
+        
+
+
+           {/* <div className = "underline2"></div> */}
+ 
+           
+            <div className = "container">
+                
+                        <h3 className = "heading">Upcoming Events</h3>
+
+                        <div className = "underline"></div>
+                        <UpcomingEvent />
+                    </div>
+                </div>
+            </div>
+            </section>
+    
+          
+            
+        
             
             </div>
+            
     )
 }
 
