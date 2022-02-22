@@ -28,7 +28,7 @@ return (
       <Offcanvas.Body bg="dark">
         <Nav className="justify-content-end flex-grow-1 pe-3">
         <Nav.Link href="./">Home</Nav.Link>
-     <Nav.Link href="event">Events</Nav.Link>
+     <Nav.Link href="events">Events</Nav.Link>
      <Nav.Link href="scholarship">Scholarhsips</Nav.Link>
      <Nav.Link href="log-in">Log In</Nav.Link>
      <Nav.Link href="sign-up">Sign Up</Nav.Link>
