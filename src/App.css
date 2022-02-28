@@ -24,8 +24,9 @@
 }
 
 .description{
-    color: white;
+    color: black;
     font-size:large;
+    flex-direction: column;
 
 }
 

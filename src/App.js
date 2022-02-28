@@ -12,6 +12,16 @@ import Contact from './pages/ContactUs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css"
 import Footer from './pages/Footer';
+import AdminHome from './component/Admin/AdminHome';
+import AdminMemberAdd from './component/Admin/AdminMemberAdd';
+import AdminMembers from './component/Admin/AdminMembers';
+import AdminMemberSearch from './component/Admin/AdminMemberSearch';
+import AdminNavigation from './component/Admin/AdminNavigation';
+import AdminProfile from './component/Admin/AdminProfile';
+import AdminRemoveMember from './component/Admin/AdminRemoveMember';
+import AdminContact from './component/Admin/AdminContact';
+import AdminEventAdd from './component/Admin/AdminEventAdd';
+import AdminEventView from './component/Admin/AdminEventsView';
 
 function App() {
   return (
@@ -28,6 +38,20 @@ function App() {
         <Route path="/events" element={<EventPage/>} />
         <Route path="/scholarship" element={<Scholarship/>} />
         <Route path="/contact-us" element={<Contact/>} />
+        <Route path="/admin" element={<AdminHome/>} />
+
+        <Route path="/admin-member" element={<AdminMembers/>} />
+        <Route path="/admin-member-add" element={<AdminMemberAdd/>} />
+        <Route path="/admin-member-search" element={<AdminMemberSearch/>} />
+        <Route path="/admin-profile" element={<AdminProfile/>} />
+        <Route path="/admin-contact" element={<AdminContact/>} />
+        <Route path="/admin-event-view" element={<AdminEventView/>} />
+
+        <Route path="/admin-event-add" element={<AdminEventAdd/>} />
+
+
+
+
       </Routes>
 
       </Layout>
