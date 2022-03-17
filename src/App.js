@@ -23,6 +23,7 @@ import AdminContact from './component/Admin/AdminContact';
 import AdminEventAdd from './component/Admin/AdminEventAdd';
 import AdminEventView from './component/Admin/AdminEventsView';
 import { Dashboard } from './dashboard';
+import Profile from './pages/Profile/Profile';
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
         <Route path="/admin-event-view" element={<AdminEventView/>} />
 
         <Route path="/admin-event-add" element={<AdminEventAdd/>} />
+        <Route path="/user-profile" element={<Profile/>} />
 
 
 

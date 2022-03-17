@@ -34,6 +34,7 @@ return (
      <Nav.Link href="sign-up"><h2>Sign Up </h2></Nav.Link>
      <Nav.Link href="contact-us"><h2>Contact Us </h2></Nav.Link>
      <Nav.Link href="admin"><h2> Admin </h2></Nav.Link>
+     <Nav.Link href="user-profile"><h2>Profile</h2></Nav.Link>
 
         </Nav>
       </Offcanvas.Body>
