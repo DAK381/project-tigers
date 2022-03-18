@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import NewUserInfo from "../NewUserInfo";
 import {userLogin} from "../../authenticationService";
 import {Alert,Spinner} from 'react-bootstrap';
+import Captcha from './recaptcha/Captcha';
 
 const LogInPage = ({loading,error,...props}) => {
  
@@ -101,6 +102,7 @@ const LogInPage = ({loading,error,...props}) => {
          />
        </Form.Group>
  
+      <Captcha/>
       <button type ="button" className="btn-primary btn" onClick={loginHandler} >Log in</button>
      </Form>
  
