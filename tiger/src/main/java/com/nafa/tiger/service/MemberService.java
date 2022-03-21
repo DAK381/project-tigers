@@ -1,9 +1,11 @@
 package com.nafa.tiger.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 
-import com.nafa.tiger.entity.Activity;
+import com.nafa.tiger.entity.Group;
+import com.nafa.tiger.entity.PendingGroupRequest;
 import com.nafa.tiger.entity.User;
 
 
@@ -22,11 +24,11 @@ public interface MemberService {
 
 	ArrayList<User> getAllByFirstNameAndLastNameContaining(String firstName, String lastName);
 
-//	User addActivity(Long userId,Activity activity);
 
-	ArrayList<User> getByActivity(String details);
-
-	ArrayList<Activity> getActivityById(Long userId);
 
 	User addUserToGroup(Long userId, Long groupId);
+
+	Collection<Group> removeUserFromGroup(Long userId, Long groupId);
+
+	PendingGroupRequest requestToaddGroup(String groupName, Long userId);
 }

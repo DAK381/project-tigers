@@ -1,9 +1,7 @@
 import CardGroup from 'react-bootstrap/CardGroup'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
-import photo1 from "../Images/photo1.jpeg"
-import photo2 from "../Images/photo2.jpeg"
-import photo3 from "../Images/photo3.jpeg"
+import photoT from "../Images/tempevent.jpg"
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -20,7 +18,7 @@ function UpcomingEvent(){
   <Row>
     <Col md>
   <Card className = "mb-3">
-    <Card.Img va driant="top" src= {photo1} />
+    <Card.Img va driant="top" src= {photoT} />
     <Card.Body>
       <Card.Title>EVENT 1</Card.Title>
       <Card.Text>
@@ -42,7 +40,7 @@ function UpcomingEvent(){
   <Row>
     <Col md>
   <Card className = "mb-3">
-    <Card.Img variant="top" src= {photo1} />
+    <Card.Img variant="top" src= {photoT} />
     <Card.Body>
       <Card.Title>EVENT 2</Card.Title>
       <Card.Text>
@@ -64,7 +62,7 @@ function UpcomingEvent(){
   <Row>
     <Col md>
   <Card className = "mb-3">
-    <Card.Img variant="top" src= {photo1} />
+    <Card.Img variant="top" src= {photoT} />
     <Card.Body>
       <Card.Title>Event 3</Card.Title>
       <Card.Text>

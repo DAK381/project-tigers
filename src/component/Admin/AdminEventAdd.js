@@ -3,13 +3,16 @@ import UpcomingEvent from "../../pages/UpcomingEvent";
 import { Container } from "react-bootstrap";
 import Upload from "./UploadContent";
 
+import AdminEventAddForm from "../Forms/AdminEventAddForm";
+
 function AdminEventAdd(){
 
     return(
         <div>
             <AdminNavigation />
 
-            <Upload />
+           
+           <AdminEventAddForm />
             
             
 

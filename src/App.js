@@ -24,8 +24,12 @@ import AdminEventAdd from './component/Admin/AdminEventAdd';
 import AdminEventView from './component/Admin/AdminEventsView';
 import { Dashboard } from './dashboard';
 import Profile from './pages/Profile/Profile';
+import { useState } from 'react';
 
 function App() {
+
+  const[token, setToken] = useState(localStorage.getItem('USER_KEY'))
+
   return (
 
   <div>

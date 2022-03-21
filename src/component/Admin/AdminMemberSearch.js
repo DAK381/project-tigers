@@ -1,22 +1,18 @@
 import AdminNavigation from "./AdminNavigation";
 import { useState } from "react";
+import AdminMemberSearchForm from '../Forms/AdminMemberSearchForm'
 
 function AdminMemberSearch(){
 
-    const [searchedParameter, setSearch] = useState([
-        {username: '',
-        graduationYear: '',
-        club: ''
-    }
-
-    
-  
-    ])
+   
 
     return(
         <div>
             
          <AdminNavigation />
+
+        <AdminMemberSearchForm />
+
 
         </div>
     )

@@ -1,12 +1,16 @@
 package com.nafa.tiger.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,16 +26,21 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 @CrossOrigin(origins="*")
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(name = "emailid_unique", columnNames = "email_address"))
 public class User implements UserDetails{
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	@Column(name = "user_id")
 	private Long id;
 	@Size(min = 2, message = "The firstName should be at least 2 characters")
@@ -53,17 +62,22 @@ public class User implements UserDetails{
 	private Boolean locked =false;
 	
 	
-	
-//	@OneToMany (mappedBy = "user")
-//	@JsonIgnore
-//	private Set<Activity> activities;
-	@ManyToMany()
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name= "UserGroup",
 	joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"), 
-	inverseJoinColumns = @JoinColumn(name = "group_id", referencedColumnName = "groupId"))
-	//@JsonIgnore
-	private Set<Group> usgroup;
+	inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
+	@JsonIgnore
+	private Collection<Group> userGroup = new ArrayList<>();
 
+	//Test
+	public void setUserGroup(Set<Group> userGroup) {
+		this.userGroup = userGroup;
+	}
+	
+	public Collection<Group> getTest(){
+		return this.userGroup;
+	}
+	
 	public boolean getEnabled() {
 		return enabled;
 
@@ -71,9 +85,10 @@ public class User implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		SimpleGrantedAuthority authority = 
-				new SimpleGrantedAuthority(role);
-		return Collections.singletonList(authority);
+//		SimpleGrantedAuthority authority = 
+//				new SimpleGrantedAuthority(role);
+//		return Collections.singletonList(authority);
+		return Collections.emptyList();
 	}
     
 	@Override

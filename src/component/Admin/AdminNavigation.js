@@ -20,7 +20,7 @@ function AdminNavigation(){
     <Nav.Link href="./"> Member View </Nav.Link>
       
       <NavDropdown title="Members" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="admin-member-search">View Members</NavDropdown.Item>
+        <NavDropdown.Item href="admin-member">View Members</NavDropdown.Item>
         <NavDropdown.Item href="admin-member-add">Add Members</NavDropdown.Item>
         <NavDropdown.Item href="#admin-remove-member">Remove Members</NavDropdown.Item>
         <NavDropdown.Divider />

@@ -1,5 +1,8 @@
 package com.nafa.tiger.entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -13,32 +16,44 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="table_group")
+@Table(name="groups")
 public class Group {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long groupId;
 	private String groupName;
-	@ManyToMany(mappedBy = "usgroup")
-	//@JsonIgnore
-	private Set<User> userGroup;
+	@ManyToMany(mappedBy = "userGroup", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Collection<User> groupUser = new ArrayList<>();
 	
 	public void addMember(User user) {
-		userGroup.add(user);
+		groupUser.add(user);
 	}
-//	@JoinTable(name= "UserGroup",
-//		joinColumns= @JoinColumn(name="group_id", referencedColumnName = "groupId"), 
-//		inverseJoinColumns = @JoinColumn(name = "email_address", referencedColumnName = "email_address"))
+	
+	public Collection<User> getGroupUser() {
+		return this.groupUser;
+	}
+
+	public Group(String groupName) {
+		super();
+		this.groupName = groupName;
+	}
+	
 	
 }
