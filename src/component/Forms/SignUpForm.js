@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import {useNavigate,Link} from 'react-router-dom'
 import axios from "../../axios";
+import './SignUpForm.css';
 
 function SignUpForm(props){
   const [firstName, setfirstName] = useState('');
@@ -15,6 +16,7 @@ function SignUpForm(props){
   const [graduatedYear, setGraduatedYear] = useState('');
   const [address,setAddress]=useState('');
   const navigate = useNavigate();
+  
 
 
   function signinHandler(event){
@@ -29,16 +31,16 @@ function SignUpForm(props){
       <h1>Registration Form</h1>
       <Form className="register-form">
         <Form.Group controlId="fistName">
-          <Form.Label>firstName</Form.Label>
+          <Form.Label>First Name</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter first Name"
+            placeholder="Enter First Name"
             name="First Name"
             onChange={(e) => setfirstName(e.target.value)}
           />
           </Form.Group>
           <Form.Group controlId="lastName">
-          <Form.Label>lastName</Form.Label>
+          <Form.Label>Last Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Last Name"
@@ -47,10 +49,10 @@ function SignUpForm(props){
           />
           </Form.Group>
           <Form.Group controlId="maidenName">
-          <Form.Label>maidenName</Form.Label>
+          <Form.Label>Maiden Name</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter Maiden Na,e"
+            placeholder="Enter Maiden Name"
             name="Maiden Name"
             onChange={(e) => setMaidenName(e.target.value)}
           />
@@ -65,7 +67,7 @@ function SignUpForm(props){
           />
         </Form.Group>
         <Form.Group controlId="password">
-          <Form.Label>password</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type="Password"
             placeholder="Enter password"
@@ -83,7 +85,7 @@ function SignUpForm(props){
           />
         </Form.Group>
         <Form.Group controlId="birthDate">
-          <Form.Label>BirthDate</Form.Label>
+          <Form.Label>Birthday</Form.Label>
           <Form.Control
             type="date"
             placeholder="Enter Birth date"
@@ -92,10 +94,10 @@ function SignUpForm(props){
           />
         </Form.Group>
         <Form.Group controlId="phone">
-          <Form.Label>Phone</Form.Label>
+          <Form.Label>Phone-Number</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter phone"
+            placeholder="Enter Phone-Number"
             name="phone"
             onChange={(e) => setPhone(e.target.value)}
           />
@@ -104,7 +106,7 @@ function SignUpForm(props){
       
      
         <Form.Group controlId="graduatedYear">
-          <Form.Label>Graduatd Year</Form.Label>
+          <Form.Label>Graduated Year</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Graduated Year"
@@ -113,8 +115,7 @@ function SignUpForm(props){
           />
         </Form.Group>
 
-        <button type ="button" className="btn-primary btn" onClick={signinHandler}>Sing Up</button>
-          Register
+        <button type ="button" className="btn-primary btn" onClick={signinHandler}>Sign Up</button>
       
       </Form>
     </div>

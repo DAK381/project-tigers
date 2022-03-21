@@ -8,6 +8,7 @@ import NewUserInfo from "../NewUserInfo";
 import {userLogin} from "../../authenticationService";
 import {Alert,Spinner} from 'react-bootstrap';
 import Captcha from './recaptcha/Captcha';
+import './LoginForm.css';
 
 const LogInPage = ({loading,error,...props}) => {
  

@@ -29,7 +29,7 @@ return (
         <Nav className="justify-content-end flex-grow-1 pe-3">
         <Nav.Link href="./"> <h2> Home </h2></Nav.Link>
      <Nav.Link href="events"><h2>Events</h2></Nav.Link>
-     <Nav.Link href="scholarship"><h2> Scholarhsips </h2></Nav.Link>
+     <Nav.Link href="scholarship"><h2> Scholarships </h2></Nav.Link>
      <Nav.Link href="log-in"> <h2> Log In </h2></Nav.Link>
      <Nav.Link href="sign-up"><h2>Sign Up </h2></Nav.Link>
      <Nav.Link href="contact-us"><h2>Contact Us </h2></Nav.Link>
