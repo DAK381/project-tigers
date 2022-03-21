@@ -1,6 +1,6 @@
-import photo1 from "../../Images/photo1.jpeg"
-import photo2 from "../../Images/photo2.jpeg"
-import photo3 from "../../Images/photo3.jpeg"
+import photo1 from "../../Images/nafa1.jpg"
+import photo2 from "../../Images/nafa2.jpeg"
+import photo3 from "../../Images/nafa3.jpg"
 import Carousel from 'react-bootstrap/Carousel'
 import "./Slider.css";
 import Card from 'react-bootstrap/Card'

@@ -8,6 +8,9 @@ import NewUserInfo from "../NewUserInfo";
 import {userLogin} from "../../authenticationService";
 import {Alert,Spinner} from 'react-bootstrap';
 import Captcha from './recaptcha/Captcha';
+import App from '../../App';
+import './LoginForm.css';
+
 
 const LogInPage = ({loading,error,...props}) => {
  
@@ -28,8 +31,9 @@ const LogInPage = ({loading,error,...props}) => {
           console.log("response",response);
           if(response.status===200){
               props.setUser(response.data);
-              navigate("/dashboard");
-    
+              //props.setToken(localStorage.getItem('USER_KEY'));
+              navigate("/");
+              window.location.reload();
               ;
           }
           else{

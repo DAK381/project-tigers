@@ -1,7 +1,38 @@
 import './profile.css';
+import React, {useState} from 'react';
+import { Button,Container } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { fetchUserData } from '../../authenticationService';
+import axios from "../../axios";
 
 
-function Profile(){
+// function getGroups(data){
+//     let groups = '';
+//     for (let i = 0; i<data.length; i++) {
+//         groups += data[i].groupName + "<br>";
+//     }
+//     return groups;
+// }
+
+function Profile(props){
+
+    const [data,setData]=useState({});
+    const [groups,setGroups]=useState({});
+    
+    // axios.get("/search/allgroup").then(res=>{
+    //     setGroups(res.data)
+    //     console.log(groups);
+    // }).catch(err=>console.log(err))
+
+    React.useEffect(()=>{
+        fetchUserData().then((response)=>{
+            setData(response.data);
+        }).catch((e)=>{
+            localStorage.clear();
+            props.history.push('/');
+        })
+    },[])
+
 
 
     return (
@@ -18,8 +49,8 @@ function Profile(){
                             <div className="user-heading round">
                                 <div className="text-center"> <img src="bojack.0.0.jpg" width="200" className="rounded-circle"/>
                                 </div>
-                                <h1>Nischal Pokharel</h1>
-                                <p>nischalp14@gmail.com</p>
+                                <h1>{data.firstName + ' ' + data.lastName}</h1>
+                                <p>{data.email}</p>
                             </div>
 
                             <div className="buttons"> <button className="btn btn-outline-primary">Edit Profile</button> <button
@@ -58,28 +89,40 @@ function Profile(){
                                 <h1>Bio Graph</h1>
                                 <div className="row">
                                     <div className="bio-row">
-                                        <p><span>First Name </span>: Nischal</p>
+                                        <p><span>First Name: </span>{data.firstName}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Last Name </span>: Pokharel</p>
+                                        <p><span>Last Name: </span>{data.lastName}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Graduation year </span>: 2002</p>
+                                        <p><span>Graduation year: </span></p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Birthday</span>: 01/01/01</p>
+                                        <p><span>Birthday: </span></p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Occupation </span>: Football player</p>
+                                        <p><span>Email: </span>{data.email}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Email </span>: nischalp14@gmail.com</p>
+                                        <p><span>Phone: </span>{data.phone}</p>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <br/>
+                <div className="card">
+                    <div className="card-body">
+
+                        <div className="panel">
+                            <div className="panel-body groups">
+                                <h1>Groups</h1>
+                                <div className="row">
                                     <div className="bio-row">
-                                        <p><span>Mobile </span>: 9999999999999</p>
-                                    </div>
-                                    <div className="bio-row">
-                                        <p><span>Phone </span>: 111111111111</p>
+                                        <p><span>All groups:</span></p>
+                                        <p>{}</p>
                                     </div>
                                 </div>
                             </div>
