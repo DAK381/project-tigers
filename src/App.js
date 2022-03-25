@@ -22,6 +22,8 @@ import AdminRemoveMember from './component/Admin/AdminRemoveMember';
 import AdminContact from './component/Admin/AdminContact';
 import AdminEventAdd from './component/Admin/AdminEventAdd';
 import AdminEventView from './component/Admin/AdminEventsView';
+import AdminMemberView from './component/Admin/AdminMemberView';
+import AdminScholarshipAdd from './component/Admin/AdminScholarshipAdd';
 import { Dashboard } from './dashboard';
 import Profile from './pages/Profile/Profile';
 import { useState } from 'react';
@@ -40,7 +42,6 @@ function App() {
         <Route path="/log-in" element={<LogInPage />} />
         <Route path="/sign-up" element={<SignUpForm />} />
         <Route path="/forget-password" element={<ForgetPasswordPage />} />
-        <Route path="/new-user-info" element={<NewUserInfo/>} />
         <Route path="/events" element={<EventPage/>} />
         <Route path="/scholarship" element={<Scholarship/>} />
         <Route path="/contact-us" element={<Contact/>} />
@@ -55,6 +56,9 @@ function App() {
         <Route path="/admin-event-view" element={<AdminEventView/>} />
 
         <Route path="/admin-event-add" element={<AdminEventAdd/>} />
+        <Route path="/admin-scholarship-add" element={<AdminScholarshipAdd/>} />
+        <Route path="/admin-member-view" element={<AdminMemberView/>} />
+
         <Route path="/user-profile" element={<Profile/>} />
 
 

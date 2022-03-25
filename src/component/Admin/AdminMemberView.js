@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardBody, Table } from 'react-bootstrap';
 
-export default function AdminMemberView(props) { 
+export default function AdminMemberView(props){ 
 
     return(
         <div>
@@ -15,7 +15,7 @@ export default function AdminMemberView(props) {
    <Table bordered hover striped variant="dark">
        <thead>
            <tr>
-               <th>#</th>
+               <th>id</th>
                <th> First Name</th>
                <th> Maiden Name</th>
                <th> Last Name</th>
@@ -23,7 +23,6 @@ export default function AdminMemberView(props) {
                <th> Phone Number</th>
                <th> Address</th>
                <th> Graduation Year</th>
-               <th> Relationship</th>
            </tr>
        </thead>
  

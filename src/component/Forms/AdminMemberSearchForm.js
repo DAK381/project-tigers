@@ -4,16 +4,18 @@ import DataTable from 'react-data-table-component';
 import AdminMemberSearchId from './AdminSearchId';
 import AdminMemberSearchFirstName from './AdminMemberSearchFirstName';
 import AdminMemberSearchLastName from './AdminMembersSearchLastName';
+import AdminMemberGraduationYear from './AdminMemberGraduationYear';
+import AdminMemberGroup from './AdminMemberGroup';
 
 function AdminMemberSearchForm () { 
 
     return(
 
         <div>
-            <AdminMemberSearchId />
-
-             <AdminMemberSearchFirstName />
+            <AdminMemberSearchFirstName />
             <AdminMemberSearchLastName />
+            <AdminMemberGraduationYear />
+            <AdminMemberGroup />
 
 
         </div>

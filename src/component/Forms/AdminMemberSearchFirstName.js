@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios';
 import DataTable from 'react-data-table-component';
-import APIService from '../../services/APIService';
 import FirstNameForm from './SearchForm';
 import { Card, CardHeader, CardBody, Table } from 'react-bootstrap';
 import AdminMemberView from '../Admin/AdminMemberView';
+import { Link, useNavigate } from "react-router-dom";
 
 
-function AdminMemberSearchFirstName () { 
+function AdminMemberSearchFirstName ({dataToShow}) { 
 
     const[data, setData] = useState([]);
     const[query, setQ] = useState("");
@@ -33,13 +33,14 @@ function AdminMemberSearchFirstName () {
 
                 }
             )
- 
     }
 
     useEffect(() => {
         if (query.trim().length > 0) {
             setQuerySubmissionStatus(true)
-          getFilteredData();
+            getFilteredData();
+
+
         }
       }, [query]);
 
@@ -54,23 +55,16 @@ function AdminMemberSearchFirstName () {
 
     return(
         <div>
-            <h3>
+            <h4>
                 Search by first name
-            </h3>
+            </h4>
 
             <FirstNameForm queryGiven = {queryGiven} queryStatus={queryStatus} data = {data}/>
 
 
           {showData()}
                
-           {/* <AdminMemberView data = {data} />  */}
-         
 
-            
-
-                
-
-           
 
         </div>
     )

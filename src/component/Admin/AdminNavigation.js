@@ -22,7 +22,6 @@ function AdminNavigation(){
       <NavDropdown title="Members" id="collasible-nav-dropdown">
         <NavDropdown.Item href="admin-member">View Members</NavDropdown.Item>
         <NavDropdown.Item href="admin-member-add">Add Members</NavDropdown.Item>
-        <NavDropdown.Item href="#admin-remove-member">Remove Members</NavDropdown.Item>
         <NavDropdown.Divider />
         <NavDropdown.Item href="admin-contact">Contact Members</NavDropdown.Item>
       </NavDropdown>
@@ -32,6 +31,7 @@ function AdminNavigation(){
       <NavDropdown title="Events" id="collasible-nav-dropdown">
         <NavDropdown.Item href="admin-event-view">View Events</NavDropdown.Item>
         <NavDropdown.Item href="admin-event-add">Add Events</NavDropdown.Item>
+        <NavDropdown.Item href="admin-scholarship-add">Add Scholarships</NavDropdown.Item>
         <NavDropdown.Item href="admin-event-remove">Remove Events</NavDropdown.Item>
       </NavDropdown>
 

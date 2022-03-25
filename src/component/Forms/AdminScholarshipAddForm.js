@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import {useNavigate,Link} from 'react-router-dom'
-import axios from "../../axiosData";
+import axios from "../../axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'react-bootstrap-time-picker';
 
 import { MDBDatePickerV5 } from 'mdbreact';
 
-function AdminEventAddForm(){
-  
-    
-        
+function AdminScholarshipAddForm(){
 
         const [eventName, setEventName] = useState('');
         //const [event_Id, setEventId] = useState('');
@@ -39,7 +36,7 @@ function AdminEventAddForm(){
                 <div className="container">
                     <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                         <div class="jumbotron">
-                            <h1 class="display-4 text-center">Add Event</h1>
+                            <h1 class="display-4 text-center">Add Scholarship</h1>
                             <div>
                                 <form onSubmit={e => registerMember(e)}>
                                     <div class="form-group">
@@ -86,7 +83,7 @@ function AdminEventAddForm(){
 
 
                                     <div className="container text-center">
-                                        <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2">Add Event</button>
+                                        <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2">Add Scholarship</button>
                                         
                                     </div>
                                 </form>
@@ -98,4 +95,4 @@ function AdminEventAddForm(){
         )
     }
 
-export default AdminEventAddForm;
+export default AdminScholarshipAddForm;
