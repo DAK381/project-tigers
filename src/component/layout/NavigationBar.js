@@ -6,10 +6,20 @@ import logo from "./logo.png"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { fetchUserData } from '../../authenticationService';
+import { useState } from 'react';
 
 function NavigationBar(props){
 
   const token = localStorage.getItem('USER_KEY');
+  const [data,setData]=useState({});
+
+  fetchUserData().then((response)=>{
+    setData(response.data);
+  }).catch((e)=>{
+    localStorage.clear();
+    // props.history.push('/');
+  })
 
   const logOut=()=>{
 
@@ -44,8 +54,8 @@ return (
      { !token && <Nav.Link href="log-in"> <h2> Log In </h2></Nav.Link> }
      { !token && <Nav.Link href="sign-up"><h2>Sign Up </h2></Nav.Link> }
      <Nav.Link href="contact-us"><h2>Contact Us </h2></Nav.Link>
-     <Nav.Link href="admin"><h2> Admin </h2></Nav.Link>
-     { token && <Nav.Link href="user-profile"><h2>Profile</h2></Nav.Link> }
+     { data.role === "ADMIN" && <Nav.Link href="admin"><h2> Admin </h2></Nav.Link> }
+     { token && data.role !== "ADMIN" && <Nav.Link href="user-profile"><h2>Profile</h2></Nav.Link> }
      { token && <Nav.Link href="./" onClick={() =>logOut()}><h2>Logout</h2></Nav.Link> }
 
         </Nav>

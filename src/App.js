@@ -27,10 +27,19 @@ import AdminScholarshipAdd from './component/Admin/AdminScholarshipAdd';
 import { Dashboard } from './dashboard';
 import Profile from './pages/Profile/Profile';
 import { useState } from 'react';
+import { fetchUserData } from './authenticationService';
 
 function App() {
 
-  const[token, setToken] = useState(localStorage.getItem('USER_KEY'))
+  const token = localStorage.getItem('USER_KEY');
+  const [data,setData]=useState({});
+
+  fetchUserData().then((response)=>{
+    setData(response.data);
+  }).catch((e)=>{
+    localStorage.clear();
+    // props.history.push('/');
+  })
 
   return (
 
@@ -39,27 +48,27 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/log-in" element={<LogInPage />} />
-        <Route path="/sign-up" element={<SignUpForm />} />
-        <Route path="/forget-password" element={<ForgetPasswordPage />} />
+        { !token && <Route path="/log-in" element={<LogInPage />} /> }
+        { !token && <Route path="/sign-up" element={<SignUpForm />} /> }
+        { !token && <Route path="/forget-password" element={<ForgetPasswordPage />} /> }
         <Route path="/events" element={<EventPage/>} />
         <Route path="/scholarship" element={<Scholarship/>} />
         <Route path="/contact-us" element={<Contact/>} />
-        <Route path="/admin" element={<AdminHome/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
 
-        <Route path="/admin-member" element={<AdminMembers/>} />
-        <Route path="/admin-member-add" element={<AdminMemberAdd/>} />
-        <Route path="/admin-member-search" element={<AdminMemberSearch/>} />
-        <Route path="/admin-profile" element={<AdminProfile/>} />
-        <Route path="/admin-contact" element={<AdminContact/>} />
-        <Route path="/admin-event-view" element={<AdminEventView/>} />
+        { data.role === "ADMIN" && <Route path="/admin" element={<AdminHome/>} /> }
+        { data.role === "ADMIN" && <Route path="/admin-member" element={<AdminMembers/>} /> }
+        { data.role === "ADMIN" && <Route path="/admin-member-add" element={<AdminMemberAdd/>} /> }
+        { data.role === "ADMIN" && <Route path="/admin-member-search" element={<AdminMemberSearch/>} /> }
+        { data.role === "ADMIN" && <Route path="/admin-profile" element={<AdminProfile/>} /> }
+        { data.role === "ADMIN" && <Route path="/admin-contact" element={<AdminContact/>} /> }
+        { data.role === "ADMIN" && <Route path="/admin-event-view" element={<AdminEventView/>} /> }
 
-        <Route path="/admin-event-add" element={<AdminEventAdd/>} />
-        <Route path="/admin-scholarship-add" element={<AdminScholarshipAdd/>} />
-        <Route path="/admin-member-view" element={<AdminMemberView/>} />
+        { data.role === "ADMIN" && <Route path="/admin-event-add" element={<AdminEventAdd/>} /> }
+        { data.role === "ADMIN" && <Route path="/admin-scholarship-add" element={<AdminScholarshipAdd/>} /> }
+        { data.role === "ADMIN" && <Route path="/admin-member-view" element={<AdminMemberView/>} /> }
 
-        <Route path="/user-profile" element={<Profile/>} />
+        { token && data.role !== "ADMIN" && <Route path="/user-profile" element={<Profile/>} /> }
 
 
 

@@ -30,10 +30,12 @@ const LogInPage = ({loading,error,...props}) => {
           console.log("response",response);
           if(response.status===200){
               props.setUser(response.data);
-              //props.setToken(localStorage.getItem('USER_KEY'));
+
               navigate("/");
               window.location.reload();
-              ;
+
+              //props.setToken(localStorage.getItem('USER_KEY'));
+              
           }
           else{
              props.loginFailure('Something Wrong!Please Try Again1'); 
