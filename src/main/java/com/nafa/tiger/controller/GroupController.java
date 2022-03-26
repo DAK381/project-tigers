@@ -48,14 +48,14 @@ public class GroupController {
 //	public User addMemberToGroup(@PathVariable("userName") Long userId, @PathVariable("groupName") Long groupId){
 //		return groupService.addUserToGroup(userId,groupId);
 //	}
-	@PostMapping("/test")
-	public void test(@RequestParam Long userId, @RequestParam Long group) {
-		try {
-			groupService.addUserToGroup(userId, group);
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}
-	}
+//	@PostMapping("/test")
+//	public void test(@RequestParam Long userId, @RequestParam Long group) {
+//		try {
+//			groupService.addUserToGroup(userId, group);
+//		} catch (Exception e) {
+//			System.out.println(e.toString());
+//		}
+//	}
 	
 	
 }

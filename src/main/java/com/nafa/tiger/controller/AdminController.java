@@ -23,60 +23,57 @@ import com.nafa.tiger.service.MemberService;
 public class AdminController {
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private AddGroupRequestService addGroupRequestService;
-	
-	
-	@CrossOrigin(origins ="*")
-	@GetMapping("/admin/allMembers")
-	public ArrayList<User> getAllUsers(){
+
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("/allMembers")
+	public ArrayList<User> getAllUsers() {
 		return memberService.getAllUsers();
 	}
-	
-	
-	
-	
-	@DeleteMapping("admin/delete/{user_id}")
+
+
+	@DeleteMapping("/delete/{user_id}")
 	public String deleteMember(@PathVariable("user_id") Long user_id) {
 		memberService.deleteUser(user_id);
 		return "Member successfully deleted";
 	}
-	
-	@GetMapping("/admin/member/{user_id}")
-	public User getMemberById(@PathVariable("user_id") Long user_id){
+
+	@GetMapping("/member/{user_id}")
+	public User getMemberById(@PathVariable("user_id") Long user_id) {
 		return memberService.getUserById(user_id);
 	}
-	
-	@GetMapping("/admin/member/firstname/{memberFirstName}")
-	public ArrayList<User> getMemberByFirstNameContaining(@PathVariable("memberFirstName") String firstName){
+
+	@GetMapping("/member/firstname/{memberFirstName}")
+	public ArrayList<User> getMemberByFirstNameContaining(@PathVariable("memberFirstName") String firstName) {
 		return memberService.getAllByFirstNameContaining(firstName);
 	}
-	
-	@GetMapping("/admin/member/lastname/{memberLastName}")
-	public ArrayList<User> getMemberByLastNameContaining(@PathVariable("memberLastName") String lastName){
+
+	@GetMapping("/member/lastname/{memberLastName}")
+	public ArrayList<User> getMemberByLastNameContaining(@PathVariable("memberLastName") String lastName) {
 		return memberService.getAllByLastNameContaining(lastName);
 	}
-	
-	@GetMapping("/admin/member/email/{memberEmail}")
-	public User getMemberByEmail(@PathVariable("memberEmail") String email){
+
+	@GetMapping("/member/email/{memberEmail}")
+	public User getMemberByEmail(@PathVariable("memberEmail") String email) {
 		return memberService.getUserByEmail(email);
 	}
-	
-	@GetMapping("/admin/member/firstname/{memberFirstName}/lastname/{memberLastName}")
-	public ArrayList<User> getAllByFirstNameAndLastNameContaining(@PathVariable("memberFirstName") String firstName,@PathVariable("memberLastName") String lastName){
-		return memberService.getAllByFirstNameAndLastNameContaining(firstName,lastName);
+
+	@GetMapping("/member/firstname/{memberFirstName}/lastname/{memberLastName}")
+	public ArrayList<User> getAllByFirstNameAndLastNameContaining(@PathVariable("memberFirstName") String firstName, @PathVariable("memberLastName") String lastName) {
+		return memberService.getAllByFirstNameAndLastNameContaining(firstName, lastName);
 	}
-	@GetMapping("/admin/getAllRequest")
-	public ArrayList<PendingGroupRequest> getAllRequest(){
+
+	@GetMapping("/getAllRequest")
+	public ArrayList<PendingGroupRequest> getAllRequest() {
 		return addGroupRequestService.getAllRequests();
 	}
-	
-	@PutMapping("/admin/responseToRequest/{requestId}/{response}")
-	public String reponseToAddGroup(@PathVariable("requestId")Long requestId, @PathVariable("response")Boolean response) {
-		return addGroupRequestService.responseToAddGroup(requestId,response);
+
+	@PutMapping("/responseToRequest/{requestId}/{response}")
+	public String responseToAddGroup(@PathVariable("requestId") Long requestId, @PathVariable("response") Boolean response) {
+		return addGroupRequestService.responseToAddGroup(requestId, response);
 	}
-	@DeleteMapping("admin/deleteRequest/{requestId}")
-	public String deleteRequest(@PathVariable("requestId")Long requestId) {
-		return addGroupRequestService.deleteRequest(requestId);	}
 }
+
