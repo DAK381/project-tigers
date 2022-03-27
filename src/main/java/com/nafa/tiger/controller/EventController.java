@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/event")
+@RequestMapping("admin/event")
 public class EventController {
     @Autowired
     private EventService eventService;
@@ -25,7 +25,7 @@ public class EventController {
     public String deleteEvent(@PathVariable("eventId") Long eventId){
         return eventService.deleteEvent(eventId);
     }
-    @GetMapping("event/{eventId}")
+    @GetMapping("/{eventId}")
     public Events getEventById(@PathVariable("eventId") Long eventId){
         return eventService.getEventById(eventId);
     }
