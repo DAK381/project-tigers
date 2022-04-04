@@ -17,12 +17,12 @@ import axios from "../../axios";
 function Profile(props){
 
     const [data,setData]=useState({});
-    const [groups,setGroups]=useState({});
+    const [groups,setGroups]=useState([]);
     
-    // axios.get("/search/allgroup").then(res=>{
-    //     setGroups(res.data)
-    //     console.log(groups);
-    // }).catch(err=>console.log(err))
+    axios.get("/search/allgroup").then(res=>{
+        setGroups(res.data)
+        console.log(groups);
+    }).catch(err=>console.log(err))
 
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
@@ -122,7 +122,14 @@ function Profile(props){
                                 <div className="row">
                                     <div className="bio-row">
                                         <p><span>All groups:</span></p>
-                                        <p>{}</p>
+                                        <p>{
+                                            groups.map(group =>
+                                                <tr key={group.groupId}>
+                                                    <td>{group.groupId} </td>
+                                                    <td>{group.groupName} </td>
+                                                </tr>
+                                            )}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
