@@ -1,0 +1,29 @@
+.card {
+    
+    text-align: center;
+    
+  }
+
+.card-title
+{
+    font-size: 30px !important;
+    padding: 1px;
+    
+    
+    
+}
+.card-body
+{
+    
+    font-size: 20px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-text
+{
+    padding: 0px !important;
+    text-align: center !important;
+}
