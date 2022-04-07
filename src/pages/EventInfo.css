@@ -1,0 +1,19 @@
+.page-wrapper{
+    postion: relative;
+}
+
+.page-image-container {
+    postion: relative;
+    max-width: 70 rem;
+    margin: 0 auto;
+}
+
+.event-image{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    width: 100%;
+    border-radius: 0;
+    position: absolute;
+}
+

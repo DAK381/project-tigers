@@ -28,6 +28,7 @@ import { Dashboard } from './dashboard';
 import Profile from './pages/Profile/Profile';
 import { useState } from 'react';
 import { fetchUserData } from './authenticationService';
+import EventDetails from './pages/EventDetails';
 
 function App() {
 
@@ -70,6 +71,9 @@ function App() {
 
         { token && data.role !== "ADMIN" && <Route path="/user-profile" element={<Profile/>} /> }
 
+
+    	
+        <Route path="/eventInfo" element={<EventDetails />}/>
 
 
 
