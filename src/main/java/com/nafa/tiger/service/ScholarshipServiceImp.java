@@ -3,9 +3,11 @@ package com.nafa.tiger.service;
 import com.nafa.tiger.entity.Scholarship;
 import com.nafa.tiger.repository.ScholarshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class ScholarshipServiceImp implements ScholarshipService{
 
     @Autowired

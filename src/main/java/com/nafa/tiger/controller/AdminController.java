@@ -2,16 +2,11 @@ package com.nafa.tiger.controller;
 
 import java.util.ArrayList;
 
+import com.nafa.tiger.service.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.method.P;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.nafa.tiger.entity.PendingGroupRequest;
 import com.nafa.tiger.entity.User;
@@ -27,6 +22,16 @@ public class AdminController {
 	@Autowired
 	private AddGroupRequestService addGroupRequestService;
 
+	@Autowired
+	private EmailSenderService emailSenderService;
+
+	@PostMapping("/sendemail")
+	public void sendEmail(){
+		emailSenderService.sendSimpleEmail(""+"swastikabasnet01@gmail.com",
+				"token:adds","Verification Token");
+	}
+
+	
 
 	@CrossOrigin(origins = "*")
 	@GetMapping("/allMembers")
