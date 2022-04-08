@@ -1,0 +1,20 @@
+server:
+   port:8082
+spring:
+  jpa:
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: 'true'
+    hibernate:
+      ddl-auto:create
+      globally_quoted_identifiers:'true'
+  datasource:
+    username: tiger
+    url: jdbc:postgresql://nafa.cp4e12t7aiyi.us-east-2.rds.amazonaws.com/registration
+    password: nafatiger
+jwt:
+  auth:
+    secret_key: testkey#secret@12334
+    expires_in: '3600'
+    app: Spring-Security-App
+  
