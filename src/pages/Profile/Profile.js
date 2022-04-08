@@ -4,7 +4,8 @@ import { Button,Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { fetchUserData } from '../../authenticationService';
 import axios from "../../axios";
-
+import Checkboxes from './Checkboxes';
+import Checkbox from './Checkbox';
 
 // function getGroups(data){
 //     let groups = '';
@@ -13,6 +14,7 @@ import axios from "../../axios";
 //     }
 //     return groups;
 // }
+const selectedCheckboxes = new Set();
 
 function Profile(props){
 
@@ -27,13 +29,32 @@ function Profile(props){
     React.useEffect(()=>{
         fetchUserData().then((response)=>{
             setData(response.data);
+            console.log(response.data);
         }).catch((e)=>{
             localStorage.clear();
             props.history.push('/');
         })
     },[])
 
+    //const selectedCheckboxes = new Set();
 
+    const toggleCheckbox = id => {
+        if (selectedCheckboxes.has(id)) {
+          selectedCheckboxes.delete(id);
+        } else {
+          selectedCheckboxes.add(id);
+        }
+        console.log(selectedCheckboxes);
+      }
+
+    const handleFormSubmit = formSubmitEvent => {
+        formSubmitEvent.preventDefault();
+        
+        for (const checkbox of selectedCheckboxes) {
+            console.log(checkbox, 'is selected.');
+            axios.post("http://localhost:8080/addMemberIngroup/" + checkbox + "/" + data.id );
+        }
+      }
 
     return (
 <div className="container bootstrap snippets bootdey">
@@ -122,14 +143,14 @@ function Profile(props){
                                 <div className="row">
                                     <div className="bio-row">
                                         <p><span>All groups:</span></p>
-                                        <form>
+                                        <form >
                                                 {
                                             groups.map(group =>
-                                                <p key={group.groupId}>
-                                                    <input type="checkbox" id={group.groupId} name={group.groupName} value={group.groupName} />
-                                                    <span> {group.groupName}</span>
-                                                </p>      
+                                                <div key={group.groupId}>
+                                                    <Checkbox id={group.groupId} label={group.groupName} handleCheckboxChange={toggleCheckbox}/>
+                                                </div>      
                                                 )}
+                                            <button type ="button" className="btn-primary btn" onClick={handleFormSubmit}>Save</button>
                                         </form>
                                     </div>
                                 </div>
