@@ -90,7 +90,7 @@ function ScholarshipCard() {
 										<small className='text-muted'>Last updated 3 mins ago</small>
 									</Card.Text>
 
-									/**This is the Modal for more scholarship Information */
+									{/* This is the Modal for more scholarship Information */}
 									<Button variant="primary" onClick={handleShow}>
 										More Scholarship Information
 									</Button>
@@ -107,7 +107,7 @@ function ScholarshipCard() {
 										</Modal.Footer>
 									</Modal>
 
-									/**This is the Modal for scholarship sign up form */
+									{/* This is the Modal for scholarship sign up form */}
 									<Button variant="primary" onClick={handleShow}>
 										Scholarship Sign Up Form
 									</Button>
