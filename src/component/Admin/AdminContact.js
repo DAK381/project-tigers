@@ -16,7 +16,7 @@ function AdminContact() {
                 <Card>
                     <CardBody>
                         <Card.Title>
-                            <h3>Contact Memerbs</h3></Card.Title>
+                            <h3>Contact Members</h3></Card.Title>
                         <Form>
                             
                             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -32,7 +32,7 @@ function AdminContact() {
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Subject</Form.Label>
+                            <Form.Label>Body</Form.Label>
                             <FloatingLabel controlId="floatingTextarea2" label="Comments">
                             <Form.Control
                             as="textarea"
