@@ -36,7 +36,7 @@ function ScholarshipData(){
 
 
             {data.map(event => (
-            <EventCard key={event.id} data={event} />
+            <ScholarshipCard key={event.id} data={event} />
 
 
 
