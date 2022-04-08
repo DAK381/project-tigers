@@ -1,7 +1,8 @@
 import AdminNavigation from "./AdminNavigation";
 import UpcomingEvent from "../../pages/UpcomingEvent";
 import { Container } from "react-bootstrap";
-import Upload from "./UploadContent";
+
+import AdminEventAddForm from "../Forms/AdminEventAddForm";
 
 function AdminEventAdd(){
 
@@ -9,7 +10,8 @@ function AdminEventAdd(){
         <div>
             <AdminNavigation />
 
-            <Upload />
+           
+            <AdminEventAddForm />
             
             
 

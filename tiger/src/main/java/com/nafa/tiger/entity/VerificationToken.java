@@ -17,6 +17,8 @@ import javax.persistence.OneToOne;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Data
@@ -30,6 +32,7 @@ public class VerificationToken {
 	private String token;
 	private Date expirationTime;
 	private static final int EXPIRATION_TIME = 10;
+
 	
 	@OneToOne(fetch =FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id", nullable = false, 

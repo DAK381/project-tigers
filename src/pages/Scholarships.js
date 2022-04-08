@@ -1,22 +1,17 @@
 import { useState } from 'react';
 import Button from './Button';
 import ScholarshipCard from './ScholarshipCard';
+import ScholarshipData from './ScholarshipData';
 
 function Scholarship(){
 
-  const [components, setComponents] = useState(["Sample Component"]);
-
-  function addComponent() {
-
-    setComponents([...components, "Sample Component"])
-
-  }
-
-    return (
-	<div>
-		<Button onClick={addComponent} text="Call Component"/>
-		{components.map((i) => ( <ScholarshipCard /> ))}
-	</div>
-    );
+  return(
+    <div>
+      <h1>
+        Scholarships
+      </h1>
+      <ScholarshipData />
+    </div>
+  )
 }
 export default Scholarship;

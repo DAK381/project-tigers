@@ -4,9 +4,12 @@ import { Form } from "react-bootstrap";
 import { connect } from 'react-redux';
 import { authenticate, authFailure, authSuccess } from '../../redux/authActions';
 import { Link, useNavigate } from "react-router-dom";
-import NewUserInfo from "../NewUserInfo";
 import {userLogin} from "../../authenticationService";
 import {Alert,Spinner} from 'react-bootstrap';
+import Captcha from './recaptcha/Captcha';
+import App from '../../App';
+import './LoginForm.css';
+
 
 const LogInPage = ({loading,error,...props}) => {
  
@@ -27,9 +30,12 @@ const LogInPage = ({loading,error,...props}) => {
           console.log("response",response);
           if(response.status===200){
               props.setUser(response.data);
-              navigate("/dashboard");
-    
-              ;
+
+              navigate("/");
+              window.location.reload();
+
+              //props.setToken(localStorage.getItem('USER_KEY'));
+              
           }
           else{
              props.loginFailure('Something Wrong!Please Try Again1'); 
@@ -101,6 +107,7 @@ const LogInPage = ({loading,error,...props}) => {
          />
        </Form.Group>
  
+      <Captcha/>
       <button type ="button" className="btn-primary btn" onClick={loginHandler} >Log in</button>
      </Form>
  

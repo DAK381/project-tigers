@@ -15,9 +15,9 @@ function Footer() {
         </p>
 
       </section>
-      <div class='footer-links'>
+      <div className ='footer-links'>
         
-          <div class='footer-link-items'>
+          <div className='footer-link-items'>
             <h2>Stay Connected</h2>
             <Link to='/'>Instagram</Link>
             <Link to='/'>Facebook</Link>

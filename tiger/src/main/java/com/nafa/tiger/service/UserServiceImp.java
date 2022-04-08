@@ -26,6 +26,8 @@ public class UserServiceImp implements UserService{
 	private UserReprository userReprository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+
 	
 	
 	@Autowired
@@ -82,8 +84,8 @@ public class UserServiceImp implements UserService{
 		VerificationToken verificationToken = verificationTokenReprository.findByToken(oldToken);
 				verificationToken.setToken(UUID.randomUUID().toString());
 				verificationTokenReprository.save(verificationToken);
+
 				return verificationToken;
-		
 		
 	}
 	@Override

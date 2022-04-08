@@ -12,7 +12,7 @@ public interface GroupRepository extends JpaRepository<Group, Long> {
 
 	ArrayList<Group> findByGroupNameIgnoreCaseContaining(String groupName);
 
-	
+
 
 //	ArrayList<Group> findByNameIgnoreCaseContaining(String group_name);
 

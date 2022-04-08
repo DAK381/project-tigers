@@ -4,6 +4,7 @@ package com.nafa.tiger.service;
 import java.util.ArrayList;
 
 import com.nafa.tiger.entity.Group;
+import com.nafa.tiger.entity.User;
 
 public interface GroupService {
 
@@ -14,6 +15,11 @@ public interface GroupService {
 	Group findByGroupId(Long groupId);
 
 	ArrayList<Group> getGroupByNameContaining(String groupName);
+
+	ArrayList<Group> getAllGroup();
+
+
+	void addUserToGroup(Long userId, Long groupId);
 
 	
 

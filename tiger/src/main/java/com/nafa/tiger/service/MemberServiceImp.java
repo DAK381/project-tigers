@@ -1,6 +1,7 @@
 package com.nafa.tiger.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -8,12 +9,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nafa.tiger.entity.Activity;
 import com.nafa.tiger.entity.Group;
+import com.nafa.tiger.entity.PendingGroupRequest;
 import com.nafa.tiger.entity.User;
-import com.nafa.tiger.repository.ActivityRepository;
+import com.nafa.tiger.repository.AddGroupRequestRepository;
 import com.nafa.tiger.repository.GroupRepository;
 import com.nafa.tiger.repository.MemberRepositrory;
+import com.nafa.tiger.repository.UserReprository;
 
 import ch.qos.logback.classic.Logger;
 import lombok.extern.slf4j.Slf4j;
@@ -24,14 +26,16 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberServiceImp implements MemberService {
 	@Autowired
 	private MemberRepositrory memberRepository;
-	@Autowired
-	private ActivityRepository activityRepository;
+	
 	
 	@Autowired
 	private GroupRepository groupRepository;
 	
+	@Autowired
+	private GroupService groupService;
 
-
+	@Autowired
+	private AddGroupRequestRepository  addGroupRequestRepository;
 	@Override
 	public void deleteUser(Long userId) {
 		memberRepository.deleteById(userId);	
@@ -77,29 +81,33 @@ public class MemberServiceImp implements MemberService {
 //	}
 
 	@Override
-	public ArrayList<User> getByActivity(String details) {
-		ArrayList<Long> userIdarray = activityRepository.findAllByDetailId(details);
-		return (ArrayList<User>) memberRepository.findAllById(userIdarray);
-	
-	}
-
-	@Override
-	public ArrayList<Activity> getActivityById(Long userId) {
-		return activityRepository.findAllByMemberId(userId);
-	}
-
-	@Override
 	public User addUserToGroup(Long userId, Long groupId) {
 		User user = memberRepository.findById(userId).get();
-		Group group = groupRepository.findById(groupId).get();
-//		group.getUserGroup().add(user);
-//		group.addMember(user);
-		user.getUsgroup().add(group);
-		return user;
+		//System.out.print(userId);
+		System.out.print(groupId);
+		Group group = groupService.findByGroupId(groupId);
+		System.out.print(group);
+		user.getUserGroup().add(group);
+		//group.getGroupUser().add(user);
+		return new User();
 	}
 
+	@Override
+	public Collection<Group> removeUserFromGroup(Long userId, Long groupId) {
+		User fetchedUser = memberRepository.findById(userId).get();
+		Group fetchedGroup = groupRepository.findById(groupId).get();	
+		fetchedUser.getUserGroup().remove(fetchedGroup);
+		return fetchedUser.getUserGroup();
+	}
+
+	@Override
+	public PendingGroupRequest requestToaddGroup(String groupName, Long userId) {
+		User user = memberRepository.findById(userId).get();
+		PendingGroupRequest request = new PendingGroupRequest(groupName, user);
+		addGroupRequestRepository.save(request);
+		return request;
+		
+	}
 
 	
 	}
-	
-

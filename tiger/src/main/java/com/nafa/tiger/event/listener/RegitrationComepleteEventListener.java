@@ -2,6 +2,7 @@ package com.nafa.tiger.event.listener;
 
 import java.util.UUID;
 
+import com.nafa.tiger.service.EmailSenderService;
 import org.apache.logging.log4j.LogManager;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,16 @@ import lombok.extern.slf4j.Slf4j;
 public class RegitrationComepleteEventListener implements ApplicationListener<RegistrationCompleteEvent> {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private EmailSenderService emailSenderService;
 	@Override
 	public void onApplicationEvent(RegistrationCompleteEvent event) {
 		// Create the verification Token for the USer with Link
 		User user =event.getUser();
 		String token = UUID.randomUUID().toString();
+		emailSenderService.sendSimpleEmail(""+user.getEmail(),
+				"token:"+event.getApplicationUrl()+"/verifyRegistration?token="+token,
+				"Verification Token");
 		userService.saveVerificationTokenForUser(token,user);
 		//send mail
 		String url = event.getApplicationUrl()+"/verifyRegistration?token="+token;		
