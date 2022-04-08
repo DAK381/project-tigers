@@ -77,18 +77,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 			.formLogin()
 			.loginPage("http://localhost:3000/log-in")
 			.usernameParameter("email")
-			.defaultSuccessUrl("/http://localhost:3000", true)
+			.defaultSuccessUrl("http://localhost:3000", true)
 			.permitAll()
 			.and()
 			.logout().logoutSuccessUrl("/").permitAll();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().exceptionHandling()
 		.authenticationEntryPoint(authenticationEntryPoint).and()
 		.authorizeRequests((request) -> request.antMatchers(WHITE_LIST_URLS).permitAll()
-//				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
+			//	.antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
 				)
 		.addFilterBefore(new JWTAuthenticationFilter(customUserDetailService, jWTTokenHelper),
 				UsernamePasswordAuthenticationFilter.class);
 
 	}
-		
+
 }
