@@ -122,14 +122,15 @@ function Profile(props){
                                 <div className="row">
                                     <div className="bio-row">
                                         <p><span>All groups:</span></p>
-                                        <p>{
+                                        <form>
+                                                {
                                             groups.map(group =>
-                                                <tr key={group.groupId}>
-                                                    <td>{group.groupId} </td>
-                                                    <td>{group.groupName} </td>
-                                                </tr>
-                                            )}
-                                        </p>
+                                                <p key={group.groupId}>
+                                                    <input type="checkbox" id={group.groupId} name={group.groupName} value={group.groupName} />
+                                                    <span> {group.groupName}</span>
+                                                </p>      
+                                                )}
+                                        </form>
                                     </div>
                                 </div>
                             </div>
