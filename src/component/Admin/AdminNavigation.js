@@ -9,7 +9,7 @@ function AdminNavigation(){
     return(
         <div>
 
-<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" mr= "auto">
+<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" mr= "auto" fixed="top">
   <Container fluid>
   <Navbar.Brand href= "admin-profile">
       Admin Profile
