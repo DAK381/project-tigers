@@ -4,36 +4,39 @@ import { Button,Container } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { fetchUserData } from '../../authenticationService';
 import axios from "../../axios";
+import Checkboxes from './Checkboxes';
+import Checkbox from './Checkbox';
 
 
-// function getGroups(data){
-//     let groups = '';
-//     for (let i = 0; i<data.length; i++) {
-//         groups += data[i].groupName + "<br>";
-//     }
-//     return groups;
-// }
+const selectedCheckboxes = new Set();
 
 function Profile(props){
-
-    const [data,setData]=useState({});
+    const userData = props.userData;
     const [groups,setGroups]=useState([]);
-    
-    axios.get("/search/allgroup").then(res=>{
-        setGroups(res.data)
-        console.log(groups);
-    }).catch(err=>console.log(err))
 
     React.useEffect(()=>{
-        fetchUserData().then((response)=>{
-            setData(response.data);
-        }).catch((e)=>{
-            localStorage.clear();
-            props.history.push('/');
-        })
+        axios.get("/search/allgroup").then(res=>{
+            setGroups(res.data)
+        }).catch(err=>console.log(err))
     },[])
 
+    const toggleCheckbox = id => {
+        if (selectedCheckboxes.has(id)) {
+          selectedCheckboxes.delete(id);
+        } else {
+          selectedCheckboxes.add(id);
+        }
+        console.log(selectedCheckboxes);
+      }
 
+    const handleFormSubmit = formSubmitEvent => {
+        formSubmitEvent.preventDefault();
+        
+        for (const checkbox of selectedCheckboxes) {
+            console.log(checkbox, 'is selected.');
+            axios.post("http://localhost:8080/addMemberIngroup/" + checkbox + "/" + userData.id );
+        }
+      }
 
     return (
 <div className="container bootstrap snippets bootdey">
@@ -49,8 +52,8 @@ function Profile(props){
                             <div className="user-heading round">
                                 <div className="text-center"> <img src="bojack.0.0.jpg" width="200" className="rounded-circle"/>
                                 </div>
-                                <h1>{data.firstName + ' ' + data.lastName}</h1>
-                                <p>{data.email}</p>
+                                <h1>{userData.firstName + ' ' + userData.lastName}</h1>
+                                <p>{userData.email}</p>
                             </div>
 
                             <div className="buttons"> <button className="btn btn-outline-primary">Edit Profile</button> <button
@@ -89,10 +92,10 @@ function Profile(props){
                                 <h1>Bio Graph</h1>
                                 <div className="row">
                                     <div className="bio-row">
-                                        <p><span>First Name: </span>{data.firstName}</p>
+                                        <p><span>First Name: </span>{userData.firstName}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Last Name: </span>{data.lastName}</p>
+                                        <p><span>Last Name: </span>{userData.lastName}</p>
                                     </div>
                                     <div className="bio-row">
                                         <p><span>Graduation year: </span></p>
@@ -101,10 +104,10 @@ function Profile(props){
                                         <p><span>Birthday: </span></p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Email: </span>{data.email}</p>
+                                        <p><span>Email: </span>{userData.email}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Phone: </span>{data.phone}</p>
+                                        <p><span>Phone: </span>{userData.phone}</p>
                                     </div>
                                 </div>
                             </div>
@@ -122,14 +125,14 @@ function Profile(props){
                                 <div className="row">
                                     <div className="bio-row">
                                         <p><span>All groups:</span></p>
-                                        <form>
+                                        <form >
                                                 {
                                             groups.map(group =>
-                                                <p key={group.groupId}>
-                                                    <input type="checkbox" id={group.groupId} name={group.groupName} value={group.groupName} />
-                                                    <span> {group.groupName}</span>
-                                                </p>      
+                                                <div key={group.groupId}>
+                                                    <Checkbox id={group.groupId} label={group.groupName} handleCheckboxChange={toggleCheckbox}/>
+                                                </div>      
                                                 )}
+                                            <button type ="button" className="btn-primary btn" onClick={handleFormSubmit}>Save</button>
                                         </form>
                                     </div>
                                 </div>

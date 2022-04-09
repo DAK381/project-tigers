@@ -44,11 +44,16 @@ public class GroupController {
 		return groupService.getGroupByNameContaining(groupName);
 	}
 	
-   
-//	@PostMapping("addMemberIngroup/{groupName}/{userName}")
-//	public User addMemberToGroup(@PathVariable("userName") Long userId, @PathVariable("groupName") Long groupId){
-//		return groupService.addUserToGroup(userId,groupId);
-//	}
+    @CrossOrigin("*")
+	@PostMapping("addMemberIngroup/{groupName}/{userName}")
+	public void addMemberToGroup(@PathVariable("userName") Long userId, @PathVariable("groupName") Long groupId){
+		groupService.addUserToGroup(userId,groupId);
+	}
+
+	// @PostMapping("addMemberIngroup/{groupName}/{userName}")
+	// public User addMemberToGroup(@PathVariable("userName") Long userId, @PathVariable("groupName") Long groupId){
+	// 	return groupService.addUserToGroup(userId,groupId);
+	// }
 //	@PostMapping("/test")
 //	public void test(@RequestParam Long userId, @RequestParam Long group) {
 //		try {
@@ -60,3 +65,4 @@ public class GroupController {
 	
 	
 }
+
