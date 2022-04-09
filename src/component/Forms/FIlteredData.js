@@ -5,17 +5,20 @@ import AdminMemberGraduationYear from "./AdminMemberGraduationYear";
 import AdminMemberGroup from "./AdminMemberGroup";
 import AdminMemberSearchLastName from "./AdminMembersSearchLastName";
 import AdminAllMembers from "../Admin/AdminAllMembers";
+import { Button } from "react-bootstrap";
 
 function FilteredData()
 {
 
     const[submitted, setSubmitted] = useState(false)
+
     const [query, setQuery] = useState([
         {firstName: "",
         lastName: "",
         group: "",
         graduationYear: ""
         }]);
+
 
   const searchQuery = (query1) => {
     setQuery([
@@ -34,7 +37,7 @@ function FilteredData()
       setSubmitted(status)
   }
 
-
+ 
   if(!submitted)
   {
   return (
@@ -58,8 +61,9 @@ else{
                     return (
                     <div>
                     
+                    <Button onClick={() => setSubmitted(false)}>Show all Members</Button>
                     
-                    <AdminMemberSearchFirstName name = {query.firstName} />
+                     <AdminMemberSearchFirstName name = {query.firstName} />
                     <AdminMemberSearchLastName name = {query.lastName} />
                     <AdminMemberGroup name = {query.group} />
                     <AdminMemberGraduationYear name = {query.graduationYear} />
@@ -74,12 +78,7 @@ else{
         </div>
     )
 }
-
-
-      
-
-                   
-     
+  
 
 }
 

@@ -52,14 +52,7 @@ function AdminMemberSearchFirstName (props) {
                 {data.map(member => (
                 <MemberCard key={member.id} data={member} />
 
-
-
-
 ))}  
-
-
-
-
 
 </Row>
 
@@ -68,10 +61,7 @@ function AdminMemberSearchFirstName (props) {
                   </div>
               )
               
-        
-              
-              
-            //   <MemberCard data = {data} />
+
           }
 
       }

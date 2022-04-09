@@ -28,7 +28,9 @@ export default function FormMemberSearch({searchQuery, submissionStatus}) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     searchQuery(query);
+
     setSubmitted(true);
     submissionStatus(submitted);
     // setQuery({ firstName: "", lastName: "", group: "", graduationYear: ""});
