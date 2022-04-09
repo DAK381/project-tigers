@@ -4,6 +4,7 @@ import EventPage from './EventsPage';
 import EventCard from './EventCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
+import ScholarshipCard from './ScholarshipCard';
 function ScholarshipData(){
 
 

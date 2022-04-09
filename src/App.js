@@ -26,26 +26,31 @@ import AdminMemberView from './component/Admin/AdminMemberView';
 import AdminScholarshipAdd from './component/Admin/AdminScholarshipAdd';
 import { Dashboard } from './dashboard';
 import Profile from './pages/Profile/Profile';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { fetchUserData } from './authenticationService';
 import EventDetails from './pages/EventDetails';
 
 function App() {
 
   const token = localStorage.getItem('USER_KEY');
-  const [data,setData]=useState({});
+  const [userData,setUserData]=useState({});
+  const notLoggedIn = {
+    role: 'Na'
+  }
 
-  fetchUserData().then((response)=>{
-    setData(response.data);
-  }).catch((e)=>{
-    localStorage.clear();
-    // props.history.push('/');
-  })
+  React.useEffect(()=>{
+    fetchUserData().then((response)=>{
+        setUserData(response.data);
+    }).catch((e)=>{
+        localStorage.clear();
+    })
+  },[])
+
 
   return (
 
   <div>
-   <Layout>
+   <Layout userData={userData || notLoggedIn} token={token}>
       
       <Routes>
         <Route path="/" element={<Home />} />
@@ -57,19 +62,19 @@ function App() {
         <Route path="/contact-us" element={<Contact/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
 
-        { data.role === "ADMIN" && <Route path="/admin" element={<AdminHome/>} /> }
-        { data.role === "ADMIN" && <Route path="/admin-member" element={<AdminMembers/>} /> }
-        { data.role === "ADMIN" && <Route path="/admin-member-add" element={<AdminMemberAdd/>} /> }
-        { data.role === "ADMIN" && <Route path="/admin-member-search" element={<AdminMemberSearch/>} /> }
-        { data.role === "ADMIN" && <Route path="/admin-profile" element={<AdminProfile/>} /> }
-        { data.role === "ADMIN" && <Route path="/admin-contact" element={<AdminContact/>} /> }
-        { data.role === "ADMIN" && <Route path="/admin-event-view" element={<AdminEventView/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin" element={<AdminHome/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-member" element={<AdminMembers/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-member-add" element={<AdminMemberAdd/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-member-search" element={<AdminMemberSearch/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-profile" element={<AdminProfile/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-contact" element={<AdminContact/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-event-view" element={<AdminEventView/>} /> }
 
-        { data.role === "ADMIN" && <Route path="/admin-event-add" element={<AdminEventAdd/>} /> }
-        { data.role === "ADMIN" && <Route path="/admin-scholarship-add" element={<AdminScholarshipAdd/>} /> }
-        { data.role === "ADMIN" && <Route path="/admin-member-view" element={<AdminMemberView/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-event-add" element={<AdminEventAdd/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-scholarship-add" element={<AdminScholarshipAdd/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-member-view" element={<AdminMemberView/>} /> }
 
-        { token && data.role !== "ADMIN" && <Route path="/user-profile" element={<Profile/>} /> }
+        { token && userData.role !== "ADMIN" && <Route path="/user-profile" element={<Profile userData={userData}/>} /> }
 
 
     	
@@ -84,5 +89,6 @@ function App() {
       <Footer />
       </div>
   );
+
 }
 export default App;
