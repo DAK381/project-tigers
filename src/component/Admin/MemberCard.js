@@ -11,7 +11,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
 /*This creates a grid of Event Cards */
-function AdminMemberView(props) {
+function MemberCard(props) {
 
 	// const navigate = useNavigate();
 
@@ -31,15 +31,13 @@ function AdminMemberView(props) {
 
 
 	return (
-		<Container fluid>
+		<Container>
 			<div>
-
-<Row>
 
 
 						<Col>
 							<Card>
-								<Card.Img variant="top" src='#' width={400} height={400} alt='...'  />
+								<Card.Img variant="top" src='#' alt='...'  />
 								<Card.Body>
 									<Card.Title>{props.data.firstName} {props.data.lastName}</Card.Title>
                                     <ListGroup variant="flush">
@@ -51,8 +49,6 @@ function AdminMemberView(props) {
 							</Card>
 						</Col>
 
-						</Row>
-
 
 
 
@@ -61,4 +57,4 @@ function AdminMemberView(props) {
 	);
 }
 
-export default AdminMemberView;
+export default MemberCard;
