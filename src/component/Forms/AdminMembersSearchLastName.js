@@ -5,47 +5,73 @@ import APIService from '../../services/APIService';
 import FirstNameForm from './SearchForm';
 import { Card, CardHeader, CardBody, Table } from 'react-bootstrap';
 import AdminMemberView from '../Admin/AdminMemberView';
+import MemberCard from '../Admin/MemberCard';
+import { Row } from 'react-bootstrap';
+import { CardGroup } from 'react-bootstrap';
 
-
-function AdminMemberSearchFirstName () { 
+function AdminMemberSearchLastName (props) { 
 
     const[data, setData] = useState([]);
     const[query, setQ] = useState("");
     const[querySubmitted, setQuerySubmissionStatus] = useState(false);
 
-    function queryGiven(query){
-        setQ(query)
-    }
-
-    function queryStatus(){
-        setQuerySubmissionStatus(true)
-    }
-
     async function getFilteredData( ){
-        axios.get(`admin/member/lastname/${query}`
+        axios.get(`admin/member/lastname/${props.name}`
             )
             .then(
                 (response) =>
                 {
                     console.log(response.data)
                      setData(response.data)
-                     console.log(querySubmitted)
+                     //console.log(querySubmitted)
 
                 }
             )
- 
     }
 
     useEffect(() => {
-        if (query.trim().length > 0) {
+        if (props.name.trim().length > 0) {
             setQuerySubmissionStatus(true)
-          getFilteredData();
+            getFilteredData();
+
+
         }
-      }, [query]);
+      }, [props.name]);
 
       const showData = () =>{
           if(querySubmitted){
-              return <AdminMemberView data = {data} />
+              return(
+                  <div>
+                      <CardGroup>
+
+
+            <Row className='row-cols-2 row-cols-md-1 p-9 g-4'>
+
+
+
+                {data.map(member => (
+                <MemberCard key={member.id} data={member} />
+
+
+
+
+))}  
+
+
+
+
+
+</Row>
+
+</CardGroup>
+
+                  </div>
+              )
+              
+        
+              
+              
+            //   <MemberCard data = {data} />
           }
 
       }
@@ -54,27 +80,14 @@ function AdminMemberSearchFirstName () {
 
     return(
         <div>
-            <h3>
-                Search by last name
-            </h3>
-
-            <FirstNameForm queryGiven = {queryGiven} queryStatus={queryStatus} data = {data}/>
-
-
+     
           {showData()}
                
-           {/* <AdminMemberView data = {data} />  */}
-         
 
-            
-
-                
-
-           
 
         </div>
     )
 
 }
 
-export default AdminMemberSearchFirstName;
+export default AdminMemberSearchLastName;

@@ -5,48 +5,63 @@ import FirstNameForm from './SearchForm';
 import { Card, CardHeader, CardBody, Table } from 'react-bootstrap';
 import AdminMemberView from '../Admin/AdminMemberView';
 import { Link, useNavigate } from "react-router-dom";
+import MemberCard from '../Admin/MemberCard';
+import { Row } from 'react-bootstrap';
+import { CardGroup } from 'react-bootstrap';
 
-
-function AdminMemberSearchFirstName ({dataToShow}) { 
+function AdminMemberSearchFirstName (props) { 
 
     const[data, setData] = useState([]);
     const[query, setQ] = useState("");
     const[querySubmitted, setQuerySubmissionStatus] = useState(false);
 
-    function queryGiven(query){
-        setQ(query)
-    }
-
-    function queryStatus(){
-        setQuerySubmissionStatus(true)
-    }
-
     async function getFilteredData( ){
-        axios.get(`admin/member/firstname/${query}`
+        axios.get(`admin/member/firstname/${props.name}`
             )
             .then(
                 (response) =>
                 {
                     console.log(response.data)
                      setData(response.data)
-                     console.log(querySubmitted)
+                     //console.log(querySubmitted)
 
                 }
             )
     }
 
     useEffect(() => {
-        if (query.trim().length > 0) {
+        if (props.name.trim().length > 0) {
             setQuerySubmissionStatus(true)
             getFilteredData();
 
 
         }
-      }, [query]);
+      }, [props.name]);
 
       const showData = () =>{
           if(querySubmitted){
-              return <AdminMemberView data = {data} />
+              return(
+                  <div>
+                      <CardGroup>
+
+
+            <Row className='row-cols-2 row-cols-md-1 p-9 g-4'>
+
+
+
+                {data.map(member => (
+                <MemberCard key={member.id} data={member} />
+
+))}  
+
+</Row>
+
+</CardGroup>
+
+                  </div>
+              )
+              
+
           }
 
       }
@@ -55,13 +70,7 @@ function AdminMemberSearchFirstName ({dataToShow}) {
 
     return(
         <div>
-            <h4>
-                Search by first name
-            </h4>
-
-            <FirstNameForm queryGiven = {queryGiven} queryStatus={queryStatus} data = {data}/>
-
-
+     
           {showData()}
                
 

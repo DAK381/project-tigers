@@ -19,13 +19,11 @@ const[query, setQ] = useState("");
         setQuerySubmissionStatus(true)
         queryGiven(query);
         setData(data);
-            // <AdminMemberView data = {data} />
+        
         
     }
 
-    // function dataToShow(data){
-    //     setData(data)
-    // }
+    
 
     return(
         <div>

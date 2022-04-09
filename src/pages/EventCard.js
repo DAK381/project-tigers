@@ -41,6 +41,8 @@ function EventCard(props) {
 								<Card.Img variant="top" src='https://1yfd8w35xqq41q3ou63czp8h-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/etouches-post-alimni-events.jpg' width={400} height={400} alt='...'  />
 								<Card.Body>
 									<Card.Title>{props.data.firstName}</Card.Title>
+
+
 									
 									<Button onClick = {() => {showDetails()}}>More Information</Button>
 									{/* <Link to={`/eventInfo/${this.props.firstName}`}>More info</Link> */}

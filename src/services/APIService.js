@@ -8,13 +8,7 @@ class APIService {
         return axios.get("/admin/allMembers");
     }
 
-    getMembersByFirst(firstName){
-        return axios.get('/admin/member/firstname/{memberFirstName}', {
-            params:{
-                memberFirstName: firstName
-            }
-        })
-    }
+    
 
 }
 
