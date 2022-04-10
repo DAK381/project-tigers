@@ -37,7 +37,13 @@ function FilteredData()
       setSubmitted(status)
   }
 
- 
+  const sub = (q) =>{
+    if(q.length > 0){
+      return true;
+    }
+  }
+
+  
   if(!submitted)
   {
   return (
@@ -46,6 +52,8 @@ function FilteredData()
       <AdminAllMembers />
       </div>
   )
+
+ 
 
 }
 
@@ -56,17 +64,33 @@ else{
              {
               query.map(query =>
                 {
-
-
                     return (
                     <div>
                     
                     <Button onClick={() => setSubmitted(false)}>Show all Members</Button>
                     
-                     <AdminMemberSearchFirstName name = {query.firstName} />
-                    <AdminMemberSearchLastName name = {query.lastName} />
-                    <AdminMemberGroup name = {query.group} />
-                    <AdminMemberGraduationYear name = {query.graduationYear} />
+                    
+                    {sub(query.firstName) && (
+                    <p><AdminMemberSearchFirstName name = {query.firstName} /></p>
+                    )}
+                      
+                   
+                    {sub(query.lastName) && (
+                    <p>  <AdminMemberSearchLastName name = {query.lastName} /></p>
+                    )}
+
+                    {sub(query.group) && (
+                    <p><AdminMemberGroup name = {query.group} /></p>
+                    )}
+
+                    {sub(query.graduationYear) && (
+                    <p><AdminMemberGraduationYear name = {query.graduationYear} /></p>
+                    )}
+
+
+                  
+                    
+                    
 
                     </div>                  
                             )

@@ -57,21 +57,13 @@ function AdminMemberSearchLastName (props) {
 
 ))}  
 
-
-
-
-
 </Row>
 
 </CardGroup>
 
                   </div>
               )
-              
-        
-              
-              
-            //   <MemberCard data = {data} />
+            
           }
 
       }

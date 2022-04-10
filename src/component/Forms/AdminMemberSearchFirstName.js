@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios';
 import DataTable from 'react-data-table-component';
+import APIService from '../../services/APIService';
 import FirstNameForm from './SearchForm';
 import { Card, CardHeader, CardBody, Table } from 'react-bootstrap';
 import AdminMemberView from '../Admin/AdminMemberView';
-import { Link, useNavigate } from "react-router-dom";
 import MemberCard from '../Admin/MemberCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
 
-function AdminMemberSearchFirstName (props) { 
+function AdminMemberSearchLastName (props) { 
 
     const[data, setData] = useState([]);
     const[query, setQ] = useState("");
@@ -54,6 +54,7 @@ function AdminMemberSearchFirstName (props) {
 
 ))}  
 
+
 </Row>
 
 </CardGroup>
@@ -61,7 +62,10 @@ function AdminMemberSearchFirstName (props) {
                   </div>
               )
               
-
+        
+              
+              
+            //   <MemberCard data = {data} />
           }
 
       }
@@ -80,4 +84,4 @@ function AdminMemberSearchFirstName (props) {
 
 }
 
-export default AdminMemberSearchFirstName;
+export default AdminMemberSearchLastName;
