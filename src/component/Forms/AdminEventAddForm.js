@@ -48,7 +48,7 @@ function AdminEventAddForm(){
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="eventDescription">Event Description</label>
+                                        <label for="eventDescription">Event Description</label> <br></br>
                                         <textarea name="eventDescription" placeholder="Enter description" value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} />
                                     </div>
 
