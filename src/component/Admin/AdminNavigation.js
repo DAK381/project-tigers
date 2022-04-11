@@ -3,7 +3,6 @@ import { NavDropdown } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar'
 import { Container } from 'react-bootstrap';
 import AdminProfile from './AdminProfile';
-import logo from "./logo.png"
 
 function AdminNavigation(){
 
@@ -12,15 +11,13 @@ function AdminNavigation(){
 
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" mr= "auto" fixed="top">
   <Container fluid>
-  <Navbar.Brand href="./">
-  <img src = {logo} ahref = "./" alt = ""  width = "9%" />
-          {' '}  Home
+  <Navbar.Brand href= "admin-profile">
+      Admin Profile
   </Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
   <Nav className="justify-content-end" style={{ width: "93%" }}>
-  <Nav.Link href="admin-profile"> Profile </Nav.Link>
-    <Nav.Link href="admin-member"> Member View </Nav.Link>
+    <Nav.Link href="./"> Member View </Nav.Link>
       
       <NavDropdown title="Members" id="collasible-nav-dropdown">
         <NavDropdown.Item href="admin-member">View Members</NavDropdown.Item>

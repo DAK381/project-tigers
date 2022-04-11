@@ -20,43 +20,9 @@ function NavigationBar(props){
 
   }
 
-
-
 return (
 
-//  new design for the navigation bar
-
-
-
-<Navbar bg="dark" variant="dark"  expand="lg" >
-  <Container>
-  <Navbar.Brand href="./">
-  <img src = {logo} ahref = "./" alt = ""  width = "9%" />
-          {' '}  
-  </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse>
-      <Nav className="ms-auto">
-        <Nav.Link href="events" >Events</Nav.Link>
-        <Nav.Link href="scholarships">Scholarships</Nav.Link>
-        <NavDropdown title="User" id="basic-nav-dropdown">
-          <NavDropdown.Item  href="log-in">Login</NavDropdown.Item>
-          <NavDropdown.Item href="sign-up">Signup</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Divider />
-          { userData.role === "ADMIN" && <Nav.Link href="admin"><h2> Admin </h2></Nav.Link> }
-          { token && userData.role !== "ADMIN" && <Nav.Link href="user-profile"><h2>Profile</h2></Nav.Link> }
-     { token && <Nav.Link href="./" onClick={() =>logOut()}><h2>Logout</h2></Nav.Link> } 
-         
-        </NavDropdown>
-      </Nav>
-    </Navbar.Collapse>
-  </Container>
-</Navbar>
-
-// navigation end
-
-/*{ <Navbar bg="light" expand={false}>
+<Navbar bg="light" expand={false}>
   <Container fluid>
   <Navbar.Brand>
      <img src = {logo} ahref = "./" alt = ""  width = "120x" height = "100px"/>
@@ -88,7 +54,7 @@ return (
       </Offcanvas.Body>
     </Navbar.Offcanvas>
   </Container>
-</Navbar> }*/
+</Navbar>
 
 
 
