@@ -9,14 +9,29 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import CardGroup from 'react-bootstrap/CardGroup'
 import ListGroup from 'react-bootstrap/ListGroup';
+import axios from "../axios";
+import './Card.css';
 
 /*This creates a grid of Sholarship Cards */
 function ScholarshipCard() {
 
 	const [show, setShow] = useState(false);
-
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+
+	const [scholarships, setScholarships] = useState([]);
+
+	axios.post("/scholarship").then(res => {
+		scholarships = res.data;
+		setScholarships(res.data)
+		console.log(scholarships);
+	}).catch(err => console.log(err))
+
+	{
+		scholarships.map(scholarship =>
+			<div key={scholarship.id}></div>
+		)
+	}
 
 	return (
 		//makes it flush for viewport
@@ -26,8 +41,9 @@ function ScholarshipCard() {
 
 					<Row className='row-cols-1 row-cols-3 g-3 p-2'>
 						<Col>
+
 							<Card>
-								<Card.Img variant="top" src='https://imageio.forbes.com/specials-images/imageserve/5fb2d344abf7d301612e2395/0x0.jpg?format=jpg&width=1200&fit=bounds' width={400} height={400} alt='...' />
+								<Card.Img data="img1" variant="top" src='https://imageio.forbes.com/specials-images/imageserve/5fb2d344abf7d301612e2395/0x0.jpg?format=jpg&width=1200&fit=bounds' width={400} height={400} alt='...' />
 								<Card.Body>
 
 									<Card.Title>Scholarship 1</Card.Title>
@@ -50,6 +66,7 @@ function ScholarshipCard() {
 									<Button href='#'>Go somewhere</Button>
 								</Card.Body>
 							</Card>
+
 						</Col>
 
 						<Col>

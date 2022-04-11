@@ -2,53 +2,50 @@ import axios from '../axios';
 import { useEffect, useState } from 'react';
 import EventPage from './EventsPage';
 import EventCard from './EventCard';
+import ScholarshipCard from './ScholarshipCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
-import ScholarshipCard from './ScholarshipCard';
-function ScholarshipData(){
+import Scholarship from './Scholarships';
+function ScholarshipData() {
 
 
 
-    const[data, setData] = useState([]);
-    async function getData( ){
-        axios.get("/admin/allMembers"
-            )
+    const [data, setData] = useState([]);
+    async function getData() {
+        axios.get("/get-all-scholarship"
+        )
             .then(
-                (response) =>
-                {
+                (response) => {
                     console.log(response.data)
-                     setData(response.data)
+                    setData(response.data)
 
                 }
             )
     }
     useEffect(() => {
-            getData();
+        getData();
 
-      }, []);
+    }, []);
 
-    return(
+    return (
         <div>
             <CardGroup>
 
 
-            <Row className='row-cols-1 row-cols-md-3 p-2 g-4'>
+                
 
 
 
-            {data.map(event => (
-            <ScholarshipCard key={event.id} data={event} />
+                    
+                        <ScholarshipCard key={Scholarship.id} data={Scholarship} />
+
+                    
+
+
+                    
 
 
 
-
-          ))}  
-
-
-
-
-
-            </Row>
 
             </CardGroup>
 
