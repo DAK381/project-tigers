@@ -12,26 +12,22 @@ function AdminContact() {
 
             <AdminNavigation />
 
+
             <Container>
                 <Card>
                     <CardBody>
                         <Card.Title>
                             <h3>Contact Members</h3></Card.Title>
-                        <Form>
+                        <Form className="form-control">
                             
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Label>Email address</Form.Label>
+                                <Form.Label className="text-left">Email address</Form.Label>
                                 <Form.Control type="email" placeholder="Enter email" />
 
-                            </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Label>Subject</Form.Label>
                                 <Form.Control type="text" placeholder="Email Subject" />
 
-                            </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Body</Form.Label>
                             <FloatingLabel controlId="floatingTextarea2" label="Comments">
                             <Form.Control
@@ -40,7 +36,6 @@ function AdminContact() {
                             style={{ height: '100px' }}
                             />
                             </FloatingLabel>
-                            </Form.Group>
 
                             <Button variant="primary" type="submit">
                                 Send
