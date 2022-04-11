@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 
@@ -16,6 +17,8 @@ public class ScholarshipController {
 
     @Autowired
     private ScholarshipService scholarshipService;
+
+    @CrossOrigin("*")
     @GetMapping("/get-all-scholarship")
     public ArrayList<Scholarship> getAllScholarship(){
         return scholarshipService.getAllScholarship();
