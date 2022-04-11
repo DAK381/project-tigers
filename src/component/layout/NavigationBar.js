@@ -32,7 +32,7 @@ return (
   <Container>
   <Navbar.Brand href="./">
   <img src = {logo} ahref = "./" alt = ""  width = "9%" />
-          {' '}  
+          {' '}  NAFA
   </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse>
