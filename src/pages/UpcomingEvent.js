@@ -34,10 +34,9 @@ function UpcomingEvent(){
     
   </Card>
   </Col>
-  </Row>
 
 
-  <Row>
+
     <Col md>
   <Card className = "mb-3">
     <Card.Img variant="top" src= {photoT} />
@@ -56,10 +55,8 @@ function UpcomingEvent(){
   </Card>
 
   </Col>
-  </Row>
 
 
-  <Row>
     <Col md>
   <Card className = "mb-3">
     <Card.Img variant="top" src= {photoT} />
