@@ -49,9 +49,6 @@ function MemberCard(props) {
 							</Card>
 						</Col>
 
-
-
-
 			</div>
 		</Container>
 	);

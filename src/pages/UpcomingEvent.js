@@ -25,7 +25,7 @@ function UpcomingEvent(){
       Description
       </Card.Text>
     </Card.Body>
-    <Button variant = "primary"> Read More</Button>
+    <Button variant = "warning"> Read More</Button>
     <Card.Footer>
     
       <small className="text-muted">Added 5 days ago</small>
@@ -34,10 +34,9 @@ function UpcomingEvent(){
     
   </Card>
   </Col>
-  </Row>
 
 
-  <Row>
+
     <Col md>
   <Card className = "mb-3">
     <Card.Img variant="top" src= {photoT} />
@@ -47,7 +46,7 @@ function UpcomingEvent(){
         Description
       </Card.Text>
     </Card.Body>
-    <Button variant = "primary"> Read More</Button>
+    <Button variant = "warning"> Read More</Button>
 
     <Card.Footer>
       <small className="text-muted">Added 9 days ago</small>
@@ -56,10 +55,8 @@ function UpcomingEvent(){
   </Card>
 
   </Col>
-  </Row>
 
 
-  <Row>
     <Col md>
   <Card className = "mb-3">
     <Card.Img variant="top" src= {photoT} />
@@ -70,7 +67,7 @@ function UpcomingEvent(){
         
       </Card.Text>
     </Card.Body>
-    <Button variant = "primary"> Read More</Button>
+    <Button variant = "warning"> Read More</Button>
     <Card.Footer>
     
       <small className="text-muted">Added 10 days ago</small>

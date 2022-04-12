@@ -1,0 +1,8 @@
+.border-box{
+    background-color: #ffca2c;
+    padding: 4px 4px ;
+    color: black;
+    text-align: left;
+    border-radius: 4%;
+    width: 100%;
+}
