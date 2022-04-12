@@ -11,8 +11,13 @@ import com.nafa.tiger.repository.GroupRepository;
 import com.nafa.tiger.repository.MemberRepositrory;
 import com.nafa.tiger.repository.UserReprository;
 
+import java.sql.*;
+
 @Service
 public class GroupServiceImpl implements GroupService {
+
+	Connection con = null;
+	PreparedStatement ps = null;
 
 	@Autowired
 	private GroupRepository groupRepository;
@@ -52,6 +57,19 @@ public class GroupServiceImpl implements GroupService {
 		System.out.println(user.getEmail() + "***********************************");
 		Group group = groupRepository.findById(groupId).get();
 		System.out.println(group.getGroupName() +  "*******************************");
+
+		try {
+			String query = "INSERT INTO user_group (user_id, group_id) VALUES (" + userId + ", " + groupId + ")";
+			con = DriverManager.getConnection("jdbc:postgresql://nafa.cp4e12t7aiyi.us-east-2.rds.amazonaws.com/registration",
+					"tiger", "nafatiger");
+			System.out.println(con);
+			ps = con.prepareStatement(query);
+			ps.executeUpdate();
+	
+		 } catch (SQLException e) {
+			System.out.println("Error: " + e.getMessage());
+		 }
+
 //		group.getUserGroup().add(user);
 //		group.addMember(user);
 		//user.getTest().add(group);

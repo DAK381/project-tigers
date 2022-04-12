@@ -10,14 +10,14 @@ function ScholarshipData() {
 
 
 
-    const [data, setData] = useState([]);
+    const [scholarships, setScholarships] = useState([]);
     async function getData() {
-        axios.get("/get-all-scholarship"
+        axios.get("/scholarship/get-all-scholarship"
         )
             .then(
                 (response) => {
                     console.log(response.data)
-                    setData(response.data)
+                    setScholarships(response.data)
 
                 }
             )
@@ -30,23 +30,10 @@ function ScholarshipData() {
     return (
         <div>
             <CardGroup>
-
-
-                
-
-
-
-                    
-                        <ScholarshipCard key={Scholarship.id} data={Scholarship} />
-
-                    
-
-
-                    
-
-
-
-
+                {scholarships.map(scholarship =>
+                    <div key={scholarship.scholarshipId}>
+                        <ScholarshipCard id={scholarship.scholarshipId} name={scholarship.scholarshipName} desc={scholarship.scholarshipDescription}/>
+                    </div>)}
             </CardGroup>
 
 

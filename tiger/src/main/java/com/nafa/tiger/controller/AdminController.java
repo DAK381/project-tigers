@@ -51,11 +51,13 @@ public class AdminController {
 		return memberService.getUserById(user_id);
 	}
 
+	@CrossOrigin("*")
 	@GetMapping("/member/firstname/{memberFirstName}")
 	public ArrayList<User> getMemberByFirstNameContaining(@PathVariable("memberFirstName") String firstName) {
 		return memberService.getAllByFirstNameContaining(firstName);
 	}
 
+	@CrossOrigin("*")
 	@GetMapping("/member/lastname/{memberLastName}")
 	public ArrayList<User> getMemberByLastNameContaining(@PathVariable("memberLastName") String lastName) {
 		return memberService.getAllByLastNameContaining(lastName);
