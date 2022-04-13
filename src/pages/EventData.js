@@ -4,13 +4,13 @@ import EventPage from './EventsPage';
 import EventCard from './EventCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
-function EventData(){
+function EventData(props){
 
 
 
     const[data, setData] = useState([]);
     async function getData( ){
-        axios.get("/admin/allMembers"
+        axios.get("/admin/event/all-event"
             )
             .then(
                 (response) =>
@@ -26,6 +26,7 @@ function EventData(){
 
       }, []);
 
+      console.log(data)
     return(
         <div>
             <CardGroup>
@@ -36,16 +37,9 @@ function EventData(){
 
 
             {data.map(event => (
-            <EventCard key={event.id} data={event} />
-
-
-
+            <EventCard key={event.id} data={event} admin = {props.admin}/>
 
           ))}  
-
-
-
-
 
             </Row>
 

@@ -4,48 +4,12 @@ import { Container, Card} from "react-bootstrap";
 import EventRegistration from "../component/Forms/EventRegistration";
 function EventDetails(){
 
-// const { name } = useParams();
-
-
-// console.log(props.data)
-
-// return(
-//     <div>
-//         {/* {
-//             props.data.filter(
-//                 (list) => list.name === name)
-//                 .map(
-//                     (list) => (
-//                         <div key = { list.id }>
-
-//                             <h3>list.firstName</h3>
-//                             <h4>list.lastName</h4>
-
-
-//                             </div>
-//                     )
-//                 )
-//         } */}
-
-//         <h1>{typeof(props.data)}</h1>
-//         <h1>{props.data.firstName}</h1>
-        
-        
-
-//     </div>
-// )
 const navigate = useNavigate();
 
 const location = useLocation();
-// function registerEvent(){
-//     navigate('/memberRegisterEvent', {state:
-//         {
-//             id: location.state.id
-//         }
-//     });
-// }
 
 
+console.log(location.state.id)
 return(
     <div>
 
@@ -67,7 +31,7 @@ return(
         <CardBody>
            <h3>
            Details <h5>
-           {location.state.name}
+           {location.state.description}
                </h5>
            </h3>
            <h4>

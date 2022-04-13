@@ -3,14 +3,14 @@ import Button from './Button';
 import EventCard from './EventCard';
 import EventData from './EventData';
 
-function EventPage({data}){
+function EventPage(props){
 
   return(
     <div>
       <h1>
         Events
       </h1>
-      <EventData />
+      <EventData admin = {false}/>
     </div>
   )
 }
