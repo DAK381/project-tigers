@@ -56,7 +56,7 @@ function App() {
    <Layout userData={userData || notLoggedIn} token={token}>
       
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home userData={userData}/>} />
         { !token && <Route path="/log-in" element={<LogInPage />} /> }
         { !token && <Route path="/sign-up" element={<SignUpForm />} /> }
         { !token && <Route path="/forget-password" element={<ForgetPasswordPage />} /> }
