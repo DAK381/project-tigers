@@ -1,47 +1,36 @@
 import AdminNavigation from "./AdminNavigation";
 import UpcomingEvent from "../../pages/UpcomingEvent";
-import { Card,  Container } from "react-bootstrap";
-import {CardBody} from "reactstrap"
-import "./admin-event.css";
+import { Container } from "react-bootstrap";
+import EventPage from "../../pages/EventsPage";
+import EventData from "../../pages/EventData";
+
 
 function AdminEventView(){
 
     return(
         <div>
-            <Container>
-
-
-
             <AdminNavigation />
 
             <Container fluid>
-            <Card>
-                    <CardBody>
 
-            <h1 className="display-5 border-box text-center">Active Events</h1>
+
+                <EventData admin = {true}/>
+
+            {/* <h1>Active Events</h1>
            
                     <UpcomingEvent />
+
+                   
             
-            <hr></hr>
-            <hr></hr>
-            </CardBody>
-                </Card>
-                <br></br>
-                <Card>
-                    <CardBody>
 
-       
-            <h1 className="display-5 border-box text-center"> Past Events </h1>
+            <h1> Past Events </h1>
 
-                    <UpcomingEvent />
-
-            
-                    </CardBody>
-                </Card>
+                    <UpcomingEvent /> */}
 
 
-                </Container>
+
             </Container>
+
         </div>
     )
 

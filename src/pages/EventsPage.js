@@ -1,16 +1,17 @@
-import { useState } from 'react';
-import Button from './Button';
-import EventCard from './EventCard';
 import EventData from './EventData';
+import { Container } from "react-bootstrap";
 
-function EventPage({data}){
+function EventPage(props){
 
   return(
     <div>
       <h1>
         Events
       </h1>
-      <EventData />
+      <Container fluid>
+        <EventData admin = {false}/>
+      </Container>
+      
     </div>
   )
 }
