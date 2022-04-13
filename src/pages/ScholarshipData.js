@@ -6,7 +6,7 @@ import ScholarshipCard from './ScholarshipCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
 import Scholarship from './Scholarships';
-function ScholarshipData() {
+function ScholarshipData(props) {
 
 
 
@@ -30,10 +30,13 @@ function ScholarshipData() {
     return (
         <div>
             <CardGroup>
+            <Row className='row-cols-1 row-cols-md-3 p-2 g-4'>
                 {scholarships.map(scholarship =>
                     <div key={scholarship.scholarshipId}>
-                        <ScholarshipCard id={scholarship.scholarshipId} name={scholarship.scholarshipName} desc={scholarship.scholarshipDescription}/>
+                        <ScholarshipCard data = {scholarship} admin = {props.admin}/>
                     </div>)}
+
+                    </Row>
             </CardGroup>
 
 
