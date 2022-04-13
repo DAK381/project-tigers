@@ -58,11 +58,10 @@ public class GroupServiceImpl implements GroupService {
 		Group group = groupRepository.findById(groupId).get();
 		System.out.println(group.getGroupName() +  "*******************************");
 
-		try {
-			String query = "INSERT INTO user_group (user_id, group_id) VALUES (" + userId + ", " + groupId + ")";
-			con = DriverManager.getConnection("jdbc:postgresql://nafa.cp4e12t7aiyi.us-east-2.rds.amazonaws.com/registration",
-					"tiger", "nafatiger");
-			System.out.println(con);
+		String query = "INSERT INTO user_group (user_id, group_id) VALUES (" + userId + ", " + groupId + ")";
+
+		try(Connection con = DriverManager.getConnection("jdbc:postgresql://nafa.cp4e12t7aiyi.us-east-2.rds.amazonaws.com/registration",
+		"tiger", "nafatiger");) {
 			ps = con.prepareStatement(query);
 			ps.executeUpdate();
 	
@@ -87,3 +86,4 @@ public class GroupServiceImpl implements GroupService {
 
 	
 }
+
