@@ -10,89 +10,90 @@ import { MDBDatePickerV5 } from 'mdbreact';
 
 function AdminScholarshipAddForm(){
 
-        const [eventName, setEventName] = useState('');
-        //const [event_Id, setEventId] = useState('');
-        const [eventDescription, setEventDescription] = useState('');
-        const [location, setLocation] = useState('');
-        const [eventDate, setEventDate] = useState(new Date());
-        const [timeOccurrence, setTimeOccurrence] = useState('');
-        const [paymentAmount, setPaymentAmount] = useState('00:00');
-        const [openDate, setOpenDate] = useState(new Date());
-        const [closeDate, setCloseDate] = useState(new Date());
-        const navigate = useNavigate();
-      
-      
+    const [scholarshipName, setScholarshipName] = useState('');
+    const [scholarshipDescription, setScholarshipDescription] = useState('');
+    // const [location, setLocation] = useState('');
+    // const [eventDate, setEventDate] = useState(new Date());
+    // const [startTime, setStartTime] = useState(new Date());
+    // const [endTime, setEndime] = useState(new Date());
+    // const [timeOccurrence, setTimeOccurrence] = useState('');
+    
+    //  const [paymentAmount, setPaymentAmount] = useState();
+    // const [openDate, setOpenDate] = useState(new Date());
+    // const [closeDate, setCloseDate] = useState(new Date());
+    const navigate = useNavigate();
+  
+  
+   
+
+      function registerEvent(e){
        
+        e.preventDefault();
+        axios.post("/scholarship/add-scholarship", {scholarshipName, scholarshipDescription})
+        .then(res=>{console.log(scholarshipName);
+            navigate('/admin-event-view');
+          }).catch(err=>console.log(err))
+    }
 
-          function registerMember(event){
-            axios.post("/registerEvent",{eventName, eventDescription,location,eventDate,timeOccurrence,paymentAmount,openDate,closeDate})
-            .then(res=>{console.log(res.data);
-                navigate('/admin-event-view');
-              }).catch(err=>console.log(err))
-        }
+    console.log(scholarshipName)
+    return (
+        <div>
+            <div className="container">
+                <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
+                    <div className="jumbotron">
+                        <h1 className="display-4 text-center">Add Scholarship</h1>
+                        <div>
+                            <form onSubmit={registerEvent}>
+                                <div className="form-group">
+                                    <label for="scholarshipName">Scholarship Name</label>
+                                    <input type="text" class="form-control" name="scholarshipName" placeholder="Enter the name of the scholarship" value={scholarshipName} onChange={(e) => setScholarshipName(e.target.value)} />
+                                </div>
 
-        return (
-            <div>
-                <div className="container">
-                    <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
-                        <div class="jumbotron">
-                            <h1 class="display-4 text-center">Add Scholarship</h1>
-                            <div>
-                                <form onSubmit={e => registerMember(e)}>
-                                    <div class="form-group">
-                                        <label for="eventName">Event Name</label>
-                                        <input type="text" class="form-control" name="eventName" placeholder="Enter the name of the event" value={eventName} onChange={(e) => setEventName(e.target.value)} />
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="eventDescription">Event Description</label> <br></br>
-                                        <textarea name="eventDescription" placeholder="Enter description" value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} />
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="eventLocation">Event Location</label>
-                                        <input type="text" class="form-control" name="eventLocation"  placeholder="Enter the location if feasilble. NA if not." value={location} onChange={(e) => setLocation(e.target.value)} />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="eventDate">Date of Event</label>
-                                        <DatePicker selected={eventDate} name = "eventDate" value = {eventDate} onChange={(date) => setEventDate(date)} />
-                                    </div>
-
-                                    
-                                    {/* <div class="md-form mx-5 my-5">
-                                        <input type="time" id="timeOccurrence" class="form-control"value = {timeOccurrence} name = "timeOccurence"onChange={(time) => setTimeOccurrence(time)} />
-                                            <label for="timeOccurrence">Choose your time</label>
-                                            
-                                    </div> */}
-
-                                    {/* <div class="form-group">
-                                        <label for="paymentAmount">Payment Amount</label>
-                                        <input type="text" class="form-control" name="paymentAmount"  placeholder="Enter the amount to be paid" value={paymentAmount} onChange={(e) => setPaymentAmount(e)} />
-                                    </div> */}
-
-                                    <div class="form-group">
-                                        <label for="openDate">Registration Opens At:</label>
-                                        <DatePicker selected={openDate} value = {openDate} name = "openDate" onChange={(date) => setOpenDate(date)} />                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="closeDate">Registration CLoses At:</label>
-                                        {/* <input type="date" class="form-control" name="price"  placeholder="Enter the end date for registration" value={dateClose} onChange={(e) => setDateClose(e)} /> */}
-                                        <DatePicker selected={closeDate} value = {closeDate} name = "openDate" onChange={(date) => setCloseDate(date)} />
-                                    </div>
+                                <div className="form-group">
+                                    <label for="scholarshipDescription">Scholarship Description</label>
+                                    <textarea name="scholarshipDescription" placeholder="Enter description" value={scholarshipDescription} onChange={(e) => setScholarshipDescription(e.target.value)} />
+                                </div>
 
 
-                                    <div className="container text-center">
-                                        <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2">Add Scholarship</button>
+
+                                {/* <div class="form-group">
+                                    <label for="eventDate">Date of Event</label>
+                                    <DatePicker selected={eventDate} name = "eventDate" value = {eventDate} onChange={(date) => setEventDate(date)} />
+                                </div>
+
+                              
+
+                                <div class = "form-group">
+                                    <label for = "startTime">Start Time</label>
+                                <input type="time" class = "form-control" name="startTime" placeholder = "Enter Start Time" value = {startTime} 
+                                        onChange={(e) => setStartTime(e.target.value)}
                                         
-                                    </div>
-                                </form>
-                            </div>
+                                        />
+                                    </div> */}
+
+
+                                    {/* <div class = "form-group">
+                                    <label for = "endTime">Close Time</label>
+                                <input type="time" class = "form-control" name="endTime" placeholder = "Enter Start Time" value = {endTime} 
+                                        onChange={(e) => setEndime(e.target.value)}
+                                        
+                                        
+                                        />
+
+                                    </div> */}
+
+
+                                <div className="container text-center">
+                                    <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2">Add Scholarship</button>
+                                    
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
+}
 
 export default AdminScholarshipAddForm;

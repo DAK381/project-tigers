@@ -12,7 +12,6 @@ function AdminEventAddForm(){
         
 
         const [eventName, setEventName] = useState('');
-        //const [event_Id, setEventId] = useState('');
         const [eventDescription, setEventDescription] = useState('');
         const [location, setLocation] = useState('');
         const [eventDate, setEventDate] = useState(new Date());
