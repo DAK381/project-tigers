@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import CardGroup from 'react-bootstrap/CardGroup'
 import ListGroup from 'react-bootstrap/ListGroup';
-import axios from "../axios";
 import './Card.css';
 
 /*This creates a grid of Sholarship Cards */
