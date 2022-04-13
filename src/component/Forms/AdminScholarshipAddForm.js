@@ -31,7 +31,7 @@ function AdminScholarshipAddForm(){
         e.preventDefault();
         axios.post("/scholarship/add-scholarship", {scholarshipName, scholarshipDescription})
         .then(res=>{console.log(scholarshipName);
-            navigate('/admin-event-view');
+            navigate('/admin-scholarship-view');
           }).catch(err=>console.log(err))
     }
 

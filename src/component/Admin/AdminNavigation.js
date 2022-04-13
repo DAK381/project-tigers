@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Container } from 'react-bootstrap';
 import AdminProfile from './AdminProfile';
 import logo from "./logo.png"
+import AdminScholarshipView from './AdminScholarshipView';
 
 function AdminNavigation(){
 
@@ -35,7 +36,7 @@ function AdminNavigation(){
         <NavDropdown.Item href="admin-event-view">View Events</NavDropdown.Item>
         <NavDropdown.Item href="admin-event-add">Add Events</NavDropdown.Item>
         <NavDropdown.Item href="admin-scholarship-add">Add Scholarships</NavDropdown.Item>
-        <NavDropdown.Item href="admin-event-remove">Remove Events</NavDropdown.Item>
+        <NavDropdown.Item href="admin-scholarship-view">View Scholarships</NavDropdown.Item>
       </NavDropdown>
 
 
