@@ -42,14 +42,14 @@ console.log(location.state.name)
 
     const updateAPIData = (e) => {
         e.preventDefault();
-        axios.put(`admin/event/update/${location.state.id}`, {
+        axios.put(`/scholarship/update-scholarship/${location.state.id}`, {
             scholarshipName, scholarshipDescription
             // , 
             // eventDate,
             // startTime, endTime
         })
             .then(res=>{console.log(res.data);
-            navigate('/admin-event-view');
+            navigate('/admin-scholarship-view');
           }).catch(err=>console.log(err))
 
           

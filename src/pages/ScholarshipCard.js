@@ -15,13 +15,17 @@ function ScholarshipCard(props) {
 
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	const handleShowForm = () => setShow(true);
+	const handleShowInfo = () => setShow(true);
 
 
 	return (
 		//makes it flush for viewport
 		<Container fluid>
 			<div>
+
+
+
 
 						<Col>
 							<Card>
@@ -30,7 +34,7 @@ function ScholarshipCard(props) {
 									<Card.Title>{name}</Card.Title>
 
 									{/* This is the Modal for more scholarship Information */}
-									<Button variant="primary" onClick={handleShow}>
+									<Button variant="primary" onClick={handleShowInfo}>
 										More Scholarship Information
 									</Button>
 									<Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
@@ -47,7 +51,8 @@ function ScholarshipCard(props) {
 									</Modal>
 
 									{/* This is the Modal for scholarship sign up form 
-									<Button variant="primary" onClick={handleShow}>
+									<Button variant="primary" onClick={handleShowForm}>
+
 										Scholarship Sign Up Form
 									</Button>
 									<Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
@@ -82,6 +87,13 @@ function ScholarshipCard(props) {
 											</Button>
 										</Modal.Footer>
 									</Modal> */}
+
+									{/*
+										props.admin && <Button variant="primary" onClick={updateScholarship}>
+										Update Scholarship
+									</Button>
+									*/}
+									
 
 								</Card.Body>
 							</Card>

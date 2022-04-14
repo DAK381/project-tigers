@@ -44,9 +44,6 @@ console.log(location.state.name)
         e.preventDefault();
         axios.put(`admin/event/update/${location.state.id}`, {
             eventName, eventDescription
-            // , 
-            // eventDate,
-            // startTime, endTime
         })
             .then(res=>{console.log(res.data);
             navigate('/admin-event-view');
@@ -55,10 +52,15 @@ console.log(location.state.name)
           
     }
 
+   
 
     return (
         <div>
             <div className="container">
+
+            
+
+
                 <h1>{location.state.name}</h1>
                 <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                     <div class="jumbotron">
@@ -66,14 +68,14 @@ console.log(location.state.name)
                         <div>
                             <form>
                                 <div class="form-group">
-                                    <label for="eventName">Event Name</label>
+                                    <label for="eventName">Scholarship Name</label>
                                     <input type="text" class="form-control" name="eventName" 
                                     defaultValue = {location.state.name}
                                     placeholder= {location.state.name} value={eventName} onChange={(e) => setEventName(e.target.value)} />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="eventDescription">Event Description</label>
+                                    <label for="eventDescription">Scholarship Description</label>
                                     <textarea name="eventDescription" 
                                     defaultValue = {location.state.description}
                                     placeholder= {location.state.description} value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} />
