@@ -15,5 +15,5 @@ public interface EventService {
 
     Events getEventById(Long eventId);
 
-    Events update(Events event);
+    Events update(Long eventId, Events event);
 }

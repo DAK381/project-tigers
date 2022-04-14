@@ -15,6 +15,7 @@ import com.nafa.tiger.service.MemberService;
 
 @RestController
 @RequestMapping("/admin")
+@CrossOrigin(origins ="*")
 public class AdminController {
 	@Autowired
 	private MemberService memberService;
@@ -51,13 +52,11 @@ public class AdminController {
 		return memberService.getUserById(user_id);
 	}
 
-	@CrossOrigin("*")
 	@GetMapping("/member/firstname/{memberFirstName}")
 	public ArrayList<User> getMemberByFirstNameContaining(@PathVariable("memberFirstName") String firstName) {
 		return memberService.getAllByFirstNameContaining(firstName);
 	}
 
-	@CrossOrigin("*")
 	@GetMapping("/member/lastname/{memberLastName}")
 	public ArrayList<User> getMemberByLastNameContaining(@PathVariable("memberLastName") String lastName) {
 		return memberService.getAllByLastNameContaining(lastName);

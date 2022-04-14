@@ -58,7 +58,7 @@ public class User implements UserDetails{
 	private Date birthdate;
 	private boolean isAlumni;
     private String phone;
-	private boolean enabled = true;
+	private boolean enabled = false;
 	private Boolean locked =false;
 	
 	
@@ -83,6 +83,7 @@ public class User implements UserDetails{
 
 	}
 
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 //		SimpleGrantedAuthority authority = 
@@ -90,6 +91,7 @@ public class User implements UserDetails{
 //		return Collections.singletonList(authority);
 		return Collections.emptyList();
 	}
+
     
 	@Override
 	public String getPassword() {

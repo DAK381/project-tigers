@@ -9,5 +9,6 @@ import com.nafa.tiger.entity.VerificationToken;
 public interface VerificationTokenRepository extends JpaRepository<VerificationToken, Long> {
 
 	VerificationToken findByToken(String token);
+	void deleteByUserId(Long userid);
 
 }

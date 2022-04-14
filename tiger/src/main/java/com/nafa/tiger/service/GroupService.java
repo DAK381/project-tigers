@@ -19,7 +19,7 @@ public interface GroupService {
 	ArrayList<Group> getAllGroup();
 
 
-	void addUserToGroup(Long userId, Long groupId);
+//	void addUserToGroup(Long groupId, Long userId);
 
 	
 

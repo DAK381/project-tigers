@@ -1,9 +1,6 @@
 package com.nafa.tiger.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.persistence.Column;
@@ -31,11 +28,22 @@ public class UserModel  {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String firstName;
+	private String maidenName;
 	private String lastName;
 	private String email;
 	@Column(length = 60)
 	private String password;
 	private String matchingPassword;
+	private String role;
+	private String address;
+	private String Membership;
+	private Date birthdate;
+	private boolean isAlumni;
+	private String phone;
+
+	public boolean getIsAlumni(){
+		return isAlumni;
+	}
 //	private List<GrantedAuthority> authorities;
 //	private boolean enabled;
 //
