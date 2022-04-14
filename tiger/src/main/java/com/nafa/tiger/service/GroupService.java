@@ -18,8 +18,7 @@ public interface GroupService {
 
 	ArrayList<Group> getAllGroup();
 
-
-//	void addUserToGroup(Long groupId, Long userId);
+	void addUserToGroup(Long groupId, Long userId);
 
 	
 
