@@ -4,19 +4,32 @@ import Card from 'react-bootstrap/Card';
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
+import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal'
 import './Card.css';
 
 /*This creates a grid of Sholarship Cards */
 function ScholarshipCard(props) {
-	// const id = props.id;
+	const id = props.id;
 	const name = props.name;
 	const desc = props.desc;
+
+	const navigate = useNavigate();
 
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShowForm = () => setShow(true);
 	const handleShowInfo = () => setShow(true);
+
+	function updateScholarship(){
+		navigate('/admin-scholarship-update', {state:
+			{
+				id: id,
+				name: name,
+				description: desc
+			}
+		});
+	}
 
 
 	return (
@@ -49,6 +62,8 @@ function ScholarshipCard(props) {
 
 										</Modal.Footer>
 									</Modal>
+
+									{props.admin && < Button onClick = {() => {updateScholarship()}}>Update Scholarship</Button>}
 
 									{/* This is the Modal for scholarship sign up form 
 									<Button variant="primary" onClick={handleShowForm}>
