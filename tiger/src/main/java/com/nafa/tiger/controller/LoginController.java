@@ -31,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @CrossOrigin
 @Slf4j
+
 public class LoginController {
 	@Autowired
 	private AuthenticationManager authenticationManager;

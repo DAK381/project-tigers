@@ -18,8 +18,8 @@ public class ScholarshipServiceImp implements ScholarshipService{
     }
 
     @Override
-    public Scholarship updateScholarship(Scholarship scholarship) {
-        Scholarship updatedScholarship = scholarshipRepository.getById(scholarship.getScholarshipId());
+    public Scholarship updateScholarship(Long scholarshipId,Scholarship scholarship) {
+        Scholarship updatedScholarship = scholarshipRepository.findById(scholarshipId).get();
         if(scholarship.getScholarshipName() != null){
             updatedScholarship.setScholarshipName(scholarship.getScholarshipName());
         }
@@ -27,5 +27,11 @@ public class ScholarshipServiceImp implements ScholarshipService{
             updatedScholarship.setScholarshipDescription(scholarship.getScholarshipDescription());
         }
         return updatedScholarship;
+    }
+
+    @Override
+    public String addScholarship(Scholarship scholarship) {
+        scholarshipRepository.save(scholarship);
+        return "Scholarship saved";
     }
 }

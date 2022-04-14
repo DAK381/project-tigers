@@ -1,5 +1,3 @@
-import AdminNavigation from "./AdminNavigation";
-import UpcomingEvent from "../../pages/UpcomingEvent";
 import { Container } from "react-bootstrap";
 import ScholarshipData from "../../pages/ScholarshipData";
 

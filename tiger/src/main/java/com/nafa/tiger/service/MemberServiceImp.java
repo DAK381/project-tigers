@@ -6,16 +6,13 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import com.nafa.tiger.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.nafa.tiger.entity.Group;
 import com.nafa.tiger.entity.PendingGroupRequest;
 import com.nafa.tiger.entity.User;
-import com.nafa.tiger.repository.AddGroupRequestRepository;
-import com.nafa.tiger.repository.GroupRepository;
-import com.nafa.tiger.repository.MemberRepositrory;
-import com.nafa.tiger.repository.UserReprository;
 
 import ch.qos.logback.classic.Logger;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberServiceImp implements MemberService {
 	@Autowired
 	private MemberRepositrory memberRepository;
+
+	@Autowired
+	private VerificationTokenRepository verificationTokenRepository;
 	
 	
 	@Autowired
@@ -38,7 +38,8 @@ public class MemberServiceImp implements MemberService {
 	private AddGroupRequestRepository  addGroupRequestRepository;
 	@Override
 	public void deleteUser(Long userId) {
-		memberRepository.deleteById(userId);	
+		verificationTokenRepository.deleteByUserId(1L);
+		memberRepository.deleteById(userId);
 	}
 
 	@Override

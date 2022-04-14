@@ -36,8 +36,9 @@ public class EventServiceImp  implements EventService{
     }
 
     @Override
-    public Events update(Events event) {
-        Events updatedEvent = eventRepository.findById(event.getEventId()).get();
+    public Events update(Long eventId,Events event) {
+        Events updatedEvent = eventRepository.findById(eventId).get();
+
         if (event.getEventDate() != null){
             updatedEvent.setEventDate(event.getEventDate());
         }
@@ -48,7 +49,8 @@ public class EventServiceImp  implements EventService{
             updatedEvent.setEventName(event.getEventName());
         }
         if(event.getEventDescription() != null){
-            updatedEvent.setEventDescription(updatedEvent.getEventDescription());
+
+            updatedEvent.setEventDescription(event.getEventDescription());
         }
         if(event.getStartTime() != null){
             updatedEvent.setStartTime(event.getStartTime());

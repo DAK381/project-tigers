@@ -3,6 +3,7 @@ import axios from "../../axios";
 import { useHistory, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
+import AdminEventDelete from './AdminEventDelete';
 
 
 export default function AdminEventUpdate(props) {
@@ -13,19 +14,19 @@ export default function AdminEventUpdate(props) {
     const location = useLocation();
 
 
-    const [id, eventId] = useState();
+    const [isOpen, setIsOpen] = useState(false)
     const [eventName, setEventName] = useState();
-    //const [event_Id, setEventId] = useState('');
+
     const [eventDescription, setEventDescription] = useState();
     //const [location, setLocation] = useState('');
-    const [eventDate, setEventDate] = useState(new Date());
-    const [startTime, setStartTime] = useState(new Date());
-    const [endTime, setEndime] = useState(new Date());
-    const [timeOccurrence, setTimeOccurrence] = useState('');
+    // const [eventDate, setEventDate] = useState(new Date());
+    // const [startTime, setStartTime] = useState(new Date());
+    // const [endTime, setEndime] = useState(new Date());
+    // const [timeOccurrence, setTimeOccurrence] = useState('');
     
-     const [paymentAmount, setPaymentAmount] = useState('00:00');
-    const [openDate, setOpenDate] = useState(new Date());
-    const [closeDate, setCloseDate] = useState(new Date());
+    // const [paymentAmount, setPaymentAmount] = useState('00:00');
+    // const [openDate, setOpenDate] = useState(new Date());
+    // const [closeDate, setCloseDate] = useState(new Date());
     
 console.log(location.state.id)
 console.log(location.state.name)
@@ -33,9 +34,9 @@ console.log(location.state.name)
     useEffect(() => {
         setEventName(location.state.name)
         setEventDescription(location.state.description);
-        setStartTime(location.state.startTime);
-        setEndime(location.state.endTime);
-        setEventDate(location.state.eventDate)
+        // setStartTime(location.state.startTime);
+        // setEndime(location.state.endTime);
+        // setEventDate(location.state.eventDate)
     }, [location.state]);
     
 
@@ -58,8 +59,6 @@ console.log(location.state.name)
         <div>
             <div className="container">
 
-            
-
 
                 <h1>{location.state.name}</h1>
                 <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
@@ -68,14 +67,14 @@ console.log(location.state.name)
                         <div>
                             <form>
                                 <div class="form-group">
-                                    <label for="eventName">Scholarship Name</label>
+                                    <label for="eventName">Event Name</label>
                                     <input type="text" class="form-control" name="eventName" 
                                     defaultValue = {location.state.name}
                                     placeholder= {location.state.name} value={eventName} onChange={(e) => setEventName(e.target.value)} />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="eventDescription">Scholarship Description</label>
+                                    <label for="eventDescription">Event Description</label>
                                     <textarea name="eventDescription" 
                                     defaultValue = {location.state.description}
                                     placeholder= {location.state.description} value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} />
@@ -111,7 +110,7 @@ console.log(location.state.name)
 
                                 <div className="container text-center">
                                     <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2"  onClick={e => updateAPIData(e)}>Update</button>
-                                    
+                                    <AdminEventDelete id = {location.state.id} />
                                 </div>
                             </form>
                         </div>

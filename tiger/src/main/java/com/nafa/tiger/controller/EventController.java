@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 @RestController
 @RequestMapping("admin/event")
+@CrossOrigin(origins ="*")
+
 public class EventController {
     @Autowired
     private EventService eventService;
@@ -29,8 +31,8 @@ public class EventController {
     public Events getEventById(@PathVariable("eventId") Long eventId){
         return eventService.getEventById(eventId);
     }
-    @PutMapping("update/{event}")
-    public Events updateEvent(@PathVariable("eventId") Events event){
-        return eventService.update(event);
+    @PutMapping("update/{eventId}")
+    public Events updateEvent(@PathVariable("eventId") Long eventId,@RequestBody Events event){
+        return eventService.update(eventId, event);
     }
 }

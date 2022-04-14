@@ -22,17 +22,13 @@ import com.nafa.tiger.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService memberService;
-	
-	
 //	@PostMapping("/user/{userId}/addactivities")
 //	public User addActivity(@RequestBody Activity activity, @PathVariable("userId")Long userId) {
 //		return memberService.addActivity(userId,activity);
 //	}
-	
 
-	
-	@PutMapping("/user/{userId}/{groupId}")
-	public User addUserToGroup(@PathVariable("userId") Long userId, @PathVariable("groupId") Long groupId){
+	@PutMapping("/addUserToGroup/{groupId}/{userId}")
+	public User addUserToGroup(@PathVariable("groupId") Long groupId,@PathVariable("userId") Long userId){
 		return memberService.addUserToGroup(userId,groupId);
 	}
 	

@@ -8,5 +8,7 @@ import java.util.ArrayList;
 public interface ScholarshipService {
     ArrayList<Scholarship> getAllScholarship();
 
-    Scholarship updateScholarship(Scholarship scholarship);
+    Scholarship updateScholarship(Long scholarshipId, Scholarship scholarship);
+
+    String addScholarship(Scholarship scholarship);
 }

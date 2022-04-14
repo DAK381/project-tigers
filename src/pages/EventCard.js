@@ -21,18 +21,6 @@ function EventCard(props) {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-
-	// function showDetails(){
-	// 	navigate('/eventInfo', {state:
-	// 		{
-	// 			id: props.data.eventId,
-	// 			name: props.data.eventName,
-	// 			description: props.data.eventDescription
-	// 		}
-	// 	});
-	// }
-	// <Route path="/eventInfo/:data" exact component={EventDetails} />
-
 	function updateEvent(){
 		navigate('/admin-event-update', {state:
 			{

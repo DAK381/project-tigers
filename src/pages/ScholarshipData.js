@@ -5,7 +5,7 @@ import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
 
 
-function ScholarshipData() {
+function ScholarshipData(props) {
 
 
 
@@ -26,7 +26,7 @@ function ScholarshipData() {
 
                     {scholarships.map(scholarship => (
                         <div key={scholarship.scholarshipId}>
-                            <ScholarshipCard id={scholarship.scholarshipId} name={scholarship.scholarshipName} desc={scholarship.scholarshipDescription}/>
+                            <ScholarshipCard id={scholarship.scholarshipId} name={scholarship.scholarshipName} desc={scholarship.scholarshipDescription} admin = {props.admin}/>
                         </div>
                     ))}
 

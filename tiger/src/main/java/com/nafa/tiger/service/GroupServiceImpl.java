@@ -11,18 +11,23 @@ import com.nafa.tiger.repository.GroupRepository;
 import com.nafa.tiger.repository.MemberRepositrory;
 import com.nafa.tiger.repository.UserReprository;
 
+import javax.transaction.Transactional;
+
 import java.sql.*;
 
+
 @Service
+@Transactional
 public class GroupServiceImpl implements GroupService {
 
 	Connection con = null;
 	PreparedStatement ps = null;
-
+	
 	@Autowired
 	private GroupRepository groupRepository;
 	@Autowired
 	private MemberRepositrory memberRepository;
+
 
 	@Override
 	public String message() {
