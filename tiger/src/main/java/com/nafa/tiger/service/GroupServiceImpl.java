@@ -13,10 +13,16 @@ import com.nafa.tiger.repository.UserReprository;
 
 import javax.transaction.Transactional;
 
+import java.sql.*;
+
+
 @Service
 @Transactional
 public class GroupServiceImpl implements GroupService {
 
+	Connection con = null;
+	PreparedStatement ps = null;
+	
 	@Autowired
 	private GroupRepository groupRepository;
 	@Autowired
@@ -50,12 +56,31 @@ public class GroupServiceImpl implements GroupService {
 
 	}
 
-//	@Override
-//	public void addUserToGroup(Long groupId, Long userId) {
-//		User user = memberRepository.findById(userId).get();
-//		Group group = groupService.findByGroupId(groupId);
-//		user.getUserGroup().add(group);
-//	}
+	@Override
+	public void addUserToGroup(Long userId, Long groupId) {
+		User user = memberRepository.findById(userId).get();
+		System.out.println(user.getEmail() + "***********************************");
+		Group group = groupRepository.findById(groupId).get();
+		System.out.println(group.getGroupName() +  "*******************************");
+
+		String query = "INSERT INTO user_group (user_id, group_id) VALUES (" + userId + ", " + groupId + ")";
+
+		try(Connection con = DriverManager.getConnection("jdbc:postgresql://nafa.cp4e12t7aiyi.us-east-2.rds.amazonaws.com/registration",
+		"tiger", "nafatiger");) {
+			ps = con.prepareStatement(query);
+			ps.executeUpdate();
+	
+		 } catch (SQLException e) {
+			System.out.println("Error: " + e.getMessage());
+		 }
+
+//		group.getUserGroup().add(user);
+//		group.addMember(user);
+		//user.getTest().add(group);
+		group.getGroupUser().add(user);
+		groupRepository.save(group);
+		//return user;
+	}
 
 
 	
