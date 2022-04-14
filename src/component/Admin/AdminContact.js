@@ -8,11 +8,6 @@ function AdminContact() {
     return (
 
         <Container>
-
-
-            <AdminNavigation />
-
-
             <Container>
                 <Card>
                     <CardBody>

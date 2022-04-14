@@ -9,9 +9,6 @@ function AdminScholarshipAdd(){
 
     return(
         <div>
-            <AdminNavigation />
-
-
             <AdminScholarshipAddForm />
 
 

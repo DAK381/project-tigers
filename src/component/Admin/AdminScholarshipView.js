@@ -8,7 +8,6 @@ function AdminScholarshipView(){
 
     return(
         <div>
-            <AdminNavigation />
 
             <Container fluid>
 

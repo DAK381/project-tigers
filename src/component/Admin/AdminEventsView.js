@@ -9,7 +9,6 @@ function AdminEventView(){
 
     return(
         <div>
-            <AdminNavigation />
 
             <Container fluid>
 

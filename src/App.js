@@ -54,7 +54,9 @@ function App() {
   return (
 
   <div>
+    { userData.role === "ADMIN" && <AdminNavigation />}
    <Layout userData={userData || notLoggedIn} token={token}>
+    
       
       <Routes>
         <Route path="/" element={<Home userData={userData}/>} />

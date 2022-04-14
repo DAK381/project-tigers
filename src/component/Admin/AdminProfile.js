@@ -4,7 +4,6 @@ function AdminProfile() {
 
     return(
         <div>
-            <AdminNavigation />
             Admin Profile
         </div>
     )

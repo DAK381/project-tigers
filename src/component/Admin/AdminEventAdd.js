@@ -7,10 +7,7 @@ import AdminEventAddForm from "../Forms/AdminEventAddForm";
 function AdminEventAdd(){
 
     return(
-        <div>
-            <AdminNavigation />
-
-           
+        <div>  
             <AdminEventAddForm />
             
             
