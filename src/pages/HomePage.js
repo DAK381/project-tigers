@@ -8,13 +8,12 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { queryByDisplayValue } from "@testing-library/react";
 
-function Home(props) {
-    const userData = props.userData;
+function Home() {
 
     return (
         <div>
             
-        <Slider userData={userData}/>
+        <Slider />
 
         <section className = "section">
             <div className = "container">

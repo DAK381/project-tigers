@@ -1,47 +1,34 @@
 //imports needed packages for cards
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import React, { useState } from 'react';
+import React from 'react';
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { useNavigate } from 'react-router-dom';
-import Modal from 'react-bootstrap/Modal'
-import './Card.css';
-
+import CardGroup from 'react-bootstrap/CardGroup'
+import ListGroup from 'react-bootstrap/ListGroup';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import EventDetails from './EventDetails';
+import { Route } from 'react-router-dom';
 
 /*This creates a grid of Event Cards */
 function EventCard(props) {
-	const id = props.id;
-	const name = props.name;
-	const desc = props.desc;
 
 	const navigate = useNavigate();
 
-	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
 
 
-	// function showDetails(){
-	// 	navigate('/eventInfo', {state:
-	// 		{
-	// 			id: props.data.eventId,
-	// 			name: props.data.eventName,
-	// 			description: props.data.eventDescription
-	// 		}
-	// 	});
-	// }
-	// <Route path="/eventInfo/:data" exact component={EventDetails} />
-
-	function updateEvent(){
-		navigate('/admin-event-update', {state:
+	function showDetails(){
+		navigate('/eventInfo', {state:
 			{
-				id: id,
-				name: name,
-				description: desc
+				id: props.data.id,
+				name: props.data.firstName
 			}
 		});
 	}
+	// <Route path="/eventInfo/:data" exact component={EventDetails} />
+
+
 
 
 	return (
@@ -53,32 +40,11 @@ function EventCard(props) {
 							<Card>
 								<Card.Img variant="top" src='https://1yfd8w35xqq41q3ou63czp8h-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/etouches-post-alimni-events.jpg' width={400} height={400} alt='...'  />
 								<Card.Body>
-									<Card.Title>{name}</Card.Title>
-									
-									<Button variant="primary" onClick={handleShow}>
-										More Event Information
-									</Button>
-
-									<Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-										<Modal.Header closeButton>
-											<Modal.Title>{name}</Modal.Title>
-										</Modal.Header>
-										<Modal.Body>{desc}</Modal.Body>
-										<Modal.Footer>
-											<Button variant="secondary" onClick={handleClose}>
-												Close
-											</Button>
-
-										</Modal.Footer>
-									</Modal>
+									<Card.Title>{props.data.firstName}</Card.Title>
 
 
 									
-  									 
-     									{props.admin && < Button onClick = {() => {updateEvent()}}>Update Event</Button>}
- 									
-										
-
+									<Button onClick = {() => {showDetails()}}>More Information</Button>
 									{/* <Link to={`/eventInfo/${this.props.firstName}`}>More info</Link> */}
 								</Card.Body>
 							</Card>

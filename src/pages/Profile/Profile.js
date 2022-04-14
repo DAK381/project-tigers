@@ -9,19 +9,14 @@ import Checkbox from './Checkbox';
 
 
 const selectedCheckboxes = new Set();
-const selectedRemoveCheckboxes = new Set();
 
 function Profile(props){
     const userData = props.userData;
     const [groups,setGroups]=useState([]);
-    const [memberGroups, setMemberGroups] = useState([]);
 
     React.useEffect(()=>{
         axios.get("/search/allgroup").then(res=>{
             setGroups(res.data)
-        }).catch(err=>console.log(err))
-        axios.get("/search/membersGroups/10").then(res=>{
-            setMemberGroups(res.data)
         }).catch(err=>console.log(err))
     },[])
 
@@ -33,32 +28,15 @@ function Profile(props){
         }
         console.log(selectedCheckboxes);
       }
-    
-      const toggleRemoveCheckbox = id => {
-        if (selectedRemoveCheckboxes.has(id)) {
-            selectedRemoveCheckboxes.delete(id);
-        } else {
-            selectedRemoveCheckboxes.add(id);
-        }
-      }
 
     const handleFormSubmit = formSubmitEvent => {
         formSubmitEvent.preventDefault();
         
         for (const checkbox of selectedCheckboxes) {
-            axios.post("/addMemberIngroup/" + checkbox + "/" + userData.id );
+            console.log(checkbox, 'is selected.');
+            axios.post("http://localhost:8080/addMemberIngroup/" + checkbox + "/" + userData.id );
         }
-        window.location.reload();
       }
-
-      const removeGroup = r => {
-        r.preventDefault();
-        
-        for (const checkbox of selectedRemoveCheckboxes) {
-            axios.post("/removeFromGroup/" + checkbox + "/" + userData.id);
-        }
-        window.location.reload();
-    }
 
     return (
 <div className="container bootstrap snippets bootdey">
@@ -146,19 +124,7 @@ function Profile(props){
                                 <h1>Groups</h1>
                                 <div className="row">
                                     <div className="bio-row">
-                                        <div className="bio-row">
-                                        <p><span>Your activities:</span></p>
-                                        <form >
-                                                {
-                                            memberGroups.map(memberGroups =>
-                                                <div key={memberGroups.groupId}>
-                                                    <Checkbox id={memberGroups.groupId} label={memberGroups.groupName} handleCheckboxChange={toggleRemoveCheckbox}/>
-                                                </div>      
-                                                )}
-                                            <button type ="button" className="btn-primary btn" onClick={removeGroup}>remove</button>
-                                        </form>
-                                        </div>
-                                        <p><span>All activities:</span></p>
+                                        <p><span>All groups:</span></p>
                                         <form >
                                                 {
                                             groups.map(group =>

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Form, FormControl } from "react-bootstrap";
 import {useNavigate,Link} from 'react-router-dom'
 import axios from "../../axios";
 import './SignUpForm.css';
+
+
 
 function SignUpForm(props){
   const [firstName, setfirstName] = useState('');
@@ -15,21 +17,23 @@ function SignUpForm(props){
   const [phone, setPhone] = useState('');
   const [graduatedYear, setGraduatedYear] = useState('');
   const [address,setAddress]=useState('');
+  const [membershipType,setmembershipType]=useState('');
   const navigate = useNavigate();
 
 
   function signinHandler(event){
-    axios.post("/register",{firstName,lastName,maidenName,email,birthdate,isAlumi,graduatedYear,address,phone,password,}).then(res=>{console.log(res.data);
+    axios.post("/register",{firstName,lastName,maidenName,email,birthdate,isAlumi,graduatedYear,membershipType,address,phone,password,}).then(res=>{console.log(res.data);
       navigate('/log-in');
     }).catch(err=>console.log(err))
     
 }
 
+
   return (
     <div>
       <h1>Registration Form</h1>
       <Form className="register-form">
-        <Form.Group controlId="fistName">
+        <Form.Group controlId="firstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control
             type="text"
@@ -101,12 +105,29 @@ function SignUpForm(props){
             onChange={(e) => setPhone(e.target.value)}
           />
         </Form.Group>
-        
       
-     
+        <Form.Group controlId="membershipType">
+          <Form.Label>What type of membership do you have?</Form.Label>
+          <Form.Select onChange={(e) => setmembershipType(e.target.value)}>
+            <option>None</option>
+            <option>MemType1</option>
+            <option>MemType2</option>
+            <option>MemType3</option>
+          </Form.Select>
+        </Form.Group>
+
+        <Form.Group controlId="isAlumni">
+          <Form.Label>Are you an alumni of Neville High School?</Form.Label>
+          <Form.Select onChange={(e) => setIsAlumni(e.target.value)}>
+            <option>Yes</option>
+            <option>No</option>
+          </Form.Select>
+        </Form.Group>
+
+        
         <Form.Group controlId="graduatedYear">
           <Form.Label>Graduation Year</Form.Label>
-          <Form.Control
+          <Form.Control 
             type="text"
             placeholder="Enter Graduation Year"
             name="graduatedYear"
@@ -115,7 +136,6 @@ function SignUpForm(props){
         </Form.Group>
 
         <button type ="button" className="btn-primary btn" onClick={signinHandler}>Sign Up</button>
-      
       </Form>
     </div>
   );

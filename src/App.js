@@ -29,9 +29,6 @@ import Profile from './pages/Profile/Profile';
 import React, { useState } from 'react';
 import { fetchUserData } from './authenticationService';
 import EventDetails from './pages/EventDetails';
-import AdminEventUpdate from './component/Admin/AdminEventUpdate';
-import AdminEventAddForm from './component/Forms/AdminEventAddForm';
-
 
 function App() {
 
@@ -56,7 +53,7 @@ function App() {
    <Layout userData={userData || notLoggedIn} token={token}>
       
       <Routes>
-        <Route path="/" element={<Home userData={userData}/>} />
+        <Route path="/" element={<Home />} />
         { !token && <Route path="/log-in" element={<LogInPage />} /> }
         { !token && <Route path="/sign-up" element={<SignUpForm />} /> }
         { !token && <Route path="/forget-password" element={<ForgetPasswordPage />} /> }
@@ -73,15 +70,11 @@ function App() {
         { userData.role === "ADMIN" && <Route path="/admin-contact" element={<AdminContact/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-event-view" element={<AdminEventView/>} /> }
 
-        { userData.role === "ADMIN" && <Route path="/admin-event-update" element={<AdminEventUpdate/>} /> }
-
         { userData.role === "ADMIN" && <Route path="/admin-event-add" element={<AdminEventAdd/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-scholarship-add" element={<AdminScholarshipAdd/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-member-view" element={<AdminMemberView/>} /> }
 
         { token && userData.role !== "ADMIN" && <Route path="/user-profile" element={<Profile userData={userData}/>} /> }
-
-
 
 
     	
