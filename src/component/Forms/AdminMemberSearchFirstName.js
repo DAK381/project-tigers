@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axios';
-import DataTable from 'react-data-table-component';
-import APIService from '../../services/APIService';
-import FirstNameForm from './SearchForm';
 import { Card, CardHeader, CardBody, Table } from 'react-bootstrap';
 import AdminMemberView from '../Admin/AdminMemberView';
 import MemberCard from '../Admin/MemberCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
 
-function AdminMemberSearchLastName (props) { 
+function AdminMemberSearchFirstName (props) { 
 
     const[data, setData] = useState([]);
     const[query, setQ] = useState("");
@@ -23,12 +20,13 @@ function AdminMemberSearchLastName (props) {
                 {
                     console.log(response.data)
                      setData(response.data)
-                     //console.log(querySubmitted)
+                     console.log(typeof response.data)
 
                 }
             )
     }
 
+    console.log(typeof data)
     useEffect(() => {
         if (props.name.trim().length > 0) {
             setQuerySubmissionStatus(true)
@@ -84,4 +82,4 @@ function AdminMemberSearchLastName (props) {
 
 }
 
-export default AdminMemberSearchLastName;
+export default AdminMemberSearchFirstName;

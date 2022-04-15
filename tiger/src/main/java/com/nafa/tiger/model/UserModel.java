@@ -40,13 +40,13 @@ public class UserModel  {
 	private Date birthdate;
 	private boolean isAlumni;
 	private String phone;
-	private int graduatedYear;
+	private String graduatedYear;
 
 	public boolean getIsAlumni(){
 		return isAlumni;
 	}
 	
-	public int getGraduatedYear() {
+	public String getGraduatedYear() {
 		return graduatedYear;
 	}
 	

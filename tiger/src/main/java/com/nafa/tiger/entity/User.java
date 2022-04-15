@@ -60,7 +60,7 @@ public class User implements UserDetails{
     private String phone;
 	private boolean enabled = false;
 	private Boolean locked =false;
-	private int graduatedYear; 
+	private String graduatedYear; 
 	
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

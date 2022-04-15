@@ -73,10 +73,10 @@ public class AdminController {
 	}
 	
 	
-	@GetMapping("/member/graduationYear/{graduatedYear}")
-	public ArrayList<User> getMember(@PathVariable("graduatedYear") int graduatedYear) {
-		return memberService.getAllByGraduationYear(graduatedYear);
-	}
+//	@GetMapping("/member/graduationYear/{graduatedYear}")
+//	public ArrayList<User> getMember(@PathVariable("graduatedYear") int graduatedYear) {
+//		return memberService.getAllByGraduatedYear(graduatedYear);
+//	}
 
 	@GetMapping("/getAllRequest")
 	public ArrayList<PendingGroupRequest> getAllRequest() {

@@ -12,7 +12,7 @@ function SignUpForm(props){
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthdate, setBirthdate] = useState('');
-  const [isAlumni, setIsAlumni] = useState(true);
+  const [isAlumni, setIsAlumni] = useState();
   const [phone, setPhone] = useState('');
   const [graduatedYear, setGraduatedYear] = useState(0);
   const [address,setAddress]=useState('');

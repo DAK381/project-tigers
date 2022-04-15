@@ -68,12 +68,12 @@ public class MemberServiceImp implements MemberService {
 	}
 	
 
-	@Override
-	public ArrayList<User> getAllByGraduationYear(int graduatedYear) 
-	{
-		return memberRepository.findAllByGarduationYear(graduatedYear);
-	}
-	
+//	@Override
+//	public ArrayList<User> getAllByGraduatedYear(int graduatedYear) 
+//	{
+//		return memberRepository.findAllByGarduatedYear(graduatedYear);
+//	}
+//	
 
 	@Override
 	public ArrayList<User> getAllUsers() {
