@@ -54,12 +54,13 @@ public class User implements UserDetails{
 	private String password;
 	private String role;
 	private String address;
-	private String Membership;
+	private String membership;
 	private Date birthdate;
 	private boolean isAlumni;
     private String phone;
 	private boolean enabled = false;
 	private Boolean locked =false;
+	private int graduatedYear; 
 	
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -110,6 +111,8 @@ public class User implements UserDetails{
 		// TODO Auto-generated method stub
 		return email;
 	}
+	
+	
 
 	@Override
 	public boolean isAccountNonExpired() {

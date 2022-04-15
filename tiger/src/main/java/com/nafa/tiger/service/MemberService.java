@@ -23,6 +23,9 @@ public interface MemberService {
 	ArrayList<User> getAllByLastNameContaining(String lastName);
 
 	ArrayList<User> getAllByFirstNameAndLastNameContaining(String firstName, String lastName);
+	
+	
+	ArrayList<User> getAllByGraduationYear(int graduatedYear);
 
 
 

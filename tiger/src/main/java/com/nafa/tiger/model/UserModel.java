@@ -36,14 +36,25 @@ public class UserModel  {
 	private String matchingPassword;
 	private String role;
 	private String address;
-	private String Membership;
+	private String membership;
 	private Date birthdate;
 	private boolean isAlumni;
 	private String phone;
+	private int graduatedYear;
 
 	public boolean getIsAlumni(){
 		return isAlumni;
 	}
+	
+	public int getGraduatedYear() {
+		return graduatedYear;
+	}
+	
+	public String getMembership() {
+		return membership;
+	}
+	
+	
 //	private List<GrantedAuthority> authorities;
 //	private boolean enabled;
 //
