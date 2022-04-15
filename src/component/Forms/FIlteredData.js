@@ -6,23 +6,22 @@ import AdminMemberGroup from "./AdminMemberGroup";
 import AdminMemberSearchLastName from "./AdminMembersSearchLastName";
 import AdminAllMembers from "../Admin/AdminAllMembers";
 import { Button } from "react-bootstrap";
-import DataFromAxios from "./DataFromAxios";
 
 function FilteredData()
 {
 
     const[submitted, setSubmitted] = useState(false)
-    
-    const [query, setQuery] = useState(
+
+    const [query, setQuery] = useState([
         {firstName: "",
         lastName: "",
         group: "",
         graduationYear: ""
-        });
+        }]);
 
 
   const searchQuery = (query1) => {
-    setQuery(
+    setQuery([
                 {
                     firstName: query1.firstName,
                     lastName: query1.lastName,
@@ -31,7 +30,7 @@ function FilteredData()
 
                 }
     
-    );
+    ]);
   };
 
   const submissionStatus = (status) =>{
@@ -43,9 +42,6 @@ function FilteredData()
       return true;
     }
   }
-
-  console.log(typeof query)
-
 
   
   if(!submitted)
@@ -65,7 +61,7 @@ else{
     return(
         <div>
              <FormMemberSearch searchQuery ={searchQuery} submissionStatus={ submissionStatus }/>
-             {/* {
+             {
               query.map(query =>
                 {
                     return (
@@ -101,10 +97,7 @@ else{
 
 
                           })
-                        }   */}
-
-                        
-                          <DataFromAxios data = {query} />
+                        }  
 
         </div>
     )
