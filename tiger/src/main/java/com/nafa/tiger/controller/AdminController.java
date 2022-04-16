@@ -71,6 +71,12 @@ public class AdminController {
 	public ArrayList<User> getAllByFirstNameAndLastNameContaining(@PathVariable("memberFirstName") String firstName, @PathVariable("memberLastName") String lastName) {
 		return memberService.getAllByFirstNameAndLastNameContaining(firstName, lastName);
 	}
+	
+	
+//	@GetMapping("/member/graduationYear/{graduatedYear}")
+//	public ArrayList<User> getMember(@PathVariable("graduatedYear") int graduatedYear) {
+//		return memberService.getAllByGraduatedYear(graduatedYear);
+//	}
 
 	@GetMapping("/getAllRequest")
 	public ArrayList<PendingGroupRequest> getAllRequest() {

@@ -22,8 +22,11 @@ public interface MemberRepositrory extends JpaRepository<User, Long>{
 
 	//Find members where last name contains
 	ArrayList<User> findByLastNameIgnoreCaseContaining(String lastName);
+	
+//	//Find members with the given graduation year
+//		ArrayList<User> findAllByGarduatedYear(int graduatedYear);
 
 	//Find members by first name and last name containing the provided characters
-	@Query(value="SELECT * from table_member where table_member.first_name ilike %:firstName% and table_member.last_name ilike %:lastName% ",nativeQuery = true)
+	@Query(value="SELECT * from users where users.first_name like %:firstName% and users.last_name like %:lastName% ",nativeQuery = true)
 	ArrayList<User> findAllByFristNameAndLastNameContaining(@Param("firstName") String firstName,@Param("lastName") String lastName);
 }

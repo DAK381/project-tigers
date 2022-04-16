@@ -5,7 +5,6 @@ import axios from "../../axios";
 import './SignUpForm.css';
 
 
-
 function SignUpForm(props){
   const [firstName, setfirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -13,21 +12,23 @@ function SignUpForm(props){
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [birthdate, setBirthdate] = useState('');
-  const [isAlumi, setIsAlumni] = useState('');
+  const [isAlumni, setIsAlumni] = useState();
   const [phone, setPhone] = useState('');
-  const [graduatedYear, setGraduatedYear] = useState('');
+  const [graduatedYear, setGraduatedYear] = useState(0);
   const [address,setAddress]=useState('');
-  const [membershipType,setmembershipType]=useState('');
+  const [membership,setmembershipType]=useState('');
   const navigate = useNavigate();
 
 
   function signinHandler(event){
-    axios.post("/register",{firstName,lastName,maidenName,email,birthdate,isAlumi,graduatedYear,membershipType,address,phone,password,}).then(res=>{console.log(res.data);
+    axios.post("/register",{firstName,lastName,maidenName,email,birthdate,isAlumni,graduatedYear,membership,address,phone,password}).then(res=>{console.log(res.data);
       navigate('/log-in');
     }).catch(err=>console.log(err))
     
 }
 
+console.log(isAlumni);
+console.log(graduatedYear);
 
   return (
     <div>
@@ -106,7 +107,7 @@ function SignUpForm(props){
           />
         </Form.Group>
       
-        <Form.Group controlId="membershipType">
+        <Form.Group controlId="membership">
           <Form.Label>What type of membership do you have?</Form.Label>
           <Form.Select onChange={(e) => setmembershipType(e.target.value)}>
             <option>None</option>
@@ -116,11 +117,12 @@ function SignUpForm(props){
           </Form.Select>
         </Form.Group>
 
+
         <Form.Group controlId="isAlumni">
           <Form.Label>Are you an alumni of Neville High School?</Form.Label>
-          <Form.Select onChange={(e) => setIsAlumni(e.target.value)}>
+          <Form.Select>
             <option>Yes</option>
-            <option>No</option>
+            <option  onClick ={(e) => setIsAlumni(false)}>No</option>
           </Form.Select>
         </Form.Group>
 

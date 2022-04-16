@@ -52,6 +52,7 @@ public class UserServiceImp implements UserService{
 		user.setMaidenName(userModel.getMaidenName());
 		user.setMembership(userModel.getMembership());
 		user.setAlumni(userModel.getIsAlumni());
+	    user.setGraduatedYear(userModel.getGraduatedYear());
 		user.setRole("USER");
 		userReprository.save(user);
 		return user;
