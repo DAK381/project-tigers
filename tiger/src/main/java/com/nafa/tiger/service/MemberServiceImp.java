@@ -10,6 +10,7 @@ import com.nafa.tiger.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nafa.tiger.entity.Events;
 import com.nafa.tiger.entity.Group;
 import com.nafa.tiger.entity.PendingGroupRequest;
 import com.nafa.tiger.entity.User;
@@ -24,8 +25,8 @@ public class MemberServiceImp implements MemberService {
 	@Autowired
 	private MemberRepositrory memberRepository;
 
-	@Autowired
-	private VerificationTokenRepository verificationTokenRepository;
+//	@Autowired
+//	private VerificationTokenRepository verificationTokenRepository;
 	
 	
 	@Autowired
@@ -38,7 +39,7 @@ public class MemberServiceImp implements MemberService {
 	private AddGroupRequestRepository  addGroupRequestRepository;
 	@Override
 	public void deleteUser(Long userId) {
-		verificationTokenRepository.deleteByUserId(1L);
+//		verificationTokenRepository.deleteByUserId(1L);
 		memberRepository.deleteById(userId);
 	}
 
@@ -64,9 +65,61 @@ public class MemberServiceImp implements MemberService {
 
 	@Override
 	public ArrayList<User> getAllByFirstNameAndLastNameContaining(String firstName, String lastName) {
-		return memberRepository.findAllByFristNameAndLastNameIgnoreCaseContaining(firstName,lastName);
+		return memberRepository.findAllByFristNameAndLastNameContaining(firstName,lastName);
 	}
 	
+	
+	@Override
+    public User update(Long user_id,User user) {
+        User updatedUser = memberRepository.findById(user_id).get();
+
+        if (user.getFirstName() != null){
+        	updatedUser.setFirstName(user.getFirstName());
+        }
+        if (user.getLastName() != null){
+        	updatedUser.setLastName(user.getLastName());
+        }
+        
+        if (user.getMaidenName() != null){
+        	updatedUser.setMaidenName(user.getMaidenName());
+        }
+        
+        if (user.getMaidenName() != null){
+        	updatedUser.setMaidenName(user.getMaidenName());
+        }
+        
+        if (user.getMaidenName() != null){
+        	updatedUser.setMaidenName(user.getMaidenName());
+        }
+        
+        if (user.getAddress() != null){
+        	updatedUser.setAddress(user.getAddress());
+        }
+        
+        if (user.getMembership() != null){
+        	updatedUser.setMembership(user.getMembership());
+        }
+        
+        if (user.getPhone() != null){
+        	updatedUser.setPhone(user.getPhone());
+        }
+
+//        if(event.getStartTime() != null){
+//            updatedEvent.setStartTime(event.getStartTime());
+//        }
+//        if(event.getEndTime()!=null){
+//            updatedEvent.setEndTime(event.getEndTime());
+//        }
+//        
+//        if(event.getPaymentAmount()!=null){
+//            updatedEvent.setPaymentAmount(event.getPaymentAmount());
+//        }
+//        
+//        if(event.getEventLocation()!=null){
+//            updatedEvent.setEventLocation(event.getEventLocation());
+//        }
+        return updatedUser;
+    }
 
 //	@Override
 //	public ArrayList<User> getAllByGraduatedYear(int graduatedYear) 

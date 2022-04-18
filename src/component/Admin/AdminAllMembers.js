@@ -49,7 +49,6 @@ if(!props.status){
 <MemberCard key={member.id} data={member} />
 
 
-
 ))}  
 
 

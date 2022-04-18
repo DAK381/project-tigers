@@ -42,9 +42,12 @@ function MemberCard(props) {
 									<Card.Title>{props.data.firstName} {props.data.lastName}</Card.Title>
                                     <ListGroup variant="flush">
     								<ListGroup.Item>Email: {props.data.email} </ListGroup.Item>
-   									 <ListGroup.Item>Phone: </ListGroup.Item>
+   									 <ListGroup.Item>Phone: {props.data.email} </ListGroup.Item>
   									</ListGroup>
 									
+
+
+
 								</Card.Body>
 							</Card>
 						</Col>

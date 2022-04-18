@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.method.P;
 import org.springframework.web.bind.annotation.*;
 
+import com.nafa.tiger.entity.Events;
 import com.nafa.tiger.entity.PendingGroupRequest;
 import com.nafa.tiger.entity.User;
 import com.nafa.tiger.service.AddGroupRequestService;
@@ -42,7 +43,7 @@ public class AdminController {
 
 
 	@DeleteMapping("/delete/{user_id}")
-	public String deleteMember(@PathVariable("user_id") Long user_id) {
+	public String deleteUser(@PathVariable("user_id") Long user_id) {
 		memberService.deleteUser(user_id);
 		return "Member successfully deleted";
 	}
@@ -71,6 +72,12 @@ public class AdminController {
 	public ArrayList<User> getAllByFirstNameAndLastNameContaining(@PathVariable("memberFirstName") String firstName, @PathVariable("memberLastName") String lastName) {
 		return memberService.getAllByFirstNameAndLastNameContaining(firstName, lastName);
 	}
+	
+	
+	@PutMapping("update/{user_id}")
+    public User update(@PathVariable("user_id") Long user_id,@RequestBody User user){
+        return memberService.update(user_id, user);
+    }
 	
 	
 //	@GetMapping("/member/graduationYear/{graduatedYear}")

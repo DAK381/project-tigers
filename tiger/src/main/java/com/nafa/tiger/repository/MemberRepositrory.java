@@ -28,6 +28,5 @@ public interface MemberRepositrory extends JpaRepository<User, Long>{
 
 	//Find members by first name and last name containing the provided characters
 	@Query(value="SELECT * from users where users.first_name like %:firstName% or users.last_name like %:lastName%",nativeQuery = true)
-	
-	ArrayList<User> findAllByFristNameAndLastNameIgnoreCaseContaining(String firstName,String lastName);
+	ArrayList<User> findAllByFristNameAndLastNameContaining(@Param ("firstName") String firstName,@Param("lastName") String lastName);
 }

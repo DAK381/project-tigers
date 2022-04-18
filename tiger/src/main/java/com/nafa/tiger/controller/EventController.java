@@ -31,6 +31,8 @@ public class EventController {
     public Events getEventById(@PathVariable("eventId") Long eventId){
         return eventService.getEventById(eventId);
     }
+    
+    
     @PutMapping("update/{eventId}")
     public Events updateEvent(@PathVariable("eventId") Long eventId,@RequestBody Events event){
         return eventService.update(eventId, event);

@@ -17,7 +17,8 @@ function EventCard(props) {
 	const desc = props.desc;
 	// const formattedDate = format(parseISO(new Date(props.date)), "dd.MM.yyyy")
 	// const formattedDate = formatISO(parseISO(props.date), { representation: 'date' })
-
+// 	const formattedDate = new Intl.DateTimeFormat('en-US').format(props.date)
+// console.log(formattedDate)
 
 	const navigate = useNavigate();
 
