@@ -58,6 +58,14 @@ public class EventServiceImp  implements EventService{
         if(event.getEndTime()!=null){
             updatedEvent.setEndTime(event.getEndTime());
         }
+        
+        if(event.getPaymentAmount()!=null){
+            updatedEvent.setPaymentAmount(event.getPaymentAmount());
+        }
+        
+        if(event.getEventLocation()!=null){
+            updatedEvent.setEventLocation(event.getEventLocation());
+        }
         return updatedEvent;
     }
 

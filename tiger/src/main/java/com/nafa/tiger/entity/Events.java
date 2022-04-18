@@ -25,5 +25,7 @@ public class Events {
     private Time startTime;
     private Time endTime;
     private String eventDescription;
+    private String paymentAmount;
+    private String eventLocation;
 
 }

@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import AdminEventDelete from './AdminEventDelete';
-
+import { Form } from "react-bootstrap";
 
 export default function AdminEventUpdate(props) {
 
@@ -15,16 +15,17 @@ export default function AdminEventUpdate(props) {
 
 
     const [isOpen, setIsOpen] = useState(false)
-    const [eventName, setEventName] = useState();
+    const [eventName, setEventName] = useState("");
+    const [eventLocation, setLocation] = useState("");
+    const [eventDescription, setEventDescription] = useState("");
+    const [eventDate, setEventDate] = useState(new Date());
+    const [paymentAmount, setPaymentAmount] = useState();
 
-    const [eventDescription, setEventDescription] = useState();
-    //const [location, setLocation] = useState('');
-    // const [eventDate, setEventDate] = useState(new Date());
     // const [startTime, setStartTime] = useState(new Date());
     // const [endTime, setEndime] = useState(new Date());
-    // const [timeOccurrence, setTimeOccurrence] = useState('');
     
-    // const [paymentAmount, setPaymentAmount] = useState('00:00');
+    
+    
     // const [openDate, setOpenDate] = useState(new Date());
     // const [closeDate, setCloseDate] = useState(new Date());
     
@@ -36,7 +37,7 @@ console.log(location.state.name)
         setEventDescription(location.state.description);
         // setStartTime(location.state.startTime);
         // setEndime(location.state.endTime);
-        // setEventDate(location.state.eventDate)
+        setEventDate(location.state.eventDate)
     }, [location.state]);
     
 
@@ -79,6 +80,58 @@ console.log(location.state.name)
                                     defaultValue = {location.state.description}
                                     placeholder= {location.state.description} value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} />
                                 </div>
+
+
+         <Form.Group controlId="eventDate">
+          <Form.Label>Date of the event</Form.Label>
+          <Form.Control
+            type="date"
+            placeholder="Enter date of the event"
+            defaultValue={location.state.date}
+            value = {eventDate}
+            name="eventDate"
+            onChange={(e) => setEventDate(e.target.value)}
+          />
+        </Form.Group>
+
+
+        <Form.Group controlId="eventLocation">
+          <Form.Label>Location of the event</Form.Label>
+          <Form.Control
+            type="text"
+            defaultValue = {location.state.eventLocation}
+            value = {eventLocation}
+            placeholder="Enter location of the event"
+            name="eventLocation"
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </Form.Group>
+
+
+        <Form.Group controlId="eventLocation">
+          <Form.Label>Location of the event</Form.Label>
+          <Form.Control
+            type="text"
+            defaultValue = {location.state.eventLocation}
+            value = {eventLocation}
+            placeholder="Enter location of the event"
+            name="eventLocation"
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </Form.Group>
+
+
+        <Form.Group controlId="paymentAmount">
+          <Form.Label>Payment Amount</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter the amount to be paid"
+            value = {paymentAmount}
+            defaultValue = {location.state.payment}
+            name="paymentAmount"
+            onChange={(e) => setPaymentAmount(e.target.value)}
+          />
+        </Form.Group>
 
 
 

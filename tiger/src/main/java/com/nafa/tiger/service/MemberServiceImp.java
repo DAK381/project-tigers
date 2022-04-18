@@ -64,7 +64,7 @@ public class MemberServiceImp implements MemberService {
 
 	@Override
 	public ArrayList<User> getAllByFirstNameAndLastNameContaining(String firstName, String lastName) {
-		return memberRepository.findAllByFristNameAndLastNameContaining(firstName,lastName);
+		return memberRepository.findAllByFristNameAndLastNameIgnoreCaseContaining(firstName,lastName);
 	}
 	
 
@@ -73,7 +73,7 @@ public class MemberServiceImp implements MemberService {
 //	{
 //		return memberRepository.findAllByGarduatedYear(graduatedYear);
 //	}
-//	
+	
 
 	@Override
 	public ArrayList<User> getAllUsers() {
