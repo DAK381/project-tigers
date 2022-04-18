@@ -1,12 +1,11 @@
-import photo1 from "../../Images/nafa1.jpg"
-import photo2 from "../../Images/nafa2.jpeg"
-import photo3 from "../../Images/nafa3.jpg"
-import Carousel from 'react-bootstrap/Carousel'
+import photo1 from "../../Images/nafa1.jpg";
+import photo2 from "../../Images/nafa2.jpeg";
+import photo3 from "../../Images/nafa3.jpg";
+import Carousel from 'react-bootstrap/Carousel';
 import "./Slider.css";
-import Card from 'react-bootstrap/Card'
-import { CardBody } from "reactstrap";
+import Card from 'react-bootstrap/Card';
 import axios from '../../axios';
-import Modal from 'react-bootstrap/Modal'
+import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 
@@ -32,15 +31,15 @@ function Slider (props){
   
   const onFileUpload = () => {
     const formData = new FormData();
-  
-    formData.append("file", fileState.selectedFile);
-    console.log(fileState.selectedFile);
-    console.log(formData.get('file'));
+    formData.append("image", fileState.selectedFile);
+
     axios.post("/uploadImage", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       }
-  });
+    }).then((response)=>{
+      console.log(response);
+    }).catch((e)=>{});
   };
 
     return(
@@ -67,7 +66,7 @@ function Slider (props){
             </ul>
           <div>
           <p>Upload Pictures</p>
-          <input type="file" onChange={onFileChange} />
+          <input type="file" name="image" onChange={onFileChange} accept="image/*"/>
           </div>
           {fileState.previewImage && (
           <div>
