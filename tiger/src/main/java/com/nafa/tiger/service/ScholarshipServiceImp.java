@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class ScholarshipServiceImp implements ScholarshipService{
 
     @Autowired
