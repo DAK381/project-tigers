@@ -35,7 +35,6 @@ function EventCard(props) {
 				date: props.date,
 				eventLocation: props.eventLocation,
 				payment: props.payment
-			
 
 			}
 		});

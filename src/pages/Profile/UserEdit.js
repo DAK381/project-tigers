@@ -1,40 +1,77 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, FormControl } from "react-bootstrap";
-import {useNavigate,Link} from 'react-router-dom'
+import {  useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from "../../axios";
-import './SignUpForm.css';
+
+export default function ProfileEdit(){
 
 
-function SignUpForm(props){
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
+
+
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [maidenName, setMaidenName] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  //const [password, setPassword] = useState('');
+  //const [email, setEmail] = useState('');
   const [birthdate, setBirthdate] = useState('');
-  const [isAlumni, setIsAlumni] = useState();
+  //const [isAlumni, setIsAlumni] = useState();
   const [phone, setPhone] = useState('');
   const [graduatedYear, setGraduatedYear] = useState('');
   const [address,setAddress]=useState('');
   const [membership,setmembershipType]=useState('');
-  const navigate = useNavigate();
 
 
-  function signinHandler(event){
-    axios.post("/register",{firstName,lastName,maidenName,email,birthdate,isAlumni,graduatedYear,membership,address,phone,password}).then(res=>{console.log(res.data);
-      navigate('/log-in');
-    }).catch(err=>console.log(err))
+
+  useEffect(() => {
+    setFirstName(location.state.data.firstName)
+    setLastName(location.state.data.lastName);
+    setMaidenName(location.state.data.maidenName);
+    setBirthdate(location.state.data.birthdate);
+    setPhone(location.state.data.phone);
+    setGraduatedYear(location.state.data.graduatedYear);
+    setAddress(location.state.data.address);
+    setmembershipType(location.state.membership);
+}, [location.state]);
+
+console.log(location.state.data.role)
+
+const updateAPIData = (e) => {
+    e.preventDefault();
+    axios.put(`admin/member/update/${location.state.data.id}`, 
     
+        {firstName,lastName,maidenName,birthdate,graduatedYear,membership,address,phone}
+    )
+        .then(res=>{console.log(res.data);
+       
+        
+            location.state.admin && navigate('/admin-member-profile', {
+                state: {
+                    userData: res.data
+                }
+            });  
+          
+
+           !location.state.admin && navigate('/user-updated-profile', {
+            state: {
+                userData: res.data
+            }
+        });  
+
+      }).catch(err=>console.log(err))
+
+      
 }
 
-console.log(isAlumni);
-console.log(graduatedYear);
+    return(
+        <div>
 
-  return (
-    <div>
-      <h1>Registration Form</h1>
-      <Form className="register-form">
+<Form className="register-form">
         <Form.Group controlId="firstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control
@@ -61,24 +98,7 @@ console.log(graduatedYear);
             name="Maiden Name"
             onChange={(e) => setMaidenName(e.target.value)}
           />
-        </Form.Group>
-        <Form.Group controlId="email">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type="Email"
-            placeholder="Enter email address"
-            name="email_address"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group controlId="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="Password"
-            placeholder="Enter password"
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
+        
         </Form.Group>
         <Form.Group controlId="address">
           <Form.Label>Mailing Address</Form.Label>
@@ -119,13 +139,13 @@ console.log(graduatedYear);
         </Form.Group>
 
 
-        <Form.Group controlId="isAlumni">
+        {/* <Form.Group controlId="isAlumni">
           <Form.Label>Are you an alumni of Neville High School?</Form.Label>
           <Form.Select>
             <option>Yes</option>
             <option  onClick ={(e) => setIsAlumni(false)}>No</option>
           </Form.Select>
-        </Form.Group>
+        </Form.Group> */}
 
         
         <Form.Group controlId="graduatedYear">
@@ -138,10 +158,9 @@ console.log(graduatedYear);
           />
         </Form.Group>
 
-        <button type ="button" className="btn-primary btn" onClick={signinHandler}>Sign Up</button>
+        <button type ="button" className="btn-primary btn" onClick={e => updateAPIData(e)}>Update</button>
       </Form>
-    </div>
-  );
-};
+        </div>
 
-export default SignUpForm;
+    )
+}

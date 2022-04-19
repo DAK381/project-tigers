@@ -6,12 +6,32 @@ import { fetchUserData } from '../../authenticationService';
 import axios from "../../axios";
 import Checkboxes from './Checkboxes';
 import Checkbox from './Checkbox';
+import { Modal } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 
 const selectedCheckboxes = new Set();
 const selectedRemoveCheckboxes = new Set();
 
 function Profile(props){
+
+//     const token = localStorage.getItem('USER_KEY');
+//   const [userData,setUserData]=useState({});
+//   const notLoggedIn = {
+//     role: 'Na'
+//   }
+
+//   React.useEffect(()=>{
+//     fetchUserData().then((response)=>{
+//         setUserData(response.data);
+//     }).catch((e)=>{
+//         localStorage.clear();
+//     })
+//     },[])
+
+
+
+
     const userData = props.userData;
     const [groups,setGroups]=useState([]);
     const [memberGroups, setMemberGroups] = useState([]);
@@ -60,6 +80,20 @@ function Profile(props){
         window.location.reload();
     }
 
+
+    const navigate = useNavigate();
+
+    function updateProfile(){
+		navigate('/profile-edit', {state:
+			{
+                admin: props.admin,
+				data:userData
+
+			}
+		});
+	}
+
+
     return (
 <div className="container bootstrap snippets bootdey">
         <div className="row">
@@ -78,7 +112,7 @@ function Profile(props){
                                 <p>{userData.email}</p>
                             </div>
 
-                            <div className="buttons"> <button className="btn btn-outline-primary">Edit Profile</button> <button
+                            <div className="buttons"> <button className="btn btn-outline-primary" onClick = {() => {updateProfile()}}> Edit Profile</button> <button
                                     className="btn btn-outline-primary">Activity</button> </div>
                         </div>
                     </div>
@@ -120,7 +154,7 @@ function Profile(props){
                                         <p><span>Last Name: </span>{userData.lastName}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Graduation year: </span></p>
+                                        <p><span>Graduation year: </span>{userData.graduatedYear}</p>
                                     </div>
                                     <div className="bio-row">
                                         <p><span>Birthday: </span></p>

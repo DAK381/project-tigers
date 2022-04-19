@@ -74,7 +74,7 @@ public class AdminController {
 	}
 	
 	
-	@PutMapping("update/{user_id}")
+	@PutMapping("/member/update/{user_id}")
     public User update(@PathVariable("user_id") Long user_id,@RequestBody User user){
         return memberService.update(user_id, user);
     }
