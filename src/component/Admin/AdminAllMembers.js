@@ -48,11 +48,7 @@ if(!props.status){
 {data.map(member => (
 <MemberCard key={member.id} data={member} />
 
-
-
 ))}  
-
-
 
 </Row>
 

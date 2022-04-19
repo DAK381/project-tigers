@@ -7,13 +7,18 @@ import Col from 'react-bootstrap/Col'
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal'
 import './Card.css';
-
+import { format, compareAsc, parseISO } from 'date-fns'
+import { formatISO } from 'date-fns'
 
 /*This creates a grid of Event Cards */
 function EventCard(props) {
 	const id = props.id;
 	const name = props.name;
 	const desc = props.desc;
+	// const formattedDate = format(parseISO(new Date(props.date)), "dd.MM.yyyy")
+	// const formattedDate = formatISO(parseISO(props.date), { representation: 'date' })
+// 	const formattedDate = new Intl.DateTimeFormat('en-US').format(props.date)
+// console.log(formattedDate)
 
 	const navigate = useNavigate();
 
@@ -26,7 +31,11 @@ function EventCard(props) {
 			{
 				id: id,
 				name: name,
-				description: desc
+				description: desc,
+				date: props.date,
+				eventLocation: props.eventLocation,
+				payment: props.payment
+
 			}
 		});
 	}
@@ -51,7 +60,16 @@ function EventCard(props) {
 										<Modal.Header closeButton>
 											<Modal.Title>{name}</Modal.Title>
 										</Modal.Header>
-										<Modal.Body>{desc}</Modal.Body>
+										<Modal.Body>Details: {desc}</Modal.Body>
+										<Modal.Body>When: {props.date}</Modal.Body>
+										<Modal.Body>Where: {props.eventLocation}</Modal.Body>
+										
+										
+										{
+										(props.payment!= null) &&	<Modal.Body>Amount per ticket: $ {props.payment}</Modal.Body>
+										}
+										
+										{/* <Modal.Body>{formattedDate}</Modal.Body> */}
 										<Modal.Footer>
 											<Button variant="secondary" onClick={handleClose}>
 												Close

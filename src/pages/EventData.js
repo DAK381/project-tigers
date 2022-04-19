@@ -3,18 +3,27 @@ import { useEffect, useState } from 'react';
 import EventCard from './EventCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
+import { format, compareAsc, parseISO } from 'date-fns'
+import { formatISO } from 'date-fns'
+
+
 function EventData(props){
 
 
 
     const[events, setEvents] = useState([]);
+    const[formattedDate, setDate] = useState('');
     async function getData( ){
         axios.get("/admin/event/all-event").then((response) =>{
             setEvents(response.data)
+            const formattedDate = formatISO(parseISO(props.date), { representation: 'date' })
+            setDate(formattedDate)
         })
     }
     useEffect(() => {
         getData();
+        
+
     }, []);
 
       console.log(events)
@@ -25,7 +34,9 @@ function EventData(props){
 
                     {events.map(event => (
                         <div key={event.eventId}>
-                            <EventCard id={event.eventId} name={event.eventName} desc={event.eventDescription} admin = {props.admin}/>
+                            <EventCard id={event.eventId} name={event.eventName} desc={event.eventDescription} date = {event.eventDate} 
+                            eventLocation = {event.eventLocation} payment = {event.paymentAmount}
+                            formattedDate = {formattedDate} admin = {props.admin}/>
                         </div>
                     ))}  
 

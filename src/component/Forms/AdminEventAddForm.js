@@ -11,17 +11,15 @@ function AdminEventAddForm(){
     
         
 
-        const [eventName, setEventName] = useState('');
-        const [eventDescription, setEventDescription] = useState('');
-        const [location, setLocation] = useState('');
+        const [eventName, setEventName] = useState("");
+        const [eventDescription, setEventDescription] = useState("");
+        const [eventLocation, setLocation] = useState("");
         const [eventDate, setEventDate] = useState(new Date());
-        const [startTime, setStartTime] = useState(new Date());
-        const [endTime, setEndime] = useState(new Date());
-        const [timeOccurrence, setTimeOccurrence] = useState('');
-        
-         const [paymentAmount, setPaymentAmount] = useState();
-        const [openDate, setOpenDate] = useState(new Date());
-        const [closeDate, setCloseDate] = useState(new Date());
+        const [startTime, setStartTime] = useState();
+        const [endTime, setEndime] = useState();  
+        const [paymentAmount, setPaymentAmount] = useState("");
+        // const [openDate, setOpenDate] = useState(new Date());
+        // const [closeDate, setCloseDate] = useState(new Date());
         const navigate = useNavigate();
       
       
@@ -31,7 +29,7 @@ function AdminEventAddForm(){
            
             e.preventDefault();
            console.log(eventName);
-            axios.post("admin/event/add-event", {eventName, eventDescription})
+            axios.post("admin/event/add-event", {eventName, eventDescription, eventDate, eventLocation, paymentAmount})
             .then(res=>{console.log(eventName);
                 navigate('/admin-event-view');
               }).catch(err=>console.log(err))
@@ -57,32 +55,61 @@ function AdminEventAddForm(){
                                     </div>
 
 
+                                    <Form.Group controlId="eventLocation">
+          <Form.Label>Location of the event</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter location of the event"
+            name="eventLocation"
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </Form.Group>
+                                
+        <Form.Group controlId="eventDate">
+          <Form.Label>Date of the event</Form.Label>
+          <Form.Control
+            type="date"
+            placeholder="Enter date of the event"
+            name="eventDate"
+            onChange={(e) => setEventDate(e.target.value)}
+          />
+        </Form.Group>
 
-                                    {/* <div class="form-group">
-                                        <label for="eventDate">Date of Event</label>
-                                        <DatePicker selected={eventDate} name = "eventDate" value = {eventDate} onChange={(date) => setEventDate(date)} />
-                                    </div>
-
-                                  
-
-                                    <div class = "form-group">
-                                        <label for = "startTime">Start Time</label>
-                                    <input type="time" class = "form-control" name="startTime" placeholder = "Enter Start Time" value = {startTime} 
-                                            onChange={(e) => setStartTime(e.target.value)}
-                                            
-                                            />
-                                        </div> */}
+        <Form.Group controlId="paymentAmount">
+          <Form.Label>Payment Amount</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter the amount to be paid"
+            name="paymentAmount"
+            onChange={(e) => setPaymentAmount(e.target.value)}
+          />
+        </Form.Group>
 
 
-                                        {/* <div class = "form-group">
-                                        <label for = "endTime">Close Time</label>
-                                    <input type="time" class = "form-control" name="endTime" placeholder = "Enter Start Time" value = {endTime} 
-                                            onChange={(e) => setEndime(e.target.value)}
-                                            
-                                            
-                                            />
+        {/* <Form.Group controlId="startTime">
+          <Form.Label>Start time for the event</Form.Label>
+          <Form.Control
+            type="time"
+            placeholder="Enter time of the event"
+            name="startTime"
+            onChange={(e) => setStartTime(e.target.value)}
+          />
+        </Form.Group>
 
-                                        </div> */}
+
+        <Form.Group controlId="endTime">
+          <Form.Label>End time for the event</Form.Label>
+          <Form.Control
+            type="time"
+            placeholder="Enter time of the event"
+            name="endTime"
+            onChange={(e) => setEndime(e.target.value)}
+          />
+        </Form.Group> */}
+
+
+
+                                   
 
 
                                     <div className="container text-center">

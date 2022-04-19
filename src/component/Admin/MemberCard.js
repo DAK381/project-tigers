@@ -13,18 +13,18 @@ import { Route } from 'react-router-dom';
 /*This creates a grid of Event Cards */
 function MemberCard(props) {
 
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 
 
 
-	// function showDetails(){
-	// 	navigate('/eventInfo', {state:
-	// 		{
-	// 			id: props.data.id,
-	// 			name: props.data.firstName
-	// 		}
-	// 	});
-	// }
+	function showDetails(){
+		navigate('/admin-member-profile', {state:
+			{
+				userData: props.data
+			}
+		});
+	}
+
 	// <Route path="/eventInfo/:data" exact component={EventDetails} />
 
 
@@ -42,9 +42,14 @@ function MemberCard(props) {
 									<Card.Title>{props.data.firstName} {props.data.lastName}</Card.Title>
                                     <ListGroup variant="flush">
     								<ListGroup.Item>Email: {props.data.email} </ListGroup.Item>
-   									 <ListGroup.Item>Phone: </ListGroup.Item>
+   									 <ListGroup.Item>Phone: {props.data.email} </ListGroup.Item>
   									</ListGroup>
+
+									  < Button onClick = {() => {showDetails()}}>Go to user profile</Button>
 									
+
+
+
 								</Card.Body>
 							</Card>
 						</Col>
