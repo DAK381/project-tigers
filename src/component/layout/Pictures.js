@@ -38,12 +38,28 @@ function Pictures (props){
                 "Content-Type": "multipart/form-data",
             }
         }).then((response)=>{
-            console.log(response);
+            axios.get("/getAllImages").then((response)=>{
+                setImages(response.data); 
+            }).catch((e)=>{
+                console.log(e);
+            })
         }).catch((e)=>{});
     };
     
     const setPictures = () => {
         console.log(set);
+    }
+
+    const removePictures = () => {
+        for (const picture of set) {
+            axios.post("/removeImages/" + picture ).then((response)=>{
+                axios.get("/getAllImages").then((response)=>{
+                    setImages(response.data); 
+                }).catch((e)=>{
+                    console.log(e);
+                })
+            }).catch((e)=>{});;
+        }
     }
 
 
@@ -68,10 +84,13 @@ function Pictures (props){
             </CardGroup>
           
         </Modal.Body>
-			  <Modal.Footer>
-          <Button onClick={setPictures}>
-            Set
-			  	</Button>
+		<Modal.Footer>
+            <Button onClick={setPictures}>
+                Set
+			</Button>
+            <Button onClick={removePictures}>
+                Remove
+			</Button>
 
           <div>
             <p>Upload Pictures</p>
@@ -80,7 +99,10 @@ function Pictures (props){
 
           {fileState.previewImage && (
           <div>
-            <img className="preview" src={fileState.previewImage} alt="" />
+            <img className="preview" src={fileState.previewImage} alt="" style={{border: '1px solid #ddd',
+                                                                                borderRadius: '4px',
+                                                                                padding: '5px',
+                                                                                width: '150px'}}/>
           </div>
           )}
 

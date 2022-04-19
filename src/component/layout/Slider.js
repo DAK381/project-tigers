@@ -1,12 +1,10 @@
-import photo1 from "../../Images/nafa1.jpg";
-import photo2 from "../../Images/nafa2.jpeg";
-import photo3 from "../../Images/nafa3.jpg";
 import Carousel from 'react-bootstrap/Carousel';
 import "./Slider.css";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import Pictures from './Pictures';
+import axios from '../../axios';
 
 
 function Slider (props){
@@ -14,14 +12,18 @@ function Slider (props){
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+  const [carouselPictures, setCarouselPictures]=useState([]);
 
+  React.useEffect(()=>{
+    axios.get("/getAllImages").then((response)=>{
+      setCarouselPictures(response.data); 
+    }).catch((e)=>{
+      console.log(e);
+    })
+  }, [])
+  
 
-
-
-
-
-
-    return(
+  return(
 <Card>
   { userData.role === "ADMIN" && 
     <div>
@@ -34,32 +36,13 @@ function Slider (props){
 
 
 <Carousel className = "carousel-inner"> 
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src={photo1}
-      alt="First slide"
-    />
-  
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src= {photo2}
-      alt="Second slide"
-    />
-
-    
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="d-block w-100"
-      src= {photo3}
-      alt="Third slide"
-    />
-
-   
-  </Carousel.Item>
+  { carouselPictures &&
+    carouselPictures.map((pic) => (
+        <Carousel.Item key={pic.id}>
+          <img className="d-block w-100" src={process.env.PUBLIC_URL + '/upload/' + pic.name} alt=""/>
+        </Carousel.Item>
+    ))
+  }
 </Carousel>
 
 </Card>
