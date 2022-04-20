@@ -96,7 +96,7 @@ function App() {
 
         { userData.role === "ADMIN" && <Route path="/admin-scholarship-update" element={<AdminScholarshipUpdate/>} /> }
 
-        { token && userData.role !== "ADMIN" && <Route path="/user-profile" element={<Profile userData={userData}/>} /> }
+        { token && <Route path="/user-profile" element={<Profile userData={userData}/>} /> }
 
         {/* { token && userData.role === "ADMIN" && <Route path="/admin-user-profile" element={<Profile />} /> } */}
 

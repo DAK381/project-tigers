@@ -13,10 +13,13 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
+import ToolkitProvider, {CSVExport} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
+
+
 import { Container, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { id } from "date-fns/locale";
 
+import { Button } from "react-bootstrap";
 
 // import paginationFactory from 'react-bootstrap-table2-paginator';
 // import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
@@ -27,6 +30,18 @@ import { id } from "date-fns/locale";
 export default function AdminMemberList()
 {
     
+    const { ExportCSVButton } = CSVExport;
+
+    const MyExportCSV = (props) =>{
+        const handleClick= () =>{
+            props.onExport();
+        };
+        return (
+            <div>
+                <Button onClick = {handleClick}>Export to CSV</Button>
+            </div>
+        )
+    }
 
     
     const columns = [
@@ -109,14 +124,63 @@ export default function AdminMemberList()
 
             <div>
                 <Container>
-                <BootstrapTable boostrap5 keyField = 'id' columns = {columns} data = {data} 
-                pagination ={pagination} 
-                filter = {filterFactory ()}
-                rowEvents = {rowEvents}
-                
-                
-                
-                />
+{/* 
+                  <ToolkitProvider
+                  bootstrap4
+                  keyField= 'id'
+                  data = {data}
+                  colums = {columns}
+                  exportCSV
+                  
+                  >
+                      {props => (
+                          <React.Fragment>
+
+<MyExportCSV {...props.csvProps} />
+<BootstrapTable 
+// boostrap4 
+// keyField = 'id' columns = {columns} 
+// data = {data} 
+pagination ={pagination} 
+filter = {filterFactory ()}
+rowEvents = {rowEvents}
+filterPosition="inline"
+{...props.baseProps}
+
+
+
+/>
+
+</React.Fragment>
+                          
+
+                      )}
+                      
+                      
+                </ToolkitProvider>   */}
+
+<ToolkitProvider
+  keyField="id"
+  data={ data}
+  columns={ columns }
+  exportCSV={ { onlyExportFiltered: true, exportAll: false } }
+  search
+>
+  {
+    props => (
+      <div>
+        <ExportCSVButton { ...props.csvProps }>Export CSV!!</ExportCSVButton>
+        <hr />
+        
+        <BootstrapTable
+          { ...props.baseProps }
+          pagination={ pagination }
+          filter={ filterFactory() }
+        />
+      </div>
+    )
+  }
+</ToolkitProvider>
 
             </Container>
             </div>

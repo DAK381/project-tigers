@@ -50,7 +50,7 @@ return (
         { !token && <Nav.Link href="sign-up"><h2>Sign Up </h2></Nav.Link> }
         <Nav.Link href="contact-us"><h2>Contact Us </h2></Nav.Link>
         {/* userData.role === "ADMIN" && <Nav.Link href="admin"><h2> Admin </h2></Nav.Link> */}
-        { token && userData.role !== "ADMIN" && <Nav.Link href="user-profile"><h2>Profile</h2></Nav.Link> }
+        { token && <Nav.Link href="user-profile"><h2>Profile</h2></Nav.Link> }
         { token && <Nav.Link href="./" onClick={() =>logOut()}><h2>Logout</h2></Nav.Link> }
 
         </Nav>
