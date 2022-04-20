@@ -8,8 +8,10 @@ import { Row } from 'react-bootstrap';
 export default function DataFromAxios(props){
 
     const[firstData, setFirstData] = useState([]);
-    const[lastData, setLastData] = useState([]);
+    const[lastData, setLastData] = useState([{}]);
+
     const[filteredData, setFilteredData] = useState([]);
+
     const[display, setDisplay] = useState([]);
 
 
@@ -51,7 +53,9 @@ export default function DataFromAxios(props){
     }
 
 
-    function getFilteredData(){
+    const[common, setCommon] = useState([]);
+
+    function getCommonMember(){
         // console.log(firstData)
         // console.log(lastData)
 
@@ -62,37 +66,16 @@ export default function DataFromAxios(props){
 
         console.log(firstSession);
         console.log(lastSession);
-        const finalarray = [];
+
+        const finalarray = firstSession.filter(value => lastSession.includes(value));
+
+
+
+        console.log(finalarray);
+
+        setCommon(finalarray);
+         
         
-        if(firstSession.length >= lastSession.length)
-        {
-            console.log(firstSession.length)
-            firstSession.forEach((value, i) => {
-                
-                if(value === lastSession[i]){
-                    console.log("HAHAH")
-                    setFilteredData(...filteredData, value)
-                }
-            }
-    
-            )
-
-        }
-        else
-        {
-            console.log(lastSession);
-
-            lastSession.forEach((value, i) => {
-                if(value === firstSession[i]){
-                    console.log("LALALALA")
-                    setFilteredData(...filteredData, value)
-                }
-            }
-    
-            )
-
-        }
-
 
     }
 
@@ -101,36 +84,66 @@ export default function DataFromAxios(props){
        
         props.data.lastName.length  > 0 && getFilteredLastData( );
         props.data.firstName.length  > 0 && getFilteredFirstData();
-        getFilteredData();
+        getCommonMember();
+
+
+        {common.map(id => (
+            getFilteredData(id)
+            
+            ))} 
+            
+        console.log(filteredData)
 
       }, [props.data]);
 
 
+      async function getFilteredData(id){
+        axios.get(`admin/member/${id}`
+            )
+            .then(
+                (response) =>
+                {
+                    console.log(response.data)
+
+                    
+                    setFilteredData((p) =>
+                    {
+                        return[...p, response.data]
+                    })
+
+                    //  console.log(typeof response.data.firstName)
+                        
+                    // if({response.data.firstName} ==== {props.data.firstName})
+                    // {
+                    //     setLastData(response.data);
+                    // }
+
+
+                }
+            )
+    }
 
 
     return(
         <div>
-            {/* <CardGroup>
+            <CardGroup>
 
 
 <Row className='row-cols-2 row-cols-md-1 p-9 g-4'>
 
 
 
-    {filteredData.map(member => (
-    return(
-        <li> member.</li>
-    )
+{filteredData.map(member => (
+<MemberCard key={member.id} data={member} />
 
 ))}  
-
            
 
 
 
 </Row>
 
-</CardGroup> */}
+</CardGroup>
 
 
 {/* <ul>

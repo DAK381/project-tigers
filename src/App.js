@@ -35,6 +35,8 @@ import AdminScholarshipView from './component/Admin/AdminScholarshipView';
 import AdminMemberProfile from './component/Admin/AdminMemberProfile';
 import ProfileEdit from './pages/Profile/UserEdit';
 import UpdatedProfile from './pages/Profile/UpdatedProfile';
+import AdminMemberList from './component/Admin/AdminMember/AdminMemberList';
+
 
 function App() {
 
@@ -79,6 +81,9 @@ function App() {
         { userData.role === "ADMIN" && <Route path="/admin-event-view" element={<AdminEventView/>} /> }
  
 
+
+
+
         { userData.role === "ADMIN" && <Route path="/admin-scholarship-view" element={<AdminScholarshipView/>} /> }
 
         { userData.role === "ADMIN" && <Route path="/admin-event-update" element={<AdminEventUpdate/>} /> }
@@ -102,6 +107,9 @@ function App() {
 
     	
         <Route path="/eventInfo" element={<EventDetails />}/>
+
+
+        <Route path="/member-info" element={<AdminMemberList />}/>
 
 
 
