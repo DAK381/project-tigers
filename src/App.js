@@ -32,7 +32,7 @@ import EventDetails from './pages/EventDetails';
 import AdminEventUpdate from './component/Admin/AdminEventUpdate';
 import AdminScholarshipUpdate from './component/Admin/AdminScholarshipUpdate';
 import AdminScholarshipView from './component/Admin/AdminScholarshipView';
-import AdminMemberProfile from './component/Admin/AdminMemberProfile';
+import AdminMemberProfile from './component/Admin/AdminMember/AdminMemberProfile';
 import ProfileEdit from './pages/Profile/UserEdit';
 import UpdatedProfile from './pages/Profile/UpdatedProfile';
 import AdminMemberList from './component/Admin/AdminMember/AdminMemberList';
@@ -73,7 +73,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>}/>
 
         { userData.role === "ADMIN" && <Route path="/admin" element={<AdminHome/>} /> }
-        { userData.role === "ADMIN" && <Route path="/admin-member" element={<AdminMembers/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-member" element={<AdminMemberList/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-member-add" element={<AdminMemberAdd/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-member-search" element={<AdminMemberSearch/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-profile" element={<AdminProfile/>} /> }

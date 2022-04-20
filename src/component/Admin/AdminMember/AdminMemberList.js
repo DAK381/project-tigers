@@ -13,7 +13,9 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
-
+import { Container, Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { id } from "date-fns/locale";
 
 
 // import paginationFactory from 'react-bootstrap-table2-paginator';
@@ -21,9 +23,12 @@ import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 // import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
 
+
 export default function AdminMemberList()
 {
+    
 
+    
     const columns = [
         {dataField: 'id', text: "ID"},
         {dataField: 'firstName', text: "First Name", sort: true, filter: textFilter()},
@@ -66,30 +71,60 @@ export default function AdminMemberList()
                 (response) =>
                 {
                     console.log(typeof response.data)
-                    console.log(typeof response)
                      setData(response.data)
 
 
                 }
             )
     }
+
     useEffect(() => {
             getData();
         }, []);
+
+
+        const rowEvents = {
+            onDoubleClick: (e, row, rowIndex) => {
+              showDetails(row);
+            }
+          }
+                      
+        
+          const navigate = useNavigate();
+          
+          function showDetails(row){
+            navigate('/admin-member-profile', {state:
+                {
+                    id: row.id
+                }
+            });
+
+            console.log(row.id)
+        }
+        
 
         return(
 
             
 
             <div>
+                <Container>
                 <BootstrapTable boostrap5 keyField = 'id' columns = {columns} data = {data} 
                 pagination ={pagination} 
                 filter = {filterFactory ()}
+                rowEvents = {rowEvents}
+                
+                
                 
                 />
 
-
+            </Container>
             </div>
 
+            
+
+
         )
+
+
 }
