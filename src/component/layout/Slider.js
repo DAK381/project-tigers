@@ -15,7 +15,7 @@ function Slider (props){
   const [carouselPictures, setCarouselPictures]=useState([]);
 
   React.useEffect(()=>{
-    axios.get("/getAllImages").then((response)=>{
+    axios.get("/getAllImages/carousel").then((response)=>{
       setCarouselPictures(response.data); 
     }).catch((e)=>{
       console.log(e);
@@ -28,9 +28,9 @@ function Slider (props){
   { userData.role === "ADMIN" && 
     <div>
       <Button variant="primary" onClick={handleShow}>
-				Upload Pictures
+				Change Pictures
 			</Button>
-      <Pictures show={show} onHide={handleClose}/>
+      <Pictures show={show} onHide={handleClose} setCarouselPictures={setCarouselPictures}/>
     </div>
 	}
 
