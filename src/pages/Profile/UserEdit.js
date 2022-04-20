@@ -27,7 +27,7 @@ export default function ProfileEdit(){
   const [membership,setmembershipType]=useState('');
 
 
-
+const id = location.state.data.id;
   useEffect(() => {
     setFirstName(location.state.data.firstName)
     setLastName(location.state.data.lastName);
@@ -43,7 +43,7 @@ console.log(location.state.data.role)
 
 const updateAPIData = (e) => {
     e.preventDefault();
-    axios.put(`admin/member/update/${location.state.data.id}`, 
+    axios.put(`admin/update/${id}`, 
     
         {firstName,lastName,maidenName,birthdate,graduatedYear,membership,address,phone}
     )
@@ -52,7 +52,7 @@ const updateAPIData = (e) => {
         
             location.state.admin && navigate('/admin-member-profile', {
                 state: {
-                    userData: res.data
+                    id: id
                 }
             });  
           

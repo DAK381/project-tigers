@@ -10,7 +10,7 @@ export default function AdminMemberProfile(){
 
     const location = useLocation();
 
-    const userData = location.state.userData;
+    // const userData = location.state.userData;
 
     const id = location.state.id;
 
@@ -50,7 +50,7 @@ export default function AdminMemberProfile(){
         <div>
 
             
-                <Profile key={id} userData={data} />
+                <Profile key={id} userData={data} admin = {true}/>
 
  
         </div>
