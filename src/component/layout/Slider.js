@@ -30,7 +30,7 @@ function Slider (props){
       <Button variant="primary" onClick={handleShow}>
 				Change Pictures
 			</Button>
-      <Pictures show={show} onHide={handleClose} setCarouselPictures={setCarouselPictures}/>
+      <Pictures show={show} onHide={handleClose} setCarouselPictures={setCarouselPictures} isCarousel={true} />
     </div>
 	}
 

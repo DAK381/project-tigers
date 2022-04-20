@@ -3,9 +3,15 @@ import axios from "../../axios";
 import { useHistory, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
+import Pictures from "../layout/Pictures";
+import Button from 'react-bootstrap/Button';
 
 
 export default function AdminScholarshipUpdate(props) {
+
+    const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
 
     const navigate = useNavigate();
@@ -13,10 +19,10 @@ export default function AdminScholarshipUpdate(props) {
     const location = useLocation();
 
 
-    const [id, eventId] = useState();
+    const [scholarshipId, setScholarshipId] = useState();
     const [scholarshipName, setScholarshipName] = useState();
-    //const [event_Id, setEventId] = useState('');
     const [scholarshipDescription, setScholarshipDescription] = useState();
+    const [scholarshipImage, setScholarshipImage] = useState();
     //const [location, setLocation] = useState('');
     // const [eventDate, setEventDate] = useState(new Date());
     // const [startTime, setStartTime] = useState(new Date());
@@ -31,8 +37,10 @@ console.log(location.state.id)
 console.log(location.state.name)
 
     useEffect(() => {
-        setScholarshipName(location.state.name)
-        setScholarshipDescription(location.state.description);
+        setScholarshipId(location.state.scholarship.scholarshipId)
+        setScholarshipName(location.state.scholarship.scholarshipName)
+        setScholarshipDescription(location.state.scholarship.scholarshipDescription);
+        setScholarshipImage(location.state.scholarship.scholarshipImage);
         // setStartTime(location.state.startTime);
         // setEndime(location.state.endTime);
         // setEventDate(location.state.eventDate)
@@ -42,8 +50,8 @@ console.log(location.state.name)
 
     const updateAPIData = (e) => {
         e.preventDefault();
-        axios.put(`/scholarship/update-scholarship/${location.state.id}`, {
-            scholarshipName, scholarshipDescription
+        axios.put(`/scholarship/update-scholarship/${scholarshipId}`, {
+            scholarshipName, scholarshipDescription, scholarshipImage
             // , 
             // eventDate,
             // startTime, endTime
@@ -64,6 +72,19 @@ console.log(location.state.name)
                     <div class="jumbotron">
                         <h1 class="display-4 text-center">Update {location.state.name}</h1>
                         <div>
+                            <Button variant="primary" onClick={handleShow}>
+				                Choose Image
+			                </Button>
+                            <br></br>
+                            {scholarshipImage && (
+                                <div>
+                                    <img className="preview" src={process.env.PUBLIC_URL + '/upload/' + scholarshipImage} alt="" style={{border: '1px solid #ddd',
+                                                                                                                                   borderRadius: '4px',
+                                                                                                                                   padding: '5px',
+                                                                                                                                   width: '150px'}}/>
+                                </div>
+                            )}
+                            <Pictures show={show} onHide={handleClose} setImage={setScholarshipImage} isCarousel={false} />
                             <form>
                                 <div class="form-group">
                                     <label for="eventName">Event Name</label>

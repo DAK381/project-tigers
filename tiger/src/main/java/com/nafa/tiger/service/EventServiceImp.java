@@ -66,6 +66,10 @@ public class EventServiceImp  implements EventService{
         if(event.getEventLocation()!=null){
             updatedEvent.setEventLocation(event.getEventLocation());
         }
+
+        if(event.getEventImage()!=null){
+            updatedEvent.setEventImage(event.getEventImage());
+        }
         return updatedEvent;
     }
 

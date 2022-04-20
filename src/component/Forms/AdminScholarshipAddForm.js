@@ -5,6 +5,8 @@ import axios from "../../axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'react-bootstrap-time-picker';
+import Pictures from "../layout/Pictures";
+import Button from 'react-bootstrap/Button';
 
 import { MDBDatePickerV5 } from 'mdbreact';
 
@@ -12,6 +14,7 @@ function AdminScholarshipAddForm(){
 
     const [scholarshipName, setScholarshipName] = useState('');
     const [scholarshipDescription, setScholarshipDescription] = useState('');
+    const [scholarshipImage, setScholarshipImage] = useState("");
     // const [location, setLocation] = useState('');
     // const [eventDate, setEventDate] = useState(new Date());
     // const [startTime, setStartTime] = useState(new Date());
@@ -23,13 +26,15 @@ function AdminScholarshipAddForm(){
     // const [closeDate, setCloseDate] = useState(new Date());
     const navigate = useNavigate();
   
-  
+    const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
    
 
-      function registerEvent(e){
+      function registerScholarship(e){
        
         e.preventDefault();
-        axios.post("/scholarship/add-scholarship", {scholarshipName, scholarshipDescription})
+        axios.post("/scholarship/add-scholarship", {scholarshipName, scholarshipDescription, scholarshipImage})
         .then(res=>{console.log(scholarshipName);
             navigate('/admin-scholarship-view');
           }).catch(err=>console.log(err))
@@ -43,7 +48,20 @@ function AdminScholarshipAddForm(){
                     <div className="jumbotron">
                         <h1 className="display-4 text-center">Add Scholarship</h1>
                         <div>
-                            <form onSubmit={registerEvent}>
+                            <Button variant="primary" onClick={handleShow}>
+				                Choose Image
+			                </Button>
+                            <br></br>
+                            {scholarshipImage && (
+                                <div>
+                                    <img className="preview" src={process.env.PUBLIC_URL + '/upload/' + scholarshipImage} alt="" style={{border: '1px solid #ddd',
+                                                                                                                                         borderRadius: '4px',
+                                                                                                                                         padding: '5px',
+                                                                                                                                         width: '150px'}}/>
+                                </div>
+                            )}
+                            <Pictures show={show} onHide={handleClose} setImage={setScholarshipImage} isCarousel={false} />
+                            <form onSubmit={registerScholarship}>
                                 <div className="form-group">
                                     <label for="scholarshipName">Scholarship Name</label>
                                     <input type="text" class="form-control" name="scholarshipName" placeholder="Enter the name of the scholarship" value={scholarshipName} onChange={(e) => setScholarshipName(e.target.value)} />

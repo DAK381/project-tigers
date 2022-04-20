@@ -34,9 +34,7 @@ function EventData(props){
 
                     {events.map(event => (
                         <div key={event.eventId}>
-                            <EventCard id={event.eventId} name={event.eventName} desc={event.eventDescription} date = {event.eventDate} 
-                            eventLocation = {event.eventLocation} payment = {event.paymentAmount}
-                            formattedDate = {formattedDate} admin = {props.admin}/>
+                            <EventCard event={event} admin = {props.admin}/>
                         </div>
                     ))}  
 
