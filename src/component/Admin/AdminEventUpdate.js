@@ -5,10 +5,16 @@ import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import AdminEventDelete from './AdminEventDelete';
 import { Form } from "react-bootstrap";
+import Pictures from "../layout/Pictures";
+import Button from 'react-bootstrap/Button';
 
 export default function AdminEventUpdate(props) {
 
+    const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
+    
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -18,6 +24,7 @@ export default function AdminEventUpdate(props) {
     const [eventName, setEventName] = useState("");
     const [eventLocation, setLocation] = useState("");
     const [eventDescription, setEventDescription] = useState("");
+    const [eventImage, setEventImage] = useState("");
     const [eventDate, setEventDate] = useState(new Date());
     const [paymentAmount, setPaymentAmount] = useState();
 
@@ -29,23 +36,24 @@ export default function AdminEventUpdate(props) {
     // const [openDate, setOpenDate] = useState(new Date());
     // const [closeDate, setCloseDate] = useState(new Date());
     
-console.log(location.state.id)
-console.log(location.state.name)
+console.log(location.state.event.eventId)
+console.log(location.state.event.eventName)
 
     useEffect(() => {
-        setEventName(location.state.name)
-        setEventDescription(location.state.description);
+        setEventName(location.state.event.eventName)
+        setEventDescription(location.state.event.eventDescription);
+        setEventImage(location.state.event.eventImage)
         // setStartTime(location.state.startTime);
         // setEndime(location.state.endTime);
-        setEventDate(location.state.eventDate)
+        setEventDate(location.state.event.eventDate)
     }, [location.state]);
     
 
 
     const updateAPIData = (e) => {
         e.preventDefault();
-        axios.put(`admin/event/update/${location.state.id}`, {
-            eventName, eventDescription
+        axios.put(`admin/event/update/${location.state.event.eventId}`, {
+            eventName, eventDescription, eventImage
         })
             .then(res=>{console.log(res.data);
             navigate('/admin-event-view');
@@ -66,6 +74,19 @@ console.log(location.state.name)
                     <div class="jumbotron">
                         <h1 class="display-4 text-center">Update {location.state.name}</h1>
                         <div>
+                            <Button variant="primary" onClick={handleShow}>
+				                Choose Image
+			                </Button>
+                            <br></br>
+                            {eventImage && (
+                                <div>
+                                    <img className="preview" src={process.env.PUBLIC_URL + '/upload/' + eventImage} alt="" style={{border: '1px solid #ddd',
+                                                                                                                                   borderRadius: '4px',
+                                                                                                                                   padding: '5px',
+                                                                                                                                   width: '150px'}}/>
+                                </div>
+                            )}
+                            <Pictures show={show} onHide={handleClose} setImage={setEventImage} isCarousel={false} />
                             <form>
                                 <div class="form-group">
                                     <label for="eventName">Event Name</label>

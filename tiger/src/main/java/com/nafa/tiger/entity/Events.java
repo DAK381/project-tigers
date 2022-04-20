@@ -27,5 +27,6 @@ public class Events {
     private String eventDescription;
     private String paymentAmount;
     private String eventLocation;
+    private String eventImage;
 
 }

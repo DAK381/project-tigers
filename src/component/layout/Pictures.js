@@ -47,13 +47,28 @@ function Pictures (props){
     };
     
     const setPictures = () => {
+      if (props.isCarousel){
       const carouselPictures = []
-      for (const picture of set) {
-        carouselPictures.push(picture);
+        for (const picture of set) {
+          carouselPictures.push(picture);
+        }
+        console.log(carouselPictures);
+        axios.post("/changeCarousel",  carouselPictures);
+        window.location.reload();
       }
-      console.log(carouselPictures);
-      axios.post("/changeCarousel",  carouselPictures);
-      window.location.reload();
+      else {
+        if (set.size === 1){
+          for (const picture of set) {
+            props.setImage(picture);
+          }
+          console.log(set);
+          props.onHide();
+        }
+        else{
+          console.log("false");
+          console.log(set);
+        }
+      }
     }
 
     const removePictures = () => {

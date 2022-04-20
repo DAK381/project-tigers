@@ -26,7 +26,7 @@ function ScholarshipData(props) {
 
                     {scholarships.map(scholarship => (
                         <div key={scholarship.scholarshipId}>
-                            <ScholarshipCard id={scholarship.scholarshipId} name={scholarship.scholarshipName} desc={scholarship.scholarshipDescription} admin = {props.admin}/>
+                            <ScholarshipCard scholarship={scholarship} admin = {props.admin}/>
                         </div>
                     ))}
 
