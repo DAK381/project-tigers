@@ -79,6 +79,18 @@ function Profile(props){
         }
         window.location.reload();
     }
+    
+    const navigate = useNavigate();
+
+    function updateProfile(){
+		navigate('/profile-edit', {state:
+			{
+                admin: props.admin,
+				data:userData
+
+			}
+		});
+	}
 
 
     const navigate = useNavigate();
