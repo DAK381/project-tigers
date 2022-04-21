@@ -31,6 +31,7 @@ export default function AdminMemberList()
 {
     
     const { ExportCSVButton } = CSVExport;
+    
 
     const MyExportCSV = (props) =>{
         const handleClick= () =>{
@@ -55,6 +56,14 @@ export default function AdminMemberList()
 
     ]
 
+    const selectRow = {
+        mode: 'checkbox',
+        clickToSelect: true,
+        hideSelectAll: false,
+        bgColor: 'gold'
+        
+      };
+
     const pagination = paginationFactory(
         {
             page: 1,
@@ -77,6 +86,8 @@ export default function AdminMemberList()
 
         }
     )
+
+    const[emails, setemails] = useState([])
 
     const[data, setData] = useState([]);
     async function getData( ){
@@ -124,40 +135,7 @@ export default function AdminMemberList()
 
             <div>
                 <Container>
-{/* 
-                  <ToolkitProvider
-                  bootstrap4
-                  keyField= 'id'
-                  data = {data}
-                  colums = {columns}
-                  exportCSV
-                  
-                  >
-                      {props => (
-                          <React.Fragment>
 
-<MyExportCSV {...props.csvProps} />
-<BootstrapTable 
-// boostrap4 
-// keyField = 'id' columns = {columns} 
-// data = {data} 
-pagination ={pagination} 
-filter = {filterFactory ()}
-rowEvents = {rowEvents}
-filterPosition="inline"
-{...props.baseProps}
-
-
-
-/>
-
-</React.Fragment>
-                          
-
-                      )}
-                      
-                      
-                </ToolkitProvider>   */}
 
 <ToolkitProvider
   keyField="id"
@@ -169,13 +147,15 @@ filterPosition="inline"
   {
     props => (
       <div>
-        <ExportCSVButton { ...props.csvProps }>Export CSV!!</ExportCSVButton>
+        <MyExportCSV { ...props.csvProps } />
         <hr />
         
         <BootstrapTable
           { ...props.baseProps }
           pagination={ pagination }
           filter={ filterFactory() }
+          rowEvents={rowEvents}
+          selectRow = {selectRow}
         />
       </div>
     )

@@ -150,6 +150,11 @@ function Profile(props){
                                     <div className="bio-row">
                                         <p><span>First Name: </span>{userData.firstName}</p>
                                     </div>
+
+                                    <div className="bio-row">
+                                        <p><span>Maiden Name: </span>{userData.maidenName}</p>
+                                    </div>
+
                                     <div className="bio-row">
                                         <p><span>Last Name: </span>{userData.lastName}</p>
                                     </div>
@@ -157,11 +162,16 @@ function Profile(props){
                                         <p><span>Graduation year: </span>{userData.graduatedYear}</p>
                                     </div>
                                     <div className="bio-row">
-                                        <p><span>Birthday: </span></p>
+                                        <p><span>Birthday:</span>{userData.birthdate}</p>
                                     </div>
                                     <div className="bio-row">
                                         <p><span>Email: </span>{userData.email}</p>
                                     </div>
+
+                                    <div className="bio-row">
+                                        <p><span>Address: </span>{userData.address}</p>
+                                    </div>
+
                                     <div className="bio-row">
                                         <p><span>Phone: </span>{userData.phone}</p>
                                     </div>
