@@ -11,6 +11,7 @@ import com.nafa.tiger.entity.Group;
 public interface GroupRepository extends JpaRepository<Group, Long> {
 
 	ArrayList<Group> findByGroupNameIgnoreCaseContaining(String groupName);
+	Group findByGroupName(String groupName);
 
 
 

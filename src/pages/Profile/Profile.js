@@ -8,6 +8,7 @@ import Checkboxes from './Checkboxes';
 import Checkbox from './Checkbox';
 import { Tagged } from 'react-tagged'
 import 'react-tagged/dist/index.css' // styles
+import { useNavigate } from 'react-router-dom';
 
 const selectedCheckboxes = new Set();
 const selectedRemoveCheckboxes = new Set();
@@ -21,10 +22,11 @@ function Profile(props) {
         axios.get("/search/allgroup").then(res => {
             setGroups(res.data)
         }).catch(err => console.log(err))
-        axios.get("/search/membersGroups/10").then(res => {
+        console.log(userData.firstName);
+        axios.get("/search/membersGroups/"+userData.id).then(res => {
             setMemberGroups(res.data)
         }).catch(err => console.log(err))
-    }, [])
+    }, [userData])
 
     const toggleCheckbox = id => {
         if (selectedCheckboxes.has(id)) {
@@ -47,7 +49,7 @@ function Profile(props) {
         formSubmitEvent.preventDefault();
 
         for (const checkbox of selectedCheckboxes) {
-            axios.post("/addMemberIngroup/" + checkbox + "/" + userData.id);
+            axios.put("/addUserToGroup/" + checkbox + "/" + userData.id);
         }
         window.location.reload();
     }
@@ -56,7 +58,7 @@ function Profile(props) {
         r.preventDefault();
 
         for (const checkbox of selectedRemoveCheckboxes) {
-            axios.post("/removeFromGroup/" + checkbox + "/" + userData.id);
+            axios.put("/user/" + userData.id + "/remove/" + checkbox);
         }
         window.location.reload();
     }
@@ -91,7 +93,7 @@ function Profile(props) {
                                     <p>{userData.email}</p>
                                 </div>
 
-                                <div className="buttons"> <button className="btn btn-outline-primary">Edit Profile</button> <button
+                                <div className="buttons"> <button className="btn btn-outline-primary" onClick = {updateProfile}>Edit Profile</button> <button
                                     className="btn btn-outline-primary">Activity</button> </div>
                             </div>
                         </div>
