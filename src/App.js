@@ -36,7 +36,7 @@ import AdminMemberProfile from './component/Admin/AdminMember/AdminMemberProfile
 import ProfileEdit from './pages/Profile/UserEdit';
 import UpdatedProfile from './pages/Profile/UpdatedProfile';
 import AdminMemberList from './component/Admin/AdminMember/AdminMemberList';
-
+import AdminMemberEmail from './component/Admin/AdminMember/AdminMemberEmail';
 
 function App() {
 
@@ -95,6 +95,9 @@ function App() {
         { userData.role === "ADMIN" && <Route path="/admin-member-profile" element={<AdminMemberProfile/>} /> }
 
         { userData.role === "ADMIN" && <Route path="/admin-scholarship-update" element={<AdminScholarshipUpdate/>} /> }
+
+
+        { userData.role === "ADMIN" && <Route path="/admin-member-email" element={<AdminMemberEmail/>} /> }
 
         { token && <Route path="/user-profile" element={<Profile userData={userData}/>} /> }
 

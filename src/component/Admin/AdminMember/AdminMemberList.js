@@ -42,7 +42,7 @@ export default function AdminMemberList()
                 <Button onClick = {handleClick}>Export to CSV</Button>
             </div>
         )
-    }
+    }    
 
     
     const columns = [
@@ -56,22 +56,16 @@ export default function AdminMemberList()
 
     ]
 
-    const selectRow = {
-        mode: 'checkbox',
-        clickToSelect: true,
-        hideSelectAll: false,
-        bgColor: 'gold'
-        
-      };
+    
 
     const pagination = paginationFactory(
         {
             page: 1,
             sizePerPage: 10,
-            lastPageText: '>>',
-            firstPageText: '<<',
-            nextPageText: '>',
-            prePageText: '<',
+            lastPageText: 'Last Page',
+            firstPageText: 'First Page',
+            nextPageText: 'Next Page',
+            prePageText: 'Prev Page',
             showTotal: true,
             alwaysShowAllBtns: true,
             onPageChange: function (page, sizePerpga){
@@ -87,7 +81,7 @@ export default function AdminMemberList()
         }
     )
 
-    const[emails, setemails] = useState([])
+    const[selected, setSelected] = useState([])
 
     const[data, setData] = useState([]);
     async function getData( ){
@@ -108,14 +102,33 @@ export default function AdminMemberList()
             getData();
         }, [data]);
 
-
         const rowEvents = {
             onDoubleClick: (e, row, rowIndex) => {
               showDetails(row);
-            }
+            },
+
+            // onClick: (e, row, rowIndex) => {
+            //     selectUser(row);
+            //   }
           }
-                      
+
+        const selectRow = {
+            mode: 'checkbox',
+            clickToSelect: true,
+            hideSelectAll: false,
+            bgColor: 'gold',
+            onSelect: (row, isSelect, rowIndex, e) => {
+                setSelected((prev) => [...prev, row.id])
+                console.log(selected)
+              }
+
+          };
+
+
         
+
+          
+
           const navigate = useNavigate();
           
           function showDetails(row){
@@ -125,18 +138,30 @@ export default function AdminMemberList()
                 }
             });
 
-            console.log(row.id)
+          
         }
+
+        // function selectUser(row) {
+        //     setSelected((prev) => [...prev, row.id])
+        //     console.log(selected)
+        //   }
         
+        function emailPeople(){
+            navigate('/admin-member-email', {state:
+                {
+                    arrayId: selected
+                }
+            });
+
+          
+        }
 
         return(
-
-            
 
             <div>
                 <Container>
 
-
+<Button onClick = {emailPeople}>Email Selected</Button>
 <ToolkitProvider
   keyField="id"
   data={ data}
