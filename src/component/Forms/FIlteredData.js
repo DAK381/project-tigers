@@ -7,10 +7,16 @@ import AdminMemberSearchLastName from "./AdminMembersSearchLastName";
 import AdminAllMembers from "../Admin/AdminAllMembers";
 import { Button } from "react-bootstrap";
 
+
+
+
+import DataFromAxios from "./DataFromAxios";
+
 function FilteredData()
 {
 
     const[submitted, setSubmitted] = useState(false)
+
 
     const [query, setQuery] = useState([
         {firstName: "",
@@ -28,9 +34,9 @@ function FilteredData()
                     group: query1.group,
                     graduationYear: query1.graduationYear
 
-                }
+                }]
     
-    ]);
+    );
   };
 
   const submissionStatus = (status) =>{
@@ -98,6 +104,9 @@ else{
 
                           })
                         }  
+
+                        {/* <DataFromAxios data = {query} /> */}
+
 
         </div>
     )
