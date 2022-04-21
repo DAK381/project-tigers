@@ -32,7 +32,6 @@ export default function AdminMemberList()
     
     const { ExportCSVButton } = CSVExport;
     
-
     const MyExportCSV = (props) =>{
         const handleClick= () =>{
             props.onExport();
@@ -90,9 +89,7 @@ export default function AdminMemberList()
             .then(
                 (response) =>
                 {
-                    console.log(typeof response.data)
                      setData(response.data)
-
 
                 }
             )
@@ -118,14 +115,12 @@ export default function AdminMemberList()
             hideSelectAll: false,
             bgColor: 'gold',
             onSelect: (row, isSelect, rowIndex, e) => {
-                setSelected((prev) => [...prev, row.id])
-                console.log(selected)
+                setSelected((prev) => [...prev, row.email])
+                console.log(row.email)
+             
               }
 
           };
-
-
-        
 
           
 
