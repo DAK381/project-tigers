@@ -60,6 +60,18 @@ function Profile(props) {
         }
         window.location.reload();
     }
+    
+    const navigate = useNavigate();
+
+    function updateProfile(){
+		navigate('/profile-edit', {state:
+			{
+                admin: props.admin,
+				data:userData
+
+			}
+		});
+	}
 
     return (
         <div className="container bootstrap snippets bootdey">
