@@ -22,10 +22,8 @@ export default function AdminMemberProfile(){
             .then(
                 (response) =>
                 {
-                    console.log(typeof response.data)
-                    console.log(response.data)
+                    
                     setData(response.data)
-                    console.log(typeof data)
                     
 
 //                     var arr = [];

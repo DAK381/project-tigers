@@ -44,7 +44,9 @@ function AdminNavigation(){
         <NavDropdown.Item href="admin-scholarship-view">View Scholarships</NavDropdown.Item>
       </NavDropdown>
 
-      <Nav.Link href="admin-profile"> Profile </Nav.Link>
+      <Nav.Link href="user-profile">Profile</Nav.Link> 
+
+      {/* <Nav.Link href="admin-profile"> Profile </Nav.Link> */}
 
       <Nav.Link href="./" onClick={() =>logOut()}>Logout</Nav.Link>
 
