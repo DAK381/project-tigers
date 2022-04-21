@@ -51,7 +51,7 @@ export default function AdminMemberList()
         {dataField: 'maidenName', text: "Maiden Name", sort: true, filter: textFilter()},
         {dataField: 'lastName', text: "Last Name", sort: true,filter: textFilter()},
         {dataField: 'email', text: "Email", filter: textFilter()},
-        {dataField: 'graduatedYear', text: "Graduation Year", filter: textFilter()}
+        {dataField: 'graduatedYear', text: "Graduation Year", sort: true, filter: textFilter()}
 
 
     ]
@@ -106,7 +106,7 @@ export default function AdminMemberList()
 
     useEffect(() => {
             getData();
-        }, []);
+        }, [data]);
 
 
         const rowEvents = {
