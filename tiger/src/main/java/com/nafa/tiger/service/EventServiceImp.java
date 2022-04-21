@@ -1,18 +1,25 @@
 package com.nafa.tiger.service;
 
 import com.nafa.tiger.entity.Events;
+import com.nafa.tiger.entity.Group;
+import com.nafa.tiger.entity.User;
 import com.nafa.tiger.repository.EventRepository;
+import com.nafa.tiger.repository.MemberRepositrory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Collection;
+
 @Service
 @Transactional
 public class EventServiceImp  implements EventService{
 
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private MemberRepositrory memberRepositrory;
     @Override
     public ArrayList<Events> getAllEvents() {
         return (ArrayList<Events>) eventRepository.findAll();
@@ -71,6 +78,26 @@ public class EventServiceImp  implements EventService{
             updatedEvent.setEventImage(event.getEventImage());
         }
         return updatedEvent;
+    }
+
+    @Override
+    public User addUserToGroup(Long userId, Long eventId) {
+        User user = memberRepositrory.findById(userId).get();
+        Events events = eventRepository.findById(eventId).get();
+        user.getUserEvent().add(events);
+        return new User();
+    }
+
+    @Override
+    public Collection<Events> getEventByMember(Long userId) {
+        User user = memberRepositrory.findById(userId).get();
+        return user.getUserEvent();
+    }
+
+    @Override
+    public Collection<User> getMembersByEvent(Long eventId) {
+        Events event = eventRepository.findById(eventId).get();
+        return event.getEventUser();
     }
 
 

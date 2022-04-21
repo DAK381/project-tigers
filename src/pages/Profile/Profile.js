@@ -21,10 +21,11 @@ function Profile(props) {
         axios.get("/search/allgroup").then(res => {
             setGroups(res.data)
         }).catch(err => console.log(err))
-        axios.get("/search/membersGroups/10").then(res => {
+        console.log(userData.firstName);
+        axios.get("/search/membersGroups/"+userData.id).then(res => {
             setMemberGroups(res.data)
         }).catch(err => console.log(err))
-    }, [])
+    }, [userData])
 
     const toggleCheckbox = id => {
         if (selectedCheckboxes.has(id)) {
@@ -47,7 +48,7 @@ function Profile(props) {
         formSubmitEvent.preventDefault();
 
         for (const checkbox of selectedCheckboxes) {
-            axios.post("/addMemberIngroup/" + checkbox + "/" + userData.id);
+            axios.put("/addUserToGroup/" + checkbox + "/" + userData.id);
         }
         window.location.reload();
     }
@@ -56,22 +57,10 @@ function Profile(props) {
         r.preventDefault();
 
         for (const checkbox of selectedRemoveCheckboxes) {
-            axios.post("/removeFromGroup/" + checkbox + "/" + userData.id);
+            axios.put("/user/" + userData.id + "/remove/" + checkbox);
         }
         window.location.reload();
     }
-    
-    const navigate = useNavigate();
-
-    function updateProfile(){
-		navigate('/profile-edit', {state:
-			{
-                admin: props.admin,
-				data:userData
-
-			}
-		});
-	}
 
     return (
         <div className="container bootstrap snippets bootdey">
