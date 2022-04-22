@@ -81,10 +81,12 @@ public class EventServiceImp  implements EventService{
     }
 
     @Override
-    public User addUserToGroup(Long userId, Long eventId) {
+    public User addUserToEvent(Long userId, Long eventId) {
         User user = memberRepositrory.findById(userId).get();
         Events events = eventRepository.findById(eventId).get();
-        user.getUserEvent().add(events);
+        if (!user.getUserEvent().contains(events)) {
+         user.getUserEvent().add(events);
+        }
         return new User();
     }
 

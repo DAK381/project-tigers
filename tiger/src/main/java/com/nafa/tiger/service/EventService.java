@@ -19,7 +19,7 @@ public interface EventService {
 
     Events update(Long eventId, Events event);
 
-    User addUserToGroup(Long userId, Long eventId);
+    User addUserToEvent(Long userId, Long eventId);
 
     Collection<Events> getEventByMember(Long userId);
 
