@@ -110,6 +110,8 @@ function App() {
 
     	  { token && <Route path="/event-signup" element={<EventRegistration />}/> }
 
+
+
         <Route path="/eventInfo" element={<EventDetails />}/>
 
 

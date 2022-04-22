@@ -42,7 +42,7 @@ public class EventController {
     
     @PutMapping("/userRsvp/{userId}/{eventId}")
     public User addUserToGroup( @PathVariable("userId") Long userId,@PathVariable("eventId") Long eventId){
-        return eventService.addUserToGroup(userId,eventId);
+        return eventService.addUserToEvent(userId,eventId);
     }
     
     

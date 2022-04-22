@@ -9,6 +9,7 @@ import Checkbox from './Checkbox';
 import { Tagged } from 'react-tagged'
 import { useNavigate } from 'react-router-dom';
 import 'react-tagged/dist/index.css' // styles
+import AttendedEventCard from './AttendedEventCard';
 
 const selectedCheckboxes = new Set();
 const selectedRemoveCheckboxes = new Set();
@@ -17,6 +18,7 @@ function Profile(props) {
     const userData = props.userData;
     const [groups, setGroups] = useState([]);
     const [memberGroups, setMemberGroups] = useState([]);
+    const [events, setEvents] = useState([]);
 
     React.useEffect(() => {
         axios.get("/search/allgroup").then(res => {
@@ -26,6 +28,11 @@ function Profile(props) {
         axios.get("/search/membersGroups/"+userData.id).then(res => {
             setMemberGroups(res.data)
         }).catch(err => console.log(err))
+
+        axios.get(`admin/event/search/membersEvent/${userData.id}`).then(res => {
+            setEvents(res.data)
+        }).catch(err => console.log(err))
+        
     }, [userData])
 
     const toggleCheckbox = id => {
@@ -109,7 +116,10 @@ function Profile(props) {
                         </div>
                     </div>
                 </div>
+
                 <br/>
+
+
                 <div className="card">
                     <div className="card-body">
 
@@ -196,33 +206,17 @@ function Profile(props) {
 
                                 <div className="panel-body bio-graph-info">
                                     <h1>Events attended</h1>
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <div className="card">
-                                                <div className="card-body">
-                                                    <h3 className="text">Blood Drive</h3>
-                                                    <h4 className="lead">December 14, 2019</h4>
-                                                </div>
-                                            </div>
-                                        </div>
+                                   
 
-                                        <div className="col-md-4">
-                                            <div className="card">
-                                                <div className="card-body">
-                                                    <h3>Food station</h3>
-                                                    <h4 className="lead">January 21, 2021</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <div className="card">
-                                                <div className="card-body">
-                                                    <h3>Fundraiser Camp</h3>
-                                                    <h4 className="lead">February 2, 2021</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {events.map(event => (
+                <AttendedEventCard key={event.id} event={event} />
+               
+
+
+
+
+))}  
+         
                                 </div>
                             </div>
 

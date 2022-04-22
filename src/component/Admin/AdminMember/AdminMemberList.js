@@ -55,7 +55,6 @@ export default function AdminMemberList(props)
 
     ]
 
-    
 
     const pagination = paginationFactory(
         {
@@ -82,22 +81,6 @@ export default function AdminMemberList(props)
 
     const[selected, setSelected] = useState([])
 
-    // const[data, setData] = useState([]);
-    // async function getData( ){
-    //     axios.get("/admin/allMembers"
-    //         )
-    //         .then(
-    //             (response) =>
-    //             {
-    //                  setData(response.data)
-
-    //             }
-    //         )
-    // }
-
-    // useEffect(() => {
-    //         getData();
-    //     }, [data]);
 
         const rowEvents = {
             onDoubleClick: (e, row, rowIndex) => {
