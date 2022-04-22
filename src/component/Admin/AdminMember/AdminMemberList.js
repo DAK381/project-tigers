@@ -27,7 +27,7 @@ import { Button } from "react-bootstrap";
 
 
 
-export default function AdminMemberList()
+export default function AdminMemberList(props)
 {
     
     const { ExportCSVButton } = CSVExport;
@@ -82,22 +82,22 @@ export default function AdminMemberList()
 
     const[selected, setSelected] = useState([])
 
-    const[data, setData] = useState([]);
-    async function getData( ){
-        axios.get("/admin/allMembers"
-            )
-            .then(
-                (response) =>
-                {
-                     setData(response.data)
+    // const[data, setData] = useState([]);
+    // async function getData( ){
+    //     axios.get("/admin/allMembers"
+    //         )
+    //         .then(
+    //             (response) =>
+    //             {
+    //                  setData(response.data)
 
-                }
-            )
-    }
+    //             }
+    //         )
+    // }
 
-    useEffect(() => {
-            getData();
-        }, [data]);
+    // useEffect(() => {
+    //         getData();
+    //     }, [data]);
 
         const rowEvents = {
             onDoubleClick: (e, row, rowIndex) => {
@@ -151,6 +151,7 @@ export default function AdminMemberList()
           
         }
 
+        
         return(
 
             <div>
@@ -159,7 +160,7 @@ export default function AdminMemberList()
 <Button onClick = {emailPeople}>Email Selected</Button>
 <ToolkitProvider
   keyField="id"
-  data={ data}
+  data={ props.data}
   columns={ columns }
   exportCSV={ { onlyExportFiltered: true, exportAll: false } }
   search
