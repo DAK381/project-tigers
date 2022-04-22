@@ -69,6 +69,13 @@ public class User implements UserDetails{
 	inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
 	@JsonIgnore
 	private Collection<Group> userGroup = new ArrayList<>();
+	////Event many to many*****************************************************
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name= "UserEvent",
+			joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "eventId", referencedColumnName = "eventId"))
+	@JsonIgnore
+	private Collection<Events> userEvent = new ArrayList<>();
 
 	//Test
 	public void setUserGroup(Set<Group> userGroup) {

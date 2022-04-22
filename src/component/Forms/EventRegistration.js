@@ -1,6 +1,8 @@
-import { useState,  useNavigate} from "react";
+import { useState, useEffect} from "react";
 import { Form } from "react-bootstrap";
-// import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "../../axios";
+import { Button } from "react-bootstrap";
 
 function EventRegistration(){
 
@@ -11,12 +13,36 @@ function EventRegistration(){
         // const [paymentOption,setAddress]=useState('');
         // const navigate = useNavigate();
       
-      
 
-      
+        const location = new useLocation();
+        const navigate = new useNavigate();
+
+        const event = location.state.event;
+        const user = location.state.user;
+
+        const eventId = event.eventId;
+        const userId = user.id;
+
+        console.log(location.state.event)
+
+        function registerForEvent() {   
+          // e.preventDefault();
+          axios.put(`admin/event/userRsvp/${userId}/${eventId}`).then(res=>{
+            console.log(user.firstName);
+            console.log(event.eventName);
+            navigate('/events');
+          }).catch(err=>console.log(err))
+        }
+        
+      //   useEffect(() => {
+
+      //     registerForEvent();
+         
+      // }, [location.state]);
+
         return (
           <div>
-            <h1>Register for the Event</h1>
+            {/* <h1>Register for the {location.state.event.eventName}</h1>
             <Form className="register-form">
               <Form.Group controlId="fistName">
                 <Form.Label>First Name</Form.Label>
@@ -45,10 +71,15 @@ function EventRegistration(){
                   onChange={(e) => setMaidenName(e.target.value)}
                 />
               </Form.Group>
+
+  
       
               <button type ="button" className="btn-primary btn">Register</button>
             
-            </Form>
+            </Form> */}
+            <Button onClick = {registerForEvent}>
+              Register
+            </Button>
           </div>
         );
       };

@@ -37,6 +37,7 @@ import ProfileEdit from './pages/Profile/UserEdit';
 import UpdatedProfile from './pages/Profile/UpdatedProfile';
 import AdminMemberList from './component/Admin/AdminMember/AdminMemberList';
 import AdminMemberEmail from './component/Admin/AdminMember/AdminMemberEmail';
+import EventRegistration from './component/Forms/EventRegistration';
 
 function App() {
 
@@ -67,7 +68,8 @@ function App() {
         { !token && <Route path="/log-in" element={<LogInPage />} /> }
         { !token && <Route path="/sign-up" element={<SignUpForm />} /> }
         { !token && <Route path="/forget-password" element={<ForgetPasswordPage />} /> }
-        <Route path="/events" element={<EventPage/>} />
+
+        <Route path="/events" element={<EventPage userData = {userData}/>} />
         <Route path="/scholarship" element={<Scholarship/>} />
         <Route path="/contact-us" element={<Contact/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
@@ -108,7 +110,8 @@ function App() {
         { token && <Route path="/user-updated-profile" element={<Profile userData={userData}/>} /> }
 
 
-    	
+    	  { token && <Route path="/event-signup" element={<EventRegistration />}/> }
+
         <Route path="/eventInfo" element={<EventDetails />}/>
 
 

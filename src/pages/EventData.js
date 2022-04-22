@@ -12,17 +12,15 @@ function EventData(props){
 
 
     const[events, setEvents] = useState([]);
-    const[formattedDate, setDate] = useState('');
+   
     async function getData( ){
         axios.get("/admin/event/all-event").then((response) =>{
             setEvents(response.data)
-            const formattedDate = formatISO(parseISO(props.date), { representation: 'date' })
-            setDate(formattedDate)
+          
         })
     }
     useEffect(() => {
         getData();
-        
 
     }, []);
 
@@ -34,7 +32,7 @@ function EventData(props){
 
                     {events.map(event => (
                         <div key={event.eventId}>
-                            <EventCard event={event} admin = {props.admin}/>
+                            <EventCard event={event} userData = {props.userData} admin = {props.admin}/>
                         </div>
                     ))}  
 

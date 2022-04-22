@@ -1,7 +1,7 @@
 //imports needed packages for cards
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ import Modal from 'react-bootstrap/Modal'
 import './Card.css';
 import { format, compareAsc, parseISO } from 'date-fns'
 import { formatISO } from 'date-fns'
+import { CardFooter } from 'reactstrap';
 
 /*This creates a grid of Event Cards */
 function EventCard(props) {
@@ -27,6 +28,22 @@ function EventCard(props) {
 			}
 		});
 	}
+
+	function eventSignUp(){
+		if(Object.keys(props.userData).length !== 0){
+			navigate('/event-signup', {state:
+				{
+					event: event,
+					user : props.userData
+				}
+			});
+		}
+		else{
+			console.log("have to login to register")
+		}
+
+	}
+
 
 
 	return (
@@ -62,8 +79,12 @@ function EventCard(props) {
 							</Modal>
 
 						{props.admin && < Button onClick = {() => {updateEvent()}}>Update Event</Button>}
- 									
+						
 						</Card.Body>
+						
+						<CardFooter>
+							<Button onClick={eventSignUp}>Register for the event</Button>
+						</CardFooter>
 					</Card>
 				</Col>
 			</div>
