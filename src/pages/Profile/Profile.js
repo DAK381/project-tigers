@@ -1,19 +1,12 @@
 import './profile.css';
 import React, { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { fetchUserData } from '../../authenticationService';
 import axios from "../../axios";
-import Checkboxes from './Checkboxes';
-import Checkbox from './Checkbox';
 import { Tagged } from 'react-tagged'
 import { useNavigate } from 'react-router-dom';
 import 'react-tagged/dist/index.css' // styles
 import AttendedEventCard from './AttendedEventCard';
-import { useNavigate } from 'react-router-dom';
 
-const selectedCheckboxes = new Set();
-const selectedRemoveCheckboxes = new Set();
 
 function Profile(props) {
     const userData = props.userData;
@@ -48,44 +41,11 @@ function Profile(props) {
         
     }, [userData])
 
-    // const toggleCheckbox = id => {
-    //     if (selectedCheckboxes.has(id)) {
-    //         selectedCheckboxes.delete(id);
-    //     } else {
-    //         selectedCheckboxes.add(id);
-    //     }
-    //     console.log(selectedCheckboxes);
-    // }
-
-    // const toggleRemoveCheckbox = id => {
-    //     if (selectedRemoveCheckboxes.has(id)) {
-    //         selectedRemoveCheckboxes.delete(id);
-    //     } else {
-    //         selectedRemoveCheckboxes.add(id);
-    //     }
-    // }
-
-    // const handleFormSubmit = formSubmitEvent => {
-    //     formSubmitEvent.preventDefault();
-
-    //     for (const checkbox of selectedCheckboxes) {
-    //         axios.put("/addUserToGroup/" + checkbox + "/" + userData.id);
-    //     }
-    //     window.location.reload();
-    // }
-
-    // const removeGroup = r => {
-    //     r.preventDefault();
-
-    //     for (const checkbox of selectedRemoveCheckboxes) {
-    //         axios.put("/user/" + userData.id + "/remove/" + checkbox);
-    //     }
-    //     window.location.reload();
-    // }
-
     const saveTags = () => {
         console.log(memberGroupNames)
         console.log(memberGroups)
+
+        const formData = new FormData();
 
         // check which groups to add
         for(var i=0; i<memberGroupNames.length; i++) {
@@ -97,8 +57,7 @@ function Profile(props) {
                 }
             }
             if(!isIn) {
-                axios.put("/addUserToGroup/" + map.get(memberGroupNames[i]) + "/" + userData.id);
-                console.log(map.get(memberGroupNames[i]));
+                formData.append("add", map.get(memberGroupNames[i]));
             }
         }
 
@@ -112,11 +71,14 @@ function Profile(props) {
                 }
             }
             if(!isIn) {
-                axios.put("/user/" + userData.id + "/remove/" + map.get(memberGroups[i].groupName));
-                console.log(map.get(memberGroups[i].groupName));
+                formData.append("remove", map.get(memberGroups[i].groupName));
             }
         }
-        window.location.reload();
+        axios.put("updateUserGroups/" + userData.id, formData).then(() => {
+            window.location.reload();
+        }).catch((e) => {
+            console.log(e);
+        });
     }
     
     const navigate = useNavigate();
@@ -233,23 +195,6 @@ function Profile(props) {
                                             <div className="bio-row">
                                                 <p><span>Your activities:</span></p>
                                                 <form >
-                                                    {/* {
-                                                        memberGroups.map(memberGroups =>
-                                                            <div key={memberGroups.groupId}>
-                                                                <Checkbox id={memberGroups.groupId} label={memberGroups.groupName} handleCheckboxChange={toggleRemoveCheckbox} />
-                                                            </div>
-                                                        )}
-                                                    <button type="button" className="btn-primary btn" onClick={removeGroup}>remove</button>
-                                                </form>
-                                            </div>
-                                            <p><span>All activities:</span></p>
-                                            <form >
-                                                {
-                                                    groups.map(group =>
-                                                        <div key={group.groupId}>
-                                                            <Checkbox id={group.groupId} label={group.groupName} handleCheckboxChange={toggleCheckbox} />
-                                                        </div>
-                                                    )} */}
                                                     <Tagged
                                                         initialTags={memberGroupNames}                          // initial tags (array of strings)
                                                         suggestions={groupNames}                          // suggestions (array of strings)

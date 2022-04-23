@@ -15,13 +15,13 @@
 	<name>tiger</name>
 	<description>nafa project by tiger</description>
 	<properties>
-		<java.version>17</java.version>
+		<!-- <java.version>17</java.version> -->
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.2.2</version>
+			<version>42.3.3</version>
 			
 			<scope>runtime</scope>
 		</dependency>
