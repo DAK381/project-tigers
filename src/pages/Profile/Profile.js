@@ -21,11 +21,23 @@ function Profile(props) {
     const [memberGroups, setMemberGroups] = useState([]);
     const [events, setEvents] = useState([]);
 
+    const map = new Map();
+    const groupNames = [];
+    var memberGroupNames = [];
+
+    for (let i=0; i<groups.length; i++) {
+        groupNames.push(groups[i].groupName)
+        map.set(groups[i].groupName, groups[i].groupId);
+    }
+
+    for (let i=0; i<memberGroups.length; i++) {
+        memberGroupNames.push(memberGroups[i].groupName);
+    }
+
     React.useEffect(() => {
         axios.get("/search/allgroup").then(res => {
             setGroups(res.data)
         }).catch(err => console.log(err))
-        console.log(userData.firstName);
         axios.get("/search/membersGroups/"+userData.id).then(res => {
             setMemberGroups(res.data)
         }).catch(err => console.log(err))
@@ -36,37 +48,73 @@ function Profile(props) {
         
     }, [userData])
 
-    const toggleCheckbox = id => {
-        if (selectedCheckboxes.has(id)) {
-            selectedCheckboxes.delete(id);
-        } else {
-            selectedCheckboxes.add(id);
+    // const toggleCheckbox = id => {
+    //     if (selectedCheckboxes.has(id)) {
+    //         selectedCheckboxes.delete(id);
+    //     } else {
+    //         selectedCheckboxes.add(id);
+    //     }
+    //     console.log(selectedCheckboxes);
+    // }
+
+    // const toggleRemoveCheckbox = id => {
+    //     if (selectedRemoveCheckboxes.has(id)) {
+    //         selectedRemoveCheckboxes.delete(id);
+    //     } else {
+    //         selectedRemoveCheckboxes.add(id);
+    //     }
+    // }
+
+    // const handleFormSubmit = formSubmitEvent => {
+    //     formSubmitEvent.preventDefault();
+
+    //     for (const checkbox of selectedCheckboxes) {
+    //         axios.put("/addUserToGroup/" + checkbox + "/" + userData.id);
+    //     }
+    //     window.location.reload();
+    // }
+
+    // const removeGroup = r => {
+    //     r.preventDefault();
+
+    //     for (const checkbox of selectedRemoveCheckboxes) {
+    //         axios.put("/user/" + userData.id + "/remove/" + checkbox);
+    //     }
+    //     window.location.reload();
+    // }
+
+    const saveTags = () => {
+        console.log(memberGroupNames)
+        console.log(memberGroups)
+
+        // check which groups to add
+        for(var i=0; i<memberGroupNames.length; i++) {
+            var isIn=false;
+            for(var k=0; k< memberGroups.length; k++) {
+                if(memberGroupNames[i]===memberGroups[k].groupName) {
+                    isIn=true;
+                    break
+                }
+            }
+            if(!isIn) {
+                axios.put("/addUserToGroup/" + map.get(memberGroupNames[i]) + "/" + userData.id);
+                console.log(map.get(memberGroupNames[i]));
+            }
         }
-        console.log(selectedCheckboxes);
-    }
 
-    const toggleRemoveCheckbox = id => {
-        if (selectedRemoveCheckboxes.has(id)) {
-            selectedRemoveCheckboxes.delete(id);
-        } else {
-            selectedRemoveCheckboxes.add(id);
-        }
-    }
-
-    const handleFormSubmit = formSubmitEvent => {
-        formSubmitEvent.preventDefault();
-
-        for (const checkbox of selectedCheckboxes) {
-            axios.put("/addUserToGroup/" + checkbox + "/" + userData.id);
-        }
-        window.location.reload();
-    }
-
-    const removeGroup = r => {
-        r.preventDefault();
-
-        for (const checkbox of selectedRemoveCheckboxes) {
-            axios.put("/user/" + userData.id + "/remove/" + checkbox);
+        //check which groups to remove
+        for(var i=0; i<memberGroups.length; i++) {
+            var isIn=false;
+            for(var k=0; k<memberGroupNames.length; k++) {
+                if(memberGroups[i].groupName===memberGroupNames[k]) {
+                    isIn=true;
+                    break
+                }
+            }
+            if(!isIn) {
+                axios.put("/user/" + userData.id + "/remove/" + map.get(memberGroups[i].groupName));
+                console.log(map.get(memberGroups[i].groupName));
+            }
         }
         window.location.reload();
     }
@@ -95,7 +143,7 @@ function Profile(props) {
 
                             <div className="panel">
                                 <div className="user-heading round">
-                                    <div className="text-center"> <img src="bojack.0.0.jpg" width="200" className="rounded-circle" />
+                                    <div className="text-center"> 
                                     </div>
                                     <h1>{userData.firstName + ' ' + userData.lastName}</h1>
                                     <p>{userData.email}</p>
@@ -185,7 +233,7 @@ function Profile(props) {
                                             <div className="bio-row">
                                                 <p><span>Your activities:</span></p>
                                                 <form >
-                                                    {
+                                                    {/* {
                                                         memberGroups.map(memberGroups =>
                                                             <div key={memberGroups.groupId}>
                                                                 <Checkbox id={memberGroups.groupId} label={memberGroups.groupName} handleCheckboxChange={toggleRemoveCheckbox} />
@@ -201,9 +249,22 @@ function Profile(props) {
                                                         <div key={group.groupId}>
                                                             <Checkbox id={group.groupId} label={group.groupName} handleCheckboxChange={toggleCheckbox} />
                                                         </div>
-                                                    )}
-                                                <button type="button" className="btn-primary btn" onClick={handleFormSubmit}>Save</button>
-                                            </form>
+                                                    )} */}
+                                                    <Tagged
+                                                        initialTags={memberGroupNames}                          // initial tags (array of strings)
+                                                        suggestions={groupNames}                          // suggestions (array of strings)
+                                                        onChange={(tags) => {memberGroupNames=tags}}                  // called every a tag is added or removed, tags is an array of strings
+                                                        suggestionWrapPattern="<b><u>$1</u></b>"  // how to highlight search pattern in suggestions
+                                                        allowCustom={false}                       // when false, it will only allow tags from suggestions
+                                                        inputPlaceholder="Add new tag"            // the input placeholder
+                                                        suggestionsThreshold={1}                  // how many characters typed before suggestions appear
+                                                        autoFocus={false}                         // put focus into the input field
+                                                        reverse={false}                           // what should go first: tags or the input
+                                                    />
+                                                    <br></br>
+                                                    <button type="button" className="btn-primary btn" onClick={saveTags}>Save</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -267,21 +328,6 @@ function Profile(props) {
 
                         </div>
                     </div>
-
-                    <div>
-                        <Tagged
-                            initialTags={[]}                          // initial tags (array of strings)
-                            suggestions={[]}                          // suggestions (array of strings)
-                            onChange={(tags) => { }}                   // called every a tag is added or removed, tags is an array of strings
-                            suggestionWrapPattern="<b><u>$1</u></b>"  // how to highlight search pattern in suggestions
-                            allowCustom={true}                        // when false, it will only allow tags from suggestions
-                            inputPlaceholder="Add new tag"            // the input placeholder
-                            suggestionsThreshold={1}                  // how many characters typed before suggestions appear
-                            autoFocus={false}                         // put focus into the input field
-                            reverse={false}                           // what should go first: tags or the input
-                        />
-                    </div>
-
                 </div>
             </div>
         </div>
