@@ -10,6 +10,7 @@ import { Tagged } from 'react-tagged'
 import { useNavigate } from 'react-router-dom';
 import 'react-tagged/dist/index.css' // styles
 import AttendedEventCard from './AttendedEventCard';
+import { useNavigate } from 'react-router-dom';
 
 const selectedCheckboxes = new Set();
 const selectedRemoveCheckboxes = new Set();
@@ -69,6 +70,18 @@ function Profile(props) {
         }
         window.location.reload();
     }
+    
+    const navigate = useNavigate();
+
+    function updateProfile(){
+		navigate('/profile-edit', {state:
+			{
+                admin: props.admin,
+				data:userData
+
+			}
+		});
+	}
 
     return (
         <div className="container bootstrap snippets bootdey">
@@ -88,7 +101,7 @@ function Profile(props) {
                                     <p>{userData.email}</p>
                                 </div>
 
-                                <div className="buttons"> <button className="btn btn-outline-primary">Edit Profile</button> <button
+                                <div className="buttons"> <button className="btn btn-outline-primary" onClick = {updateProfile}>Edit Profile</button> <button
                                     className="btn btn-outline-primary">Activity</button> </div>
                             </div>
                         </div>
