@@ -11,6 +11,7 @@ function EventData(props){
 
 
 
+    
     const[events, setEvents] = useState([]);
    
     async function getData( ){
@@ -25,6 +26,7 @@ function EventData(props){
     }, []);
 
       console.log(events)
+      console.log(props.userData)
     return(
         <div>
             <CardGroup>

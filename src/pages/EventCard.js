@@ -31,6 +31,7 @@ function EventCard(props) {
 	}
 
 	function eventSignUp(){
+		console.log(props.userData)
 		if(Object.keys(props.userData).length !== 0){
 			navigate('/event-signup', {state:
 				{
@@ -47,6 +48,7 @@ function EventCard(props) {
 
 	function RSVPmembers(){
 
+		console.log(eventInfo)
 		navigate("/admin-member-event-rsvp", {state:
 			{
 				event: eventInfo
@@ -96,7 +98,7 @@ function EventCard(props) {
 						</Card.Body>
 						
 						<CardFooter>
-							<Button onClick={eventSignUp}>Register for the event</Button>
+						{!props.admin && <Button onClick={eventSignUp}>Register for the event</Button>}
 						</CardFooter>
 					</Card>
 				</Col>
