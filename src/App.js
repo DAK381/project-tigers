@@ -35,8 +35,10 @@ import AdminScholarshipView from './component/Admin/AdminScholarshipView';
 import AdminMemberProfile from './component/Admin/AdminMember/AdminMemberProfile';
 import ProfileEdit from './pages/Profile/UserEdit';
 import UpdatedProfile from './pages/Profile/UpdatedProfile';
-import AdminMemberList from './component/Admin/AdminMember/AdminMemberList';
-
+import AdminMemberEmail from './component/Admin/AdminMember/AdminMemberEmail';
+import EventRegistration from './component/Forms/EventRegistration';
+import AdminMemberAll from './component/Admin/AdminMember/AdminMemberAll';
+import AdminMemberRSVP from './component/Admin/AdminMember/AdminMemberRSVP';
 
 function App() {
 
@@ -60,30 +62,26 @@ function App() {
   <div>
     { userData.role === "ADMIN" && <AdminNavigation />}
    <Layout userData={userData || notLoggedIn} token={token}>
-    
       
       <Routes>
         <Route path="/" element={<Home userData={userData}/>} />
         { !token && <Route path="/log-in" element={<LogInPage />} /> }
         { !token && <Route path="/sign-up" element={<SignUpForm />} /> }
         { !token && <Route path="/forget-password" element={<ForgetPasswordPage />} /> }
-        <Route path="/events" element={<EventPage/>} />
+
+        <Route path="/events" element={<EventPage userData = {userData}/>} />
         <Route path="/scholarship" element={<Scholarship/>} />
         <Route path="/contact-us" element={<Contact/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
 
         { userData.role === "ADMIN" && <Route path="/admin" element={<AdminHome/>} /> }
-        { userData.role === "ADMIN" && <Route path="/admin-member" element={<AdminMemberList/>} /> }
+        { userData.role === "ADMIN" && <Route path="/admin-member" element={<AdminMemberAll/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-member-add" element={<AdminMemberAdd/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-member-search" element={<AdminMemberSearch/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-profile" element={<AdminProfile/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-contact" element={<AdminContact/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-event-view" element={<AdminEventView/>} /> }
  
-
-
-
-
         { userData.role === "ADMIN" && <Route path="/admin-scholarship-view" element={<AdminScholarshipView/>} /> }
 
         { userData.role === "ADMIN" && <Route path="/admin-event-update" element={<AdminEventUpdate/>} /> }
@@ -96,6 +94,11 @@ function App() {
 
         { userData.role === "ADMIN" && <Route path="/admin-scholarship-update" element={<AdminScholarshipUpdate/>} /> }
 
+
+        { userData.role === "ADMIN" && <Route path="/admin-member-event-rsvp" element={<AdminMemberRSVP/>} /> }
+
+        { userData.role === "ADMIN" && <Route path="/admin-member-email" element={<AdminMemberEmail/>} /> }
+
         { token && <Route path="/user-profile" element={<Profile userData={userData}/>} /> }
 
         {/* { token && userData.role === "ADMIN" && <Route path="/admin-user-profile" element={<Profile />} /> } */}
@@ -105,11 +108,14 @@ function App() {
         { token && <Route path="/user-updated-profile" element={<Profile userData={userData}/>} /> }
 
 
-    	
+    	  { token && <Route path="/event-signup" element={<EventRegistration />}/> }
+
+
+
         <Route path="/eventInfo" element={<EventDetails />}/>
 
 
-        <Route path="/member-info" element={<AdminMemberList />}/>
+        {/* <Route path="/member-info" element={<AdminMemberList />}/> */}
 
 
 

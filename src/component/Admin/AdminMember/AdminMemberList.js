@@ -27,12 +27,11 @@ import { Button } from "react-bootstrap";
 
 
 
-export default function AdminMemberList()
+export default function AdminMemberList(props)
 {
     
     const { ExportCSVButton } = CSVExport;
     
-
     const MyExportCSV = (props) =>{
         const handleClick= () =>{
             props.onExport();
@@ -42,7 +41,7 @@ export default function AdminMemberList()
                 <Button onClick = {handleClick}>Export to CSV</Button>
             </div>
         )
-    }
+    }    
 
     
     const columns = [
@@ -51,27 +50,20 @@ export default function AdminMemberList()
         {dataField: 'maidenName', text: "Maiden Name", sort: true, filter: textFilter()},
         {dataField: 'lastName', text: "Last Name", sort: true,filter: textFilter()},
         {dataField: 'email', text: "Email", filter: textFilter()},
-        {dataField: 'graduatedYear', text: "Graduation Year", filter: textFilter()}
+        {dataField: 'graduatedYear', text: "Graduation Year", sort: true, filter: textFilter()}
 
 
     ]
 
-    const selectRow = {
-        mode: 'checkbox',
-        clickToSelect: true,
-        hideSelectAll: false,
-        bgColor: 'gold'
-        
-      };
 
     const pagination = paginationFactory(
         {
             page: 1,
             sizePerPage: 10,
-            lastPageText: '>>',
-            firstPageText: '<<',
-            nextPageText: '>',
-            prePageText: '<',
+            lastPageText: 'Last Page',
+            firstPageText: 'First Page',
+            nextPageText: 'Next Page',
+            prePageText: 'Prev Page',
             showTotal: true,
             alwaysShowAllBtns: true,
             onPageChange: function (page, sizePerpga){
@@ -87,35 +79,34 @@ export default function AdminMemberList()
         }
     )
 
-    const[emails, setemails] = useState([])
-
-    const[data, setData] = useState([]);
-    async function getData( ){
-        axios.get("/admin/allMembers"
-            )
-            .then(
-                (response) =>
-                {
-                    console.log(typeof response.data)
-                     setData(response.data)
-
-
-                }
-            )
-    }
-
-    useEffect(() => {
-            getData();
-        }, []);
+    const[selected, setSelected] = useState([])
 
 
         const rowEvents = {
             onDoubleClick: (e, row, rowIndex) => {
               showDetails(row);
-            }
+            },
+
+            // onClick: (e, row, rowIndex) => {
+            //     selectUser(row);
+            //   }
           }
-                      
-        
+
+        const selectRow = {
+            mode: 'checkbox',
+            clickToSelect: true,
+            hideSelectAll: false,
+            bgColor: 'gold',
+            onSelect: (row, isSelect, rowIndex, e) => {
+                setSelected((prev) => [...prev, row.email])
+                console.log(row.email)
+             
+              }
+
+          };
+
+          
+
           const navigate = useNavigate();
           
           function showDetails(row){
@@ -125,21 +116,34 @@ export default function AdminMemberList()
                 }
             });
 
-            console.log(row.id)
+          
         }
+
+        // function selectUser(row) {
+        //     setSelected((prev) => [...prev, row.id])
+        //     console.log(selected)
+        //   }
         
+        function emailPeople(){
+            navigate('/admin-member-email', {state:
+                {
+                    arrayId: selected
+                }
+            });
 
+          
+        }
+
+        
         return(
-
-            
 
             <div>
                 <Container>
 
-
+<Button onClick = {emailPeople}>Email Selected</Button>
 <ToolkitProvider
   keyField="id"
-  data={ data}
+  data={ props.data}
   columns={ columns }
   exportCSV={ { onlyExportFiltered: true, exportAll: false } }
   search
