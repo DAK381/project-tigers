@@ -25,7 +25,7 @@ import java.lang.System;
 import java.sql.*;
 
 @RestController
-public class ImageController extends HttpServlet{
+public class ImageController{
     
 	private static final String UPLOAD_DIRECTORY = "upload";
 	private static final int THRESHOLD_SIZE     = 1024 * 1024 * 3;  // 3MB
