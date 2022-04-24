@@ -48,15 +48,11 @@ function EventRegistration(){
               <Card>
               <CardBody>
               <Card.Title>{event.eventName}</Card.Title>
-
               <Card.Text>
-                {event.description}
+               Date: {event.eventDate}
               </Card.Text>
               <Card.Text>
-                {event.date}
-              </Card.Text>
-              <Card.Text>
-                {event.location}
+                Time: {event.startTime} - {event.endTime}
               </Card.Text>
               {/* <Card.Text>
                 {event.description}
@@ -64,14 +60,27 @@ function EventRegistration(){
               </CardBody>
               </Card>
 
-              
+            </Container>
 
-            
-            <Button onClick = {registerForEvent}>
+
+           
+            <Container>
+            <h3>
+              About {event.eventName}
+              </h3>
+              
+            <p>
+            {event.eventDescription}
+              </p>
+
+              <Button onClick = {registerForEvent}>
               Register
             </Button>
 
             </Container>
+
+            
+
           </div>
         );
       };

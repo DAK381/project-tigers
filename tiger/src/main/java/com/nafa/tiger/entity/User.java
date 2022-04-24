@@ -64,14 +64,15 @@ public class User implements UserDetails{
 	
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name= "UserGroup",
+	@JoinTable(name= "user_group",
 	joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"), 
 	inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
 	@JsonIgnore
 	private Collection<Group> userGroup = new ArrayList<>();
+	
 	////Event many to many*****************************************************
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name= "UserEvent",
+	@JoinTable(name= "user_event",
 			joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "eventId", referencedColumnName = "eventId"))
 	@JsonIgnore

@@ -43,14 +43,72 @@ export default function AdminMemberList(props)
         )
     }    
 
+    const[groups, setGroups] = useState([]);
+    const[selectedGroup, setGroup] = useState([]);
+
+    const handleGroupChange = (event) => {
+        setGroup(event.target.value);
+      };
+
+      React.useEffect(() => {
+        axios.get("/search/allgroup").then(res => {
+            setGroups(res.data)
+        }).catch(err => console.log(err))
+        
+        
+    }, [])
+    
+
+
+// const[userData, setUserData] = useState([props.data]);
+// const[userGroup, setGroup] = useState([]);
+
+//     props.data.map(
+//         (data) =>{
+//             data.test.map(
+//                 (group) => {
+//                     setGroup(userGroup => (
+//                         [
+//                             ...userGroup, group.groupName
+//                         ]
+//                     ))
+
+                    
+//                 }
+
+                
+//             )
+//             setUserData(
+//                 data => [
+//                     ...userData, userGroup
+//                 ]
+//             )
+
+//         }
+//     )
+
+//     console.log(userData)
+
+// {groups.map(
+//     (group) =>
+//     {
+//         console.log(group.groupName)
+//     }
+// )}
+
+
+
+
     
     const columns = [
-        {dataField: 'id', text: "ID"},
+        {dataField: 'id', text: "ID", hidden: true},
         {dataField: 'firstName', text: "First Name", sort: true, filter: textFilter()},
         {dataField: 'maidenName', text: "Maiden Name", sort: true, filter: textFilter()},
         {dataField: 'lastName', text: "Last Name", sort: true,filter: textFilter()},
         {dataField: 'email', text: "Email", filter: textFilter()},
-        {dataField: 'graduatedYear', text: "Graduation Year", sort: true, filter: textFilter()}
+        {dataField: 'graduatedYear', text: "Graduation Year", sort: true, filter: textFilter()},
+        {dataField: 'groupList', text: "Group", sort: true, filter: textFilter()}
+        
 
 
     ]
@@ -85,11 +143,7 @@ export default function AdminMemberList(props)
         const rowEvents = {
             onDoubleClick: (e, row, rowIndex) => {
               showDetails(row);
-            },
-
-            // onClick: (e, row, rowIndex) => {
-            //     selectUser(row);
-            //   }
+            }
           }
 
         const selectRow = {
@@ -99,17 +153,16 @@ export default function AdminMemberList(props)
             bgColor: 'gold',
             onSelect: (row, isSelect, rowIndex, e) => {
                 setSelected((prev) => [...prev, row.email])
-                console.log(row.email)
+                console.log(row.test)
              
               }
 
           };
 
-          
-
           const navigate = useNavigate();
           
           function showDetails(row){
+              
             navigate('/admin-member-profile', {state:
                 {
                     id: row.id
@@ -118,11 +171,6 @@ export default function AdminMemberList(props)
 
           
         }
-
-        // function selectUser(row) {
-        //     setSelected((prev) => [...prev, row.id])
-        //     console.log(selected)
-        //   }
         
         function emailPeople(){
             navigate('/admin-member-email', {state:
@@ -131,14 +179,32 @@ export default function AdminMemberList(props)
                 }
             });
 
-          
         }
 
-        
         return(
 
             <div>
                 <Container>
+
+                {/* <div>Filter by Group:</div>
+        <select
+          value={selectedGroup}
+          onChange={handleGroupChange}
+         
+        >
+
+{groups.map(
+    (group) =>
+    {
+        // <option key = {group.groupId} value = {group.groupName}>{group.groupName}
+        // </option> 
+
+
+    }
+)}
+          
+        </select>
+       */}
 
 <Button onClick = {emailPeople}>Email Selected</Button>
 <ToolkitProvider
@@ -148,6 +214,8 @@ export default function AdminMemberList(props)
   exportCSV={ { onlyExportFiltered: true, exportAll: false } }
   search
 >
+
+    
   {
     props => (
       <div>
