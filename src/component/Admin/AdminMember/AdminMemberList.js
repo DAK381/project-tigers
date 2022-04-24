@@ -43,58 +43,26 @@ export default function AdminMemberList(props)
         )
     }    
 
-    const[groups, setGroups] = useState([]);
-    const[selectedGroup, setGroup] = useState([]);
+   var data = props.data;
 
-    const handleGroupChange = (event) => {
-        setGroup(event.target.value);
-      };
+   for (var i = 0; i < data.length; i++) {
+    const user = data[i];
+    var groupList = "";
+    for(var j = 0; j < user.test.length; j ++)
+    {
+        var group = user.test[j];
+        groupList += group.groupName + " "
+        
+    }
 
-      React.useEffect(() => {
-        axios.get("/search/allgroup").then(res => {
-            setGroups(res.data)
-        }).catch(err => console.log(err))
-        
-        
-    }, [])
+    console.log(user.firstName + " " + groupList)
+    user["groupList"] = groupList;
+
+} 
     
 
 
-// const[userData, setUserData] = useState([props.data]);
-// const[userGroup, setGroup] = useState([]);
 
-//     props.data.map(
-//         (data) =>{
-//             data.test.map(
-//                 (group) => {
-//                     setGroup(userGroup => (
-//                         [
-//                             ...userGroup, group.groupName
-//                         ]
-//                     ))
-
-                    
-//                 }
-
-                
-//             )
-//             setUserData(
-//                 data => [
-//                     ...userData, userGroup
-//                 ]
-//             )
-
-//         }
-//     )
-
-//     console.log(userData)
-
-// {groups.map(
-//     (group) =>
-//     {
-//         console.log(group.groupName)
-//     }
-// )}
 
 
 
