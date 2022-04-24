@@ -34,23 +34,6 @@ export default function AdminMemberAll(){
     useEffect(() => {
             getData();
 
-            for (var i = 0; i < data.length; i++) {
-                const user = data[i];
-                var groupList = "";
-                for(var j = 0; j < user.test.length; j ++)
-                {
-                    var group = user.test[j];
-                    groupList += group.groupName + " "
-                    
-                }
-        
-                console.log(user.firstName + " " + groupList)
-                user["groupList"] = groupList;
-        
-            } 
-
-            setData(data)
-
         }, [data]);
 
         console.log(data)

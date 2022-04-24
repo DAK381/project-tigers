@@ -55,18 +55,13 @@ export default function AdminMemberList(props)
         
     }
 
-    console.log(user.firstName + " " + groupList)
+    // console.log(user.firstName + " " + groupList)
     user["groupList"] = groupList;
 
 } 
+
+const[selected, setSelected] = useState([])
     
-
-
-
-
-
-
-
     
     const columns = [
         {dataField: 'id', text: "ID", hidden: true},
@@ -105,9 +100,6 @@ export default function AdminMemberList(props)
         }
     )
 
-    const[selected, setSelected] = useState([])
-
-
         const rowEvents = {
             onDoubleClick: (e, row, rowIndex) => {
               showDetails(row);
@@ -121,7 +113,7 @@ export default function AdminMemberList(props)
             bgColor: 'gold',
             onSelect: (row, isSelect, rowIndex, e) => {
                 setSelected((prev) => [...prev, row.email])
-                console.log(row.test)
+                console.log(row.email)
              
               }
 
@@ -154,25 +146,6 @@ export default function AdminMemberList(props)
             <div>
                 <Container>
 
-                {/* <div>Filter by Group:</div>
-        <select
-          value={selectedGroup}
-          onChange={handleGroupChange}
-         
-        >
-
-{groups.map(
-    (group) =>
-    {
-        // <option key = {group.groupId} value = {group.groupName}>{group.groupName}
-        // </option> 
-
-
-    }
-)}
-          
-        </select>
-       */}
 
 <Button onClick = {emailPeople}>Email Selected</Button>
 <ToolkitProvider
