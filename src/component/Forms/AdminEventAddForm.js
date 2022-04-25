@@ -14,7 +14,7 @@ function AdminEventAddForm(){
   const [eventImage, setEventImage] = useState("");
   const [eventLocation, setLocation] = useState("");
   const [eventDate, setEventDate] = useState();
-  const [startTime, setStartTime] = useState("");
+  const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndime] = useState("");  
   const [paymentAmount, setPaymentAmount] = useState("");
   // const [openDate, setOpenDate] = useState(new Date());
@@ -39,7 +39,33 @@ function AdminEventAddForm(){
     }).catch(err=>console.log(err))
   }
 
-  console.log(eventImage);
+console.log(
+  startTime.toLocaleString('en-US', { hour: 'numeric', hour12: true })
+);
+
+function onStartTimeChange(e) {
+  var timeSplit = startTime.value.split(':'),
+    hours,
+    minutes,
+    meridian;
+  hours = timeSplit[0];
+  minutes = timeSplit[1];
+  if (hours > 12) {
+    meridian = 'PM';
+    hours -= 12;
+  } else if (hours < 12) {
+    meridian = 'AM';
+    if (hours === 0) {
+      hours = 12;
+    }
+  } else {
+    meridian = 'PM';
+  }
+  alert(hours + ':' + minutes + ' ' + meridian);
+
+  setStartTime(e.target.value)
+
+}
 
   return (
     <div>
@@ -88,6 +114,7 @@ function AdminEventAddForm(){
                   <Form.Label>Date of the event</Form.Label>
                   <Form.Control
                     type="date"
+                    data-date-format="DD MMMM YYYY"
                     placeholder="Enter date of the event"
                     name="eventDate"
                     onChange={(e) => setEventDate(e.target.value)}
@@ -103,7 +130,7 @@ function AdminEventAddForm(){
                     onChange={(e) => setPaymentAmount(e.target.value)}
                   />
                 </Form.Group>
-
+ 
 
         <Form.Group controlId="startTime">
           <Form.Label>Start time for the event</Form.Label>
