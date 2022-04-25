@@ -14,8 +14,8 @@ function AdminEventAddForm(){
   const [eventImage, setEventImage] = useState("");
   const [eventLocation, setLocation] = useState("");
   const [eventDate, setEventDate] = useState();
-  const [startTime, setStartTime] = useState();
-  const [endTime, setEndime] = useState();  
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndime] = useState("");  
   const [paymentAmount, setPaymentAmount] = useState("");
   // const [openDate, setOpenDate] = useState(new Date());
   // const [closeDate, setCloseDate] = useState(new Date());
@@ -27,11 +27,15 @@ function AdminEventAddForm(){
 
 
   console.log(eventDate)
-  function registerEvent(e) {   
+  function registerEvent(e) { 
+    
+    console.log(startTime)
     e.preventDefault();
-    axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount}).then(res=>{
+    axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount, startTime, endTime}).then(res=>{
       console.log(eventName);
+      
       navigate('/admin-event-view');
+      
     }).catch(err=>console.log(err))
   }
 
@@ -101,7 +105,7 @@ function AdminEventAddForm(){
                 </Form.Group>
 
 
-        {/* <Form.Group controlId="startTime">
+        <Form.Group controlId="startTime">
           <Form.Label>Start time for the event</Form.Label>
           <Form.Control
             type="time"
@@ -120,7 +124,7 @@ function AdminEventAddForm(){
             name="endTime"
             onChange={(e) => setEndime(e.target.value)}
           />
-        </Form.Group> */}
+        </Form.Group>
 
                   <div className="container text-center">
                     <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2">Save</button>                   

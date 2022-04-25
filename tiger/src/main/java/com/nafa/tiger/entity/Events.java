@@ -23,8 +23,8 @@ public class Events {
     private String eventName;
     private String eventDate;
     private String eventDay;
-    private Time startTime;
-    private Time endTime;
+    private String startTime;
+    private String endTime;
     private String eventDescription;
     private String paymentAmount;
     private String eventLocation;

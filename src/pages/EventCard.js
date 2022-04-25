@@ -77,10 +77,16 @@ function EventCard(props) {
 									<Modal.Title>{eventInfo.eventName}</Modal.Title>
 								</Modal.Header>
 								<Modal.Body>Details: {eventInfo.eventDescription}</Modal.Body>
-								<Modal.Body>When: {eventInfo.eventDate}</Modal.Body>
-								<Modal.Body>Where: {eventInfo.eventLocation}</Modal.Body>
+								{eventInfo.eventDate != null && <Modal.Body>When: {eventInfo.eventDate} </Modal.Body>}
+								
+								{eventInfo.startTime!= null && <Modal.Body>Starts at: {eventInfo.eventDate} </Modal.Body>}
+
+								{eventInfo.endTime != null && <Modal.Body>Ends at: {eventInfo.eventDate} </Modal.Body>}
+								
+								
+								{eventInfo.eventLocation != null && <Modal.Body>Where: {eventInfo.eventLocation}</Modal.Body>}
 										
-								{(props.payment!= null) &&	<Modal.Body>Amount per ticket: $ {eventInfo.paymentAmount}</Modal.Body>}
+								{(eventInfo.payment!= null) &&	<Modal.Body>Amount per ticket: $ {eventInfo.paymentAmount}</Modal.Body>}
 										
 								{/* <Modal.Body>{formattedDate}</Modal.Body> */}
 								
