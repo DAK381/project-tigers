@@ -21,7 +21,7 @@ public class Events {
 
     private Long eventId;
     private String eventName;
-    private Date eventDate;
+    private String eventDate;
     private String eventDay;
     private Time startTime;
     private Time endTime;

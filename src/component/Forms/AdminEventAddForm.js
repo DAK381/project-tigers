@@ -13,7 +13,7 @@ function AdminEventAddForm(){
   const [eventDescription, setEventDescription] = useState("");
   const [eventImage, setEventImage] = useState("");
   const [eventLocation, setLocation] = useState("");
-  const [eventDate, setEventDate] = useState(new Date());
+  const [eventDate, setEventDate] = useState();
   const [startTime, setStartTime] = useState();
   const [endTime, setEndime] = useState();  
   const [paymentAmount, setPaymentAmount] = useState("");
@@ -26,6 +26,7 @@ function AdminEventAddForm(){
 	const handleShow = () => setShow(true);
 
 
+  console.log(eventDate)
   function registerEvent(e) {   
     e.preventDefault();
     axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount}).then(res=>{

@@ -71,8 +71,6 @@ const[selected, setSelected] = useState([])
         {dataField: 'email', text: "Email", filter: textFilter()},
         {dataField: 'graduatedYear', text: "Graduation Year", sort: true, filter: textFilter()},
         {dataField: 'groupList', text: "Group", sort: true, filter: textFilter()}
-        
-
 
     ]
 
@@ -144,7 +142,7 @@ const[selected, setSelected] = useState([])
         return(
 
             <div>
-                <Container>
+                <Container fluid>
 
 
 <Button onClick = {emailPeople}>Email Selected</Button>

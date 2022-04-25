@@ -25,16 +25,7 @@ export default function AdminMemberProfile(){
                     
                     setData(response.data)
                     
-
-//                     var arr = [];
-//                     for (id in response.data) {    
-//                     arr.push(Object.assign(response.data[id], {name: id}));
-                    
-// }
                 }
-
-
-                
             )
     }
 
