@@ -1,7 +1,7 @@
-import { Calendar, momentLocalizer } from 'react-big-calendar'
+import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import { useLocation } from 'react-router-dom'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Container } from 'react-bootstrap';
 
@@ -15,28 +15,25 @@ export default function EventCalendar(){
 
     const localizer = momentLocalizer(moment)
 
-
+    // const allViews = Object
+    // .keys(Calendar.Views)
+    // .map(k => Calendar.Views[k])
 
     useEffect(() => {
         
         events.map(
             (event) => {
-                event["start"] = moment(event.eventDate);
-                event["end"] = moment(event.eventDate)
+                event["title"] = event.eventName;
+                event["start"] = moment(event.eventDate).toDate();
+                event["end"] = moment(event.eventDate).toDate();
             }
         )
-
-        // var date = moment(eventInfo.eventDate)
-
-        // var now = moment();
-
     }, [events]);
 
-
-
-
-
-
+    const handleSelectEvent = useCallback(
+        (event) => window.alert(event.title),
+        []
+      )
 
 console.log(events)
     return(
@@ -50,7 +47,13 @@ console.log(events)
       events={events}
       startAccessor="start"
       endAccessor="end"
-      style={{ height: 500 }}
+      defaultView={Views.MONTH}
+      selectable
+      onSelectEvent={handleSelectEvent}
+
+    //   views={allViews}
+
+      style={{ height: 800}}
     />
             
             </Container>
