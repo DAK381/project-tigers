@@ -10,11 +10,10 @@ import './Card.css';
 import Moment from 'react-moment';
 import moment from 'moment';
 import { CardFooter } from 'reactstrap';
-import CardHeader from 'react-bootstrap/esm/CardHeader';
 
 
 /*This creates a grid of Event Cards */
-function EventCard(props) {
+function PastEvent(props) {
 	const eventInfo = props.event;
 
 	const navigate = useNavigate();
@@ -58,9 +57,9 @@ function EventCard(props) {
 	}
 
 
-// var date = moment(eventInfo.eventDate)
+var date = moment(eventInfo.eventDate)
 
-// var now = moment();
+var now = moment();
 
 // console.log(now)
 // console.log(date)
@@ -74,12 +73,7 @@ function EventCard(props) {
 // 	console.log(eventInfo.eventName , " is in future");
 // }
 
-const past = (q) =>{ 
-    if(moment(q) < moment()){
-		return true;
-	}
-    }
-	
+
 
 	return (
 
@@ -87,11 +81,7 @@ const past = (q) =>{
 			<div>
 				<Col>
 					<Card>
-					{past(eventInfo.eventDate) && <CardHeader>
-							{eventInfo.eventName} is no longer available!
-						</CardHeader>}
 						<Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + eventInfo.eventImage} width={400} height={400} alt='...'  />
-						
 						<Card.Body>
 							<Card.Title>{eventInfo.eventName}</Card.Title>
 									
@@ -131,7 +121,7 @@ const past = (q) =>{
 						</Card.Body>
 						
 						<CardFooter>
-						{!past(eventInfo.eventDate) && !props.admin && <Button onClick={eventSignUp}>Register for the event</Button>}
+						{!props.admin && <Button onClick={eventSignUp}>Register for the event</Button>}
 						</CardFooter>
 					</Card>
 				</Col>
@@ -141,4 +131,4 @@ const past = (q) =>{
 	);
 }
 
-export default EventCard;
+export default PastEvent;
