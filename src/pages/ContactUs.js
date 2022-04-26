@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import './ContactUs.css';
 
 const FORM_ENDPOINT = "";
 

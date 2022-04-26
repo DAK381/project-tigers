@@ -53,8 +53,12 @@ function Pictures (props){
           carouselPictures.push(picture);
         }
         console.log(carouselPictures);
-        axios.post("/changeCarousel",  carouselPictures);
-        window.location.reload();
+        axios.post("/changeCarousel",  carouselPictures).then(() => {
+          window.location.reload();
+        }).catch((e) => {
+          console.log(e);
+        });
+
       }
       else {
         if (set.size === 1){

@@ -142,7 +142,7 @@ function Profile(props) {
 
                 <br/>
 
-
+                <div className="bio-info">
                 <div className="card">
                     <div className="card-body">
 
@@ -154,16 +154,22 @@ function Profile(props) {
                                         <p><span>First Name: </span>{userData.firstName}</p>
                                     </div>
 
-                                    <div className="bio-row">
-                                        <p><span>Maiden Name: </span>{userData.maidenName}</p>
-                                    </div>
+                                    { userData.maidenName && 
+                                        <div className="bio-row">
+                                            <p><span>Maiden Name: </span>{userData.maidenName}</p>
+                                        </div>
+                                    }   
 
                                     <div className="bio-row">
                                         <p><span>Last Name: </span>{userData.lastName}</p>
                                     </div>
-                                    <div className="bio-row">
-                                        <p><span>Graduation year: </span>{userData.graduatedYear}</p>
-                                    </div>
+                                    
+                                    {userData.graduatedYear && 
+                                        <div className="bio-row">
+                                            <p><span>Graduation year: </span>{userData.graduatedYear}</p>
+                                        </div>
+                                    }
+
                                     <div className="bio-row">
                                         <p><span>Birthday:</span>{userData.birthdate}</p>
                                     </div>
@@ -183,18 +189,21 @@ function Profile(props) {
 
                         </div>
                     </div>
+                    </div>
                     <br />
+                    <div className="activities-info">
                     <div className="card">
                         <div className="card-body">
 
                             <div className="panel">
-                                <div className="panel-body groups">
+                                
+                                    
+                                    <div className="panel-body bio-graph-info">
                                     <h1>Groups</h1>
-                                    <div className="row">
-                                        <div className="bio-row">
+                                        <div className="row">
                                             <div className="bio-row">
                                                 <p><span>Your activities:</span></p>
-                                                <form >
+                                                
                                                     <Tagged
                                                         initialTags={memberGroupNames}                          // initial tags (array of strings)
                                                         suggestions={groupNames}                          // suggestions (array of strings)
@@ -208,14 +217,15 @@ function Profile(props) {
                                                     />
                                                     <br></br>
                                                     <button type="button" className="btn-primary btn" onClick={saveTags}>Save</button>
-                                                </form>
+                                                
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                
                             </div>
 
                         </div>
+                    </div>
                     </div>
                     <br />
                     <div className="card">
