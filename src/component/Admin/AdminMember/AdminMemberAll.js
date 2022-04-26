@@ -10,22 +10,33 @@ export default function AdminMemberAll(){
 
 
     const[data, setData] = useState([]);
+    
     async function getData( ){
         axios.get("/admin/allMembers"
             )
             .then(
                 (response) =>
                 {
+
                      setData(response.data)
+                    //  console.log(data)
 
                 }
             )
     }
 
     
+
+    
+    
+
+    
     useEffect(() => {
             getData();
+
         }, [data]);
+
+        console.log(data)
 
 
     return(

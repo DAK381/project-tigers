@@ -43,15 +43,34 @@ export default function AdminMemberList(props)
         )
     }    
 
+   var data = props.data;
+
+   for (var i = 0; i < data.length; i++) {
+    const user = data[i];
+    var groupList = "";
+    for(var j = 0; j < user.test.length; j ++)
+    {
+        var group = user.test[j];
+        groupList += group.groupName + " "
+        
+    }
+
+    // console.log(user.firstName + " " + groupList)
+    user["groupList"] = groupList;
+
+} 
+
+const[selected, setSelected] = useState([])
+    
     
     const columns = [
-        {dataField: 'id', text: "ID"},
+        {dataField: 'id', text: "ID", hidden: true},
         {dataField: 'firstName', text: "First Name", sort: true, filter: textFilter()},
         {dataField: 'maidenName', text: "Maiden Name", sort: true, filter: textFilter()},
         {dataField: 'lastName', text: "Last Name", sort: true,filter: textFilter()},
         {dataField: 'email', text: "Email", filter: textFilter()},
-        {dataField: 'graduatedYear', text: "Graduation Year", sort: true, filter: textFilter()}
-
+        {dataField: 'graduatedYear', text: "Graduation Year", sort: true, filter: textFilter()},
+        {dataField: 'groupList', text: "Group", sort: true, filter: textFilter()}
 
     ]
 
@@ -79,17 +98,10 @@ export default function AdminMemberList(props)
         }
     )
 
-    const[selected, setSelected] = useState([])
-
-
         const rowEvents = {
             onDoubleClick: (e, row, rowIndex) => {
               showDetails(row);
-            },
-
-            // onClick: (e, row, rowIndex) => {
-            //     selectUser(row);
-            //   }
+            }
           }
 
         const selectRow = {
@@ -105,11 +117,10 @@ export default function AdminMemberList(props)
 
           };
 
-          
-
           const navigate = useNavigate();
           
           function showDetails(row){
+              
             navigate('/admin-member-profile', {state:
                 {
                     id: row.id
@@ -118,11 +129,6 @@ export default function AdminMemberList(props)
 
           
         }
-
-        // function selectUser(row) {
-        //     setSelected((prev) => [...prev, row.id])
-        //     console.log(selected)
-        //   }
         
         function emailPeople(){
             navigate('/admin-member-email', {state:
@@ -131,14 +137,13 @@ export default function AdminMemberList(props)
                 }
             });
 
-          
         }
 
-        
         return(
 
             <div>
-                <Container>
+                <Container fluid>
+
 
 <Button onClick = {emailPeople}>Email Selected</Button>
 <ToolkitProvider
@@ -148,6 +153,8 @@ export default function AdminMemberList(props)
   exportCSV={ { onlyExportFiltered: true, exportAll: false } }
   search
 >
+
+    
   {
     props => (
       <div>

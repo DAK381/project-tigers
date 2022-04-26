@@ -7,8 +7,8 @@ import Col from 'react-bootstrap/Col'
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal'
 import './Card.css';
-import { format, compareAsc, parseISO } from 'date-fns'
-import { formatISO } from 'date-fns'
+import Moment from 'react-moment';
+import moment from 'moment';
 import { CardFooter } from 'reactstrap';
 
 
@@ -31,6 +31,7 @@ function EventCard(props) {
 	}
 
 	function eventSignUp(){
+		console.log(props.userData)
 		if(Object.keys(props.userData).length !== 0){
 			navigate('/event-signup', {state:
 				{
@@ -47,6 +48,7 @@ function EventCard(props) {
 
 	function RSVPmembers(){
 
+		console.log(eventInfo)
 		navigate("/admin-member-event-rsvp", {state:
 			{
 				event: eventInfo
@@ -55,6 +57,10 @@ function EventCard(props) {
 	}
 
 
+
+
+	// eventInfo.startTime!= null && console.log(eventInfo.startTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
+	// eventInfo.startTime!= null && console.log(moment(eventInfo.startTime, ["HH.mm"]).format("hh:mm a"))
 
 
 	return (
@@ -75,10 +81,16 @@ function EventCard(props) {
 									<Modal.Title>{eventInfo.eventName}</Modal.Title>
 								</Modal.Header>
 								<Modal.Body>Details: {eventInfo.eventDescription}</Modal.Body>
-								<Modal.Body>When: {eventInfo.eventDate}</Modal.Body>
-								<Modal.Body>Where: {eventInfo.eventLocation}</Modal.Body>
+								{eventInfo.eventDate != null && <Modal.Body>When: {eventInfo.eventDate} </Modal.Body>}
+								
+								{eventInfo.startTime!= null && <Modal.Body>Starts at: {moment(eventInfo.startTime, ["HH.mm"]).format("hh:mm a")} </Modal.Body>}
+
+								{eventInfo.endTime != null && <Modal.Body>Ends at: {moment(eventInfo.endTime, ["HH.mm"]).format("hh:mm a")} </Modal.Body>}
+								
+								
+								{eventInfo.eventLocation != null && <Modal.Body>Where: {eventInfo.eventLocation}</Modal.Body>}
 										
-								{(props.payment!= null) &&	<Modal.Body>Amount per ticket: $ {eventInfo.paymentAmount}</Modal.Body>}
+								{(eventInfo.payment!= null) &&	<Modal.Body>Amount per ticket: $ {eventInfo.paymentAmount}</Modal.Body>}
 										
 								{/* <Modal.Body>{formattedDate}</Modal.Body> */}
 								
@@ -96,7 +108,7 @@ function EventCard(props) {
 						</Card.Body>
 						
 						<CardFooter>
-							<Button onClick={eventSignUp}>Register for the event</Button>
+						{!props.admin && <Button onClick={eventSignUp}>Register for the event</Button>}
 						</CardFooter>
 					</Card>
 				</Col>

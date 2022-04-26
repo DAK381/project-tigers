@@ -234,7 +234,7 @@ function Profile(props) {
                             <div className="panel">
 
                                 <div className="panel-body bio-graph-info">
-                                    <h1>Events attended</h1>
+                                    <h1>Events</h1>
                                    
 
                                     {events.map(event => (

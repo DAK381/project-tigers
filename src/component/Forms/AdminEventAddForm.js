@@ -13,9 +13,9 @@ function AdminEventAddForm(){
   const [eventDescription, setEventDescription] = useState("");
   const [eventImage, setEventImage] = useState("");
   const [eventLocation, setLocation] = useState("");
-  const [eventDate, setEventDate] = useState(new Date());
-  const [startTime, setStartTime] = useState();
-  const [endTime, setEndime] = useState();  
+  const [eventDate, setEventDate] = useState();
+  const [startTime, setStartTime] = useState(new Date());
+  const [endTime, setEndime] = useState("");  
   const [paymentAmount, setPaymentAmount] = useState("");
   // const [openDate, setOpenDate] = useState(new Date());
   // const [closeDate, setCloseDate] = useState(new Date());
@@ -26,15 +26,46 @@ function AdminEventAddForm(){
 	const handleShow = () => setShow(true);
 
 
-  function registerEvent(e) {   
+  console.log(eventDate)
+  function registerEvent(e) { 
+    
+    console.log(startTime)
     e.preventDefault();
-    axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount}).then(res=>{
+    axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount, startTime, endTime}).then(res=>{
       console.log(eventName);
+      
       navigate('/admin-event-view');
+      
     }).catch(err=>console.log(err))
   }
 
-  console.log(eventImage);
+console.log(
+  startTime.toLocaleString('en-US', { hour: 'numeric', hour12: true })
+);
+
+function onStartTimeChange(e) {
+  var timeSplit = startTime.value.split(':'),
+    hours,
+    minutes,
+    meridian;
+  hours = timeSplit[0];
+  minutes = timeSplit[1];
+  if (hours > 12) {
+    meridian = 'PM';
+    hours -= 12;
+  } else if (hours < 12) {
+    meridian = 'AM';
+    if (hours === 0) {
+      hours = 12;
+    }
+  } else {
+    meridian = 'PM';
+  }
+  alert(hours + ':' + minutes + ' ' + meridian);
+
+  setStartTime(e.target.value)
+
+}
 
   return (
     <div>
@@ -83,6 +114,7 @@ function AdminEventAddForm(){
                   <Form.Label>Date of the event</Form.Label>
                   <Form.Control
                     type="date"
+                    data-date-format="DD MMMM YYYY"
                     placeholder="Enter date of the event"
                     name="eventDate"
                     onChange={(e) => setEventDate(e.target.value)}
@@ -98,9 +130,9 @@ function AdminEventAddForm(){
                     onChange={(e) => setPaymentAmount(e.target.value)}
                   />
                 </Form.Group>
+ 
 
-
-        {/* <Form.Group controlId="startTime">
+        <Form.Group controlId="startTime">
           <Form.Label>Start time for the event</Form.Label>
           <Form.Control
             type="time"
@@ -119,7 +151,7 @@ function AdminEventAddForm(){
             name="endTime"
             onChange={(e) => setEndime(e.target.value)}
           />
-        </Form.Group> */}
+        </Form.Group>
 
                   <div className="container text-center">
                     <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2">Save</button>                   

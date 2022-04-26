@@ -21,10 +21,10 @@ public class Events {
 
     private Long eventId;
     private String eventName;
-    private Date eventDate;
+    private String eventDate;
     private String eventDay;
-    private Time startTime;
-    private Time endTime;
+    private String startTime;
+    private String endTime;
     private String eventDescription;
     private String paymentAmount;
     private String eventLocation;
