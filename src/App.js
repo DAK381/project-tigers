@@ -9,6 +9,7 @@ import NewUserInfo from './component/NewUserInfo';
 import Scholarship from './pages/Scholarships';
 import EventPage from './pages/EventsPage';
 import Contact from './pages/ContactUs';
+import About from './pages/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css"
 import Footer from './pages/Footer';
@@ -39,6 +40,7 @@ import AdminMemberEmail from './component/Admin/AdminMember/AdminMemberEmail';
 import EventRegistration from './component/Forms/EventRegistration';
 import AdminMemberAll from './component/Admin/AdminMember/AdminMemberAll';
 import AdminMemberRSVP from './component/Admin/AdminMember/AdminMemberRSVP';
+
 
 function App() {
 
@@ -73,6 +75,7 @@ function App() {
         <Route path="/scholarship" element={<Scholarship/>} />
         <Route path="/contact-us" element={<Contact/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/about" element={<About/>}/>
 
         { userData.role === "ADMIN" && <Route path="/admin" element={<AdminHome/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-member" element={<AdminMemberAll/>} /> }
