@@ -184,7 +184,7 @@ console.log(location.state.event.eventName)
 
                                 <div className="container text-center">
                                     <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2"  onClick={e => updateAPIData(e)}>Update</button>
-                                    <AdminEventDelete id = {location.state.id} />
+                                    <AdminEventDelete id = {location.state.event.eventId} />
                                 </div>
                             </form>
                         </div>

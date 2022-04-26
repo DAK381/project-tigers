@@ -13,12 +13,14 @@ export default function AdminEventDelete(props){
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  console.log(props.id)
+  
 
   const deleteEvent = (e) => {
     e.preventDefault();
+    console.log(props.id)
     axios.delete(`admin/event/delete/${props.id}`)
-        .then(res=>{console.log(res.data);
+        .then(res=>{
+          // console.log(res.data);
             navigate('/admin-event-view');
 
       }).catch(err=>console.log(err))
@@ -28,8 +30,9 @@ export default function AdminEventDelete(props){
 return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Delete Event
+        Delete Event 
       </Button>
+      
 
 
 
