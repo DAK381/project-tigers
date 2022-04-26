@@ -74,22 +74,35 @@ function EventCard(props) {
 // 	console.log(eventInfo.eventName , " is in future");
 // }
 
-const past = (q) =>{ 
-    if(moment(q) < moment()){
-		return true;
-	}
-    }
+const[bg, setBg] = useState("")
+
+const[past, setPast] = useState(false)
+
+
+	useEffect(() => {
+
+			if(moment(eventInfo.eventDate) < moment()){
+				setPast(true)
+				setBg("secondary")
+			}
+
+			
+
+    }, [eventInfo]);
 	
 
 	return (
 
 		<Container fluid>
 			<div>
-				<Col>
-					<Card>
-					{past(eventInfo.eventDate) && <CardHeader>
+			<Col>
+			<Card bg = {bg}>
+
+				
+					{past ? <CardHeader>
 							{eventInfo.eventName} is no longer available!
-						</CardHeader>}
+						</CardHeader> : <CardHeader>
+						 {moment(eventInfo.eventDate).diff(moment(), "days")} days from today</CardHeader>}
 						<Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + eventInfo.eventImage} width={400} height={400} alt='...'  />
 						
 						<Card.Body>
@@ -131,7 +144,13 @@ const past = (q) =>{
 						</Card.Body>
 						
 						<CardFooter>
-						{!past(eventInfo.eventDate) && !props.admin && <Button onClick={eventSignUp}>Register for the event</Button>}
+						{ 
+						// !props.admin && 
+						<Button disabled = {past} onClick={eventSignUp}>Register for the event</Button>
+						}
+						<CardFooter>
+							Added {moment().diff(moment(eventInfo.addedDate), "days")} day/s ago.
+						</CardFooter>
 						</CardFooter>
 					</Card>
 				</Col>

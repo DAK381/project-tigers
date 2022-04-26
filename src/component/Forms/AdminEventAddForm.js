@@ -6,7 +6,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Pictures from "../layout/Pictures";
 import Button from 'react-bootstrap/Button';
-
+import Moment from 'react-moment';
+import moment from 'moment';
 
 function AdminEventAddForm(){
   const [eventName, setEventName] = useState("");
@@ -17,9 +18,12 @@ function AdminEventAddForm(){
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndime] = useState("");  
   const [paymentAmount, setPaymentAmount] = useState("");
+  const [addedDate, setAdded] = useState(moment())
   // const [openDate, setOpenDate] = useState(new Date());
   // const [closeDate, setCloseDate] = useState(new Date());
   const navigate = useNavigate();
+
+
 
   const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
@@ -31,7 +35,7 @@ function AdminEventAddForm(){
     
     console.log(startTime)
     e.preventDefault();
-    axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount, startTime, endTime}).then(res=>{
+    axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount, startTime, endTime, addedDate}).then(res=>{
       console.log(eventName);
       
       navigate('/admin-event-view');
