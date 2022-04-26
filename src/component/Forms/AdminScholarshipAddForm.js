@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from 'react-bootstrap-time-picker';
 import Pictures from "../layout/Pictures";
 import Button from 'react-bootstrap/Button';
+import moment from 'moment';
 
 import { MDBDatePickerV5 } from 'mdbreact';
 
@@ -15,15 +16,11 @@ function AdminScholarshipAddForm(){
     const [scholarshipName, setScholarshipName] = useState('');
     const [scholarshipDescription, setScholarshipDescription] = useState('');
     const [scholarshipImage, setScholarshipImage] = useState("");
-    // const [location, setLocation] = useState('');
-    // const [eventDate, setEventDate] = useState(new Date());
-    // const [startTime, setStartTime] = useState(new Date());
-    // const [endTime, setEndime] = useState(new Date());
-    // const [timeOccurrence, setTimeOccurrence] = useState('');
-    
-    //  const [paymentAmount, setPaymentAmount] = useState();
-    // const [openDate, setOpenDate] = useState(new Date());
-    // const [closeDate, setCloseDate] = useState(new Date());
+    const[formLink, setLink] = useState("");
+    const[deadline, setDeadline] = useState("");
+
+    const [addedDate, setAdded] = useState(moment())
+
     const navigate = useNavigate();
   
     const [show, setShow] = useState(false);
@@ -34,13 +31,13 @@ function AdminScholarshipAddForm(){
       function registerScholarship(e){
        
         e.preventDefault();
-        axios.post("/scholarship/add-scholarship", {scholarshipName, scholarshipDescription, scholarshipImage})
-        .then(res=>{console.log(scholarshipName);
+        axios.post("/scholarship/add-scholarship", {scholarshipName, scholarshipDescription, scholarshipImage, formLink, deadline, addedDate})
+        .then(res=>{;
             navigate('/admin-scholarship-view');
           }).catch(err=>console.log(err))
     }
 
-    console.log(scholarshipName)
+console.log(formLink)
     return (
         <div>
             <div className="container">
@@ -62,43 +59,54 @@ function AdminScholarshipAddForm(){
                             )}
                             <Pictures show={show} onHide={handleClose} setImage={setScholarshipImage} isCarousel={false} />
                             <form onSubmit={registerScholarship}>
-                                <div className="form-group">
-                                    <label for="scholarshipName">Scholarship Name</label>
-                                    <input type="text" class="form-control" name="scholarshipName" placeholder="Enter the name of the scholarship" value={scholarshipName} onChange={(e) => setScholarshipName(e.target.value)} />
-                                </div>
+        
 
-                                <div className="form-group">
-                                    <label for="scholarshipDescription">Scholarship Description</label>
-                                    <textarea name="scholarshipDescription" placeholder="Enter description" value={scholarshipDescription} onChange={(e) => setScholarshipDescription(e.target.value)} />
-                                </div>
+                            
+                                <Form.Group controlId="scholarshipName">
+                  <Form.Label>Scholarship Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    class= "form-control"
+                    name="scholarshipName" placeholder="Enter the name of the scholarship"
+                    value = {scholarshipName}
+                    onChange={(e) => setScholarshipName(e.target.value)}
+                  />
+                </Form.Group>
 
-
-
-                                {/* <div class="form-group">
-                                    <label for="eventDate">Date of Event</label>
-                                    <DatePicker selected={eventDate} name = "eventDate" value = {eventDate} onChange={(date) => setEventDate(date)} />
-                                </div>
-
-                              
-
-                                <div class = "form-group">
-                                    <label for = "startTime">Start Time</label>
-                                <input type="time" class = "form-control" name="startTime" placeholder = "Enter Start Time" value = {startTime} 
-                                        onChange={(e) => setStartTime(e.target.value)}
-                                        
-                                        />
-                                    </div> */}
+                <Form.Group controlId="scholarshipDescription">
+                  <Form.Label>Scholarship Description</Form.Label>
+                  <Form.Control  as="textarea"
+                    placeholder="Enter Scholarship Description"
+                    name="scholarshipDescription"
+                    value = {scholarshipDescription}
+                    onChange={(e) => setScholarshipDescription(e.target.value)}
+                  />
+                </Form.Group>
 
 
-                                    {/* <div class = "form-group">
-                                    <label for = "endTime">Close Time</label>
-                                <input type="time" class = "form-control" name="endTime" placeholder = "Enter Start Time" value = {endTime} 
-                                        onChange={(e) => setEndime(e.target.value)}
-                                        
-                                        
-                                        />
 
-                                    </div> */}
+                                <Form.Group controlId="deadline">
+                  <Form.Label>Application Deadline</Form.Label>
+                  <Form.Control
+                    type="date"
+                    data-date-format="DD MMMM YYYY"
+                    placeholder="Enter deadline for application"
+                    name="deadline"
+                    value = {deadline}
+                    onChange={(e) => setDeadline(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="formLink">
+                  <Form.Label>Scholarship Link</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Link the scholarship form"
+                    name="formLink"
+                    value = {formLink}
+                    onChange={(e) => setLink(e.target.value)}
+                  />
+                </Form.Group>
 
 
                                 <div className="container text-center">

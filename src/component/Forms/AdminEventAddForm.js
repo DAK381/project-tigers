@@ -6,7 +6,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Pictures from "../layout/Pictures";
 import Button from 'react-bootstrap/Button';
-
+import Moment from 'react-moment';
+import moment from 'moment';
 
 function AdminEventAddForm(){
   const [eventName, setEventName] = useState("");
@@ -17,9 +18,10 @@ function AdminEventAddForm(){
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndime] = useState("");  
   const [paymentAmount, setPaymentAmount] = useState("");
-  // const [openDate, setOpenDate] = useState(new Date());
-  // const [closeDate, setCloseDate] = useState(new Date());
+  const [addedDate, setAdded] = useState(moment())
   const navigate = useNavigate();
+
+
 
   const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
@@ -31,7 +33,7 @@ function AdminEventAddForm(){
     
     console.log(startTime)
     e.preventDefault();
-    axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount, startTime, endTime}).then(res=>{
+    axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount, startTime, endTime, addedDate}).then(res=>{
       console.log(eventName);
       
       navigate('/admin-event-view');
@@ -39,33 +41,7 @@ function AdminEventAddForm(){
     }).catch(err=>console.log(err))
   }
 
-console.log(
-  startTime.toLocaleString('en-US', { hour: 'numeric', hour12: true })
-);
 
-function onStartTimeChange(e) {
-  var timeSplit = startTime.value.split(':'),
-    hours,
-    minutes,
-    meridian;
-  hours = timeSplit[0];
-  minutes = timeSplit[1];
-  if (hours > 12) {
-    meridian = 'PM';
-    hours -= 12;
-  } else if (hours < 12) {
-    meridian = 'AM';
-    if (hours === 0) {
-      hours = 12;
-    }
-  } else {
-    meridian = 'PM';
-  }
-  alert(hours + ':' + minutes + ' ' + meridian);
-
-  setStartTime(e.target.value)
-
-}
 
   return (
     <div>
@@ -89,16 +65,28 @@ function onStartTimeChange(e) {
               )}
               <Pictures show={show} onHide={handleClose} setImage={setEventImage} isCarousel={false} />
               <form onSubmit={registerEvent}>
-                <div className="form-group">
-                  <label for="eventName">Event Name</label>
-                  <input type="text" class="form-control" name="eventName" placeholder="Enter the name of the event" value={eventName} onChange={(e) => setEventName(e.target.value)} />
-                </div>
+              
 
-                <div className="form-group">
-                  <label for="eventDescription">Event Description</label>
-                  <textarea name="eventDescription" placeholder="Enter description" value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} />
-                </div>
 
+                <Form.Group controlId="eventName">
+                  <Form.Label>Event Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="eventName" placeholder="Enter the name of the event" 
+                    value={eventName} 
+                    onChange={(e) => setEventName(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="eventDescription">
+                  <Form.Label>Event Description</Form.Label>
+                  <Form.Control  as="textarea"
+                    placeholder="Enter Event Description"
+                    name="eventDescription"
+                    value = {eventDescription}
+                    onChange={(e) => setEventDescription(e.target.value)}
+                  />
+                </Form.Group>
 
                 <Form.Group controlId="eventLocation">
                   <Form.Label>Location of the event</Form.Label>

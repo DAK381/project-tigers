@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import Pictures from "../layout/Pictures";
 import Button from 'react-bootstrap/Button';
+import { Form } from "react-bootstrap";
 
 
 export default function AdminScholarshipUpdate(props) {
@@ -23,15 +24,9 @@ export default function AdminScholarshipUpdate(props) {
     const [scholarshipName, setScholarshipName] = useState();
     const [scholarshipDescription, setScholarshipDescription] = useState();
     const [scholarshipImage, setScholarshipImage] = useState();
-    //const [location, setLocation] = useState('');
-    // const [eventDate, setEventDate] = useState(new Date());
-    // const [startTime, setStartTime] = useState(new Date());
-    // const [endTime, setEndime] = useState(new Date());
-    // const [timeOccurrence, setTimeOccurrence] = useState('');
+    const[formLink, setLink] = useState();
+    const[deadline, setDeadline] = useState();
     
-    //  const [paymentAmount, setPaymentAmount] = useState('00:00');
-    // const [openDate, setOpenDate] = useState(new Date());
-    // const [closeDate, setCloseDate] = useState(new Date());
     
 console.log(location.state.id)
 console.log(location.state.name)
@@ -41,9 +36,8 @@ console.log(location.state.name)
         setScholarshipName(location.state.scholarship.scholarshipName)
         setScholarshipDescription(location.state.scholarship.scholarshipDescription);
         setScholarshipImage(location.state.scholarship.scholarshipImage);
-        // setStartTime(location.state.startTime);
-        // setEndime(location.state.endTime);
-        // setEventDate(location.state.eventDate)
+        setDeadline(location.state.scholarship.deadline)
+        setLink(location.state.scholarship.formLink)
     }, [location.state]);
     
 
@@ -51,10 +45,8 @@ console.log(location.state.name)
     const updateAPIData = (e) => {
         e.preventDefault();
         axios.put(`/scholarship/update-scholarship/${scholarshipId}`, {
-            scholarshipName, scholarshipDescription, scholarshipImage
-            // , 
-            // eventDate,
-            // startTime, endTime
+            scholarshipName, scholarshipDescription, scholarshipImage, deadline, formLink
+            
         })
             .then(res=>{console.log(res.data);
             navigate('/admin-scholarship-view');
@@ -86,48 +78,58 @@ console.log(location.state.name)
                             )}
                             <Pictures show={show} onHide={handleClose} setImage={setScholarshipImage} isCarousel={false} />
                             <form>
-                                <div class="form-group">
-                                    <label for="eventName">Event Name</label>
-                                    <input type="text" class="form-control" name="eventName" 
-                                    defaultValue = {location.state.name}
-                                    placeholder= {location.state.name} value={scholarshipName} onChange={(e) => setScholarshipName(e.target.value)} />
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="eventDescription">Event Description</label>
-                                    <textarea name="eventDescription" 
-                                    defaultValue = {location.state.description}
-                                    placeholder= {location.state.description} value={scholarshipDescription} onChange={(e) => setScholarshipDescription(e.target.value)} />
-                                </div>
 
 
+                                <Form.Group controlId="scholarshipName">
+                  <Form.Label>Scholarship Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    class= "form-control"
+                    name="scholarshipName" 
+                    placeholder= {location.state.scholarship.scholarshipName}
+                    defaultValue = {location.state.scholarship.scholarshipName}
+                    value = {scholarshipName}
+                    onChange={(e) => setScholarshipName(e.target.value)}
+                  />
+                </Form.Group>
 
-                                {/* <div class="form-group">
-                                    <label for="eventDate">Date of Event</label>
-                                    <DatePicker selected={eventDate} placeholder = {location.state.name} name = "eventDate" value = {eventDate} onChange={(date) => setEventDate(date)} />
-                                </div>
-
-                              
-
-                                <div class = "form-group">
-                                    <label for = "startTime">Start Time</label>
-                                <input type="time" class = "form-control" name="startTime" placeholder = {location.state.name} value = {startTime} 
-                                        onChange={(e) => setStartTime(e.target.value)}
-                                        
-                                        />
-                                    </div>
+                <Form.Group controlId="scholarshipDescription">
+                  <Form.Label>Scholarship Description</Form.Label>
+                  <Form.Control  as="textarea"
+                    name="scholarshipDescription"
+                    placeholder= {location.state.scholarship.scholarshipDescription}
+                    defaultValue = {location.state.scholarship.scholarshipDescription}
+                    value = {scholarshipName}
+                    onChange={(e) => setScholarshipDescription(e.target.value)}
+                  />
+                </Form.Group>
 
 
 
-                                    <div class = "form-group">
-                                    <label for = "endTime">Close Time</label>
-                                <input type="time" class = "form-control" name="endTime" placeholder = {location.state.name} value = {endTime} 
-                                        onChange={(e) => setEndime(e.target.value)}
-                                        
-                                        
-                                        />
-                                    </div> */}
+                   <Form.Group controlId="deadline">
+                  <Form.Label>Application Deadline</Form.Label>
+                  <Form.Control
+                    type="date"
+                    data-date-format="DD MMMM YYYY"
+                    name="deadline"
+                    placeholder= {location.state.scholarship.deadline}
+                    defaultValue = {location.state.scholarship.deadline}
+                    value = {deadline}
+                    onChange={(e) => setDeadline(e.target.value)}
+                  />
+                </Form.Group>
 
+                <Form.Group controlId="formLink">
+                  <Form.Label>Scholarship Application Link</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="formLink"
+                    placeholder= {location.state.scholarship.formLink}
+                    defaultValue = {location.state.scholarship.formLink}
+                    value = {formLink}
+                    onChange={(e) => setLink(e.target.value)}
+                  />
+                </Form.Group>
                                 <div className="container text-center">
                                     <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2"  onClick={e => updateAPIData(e)}>Update</button>
                                     

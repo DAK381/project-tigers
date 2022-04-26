@@ -40,6 +40,8 @@ import AdminMemberEmail from './component/Admin/AdminMember/AdminMemberEmail';
 import EventRegistration from './component/Forms/EventRegistration';
 import AdminMemberAll from './component/Admin/AdminMember/AdminMemberAll';
 import AdminMemberRSVP from './component/Admin/AdminMember/AdminMemberRSVP';
+import EventCalendar from './pages/EventCalendar';
+
 
 
 function App() {
@@ -112,6 +114,9 @@ function App() {
 
 
     	  { token && <Route path="/event-signup" element={<EventRegistration />}/> }
+
+        <Route path="/event-calendar" element={<EventCalendar />}/>
+
 
 
 

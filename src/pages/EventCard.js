@@ -10,6 +10,7 @@ import './Card.css';
 import Moment from 'react-moment';
 import moment from 'moment';
 import { CardFooter } from 'reactstrap';
+import CardHeader from 'react-bootstrap/esm/CardHeader';
 
 
 /*This creates a grid of Event Cards */
@@ -57,18 +58,53 @@ function EventCard(props) {
 	}
 
 
+// var date = moment(eventInfo.eventDate)
+
+// var now = moment();
+
+// console.log(now)
+// console.log(date)
+
+// if(now > date)
+// {
+// 	console.log(eventInfo.eventName , " is in the past");
+// }
+
+// else{
+// 	console.log(eventInfo.eventName , " is in future");
+// }
+
+const[bg, setBg] = useState("")
+
+const[past, setPast] = useState(false)
 
 
-	// eventInfo.startTime!= null && console.log(eventInfo.startTime.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }))
-	// eventInfo.startTime!= null && console.log(moment(eventInfo.startTime, ["HH.mm"]).format("hh:mm a"))
+	useEffect(() => {
 
+			if(moment(eventInfo.eventDate) < moment()){
+				setPast(true)
+				setBg("secondary")
+			}
+
+			
+
+    }, [eventInfo]);
+	
 
 	return (
+
 		<Container fluid>
 			<div>
-				<Col>
-					<Card>
+			<Col>
+			<Card bg = {bg}>
+
+				
+					{past ? <CardHeader>
+							{eventInfo.eventName} is no longer available!
+						</CardHeader> : <CardHeader>
+						 {moment(eventInfo.eventDate).diff(moment(), "days")} days from today</CardHeader>}
 						<Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + eventInfo.eventImage} width={400} height={400} alt='...'  />
+						
 						<Card.Body>
 							<Card.Title>{eventInfo.eventName}</Card.Title>
 									
@@ -108,12 +144,19 @@ function EventCard(props) {
 						</Card.Body>
 						
 						<CardFooter>
-						{!props.admin && <Button onClick={eventSignUp}>Register for the event</Button>}
+						{ 
+						// !props.admin && 
+						<Button disabled = {past} onClick={eventSignUp}>Register for the event</Button>
+						}
+						<CardFooter>
+							Added {moment().diff(moment(eventInfo.addedDate), "days")} day/s ago.
+						</CardFooter>
 						</CardFooter>
 					</Card>
 				</Col>
 			</div>
 		</Container>
+
 	);
 }
 

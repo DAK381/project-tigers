@@ -20,5 +20,7 @@ public class Scholarship {
     private String scholarshipName;
     private String scholarshipDescription;
     private String scholarshipImage;
-
+    private String deadline;
+    private String formLink;
+    private String addedDate;
 }

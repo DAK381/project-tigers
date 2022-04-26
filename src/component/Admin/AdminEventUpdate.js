@@ -27,25 +27,20 @@ export default function AdminEventUpdate(props) {
     const [eventImage, setEventImage] = useState("");
     const [eventDate, setEventDate] = useState(new Date());
     const [paymentAmount, setPaymentAmount] = useState();
+    const [startTime, setStartTime] = useState(new Date());
+  const [endTime, setEndime] = useState("");  
 
-    // const [startTime, setStartTime] = useState(new Date());
-    // const [endTime, setEndime] = useState(new Date());
     
-    
-    
-    // const [openDate, setOpenDate] = useState(new Date());
-    // const [closeDate, setCloseDate] = useState(new Date());
-    
-console.log(location.state.event.eventId)
-console.log(location.state.event.eventName)
+
 
     useEffect(() => {
         setEventName(location.state.event.eventName)
         setEventDescription(location.state.event.eventDescription);
         setEventImage(location.state.event.eventImage)
-        // setStartTime(location.state.startTime);
-        // setEndime(location.state.endTime);
+        setStartTime(location.state.startTime);
+        setEndime(location.state.endTime);
         setEventDate(location.state.event.eventDate)
+        setPaymentAmount(location.state.event.paymentAmount)
     }, [location.state]);
     
 
@@ -53,7 +48,7 @@ console.log(location.state.event.eventName)
     const updateAPIData = (e) => {
         e.preventDefault();
         axios.put(`admin/event/update/${location.state.event.eventId}`, {
-            eventName, eventDescription, eventImage
+            eventName, eventDescription, eventImage, eventDate, startTime, endTime, paymentAmount
         })
             .then(res=>{console.log(res.data);
             navigate('/admin-event-view');
@@ -72,7 +67,7 @@ console.log(location.state.event.eventName)
                 <h1>{location.state.name}</h1>
                 <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                     <div class="jumbotron">
-                        <h1 class="display-4 text-center">Update {location.state.name}</h1>
+                        <h1 class="display-4 text-center">Update {location.state.event.eventName}</h1>
                         <div>
                             <Button variant="primary" onClick={handleShow}>
 				                Choose Image
@@ -88,27 +83,39 @@ console.log(location.state.event.eventName)
                             )}
                             <Pictures show={show} onHide={handleClose} setImage={setEventImage} isCarousel={false} />
                             <form>
-                                <div class="form-group">
-                                    <label for="eventName">Event Name</label>
-                                    <input type="text" class="form-control" name="eventName" 
-                                    defaultValue = {location.state.name}
-                                    placeholder= {location.state.name} value={eventName} onChange={(e) => setEventName(e.target.value)} />
-                                </div>
+                                
 
-                                <div class="form-group">
-                                    <label for="eventDescription">Event Description</label>
-                                    <textarea name="eventDescription" 
-                                    defaultValue = {location.state.description}
-                                    placeholder= {location.state.description} value={eventDescription} onChange={(e) => setEventDescription(e.target.value)} />
-                                </div>
+
+                                <Form.Group controlId="eventName">
+                  <Form.Label>Event Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="eventName"                
+                    defaultValue = {location.state.event.eventName}
+                    placeholder= {location.state.event.eventName} value={eventName}
+                    onChange={(e) => setEventName(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Form.Group controlId="eventDescription">
+                  <Form.Label>Event Description</Form.Label>
+                  <Form.Control  as="textarea"
+                    defaultValue = {location.state.event.eventDescription}
+                    name="eventDescription"
+                    value={eventDescription}
+                    placeholder= {location.state.description} 
+                    onChange={(e) => setEventDescription(e.target.value)}
+                  />
+                </Form.Group>
 
 
          <Form.Group controlId="eventDate">
           <Form.Label>Date of the event</Form.Label>
           <Form.Control
             type="date"
-            placeholder="Enter date of the event"
-            defaultValue={location.state.date}
+            placeholder= {location.state.event.eventDate}
+            data-date-format="DD MMMM YYYY"
+            defaultValue={location.state.event.eventDate}
             value = {eventDate}
             name="eventDate"
             onChange={(e) => setEventDate(e.target.value)}
@@ -120,22 +127,9 @@ console.log(location.state.event.eventName)
           <Form.Label>Location of the event</Form.Label>
           <Form.Control
             type="text"
-            defaultValue = {location.state.eventLocation}
+            defaultValue = {location.state.event.eventLocation}
             value = {eventLocation}
-            placeholder="Enter location of the event"
-            name="eventLocation"
-            onChange={(e) => setLocation(e.target.value)}
-          />
-        </Form.Group>
-
-
-        <Form.Group controlId="eventLocation">
-          <Form.Label>Location of the event</Form.Label>
-          <Form.Control
-            type="text"
-            defaultValue = {location.state.eventLocation}
-            value = {eventLocation}
-            placeholder="Enter location of the event"
+            placeholder= {location.state.event.eventLocation}
             name="eventLocation"
             onChange={(e) => setLocation(e.target.value)}
           />
@@ -146,45 +140,43 @@ console.log(location.state.event.eventName)
           <Form.Label>Payment Amount</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter the amount to be paid"
+            placeholder= {location.state.event.payment}
             value = {paymentAmount}
-            defaultValue = {location.state.payment}
+            defaultValue = {location.state.event.payment}
             name="paymentAmount"
             onChange={(e) => setPaymentAmount(e.target.value)}
           />
         </Form.Group>
 
+        <Form.Group controlId="startTime">
+          <Form.Label>Start time for the event</Form.Label>
+          <Form.Control
+            type="time"
+            placeholder= {location.state.event.startTime}
+            value = {startTime}
+            defaultValue = {location.state.event.startTime}
+            name="startTime"
+            onChange={(e) => setStartTime(e.target.value)}
+          />
+        </Form.Group>
 
 
-                                {/* <div class="form-group">
-                                    <label for="eventDate">Date of Event</label>
-                                    <DatePicker selected={eventDate} placeholder = {location.state.name} name = "eventDate" value = {eventDate} onChange={(date) => setEventDate(date)} />
-                                </div>
+        <Form.Group controlId="endTime">
+          <Form.Label>End time for the event</Form.Label>
+          <Form.Control
+            type="time"
+            placeholder= {location.state.event.endTime}
+            value = {endTime}
+            defaultValue = {location.state.event.endTime}
+            name="endTime"
+            onChange={(e) => setEndime(e.target.value)}
+          />
+        </Form.Group>
 
-                              
-
-                                <div class = "form-group">
-                                    <label for = "startTime">Start Time</label>
-                                <input type="time" class = "form-control" name="startTime" placeholder = {location.state.name} value = {startTime} 
-                                        onChange={(e) => setStartTime(e.target.value)}
-                                        
-                                        />
-                                    </div>
-
-
-
-                                    <div class = "form-group">
-                                    <label for = "endTime">Close Time</label>
-                                <input type="time" class = "form-control" name="endTime" placeholder = {location.state.name} value = {endTime} 
-                                        onChange={(e) => setEndime(e.target.value)}
-                                        
-                                        
-                                        />
-                                    </div> */}
 
                                 <div className="container text-center">
                                     <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2"  onClick={e => updateAPIData(e)}>Update</button>
-                                    <AdminEventDelete id = {location.state.id} />
+                                    <AdminEventDelete id = {location.state.event.eventId} />
                                 </div>
                             </form>
                         </div>
