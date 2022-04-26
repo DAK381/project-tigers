@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { FloatingLabel, Form, FormControl } from "react-bootstrap";
-import {useNavigate,Link} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import axios from "../../axios";
 import './SignUpForm.css';
-import { Row, Col, Container, Card } from 'react-bootstrap';
+import { Row, Col, Container, Card, Alert, Button, Form } from 'react-bootstrap';
 
 
 function SignUpForm(props){
@@ -18,42 +17,89 @@ function SignUpForm(props){
   const [isAlumni, setIsAlumni] = useState(false);
   const [phone, setPhone] = useState('');
   const [graduatedYear, setGraduatedYear] = useState('');
-  const [address1,setAddress1]=useState('');
+  const [address,setAddress]=useState('');
   const [address2,setAddress2]=useState('');
   const [city,setCity]=useState('');
   const [state,setState]=useState('');
   const [zip,setZip]=useState('');
   const [membership,setmembershipType]=useState('');
+
+  const [showError, setShowError] = useState(false);
+  const [showInvalidEmail, setShowInvalidEmail] = useState(false);
   const navigate = useNavigate();
 
 
   function signinHandler(event){
-    if(isAlumni){
+    
+    // set graduatedYear to empty string if not an alumni
+    if(!isAlumni){
       setGraduatedYear('');   
     }
-    axios.post("/register",{firstName,lastName,maidenName,email,birthdate,isAlumni,graduatedYear,membership,address1,phone,password}).then(res=>{console.log(res.data);
-      navigate('/log-in');
-    }).catch(err=>console.log(err))
-    
-}
 
-console.log(isAlumni);
-console.log(graduatedYear);
-console.log(state);
+    // check for all required fields
+    const allFilled = !((firstName==='')||(middleName==='')||(lastName==='')||(birthdate==='')||(phone==='')||(password==='')||(email==='')||(address==='')||(city==='')||(state==='')||(zip==='')||(membership===''))
+    if(allFilled){
+      setShowError(false);
+
+      // check if email is a valid email address
+      const res = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if(res.test(String(email.toLowerCase()))){
+        setShowInvalidEmail(false);
+
+        // address
+        axios.post("/register",{firstName,middleName,lastName,maidenName,email,birthdate,isAlumni,
+                                graduatedYear,membership,address,address2,city,state,zip,phone,password}).then(res=>{console.log(res.data);
+          navigate('/log-in');
+        }).catch(err=>console.log(err))
+      }
+      else{
+        setShowInvalidEmail(true);
+        window.scrollTo(0, 0);
+      }
+    }
+    else{
+      setShowError(true);
+      window.scrollTo(0, 0);
+    } 
+  }
+
 
   return (
+  <>
+    
+
     <Card body style={{margin: "24px"}}>
       <Container fluid>
     
         <h1>Registration Form</h1>
 
+        {/* error alert for unfilled fields */}
+        {showError &&
+          <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+            <Alert.Heading>Please fill required fields.</Alert.Heading>
+            <p>
+              Please fill in all required fields. Required fields are indicated by *.
+            </p>
+          </Alert>
+        }
+
+        {/* error alert for invalid email */}
+        {showInvalidEmail &&
+          <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+            <Alert.Heading>Please use a valid email.</Alert.Heading>
+            <p>
+              Please use a valid email address. Your email will never be shared with anyone.
+            </p>
+          </Alert>
+        }
+
         <br />
-      
+
         <Form>
 
           <Row md="3" sm="1" xs='1'>
             <Col>
-              <Form.Group controlId="firstName">
+              <Form.Group controlId="firstName" bg="warning">
                 <Form.Label>First Name *</Form.Label>
                 <Form.Control
                   type="text"
@@ -162,7 +208,7 @@ console.log(state);
                   type="text"
                   placeholder="Street address"
                   name="address1"
-                  onChange={(e) => setAddress1(e.target.value)}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
               </Form.Group>
             </Col>
@@ -197,6 +243,7 @@ console.log(state);
               <Form.Group controlId="state">
                 <Form.Label>State *</Form.Label>
                 <Form.Select defaultValue="Choose..." onChange={(e) => setState(e.target.value)} name="state">
+                  <option value="Choose...">Choose...</option>
                   <option value="Alabama">Alabama</option>
                   <option value="Alaska">Alaska</option>
                   <option value="American Samoa">American Samoa</option>
@@ -287,7 +334,7 @@ console.log(state);
                 <Form.Check 
                   type="switch"
                   id="alumni"
-                  label="Are you a Neville alumni? *"
+                  label="Are you a Neville alumni?"
                   onChange={(e) => {setIsAlumni(!isAlumni)}}
                 />
               </Form.Group>
@@ -310,7 +357,7 @@ console.log(state);
           <br />
           
           <Row md="2" sm="1" xs='1'>
-            <Col>
+            <Col md="10">
               <Form.Group controlId="membership">
                 <Form.Label>Membership type *</Form.Label>
                 <Form.Select onChange={(e) => setmembershipType(e.target.value)}>
@@ -322,15 +369,16 @@ console.log(state);
               </Form.Group>
             </Col>
             <Col md="2">
-              <button type ="button" className="btn-primary btn" onClick={signinHandler}>Sign Up</button>
+              <Button className="btn-primary btn" onClick={signinHandler}>Sign Up</Button>
             </Col>
           </Row>
-    
+          
         </Form>
-      
+
       </Container>
 
     </Card>
+  </>
   );
 };
 

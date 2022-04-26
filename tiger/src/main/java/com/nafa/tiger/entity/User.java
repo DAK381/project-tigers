@@ -47,19 +47,27 @@ public class User implements UserDetails{
 	private String firstName;
 	@Size(min = 2, message = "The Last Name should be at least 2 characters")
 	private String lastName;
+	private String middleName;
 	private String maidenName;
 	@Column(name = "email_address", nullable = false)
 	private String email;
 	@Column(length = 60)
 	private String password;
 	private String role;
+	@Column(name = "address")
 	private String address;
+	@Column(name = "address_2")
+	private String address2;
+	private String city;
+	private String state;
+	private String zip;
 	private String membership;
 	private Date birthdate;
 	private boolean isAlumni;
     private String phone;
 	private boolean enabled = false;
 	private Boolean locked =false;
+	@Column(name = "graduated_year")
 	private String graduatedYear; 
 	
 	
