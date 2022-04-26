@@ -44,13 +44,13 @@ public class RegistrationController {
 		User user = userService.registerUser(userModel);
 		publisher.publishEvent(new RegistrationCompleteEvent(user,
 				applicationUrl(request)));
-		return "Sucess";
+		return "Success";
 	}
 	@GetMapping("/verifyRegistration")
 	public String verifyRegistration(@RequestParam("token") String token) {
 		String result = userService.validateVerificationToken(token);
 		if(result.equalsIgnoreCase("valid")) {
-			return"User Verified sucessfully";
+			return"User Verified successfully";
 		}
 		else {
 			return"bad user";
