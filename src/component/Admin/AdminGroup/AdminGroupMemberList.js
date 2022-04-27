@@ -30,7 +30,7 @@ console.log(data)
 useEffect(() => {
             getData();
 
-        }, [location.state.id]);
+        }, []);
 
        
 

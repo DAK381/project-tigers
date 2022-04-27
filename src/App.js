@@ -45,6 +45,7 @@ import AdminGroupCreate from './component/Admin/AdminGroup/AdminGroupCreate';
 import AdminGroupSearch from './component/Admin/AdminGroup/AdminGroupSearch';
 import AdminAllGroup from './component/Admin/AdminGroup/AdminAllGroup';
 import AdminGroupMemberList from './component/Admin/AdminGroup/AdminGroupMemberList';
+import AdminAddMemberToGroup from './component/Admin/AdminMember/AdminAddMemberToGroup';
 
 function App() {
 
@@ -115,6 +116,8 @@ function App() {
 
 
         { userData.role === "ADMIN" && <Route path="/admin-group-member" element={<AdminGroupMemberList/>} /> }
+
+        { userData.role === "ADMIN" && <Route path="/admin-add-member-group" element={<AdminAddMemberToGroup/>} /> }
 
 
         { token && <Route path="/user-profile" element={<Profile userData={userData}/>} /> }

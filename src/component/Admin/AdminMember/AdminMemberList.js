@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "react-bootstrap";
 
-
+import AdminAddMemberToGroup from "./AdminAddMemberToGroup";
 
 export default function AdminMemberList(props)
 {
@@ -39,6 +39,9 @@ export default function AdminMemberList(props)
     }    
 
    var data = props.data;
+  
+
+   const [groupL, setGroup] = useState([""]);
 
    for (var i = 0; i < data.length; i++) {
     const user = data[i];
@@ -46,16 +49,30 @@ export default function AdminMemberList(props)
     for(var j = 0; j < user.test.length; j ++)
     {
         var group = user.test[j];
+        
+        // setGroup((prev) => [...prev, group.groupName])
+
         groupList += group.groupName + " "
         
     }
+
+    // if(group.length > 0){
+    //     const a = group.join(", ");
+    //     console.log(a)
+    // }
+    
+
+    // console.log(a)
+
+    // groupList = groupList.join(",");
 
     // console.log(user.firstName + " " + groupList)
     user["groupList"] = groupList;
 
 } 
 
-const[selected, setSelected] = useState([])
+const[selectedEmail, setSelectedEmail] = useState([])
+const[selectedId, setSelectedId] = useState([])
     
     
     const columns = [
@@ -63,8 +80,11 @@ const[selected, setSelected] = useState([])
         {dataField: 'firstName', text: "First Name", sort: true, filter: textFilter()},
         {dataField: 'maidenName', text: "Maiden Name", sort: true, filter: textFilter()},
         {dataField: 'lastName', text: "Last Name", sort: true,filter: textFilter()},
-        {dataField: 'email', text: "Email", filter: textFilter()},
-        {dataField: 'graduatedYear', text: "Graduation Year", sort: true, filter: textFilter()},
+        {dataField: 'address', text: "Email", filter: textFilter()},
+        {dataField: 'city', text: "Email", filter: textFilter()},
+        {dataField: 'zip', text: "Email", filter: textFilter()},
+        {dataField: 'state', text: "Email", filter: textFilter()},
+        {dataField: 'membership', text: "Graduation Year", sort: true, filter: textFilter()},
         {dataField: 'groupList', text: "Group", sort: true, filter: textFilter()}
 
     ]
@@ -105,7 +125,9 @@ const[selected, setSelected] = useState([])
             hideSelectAll: false,
             bgColor: 'gold',
             onSelect: (row, isSelect, rowIndex, e) => {
-                setSelected((prev) => [...prev, row.email])
+                setSelectedEmail((prev) => [...prev, row.email])
+                setSelectedId((prev) => [...prev, row.id])
+                
                 console.log(row.email)
              
               }
@@ -127,7 +149,17 @@ const[selected, setSelected] = useState([])
         function emailPeople(){
             navigate('/admin-member-email', {state:
                 {
-                    arrayId: selected
+                    arrayId: selectedEmail
+                }
+            });
+
+        }
+
+
+        function addMemberToGroup(){
+            navigate('/admin-add-member-group', {state:
+                {
+                    arrayId: selectedId
                 }
             });
 
@@ -138,8 +170,14 @@ const[selected, setSelected] = useState([])
             <div>
                 <Container fluid>
 
+{/* <AdminAddMemberToGroup selected = {selectedId} /> */}
 
 <Button onClick = {emailPeople}>Email Selected</Button>
+
+<Button onClick = {addMemberToGroup}>Add to Group</Button>
+
+
+
 <ToolkitProvider
   keyField="id"
   data={ props.data}
