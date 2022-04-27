@@ -13,6 +13,18 @@ function EventData(props){
 
     const[events, setEvents] = useState([]);
 
+    const dayjs = require('dayjs');
+	var customParseFormat = require('dayjs/plugin/customParseFormat')
+	dayjs.extend(customParseFormat)
+
+    var relativeTime = require('dayjs/plugin/relativeTime')
+    dayjs.extend(relativeTime)
+
+	var isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
+	dayjs.extend(isSameOrBefore)
+
+   
+
    const[past, setPast] = useState([]);
 
     async function getData( ){
@@ -21,23 +33,29 @@ function EventData(props){
           
         })
     }
+
+    events.map(
+        (event) => {
+            event["past"] = true;
+                if(dayjs().isSameOrBefore(event.eventDate, 'day')){
+                    event["past"] = false;
+                }
+
+                
+                event["remaining"] = dayjs(event.eventDate).fromNow();
+
+
+                event["added"] = dayjs(event.addedDate).fromNow();
+        }
+    )
+    
     useEffect(() => {
         getData();
-        
-        // events.map(
-        //     (event) =>
-        //     {
-        //         event[past] = false;
-        //         if(moment(event.eventDate) < moment()){
-        //         event["past"] = true;
-		// 	}
-        //     }
-        // )
 
 
     }, []);
 
-    
+    console.log(events)
     const navigate = new useNavigate();
 
    

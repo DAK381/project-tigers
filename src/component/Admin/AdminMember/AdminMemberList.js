@@ -56,17 +56,7 @@ export default function AdminMemberList(props)
         
     }
 
-    // if(group.length > 0){
-    //     const a = group.join(", ");
-    //     console.log(a)
-    // }
-    
 
-    // console.log(a)
-
-    // groupList = groupList.join(",");
-
-    // console.log(user.firstName + " " + groupList)
     user["groupList"] = groupList;
 
 } 
@@ -80,11 +70,11 @@ const[selectedId, setSelectedId] = useState([])
         {dataField: 'firstName', text: "First Name", sort: true, filter: textFilter()},
         {dataField: 'maidenName', text: "Maiden Name", sort: true, filter: textFilter()},
         {dataField: 'lastName', text: "Last Name", sort: true,filter: textFilter()},
-        {dataField: 'address', text: "Email", filter: textFilter()},
-        {dataField: 'city', text: "Email", filter: textFilter()},
-        {dataField: 'zip', text: "Email", filter: textFilter()},
-        {dataField: 'state', text: "Email", filter: textFilter()},
-        {dataField: 'membership', text: "Graduation Year", sort: true, filter: textFilter()},
+        {dataField: 'address', text: "Address", filter: textFilter()},
+        {dataField: 'city', text: "City", filter: textFilter()},
+        {dataField: 'zip', text: "Zip", filter: textFilter()},
+        {dataField: 'state', text: "State", filter: textFilter()},
+        {dataField: 'membership', text: "Memebership", sort: true, filter: textFilter()},
         {dataField: 'groupList', text: "Group", sort: true, filter: textFilter()}
 
     ]

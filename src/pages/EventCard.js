@@ -11,6 +11,8 @@ import Moment from 'react-moment';
 import moment from 'moment';
 import { CardFooter } from 'reactstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
+import DayJS from 'react-dayjs';
+import { set } from 'date-fns';
 
 
 /*This creates a grid of Event Cards */
@@ -24,16 +26,45 @@ function EventCard(props) {
 	const[past, setPast] = useState(false)
 
 
-	useEffect(() => {
+	const dayjs = require('dayjs');
+	var customParseFormat = require('dayjs/plugin/customParseFormat')
+	dayjs.extend(customParseFormat)
 
-			if(moment(eventInfo.eventDate) < moment()){
-				setPast(true)
-				setBg("secondary")
-			}
+	var isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
+	dayjs.extend(isSameOrBefore)
 
+	// const eventDate = dayjs(eventInfo.eventDate).format('DD/MMMM/YYYY')
+	const startTime = dayjs(eventInfo.startTime, ["HH.mm"]).format('hh:mm A')
+	const endTime = dayjs(eventInfo.endTime, ["HH.mm"]).format('hh:mm A')
+
+	// const[isPast, setIsPast] = useState(true)
+
+
+
+	// useEffect(() => {
+
+	// 		// if(moment(eventInfo.eventDate) < moment()){
+	// 		// 	setPast(true)
+	// 		// 	setBg("secondary")
+	// 		// }
+			
+	
+	// 	if(dayjs().isSameOrBefore(eventInfo.eventDate, 'day')){
+	// 		setIsPast(false)
+	// 		//console.log(eventInfo.eventName, "   is in the future")
+	// 	}
+	
+	// 	else{
+	// 		//console.log(eventInfo.eventName, "   is in the past")
+	// 	}
 			
 
-    }, [eventInfo]);
+    // }, []);
+
+	
+
+	
+
 
 	function updateEvent(){
 		navigate('/admin-event-update', {state:
@@ -72,10 +103,6 @@ function EventCard(props) {
 		})
 	}
 
-
-
-	
-
 	return (
 
 		<Container fluid>
@@ -84,10 +111,10 @@ function EventCard(props) {
 			<Card bg = {bg}>
 
 				
-					{past ? <CardHeader>
+					{eventInfo.past ? <CardHeader>
 							{eventInfo.eventName} is no longer available!
 						</CardHeader> : <CardHeader>
-						 {moment(eventInfo.eventDate).diff(moment(), "days")} days from today</CardHeader>}
+						 {eventInfo.remaining}</CardHeader>}
 						<Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + eventInfo.eventImage} width={400} height={400} alt='...'  />
 						
 						<Card.Body>
@@ -102,12 +129,19 @@ function EventCard(props) {
 									<Modal.Title>{eventInfo.eventName}</Modal.Title>
 								</Modal.Header>
 								<Modal.Body>Details: {eventInfo.eventDescription}</Modal.Body>
-								{eventInfo.eventDate != null && <Modal.Body>When: {eventInfo.eventDate} </Modal.Body>}
-								
-								{eventInfo.startTime!= null && <Modal.Body>Starts at: {moment(eventInfo.startTime, ["HH.mm"]).format("hh:mm a")} </Modal.Body>}
+								{/* {eventInfo.eventDate != null && <Modal.Body>When: {eventInfo.eventDate} </Modal.Body>} */}
 
-								{eventInfo.endTime != null && <Modal.Body>Ends at: {moment(eventInfo.endTime, ["HH.mm"]).format("hh:mm a")} </Modal.Body>}
+								{eventInfo.eventDate != null && <Modal.Body>When: <DayJS format="MMMM-DD-YYYY">{eventInfo.eventDate}</DayJS>
+ </Modal.Body>}
 								
+								{/* {eventInfo.startTime!= null && <Modal.Body>Starts at: {moment(eventInfo.startTime, ["HH.mm"]).format("hh:mm a")} </Modal.Body>} */}
+
+								{eventInfo.startTime!= null && <Modal.Body>Starts at: {startTime} </Modal.Body>}
+
+								{/* {eventInfo.endTime != null && <Modal.Body>Ends at: {moment(eventInfo.endTime, ["HH.mm"]).format("hh:mm a")} </Modal.Body>} */}
+							
+								{eventInfo.endTime != null && <Modal.Body>Ends at: {endTime} </Modal.Body>}
+
 								
 								{eventInfo.eventLocation != null && <Modal.Body>Where: {eventInfo.eventLocation}</Modal.Body>}
 										
@@ -134,7 +168,7 @@ function EventCard(props) {
 						<Button disabled = {past} onClick={eventSignUp}>Register for the event</Button>
 						}
 						<CardFooter>
-							Added {moment().diff(moment(eventInfo.addedDate), "days")} day/s ago.
+							Added {eventInfo.added}.
 						</CardFooter>
 						</CardFooter>
 					</Card>
