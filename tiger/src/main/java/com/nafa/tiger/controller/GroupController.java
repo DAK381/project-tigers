@@ -48,7 +48,7 @@ public class GroupController {
 	}
 
 	@GetMapping("/search/membersByGroup/{groupId}")
-	public Collection<User> getMembersByGroup(@PathVariable("groupName") Long groupId){
+	public Collection<User> getMembersByGroup(@PathVariable("groupId") Long groupId){
 		return groupService.getMembersByGroup(groupId);
 	}
 //	@GetMapping("/search/membersByGroup/{groupName}")

@@ -20,10 +20,6 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "react-bootstrap";
 
-// import paginationFactory from 'react-bootstrap-table2-paginator';
-// import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
-// import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-
 
 
 export default function AdminMemberList(props)
@@ -119,7 +115,6 @@ const[selected, setSelected] = useState([])
           const navigate = useNavigate();
           
           function showDetails(row){
-              
             navigate('/admin-member-profile', {state:
                 {
                     id: row.id

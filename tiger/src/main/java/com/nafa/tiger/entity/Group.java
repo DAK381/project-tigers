@@ -37,6 +37,7 @@ public class Group {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long groupId;
+	
 	private String groupName;
 	private String groupYear;
 	private String groupCount;

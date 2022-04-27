@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from "../../../axios";
 
 
 import BootstrapTable from 'react-bootstrap-table-next';
@@ -41,10 +42,9 @@ const[selected, setSelected] = useState([])
     
     
     const columns = [
-        {dataField: 'id', text: "ID", hidden: true},
+        {dataField: 'groupId', text: "ID", hidden: true},
         {dataField: 'groupName', text: "Group Name", sort: true, filter: textFilter()},
-        {dataField: 'groupYear', text: "Year", sort: true, filter: textFilter()},
-
+        {dataField: 'groupYear', text: "Year", sort: true, filter: textFilter()}
     ]
 
 
@@ -71,17 +71,17 @@ const[selected, setSelected] = useState([])
         }
     )
 
-        // const rowEvents = {
-        //     onDoubleClick: (e, row, rowIndex) => {
-        //       showDetails(row);
-        //     }
-        //   }
+        const rowEvents = {
+            onDoubleClick: (e, row, rowIndex) => {
+              showDetails(row);
+            }
+          }
 
         const selectRow = {
             mode: 'checkbox',
             clickToSelect: true,
             hideSelectAll: false,
-            bgColor: 'gold',
+            bgColor: 'gold'
             // onSelect: (row, isSelect, rowIndex, e) => {
             //     setSelected((prev) => [...prev, row.email])
             //     console.log(row.email)
@@ -91,42 +91,42 @@ const[selected, setSelected] = useState([])
           };
 
           const navigate = useNavigate();
-          
-        //   function showDetails(row){
-              
-        //     navigate('/admin-member-profile', {state:
-        //         {
-        //             id: row.id
-        //         }
-        //     });
+
 
           
-        // }
-        
-        function emailPeople(){
-            navigate('/admin-member-email', {state:
+          function showDetails(row){
+
+            console.log(row.id)
+            // axios.get(`/search/membersByGroup/${row.goupId}`).then(res => {
+            //     setSelected(res.data)
+            //     console.log(selected)
+            // }).catch(err => console.log(err))
+              
+            navigate('/admin-group-member', {state:
                 {
-                    arrayId: selected
+                    id: row.groupId,
+                    name: row.groupName,
+                    year:row.groupYear
+                    
                 }
             });
 
+            console.log(row.groupId)
         }
 
         return(
 
             <div>
-                <Container fluid>
+                <Container>
 
 
-<Button onClick = {emailPeople}>Email Selected</Button>
 <ToolkitProvider
-  keyField="id"
+  keyField="groupId"
   data={ props.data}
   columns={ columns }
   exportCSV={ { onlyExportFiltered: true, exportAll: false } }
   search
 >
-
     
   {
     props => (
@@ -138,7 +138,7 @@ const[selected, setSelected] = useState([])
           { ...props.baseProps }
           pagination={ pagination }
           filter={ filterFactory() }
-          //rowEvents={rowEvents}
+          rowEvents={rowEvents}
           selectRow = {selectRow}
         />
       </div>

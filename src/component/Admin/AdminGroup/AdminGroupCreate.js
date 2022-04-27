@@ -14,11 +14,6 @@ export default function AdminGroupCreate(){
   
   
   
-    const [show, setShow] = useState(false);
-      const handleClose = () => setShow(false);
-      const handleShow = () => setShow(true);
-  
-  
 
     function addGroup(e) { 
       
