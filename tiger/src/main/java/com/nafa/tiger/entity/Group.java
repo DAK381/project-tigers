@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -37,7 +38,12 @@ public class Group {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long groupId;
+	@Column(name = "group_name")
 	private String groupName;
+	@Column(name = "group_year")
+	private String groupYear;
+	@Column(name = "group_count")
+	private String groupCount;
 	@ManyToMany(mappedBy = "userGroup", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Collection<User> groupUser = new ArrayList<>();
