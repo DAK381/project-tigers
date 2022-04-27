@@ -19,6 +19,8 @@ function EventRegistration(){
         const event = location.state.event;
         const user = location.state.user;
 
+        const past = location.state.past;
+
         const eventId = event.eventId;
         const userId = user.id;
 
@@ -73,9 +75,11 @@ function EventRegistration(){
             {event.eventDescription}
               </p>
 
-              <Button onClick = {registerForEvent}>
+             {!past ?  <Button onClick = {registerForEvent}>
               Register
-            </Button>
+            </Button> : <h4>
+              This event is no longer available.
+            </h4>}
 
             </Container>
 

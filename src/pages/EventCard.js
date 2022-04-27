@@ -15,13 +15,26 @@ import CardHeader from 'react-bootstrap/esm/CardHeader';
 
 /*This creates a grid of Event Cards */
 function EventCard(props) {
+	
 	const eventInfo = props.event;
-
 	const navigate = useNavigate();
-
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+	const[bg, setBg] = useState("")
+	const[past, setPast] = useState(false)
+
+
+	useEffect(() => {
+
+			if(moment(eventInfo.eventDate) < moment()){
+				setPast(true)
+				setBg("secondary")
+			}
+
+			
+
+    }, [eventInfo]);
 
 	function updateEvent(){
 		navigate('/admin-event-update', {state:
@@ -37,7 +50,9 @@ function EventCard(props) {
 			navigate('/event-signup', {state:
 				{
 					event: eventInfo,
-					user : props.userData
+					user : props.userData,
+					past: past
+
 				}
 			});
 		}
@@ -52,43 +67,14 @@ function EventCard(props) {
 		console.log(eventInfo)
 		navigate("/admin-member-event-rsvp", {state:
 			{
-				event: eventInfo
+				event: eventInfo,
+				past: past
 			}
 		})
 	}
 
 
-// var date = moment(eventInfo.eventDate)
 
-// var now = moment();
-
-// console.log(now)
-// console.log(date)
-
-// if(now > date)
-// {
-// 	console.log(eventInfo.eventName , " is in the past");
-// }
-
-// else{
-// 	console.log(eventInfo.eventName , " is in future");
-// }
-
-const[bg, setBg] = useState("")
-
-const[past, setPast] = useState(false)
-
-
-	useEffect(() => {
-
-			if(moment(eventInfo.eventDate) < moment()){
-				setPast(true)
-				setBg("secondary")
-			}
-
-			
-
-    }, [eventInfo]);
 	
 
 	return (
@@ -145,7 +131,7 @@ const[past, setPast] = useState(false)
 						
 						<CardFooter>
 						{ 
-						// !props.admin && 
+						!props.admin && 
 						<Button disabled = {past} onClick={eventSignUp}>Register for the event</Button>
 						}
 						<CardFooter>
