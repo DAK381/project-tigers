@@ -16,6 +16,8 @@ public interface GroupService {
 	Group findByGroupId(Long groupId);
 
 	ArrayList<Group> getGroupByNameContaining(String groupName);
+	
+
 
 	ArrayList<Group> getAllGroup();
 

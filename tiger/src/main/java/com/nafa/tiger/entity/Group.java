@@ -38,6 +38,9 @@ public class Group {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long groupId;
 	private String groupName;
+	private String groupYear;
+	private String groupCount;
+	
 	@ManyToMany(mappedBy = "userGroup", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Collection<User> groupUser = new ArrayList<>();

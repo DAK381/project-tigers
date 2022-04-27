@@ -16,8 +16,10 @@ import java.util.Collection;
 @CrossOrigin(origins ="*")
 public class GroupController {
 
+	
 	@Autowired
 	private GroupService groupService;
+	
 	
 	@PostMapping("/addgroup")
 	public String addGroup(@RequestBody Group group) {

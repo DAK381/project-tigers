@@ -20,15 +20,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "react-bootstrap";
 
-// import paginationFactory from 'react-bootstrap-table2-paginator';
-// import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
-// import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
-
-
-
-export default function AdminMemberList(props)
-{
-    
+export default function AdminGroupSearch(props){
     const { ExportCSVButton } = CSVExport;
     
     const MyExportCSV = (props) =>{
@@ -44,32 +36,14 @@ export default function AdminMemberList(props)
 
    var data = props.data;
 
-   for (var i = 0; i < data.length; i++) {
-    const user = data[i];
-    var groupList = "";
-    for(var j = 0; j < user.test.length; j ++)
-    {
-        var group = user.test[j];
-        groupList += group.groupName + " "
-        
-    }
-
-    // console.log(user.firstName + " " + groupList)
-    user["groupList"] = groupList;
-
-} 
-
+   
 const[selected, setSelected] = useState([])
     
     
     const columns = [
         {dataField: 'id', text: "ID", hidden: true},
-        {dataField: 'firstName', text: "First Name", sort: true, filter: textFilter()},
-        {dataField: 'maidenName', text: "Maiden Name", sort: true, filter: textFilter()},
-        {dataField: 'lastName', text: "Last Name", sort: true,filter: textFilter()},
-        {dataField: 'email', text: "Email", filter: textFilter()},
-        {dataField: 'graduatedYear', text: "Graduation Year", sort: true, filter: textFilter()},
-        {dataField: 'groupList', text: "Group", sort: true, filter: textFilter()}
+        {dataField: 'groupName', text: "Group Name", sort: true, filter: textFilter()},
+        {dataField: 'groupYear', text: "Year", sort: true, filter: textFilter()},
 
     ]
 
@@ -97,37 +71,37 @@ const[selected, setSelected] = useState([])
         }
     )
 
-        const rowEvents = {
-            onDoubleClick: (e, row, rowIndex) => {
-              showDetails(row);
-            }
-          }
+        // const rowEvents = {
+        //     onDoubleClick: (e, row, rowIndex) => {
+        //       showDetails(row);
+        //     }
+        //   }
 
         const selectRow = {
             mode: 'checkbox',
             clickToSelect: true,
             hideSelectAll: false,
             bgColor: 'gold',
-            onSelect: (row, isSelect, rowIndex, e) => {
-                setSelected((prev) => [...prev, row.email])
-                console.log(row.email)
+            // onSelect: (row, isSelect, rowIndex, e) => {
+            //     setSelected((prev) => [...prev, row.email])
+            //     console.log(row.email)
              
-              }
+            //   }
 
           };
 
           const navigate = useNavigate();
           
-          function showDetails(row){
+        //   function showDetails(row){
               
-            navigate('/admin-member-profile', {state:
-                {
-                    id: row.id
-                }
-            });
+        //     navigate('/admin-member-profile', {state:
+        //         {
+        //             id: row.id
+        //         }
+        //     });
 
           
-        }
+        // }
         
         function emailPeople(){
             navigate('/admin-member-email', {state:
@@ -164,7 +138,7 @@ const[selected, setSelected] = useState([])
           { ...props.baseProps }
           pagination={ pagination }
           filter={ filterFactory() }
-          rowEvents={rowEvents}
+          //rowEvents={rowEvents}
           selectRow = {selectRow}
         />
       </div>
