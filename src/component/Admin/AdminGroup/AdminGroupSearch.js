@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import axios from "../../../axios";
 
 
 import BootstrapTable from 'react-bootstrap-table-next';
@@ -20,11 +21,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "react-bootstrap";
 
-import AdminAddMemberToGroup from "./AdminAddMemberToGroup";
-
-export default function AdminMemberList(props)
-{
-    
+export default function AdminGroupSearch(props){
     const { ExportCSVButton } = CSVExport;
     
     const MyExportCSV = (props) =>{
@@ -39,54 +36,15 @@ export default function AdminMemberList(props)
     }    
 
    var data = props.data;
-  
 
-   const [groupL, setGroup] = useState([""]);
-
-   for (var i = 0; i < data.length; i++) {
-    const user = data[i];
-    var groupList = "";
-    for(var j = 0; j < user.test.length; j ++)
-    {
-        var group = user.test[j];
-        
-        // setGroup((prev) => [...prev, group.groupName])
-
-        groupList += group.groupName + " "
-        
-    }
-
-    // if(group.length > 0){
-    //     const a = group.join(", ");
-    //     console.log(a)
-    // }
-    
-
-    // console.log(a)
-
-    // groupList = groupList.join(",");
-
-    // console.log(user.firstName + " " + groupList)
-    user["groupList"] = groupList;
-
-} 
-
-const[selectedEmail, setSelectedEmail] = useState([])
-const[selectedId, setSelectedId] = useState([])
+   
+const[selected, setSelected] = useState([])
     
     
     const columns = [
-        {dataField: 'id', text: "ID", hidden: true},
-        {dataField: 'firstName', text: "First Name", sort: true, filter: textFilter()},
-        {dataField: 'maidenName', text: "Maiden Name", sort: true, filter: textFilter()},
-        {dataField: 'lastName', text: "Last Name", sort: true,filter: textFilter()},
-        {dataField: 'address', text: "Email", filter: textFilter()},
-        {dataField: 'city', text: "Email", filter: textFilter()},
-        {dataField: 'zip', text: "Email", filter: textFilter()},
-        {dataField: 'state', text: "Email", filter: textFilter()},
-        {dataField: 'membership', text: "Graduation Year", sort: true, filter: textFilter()},
-        {dataField: 'groupList', text: "Group", sort: true, filter: textFilter()}
-
+        {dataField: 'groupId', text: "ID", hidden: true},
+        {dataField: 'groupName', text: "Group Name", sort: true, filter: textFilter()},
+        {dataField: 'groupYear', text: "Year", sort: true, filter: textFilter()}
     ]
 
 
@@ -123,69 +81,52 @@ const[selectedId, setSelectedId] = useState([])
             mode: 'checkbox',
             clickToSelect: true,
             hideSelectAll: false,
-            bgColor: 'gold',
-            onSelect: (row, isSelect, rowIndex, e) => {
-                setSelectedEmail((prev) => [...prev, row.email])
-                setSelectedId((prev) => [...prev, row.id])
-                
-                console.log(row.email)
+            bgColor: 'gold'
+            // onSelect: (row, isSelect, rowIndex, e) => {
+            //     setSelected((prev) => [...prev, row.email])
+            //     console.log(row.email)
              
-              }
+            //   }
 
           };
 
           const navigate = useNavigate();
+
+
           
           function showDetails(row){
-            navigate('/admin-member-profile', {state:
+
+            console.log(row.id)
+            // axios.get(`/search/membersByGroup/${row.goupId}`).then(res => {
+            //     setSelected(res.data)
+            //     console.log(selected)
+            // }).catch(err => console.log(err))
+              
+            navigate('/admin-group-member', {state:
                 {
-                    id: row.id
+                    id: row.groupId,
+                    name: row.groupName,
+                    year:row.groupYear
+                    
                 }
             });
 
-          
-        }
-        
-        function emailPeople(){
-            navigate('/admin-member-email', {state:
-                {
-                    arrayId: selectedEmail
-                }
-            });
-
-        }
-
-
-        function addMemberToGroup(){
-            navigate('/admin-add-member-group', {state:
-                {
-                    arrayId: selectedId
-                }
-            });
-
+            console.log(row.groupId)
         }
 
         return(
 
             <div>
-                <Container fluid>
-
-{/* <AdminAddMemberToGroup selected = {selectedId} /> */}
-
-<Button onClick = {emailPeople}>Email Selected</Button>
-
-<Button onClick = {addMemberToGroup}>Add to Group</Button>
-
+                <Container>
 
 
 <ToolkitProvider
-  keyField="id"
+  keyField="groupId"
   data={ props.data}
   columns={ columns }
   exportCSV={ { onlyExportFiltered: true, exportAll: false } }
   search
 >
-
     
   {
     props => (

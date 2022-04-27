@@ -5,8 +5,10 @@ import { useState, useEffect, useCallback } from 'react';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Container } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
+import { Button } from 'react-bootstrap';
 
-export default function EventCalendar(){
+
+export default function EventCalendar(props){
 
     const location = new useLocation();
     
@@ -20,10 +22,7 @@ export default function EventCalendar(){
 
     const [selected,setSelected] = useState(false)
 
-
-    // const allViews = Object
-    // .keys(Calendar.Views)
-    // .map(k => Calendar.Views[k])
+    const handleClose = () => setModalIsOpen(false);
 
     useEffect(() => {
         
@@ -32,6 +31,7 @@ export default function EventCalendar(){
                 event["title"] = event.eventName;
                 event["start"] = moment(event.eventDate).toDate();
                 event["end"] = moment(event.eventDate).toDate();
+                
             }
         )
     }, [events]);
@@ -69,16 +69,18 @@ console.log(events)
     />
 
 
- 
-
             
             </Container>
 
           {selected &&
 
-                <Modal show={modalIsOpen} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal show={modalIsOpen} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton>
                     <Modal.Title>{selectedEvent.title}</Modal.Title>
+                   {
+                       selectedEvent.startTime != null && selectedEvent.endTime != null &&
+                   <Modal.Body>Time: {selectedEvent.startTime} - {selectedEvent.endTime}
+                    </Modal.Body>} 
                 </Modal.Header>
 
                 </Modal>

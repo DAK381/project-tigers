@@ -16,8 +16,10 @@ import java.util.Collection;
 @CrossOrigin(origins ="*")
 public class GroupController {
 
+	
 	@Autowired
 	private GroupService groupService;
+	
 	
 	@PostMapping("/addgroup")
 	public String addGroup(@RequestBody Group group) {
@@ -46,7 +48,7 @@ public class GroupController {
 	}
 
 	@GetMapping("/search/membersByGroup/{groupId}")
-	public Collection<User> getMembersByGroup(@PathVariable("groupName") Long groupId){
+	public Collection<User> getMembersByGroup(@PathVariable("groupId") Long groupId){
 		return groupService.getMembersByGroup(groupId);
 	}
 //	@GetMapping("/search/membersByGroup/{groupName}")

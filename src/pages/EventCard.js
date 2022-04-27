@@ -15,7 +15,6 @@ import CardHeader from 'react-bootstrap/esm/CardHeader';
 
 /*This creates a grid of Event Cards */
 function EventCard(props) {
-	
 	const eventInfo = props.event;
 	const navigate = useNavigate();
 	const [show, setShow] = useState(false);

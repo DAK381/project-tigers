@@ -33,15 +33,20 @@ function AdminNavigation(){
       </NavDropdown>
 
 
+      <NavDropdown title="Groups" id="collasible-nav-dropdown">
+        <NavDropdown.Item href="admin-group-all">View Groups</NavDropdown.Item>
+        <NavDropdown.Item href="admin-group-create">Create Group</NavDropdown.Item>
+      </NavDropdown>
 
       <NavDropdown title="Events" id="collasible-nav-dropdown">
+      <NavDropdown.Item href="admin-event-view">View Events</NavDropdown.Item>
         <NavDropdown.Item href="admin-event-add">Add Events</NavDropdown.Item>
-        <NavDropdown.Item href="admin-event-view">View Events</NavDropdown.Item>
       </NavDropdown>
 
       <NavDropdown title="Scholarships" id="collasible-nav-dropdown">
+      <NavDropdown.Item href="admin-scholarship-view">View Scholarships</NavDropdown.Item>
         <NavDropdown.Item href="admin-scholarship-add">Add Scholarships</NavDropdown.Item>
-        <NavDropdown.Item href="admin-scholarship-view">View Scholarships</NavDropdown.Item>
+       
       </NavDropdown>
 
       <Nav.Link href="user-profile">Profile</Nav.Link> 

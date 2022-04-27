@@ -41,8 +41,11 @@ import EventRegistration from './component/Forms/EventRegistration';
 import AdminMemberAll from './component/Admin/AdminMember/AdminMemberAll';
 import AdminMemberRSVP from './component/Admin/AdminMember/AdminMemberRSVP';
 import EventCalendar from './pages/EventCalendar';
-
-
+import AdminGroupCreate from './component/Admin/AdminGroup/AdminGroupCreate';
+import AdminGroupSearch from './component/Admin/AdminGroup/AdminGroupSearch';
+import AdminAllGroup from './component/Admin/AdminGroup/AdminAllGroup';
+import AdminGroupMemberList from './component/Admin/AdminGroup/AdminGroupMemberList';
+import AdminAddMemberToGroup from './component/Admin/AdminMember/AdminAddMemberToGroup';
 
 function App() {
 
@@ -103,6 +106,19 @@ function App() {
         { userData.role === "ADMIN" && <Route path="/admin-member-event-rsvp" element={<AdminMemberRSVP/>} /> }
 
         { userData.role === "ADMIN" && <Route path="/admin-member-email" element={<AdminMemberEmail/>} /> }
+
+        { userData.role === "ADMIN" && <Route path="/admin-group-create" element={<AdminGroupCreate/>} /> }
+
+
+        { userData.role === "ADMIN" && <Route path="/admin-group-search" element={<AdminGroupSearch/>} /> }
+
+        { userData.role === "ADMIN" && <Route path="/admin-group-all" element={<AdminAllGroup/>} /> }
+
+
+        { userData.role === "ADMIN" && <Route path="/admin-group-member" element={<AdminGroupMemberList/>} /> }
+
+        { userData.role === "ADMIN" && <Route path="/admin-add-member-group" element={<AdminAddMemberToGroup/>} /> }
+
 
         { token && <Route path="/user-profile" element={<Profile userData={userData}/>} /> }
 
