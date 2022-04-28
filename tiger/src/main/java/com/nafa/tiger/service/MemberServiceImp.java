@@ -151,7 +151,7 @@ public class MemberServiceImp implements MemberService {
 		System.out.print(group);
 		user.getUserGroup().add(group);
 		//group.getGroupUser().add(user);
-		return new User();
+		return user;
 	}
 
 	@Override

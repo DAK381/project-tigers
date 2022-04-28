@@ -21,7 +21,7 @@ export default function AdminGroupCreate(){
       axios.post("/addgroup", {groupName, groupYear}).then(res=>{
         console.log(res.data);
         
-        navigate('/admin-group-search');
+        navigate('/admin-group-all');
         
       }).catch(err=>console.log(err))
     }
@@ -50,12 +50,8 @@ export default function AdminGroupCreate(){
                 )}
                 <Pictures show={show} onHide={handleClose} setImage={setGroupImage} isCarousel={false} /> */}
 
-
-
                 <form onSubmit={addGroup}>
                 
-  
-  
                   <Form.Group controlId="groupName">
                     <Form.Label>Event Name</Form.Label>
                     <Form.Control
