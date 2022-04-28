@@ -93,6 +93,15 @@ function Profile(props) {
 		});
 	}
 
+    const test = () => {
+        var presetName = 'testValue';
+        axios.put("/addMemberToPreset/1/10").then((res) => {
+            console.log(res.data);
+        }).catch((e) => {
+            console.log(e);
+        });
+    }
+
     return (
         <div className="container bootstrap snippets bootdey">
             <div className="row">
@@ -251,6 +260,7 @@ function Profile(props) {
 
                         </div>
                     </div>
+                    <Button onClick={test}>Test</Button>
                     <br />
                     <div className="card">
                         <div className="card-body">

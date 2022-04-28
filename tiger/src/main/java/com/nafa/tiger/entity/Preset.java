@@ -13,8 +13,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-//import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,33 +23,28 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="groups")
-public class Group {
-
-	@Id
+@Table(name="presets")
+public class Preset {
+    
+    @Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long groupId;
+	private Long presetId;
+	private String presetName;
 	
-	private String groupName;
-	private String groupYear;
-	private String groupCount;
-	
-	@ManyToMany(mappedBy = "userGroup", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "presetUser", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Collection<User> groupUser = new ArrayList<>();
+	private Collection<User> presetUser = new ArrayList<>();
 	
 	public void addMember(User user) {
-		groupUser.add(user);
+		presetUser.add(user);
 	}
 	
-	public Collection<User> getGroupUser() {
-		return this.groupUser;
+	public Collection<User> getPresetUser() {
+		return this.presetUser;
 	}
 
-	public Group(String groupName) {
+	public Preset(String presetName) {
 		super();
-		this.groupName = groupName;
+		this.presetName = presetName;
 	}
-	
-	
 }

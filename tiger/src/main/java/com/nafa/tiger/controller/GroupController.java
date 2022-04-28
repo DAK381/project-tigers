@@ -9,7 +9,6 @@ import com.nafa.tiger.entity.Group;
 import com.nafa.tiger.entity.User;
 import com.nafa.tiger.service.GroupService;
 
-import java.sql.*;
 import java.util.Collection;
 
 @RestController
