@@ -99,7 +99,7 @@ console.log(location.state.name)
                     name="scholarshipDescription"
                     placeholder= {location.state.scholarship.scholarshipDescription}
                     defaultValue = {location.state.scholarship.scholarshipDescription}
-                    value = {scholarshipName}
+                    value = {scholarshipDescription}
                     onChange={(e) => setScholarshipDescription(e.target.value)}
                   />
                 </Form.Group>

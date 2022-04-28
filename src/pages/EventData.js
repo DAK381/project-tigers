@@ -55,39 +55,11 @@ function EventData(props){
                     event["past"] = false;
                 }
 
-                
                 event["remaining"] = dayjs(event.eventDate).fromNow();
 
 
                 event["added"] = dayjs(event.addedDate).fromNow();
 
-                if(event.evenDate!== null && event.startTime!== null && event.endTime!== null)
-                {
-                    console.log(event.eventName, "...", event.eventDate , event.startTime, event.endTime)
-                 console.log("there's some")
-                //  const dt = event.eventDate.split('-');
-                //  console.log("now?")
-                // dt[1]--;
-                // const start = new Date(dt,event.startTime.split(':'), 0 )
-                // event["start"] = start;
-                // event["end"] = new Date(dt,event.endTime.split(':'), 0 )
-                // console.log(event.start.toString())
-
-                    
-                }
-                // const dt = event.eventDate.split('-');
-                // dt[1]--; // fix month
-                // const range= [new Date(...dt, ...event.startTime.split(':'), 0), new Date(...dt, ...event.endTime.split(':'), 0)];
-                // event["range"] = range;
-                // }
-
-                // event.range.map(
-                //     (time) => {
-                        
-
-                //     }
-                // )
-                
                 
         }
     )
@@ -99,17 +71,21 @@ function EventData(props){
     }, []);
 
     console.log(events)
+    console.log(props.userData)
     const navigate = new useNavigate();
 
    
 
     function calendar(){
 
-        
+
+        console.log(props.userData)
+
         navigate("/event-calendar", {state:
 			{
 				events: events,
-                user: props.userData
+                userData: props.userData
+                
 
 			}
 		})

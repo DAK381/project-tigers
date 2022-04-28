@@ -13,13 +13,14 @@ import { MDBDatePickerV5 } from 'mdbreact';
 
 function AdminScholarshipAddForm(){
 
+  const dayjs = require('dayjs');
     const [scholarshipName, setScholarshipName] = useState('');
     const [scholarshipDescription, setScholarshipDescription] = useState('');
     const [scholarshipImage, setScholarshipImage] = useState("");
     const[formLink, setLink] = useState("");
     const[deadline, setDeadline] = useState("");
 
-    const [addedDate, setAdded] = useState(moment())
+    const [addedDate, setAdded] = useState(dayjs())
 
     const navigate = useNavigate();
   
