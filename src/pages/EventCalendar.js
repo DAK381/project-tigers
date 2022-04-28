@@ -10,8 +10,10 @@ import { Button } from 'react-bootstrap';
 
 export default function EventCalendar(props){
 
+    const dayjs = require('dayjs');
     const location = new useLocation();
-    
+    var customParseFormat = require('dayjs/plugin/customParseFormat')
+	dayjs.extend(customParseFormat)
     const events = location.state.events;
 
     const [modalIsOpen,setModalIsOpen] = useState(false);
@@ -24,19 +26,47 @@ export default function EventCalendar(props){
 
     const handleClose = () => setModalIsOpen(false);
 
+    const [eventList, setEventList] = useState([])
     useEffect(() => {
         
         events.map(
             (event) => {
                 event["title"] = event.eventName;
-                event["start"] = moment(event.eventDate).toDate();
-                event["end"] = moment(event.eventDate).toDate();
+
+               
+
+                    var start = dayjs(event.startTime, ["HH.mm"])
+	                var end = dayjs(event.endTime, ["HH.mm"])
+
+                    // let startMonth = dayjs(event.date).month()
+                    // let startYear = dayjs(event.date).year()
+                    // let startDay = dayjs(event.date).day()
+                    // let  startHour = dayjs(start).get('hour');
+                    // let startMinute = dayjs(start).get('minute');
+
+                    // // console.log(event.eventName, " ...", startYear, startDay, startMonth, startHour, startMinute)
+
+                    // let endMonth = dayjs(event.date).month()
+                    // let endYear = dayjs(event.date).year()
+                    // let endDay = dayjs(event.date).date()
+                    // let endHour = dayjs(end).hour();
+                    // let endMinute = dayjs(end).minute();
+
+                    
+
+                    event["start"] = new Date(dayjs(event.eventDate).year(), dayjs(event.eventDate).month(), dayjs(event.eventDate).date(), dayjs(start).get('hour') , dayjs(start).get('minute'))
+                    event["end"] = new Date(dayjs(event.eventDate).year(), dayjs(event.eventDate).month(), dayjs(event.eventDate).date(), dayjs(end).hour(), dayjs(end).minute())
+
+                    // console.log(event.eventName, "===", startDay, endDay)
+                
+
+
                 
             }
         )
-    }, [events]);
+    }, []);
 
-
+console.log(events)
     const handleSelectEvent  = useCallback((event) => {
         setSelectedEvent(event);
         console.log(event)
@@ -59,7 +89,7 @@ console.log(events)
       events={events}
       startAccessor="start"
       endAccessor="end"
-      defaultView={Views.MONTH}
+    //   defaultView={Views.MONTH}
       selectable
       onSelectEvent={(e) => handleSelectEvent(e)}
 

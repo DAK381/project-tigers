@@ -108,13 +108,14 @@ function EventCard(props) {
 		<Container fluid>
 			<div>
 			<Col>
-			<Card bg = {bg}>
+			<Card>
 
 				
 					{eventInfo.past ? <CardHeader>
 							{eventInfo.eventName} is no longer available!
 						</CardHeader> : <CardHeader>
 						 {eventInfo.remaining}</CardHeader>}
+
 						<Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + eventInfo.eventImage} width={400} height={400} alt='...'  />
 						
 						<Card.Body>

@@ -34,6 +34,20 @@ function EventData(props){
         })
     }
 
+    // const event = {
+    //     eventDate: "2022-02-21",
+    //     startTime: "20:30",
+    //     endTime: "22:30"
+    //   };
+      
+    //   function getDates({eventDate, startTime, endTime}) {
+    //       const dt = eventDate.split('-');
+    //     dt[1]--; // fix month
+    //     const range= [new Date(...dt, ...startTime.split(':'), 0), new Date(...dt, ...endTime.split(':'), 0)];
+    //   }
+      
+    //   console.log(getDates(event));
+
     events.map(
         (event) => {
             event["past"] = true;
@@ -46,6 +60,35 @@ function EventData(props){
 
 
                 event["added"] = dayjs(event.addedDate).fromNow();
+
+                if(event.evenDate!== null && event.startTime!== null && event.endTime!== null)
+                {
+                    console.log(event.eventName, "...", event.eventDate , event.startTime, event.endTime)
+                 console.log("there's some")
+                //  const dt = event.eventDate.split('-');
+                //  console.log("now?")
+                // dt[1]--;
+                // const start = new Date(dt,event.startTime.split(':'), 0 )
+                // event["start"] = start;
+                // event["end"] = new Date(dt,event.endTime.split(':'), 0 )
+                // console.log(event.start.toString())
+
+                    
+                }
+                // const dt = event.eventDate.split('-');
+                // dt[1]--; // fix month
+                // const range= [new Date(...dt, ...event.startTime.split(':'), 0), new Date(...dt, ...event.endTime.split(':'), 0)];
+                // event["range"] = range;
+                // }
+
+                // event.range.map(
+                //     (time) => {
+                        
+
+                //     }
+                // )
+                
+                
         }
     )
     
