@@ -93,6 +93,7 @@ function Profile(props) {
 		});
 	}
 
+    
     return (
         <div className="container bootstrap snippets bootdey">
             <div className="row">

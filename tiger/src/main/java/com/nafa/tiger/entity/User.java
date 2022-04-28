@@ -86,6 +86,14 @@ public class User implements UserDetails{
 	@JsonIgnore
 	private Collection<Events> userEvent = new ArrayList<>();
 
+	////Preset many to many*****************************************************
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name= "preset_user",
+			joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "presetId", referencedColumnName = "presetId"))
+	@JsonIgnore
+	private Collection<Preset> presetUser = new ArrayList<>();
+
 	//Test
 	public void setUserGroup(Set<Group> userGroup) {
 		this.userGroup = userGroup;
