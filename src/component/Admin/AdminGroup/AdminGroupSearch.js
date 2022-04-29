@@ -35,11 +35,35 @@ export default function AdminGroupSearch(props){
         )
     }    
 
-   var data = props.data;
+
+   const users = props.userInfo;
+   console.log(users)
+
 
    
 const[selected, setSelected] = useState([])
-    
+
+const[groupToBeAdded, setGroupToBeAdded] = useState();
+
+const addMembers = () => {
+  console.log(groupToBeAdded)
+  users.map(
+    (userId) =>
+    {
+      
+      axios.put(`/addUserToGroup/${groupToBeAdded}/${userId}`)
+      .then(
+        res => {
+          console.log(userId, groupToBeAdded)
+          navigate('/admin-group-all');
+        }
+        
+      ).catch(err => console.log(err))
+    }
+  )
+
+}
+
     
     const columns = [
         {dataField: 'groupId', text: "ID", hidden: true},
@@ -81,12 +105,12 @@ const[selected, setSelected] = useState([])
             mode: 'checkbox',
             clickToSelect: true,
             hideSelectAll: false,
-            bgColor: 'gold'
-            // onSelect: (row, isSelect, rowIndex, e) => {
-            //     setSelected((prev) => [...prev, row.email])
-            //     console.log(row.email)
+            bgColor: 'gold',
+            onSelect: (row, isSelect, rowIndex, e) => {
+                setGroupToBeAdded(row.groupId)
+                console.log(groupToBeAdded)
              
-            //   }
+              }
 
           };
 
@@ -97,11 +121,6 @@ const[selected, setSelected] = useState([])
           function showDetails(row){
 
             console.log(row.id)
-            // axios.get(`/search/membersByGroup/${row.goupId}`).then(res => {
-            //     setSelected(res.data)
-            //     console.log(selected)
-            // }).catch(err => console.log(err))
-              
             navigate('/admin-group-member', {state:
                 {
                     id: row.groupId,
@@ -111,13 +130,21 @@ const[selected, setSelected] = useState([])
                 }
             });
 
-            console.log(row.groupId)
+           
         }
 
         return(
 
             <div>
+
                 <Container>
+
+                  {
+                    users && <Button onClick = {addMembers}>
+                    Add Members to the Selected Group
+                  </Button>
+                  }
+                  
 
 
 <ToolkitProvider

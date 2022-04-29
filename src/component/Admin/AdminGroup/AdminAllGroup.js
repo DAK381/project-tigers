@@ -3,11 +3,15 @@ import { useState } from "react";
 import axios from '../../../axios';
 import { useEffect} from "react";
 import AdminGroupSearch from "./AdminGroupSearch";
-
+import { useLocation } from "react-router-dom";
 
 export default function AdminAllGroup(){
 
 
+    const location = useLocation();
+
+    
+   
     const[data, setData] = useState([]);
     
     async function getData( ){
@@ -31,19 +35,32 @@ export default function AdminAllGroup(){
     useEffect(() => {
             getData();
 
+            // console.log(typeof location.state.arrayId)
+
         }, []);
 
 
 
+console.log(location.state)
 
-    return(
-        <div>
-
-            <AdminGroupSearch data = {data} />
-            
-        </div>
-
+    if(location.state)
+{
+    return (
+    <AdminGroupSearch data = {data} userInfo = {location.state.arrayId}/>
     )
+}
+
+else{
+    return (
+        <AdminGroupSearch data = {data}/>
+        )
+} 
+
+// return(
+//     <AdminGroupSearch data = {data}  />
+// )
+
+    
 }
 
 
