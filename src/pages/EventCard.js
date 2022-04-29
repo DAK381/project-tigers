@@ -22,7 +22,6 @@ function EventCard(props) {
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
-	const[bg, setBg] = useState("")
 	const[past, setPast] = useState(false)
 
 
@@ -30,8 +29,6 @@ function EventCard(props) {
 	var customParseFormat = require('dayjs/plugin/customParseFormat')
 	dayjs.extend(customParseFormat)
 
-	var isSameOrBefore = require('dayjs/plugin/isSameOrBefore')
-	dayjs.extend(isSameOrBefore)
 
 	// const eventDate = dayjs(eventInfo.eventDate).format('DD/MMMM/YYYY')
 	const startTime = dayjs(eventInfo.startTime, ["HH.mm"]).format('hh:mm A')

@@ -147,9 +147,10 @@ const[selectedId, setSelectedId] = useState([])
 
 
         function addMemberToGroup(){
-            navigate('/admin-add-member-group', {state:
+            navigate('/admin-group-all', {state:
                 {
-                    arrayId: selectedId
+                    arrayId: selectedId,
+                    userSent: true
                 }
             });
 

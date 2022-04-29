@@ -29,6 +29,16 @@ public class ScholarshipServiceImp implements ScholarshipService{
         if(scholarship.getScholarshipDescription()!= null){
             updatedScholarship.setScholarshipDescription(scholarship.getScholarshipDescription());
         }
+        
+        if(scholarship.getDeadline()!= null){
+            updatedScholarship.setDeadline(scholarship.getDeadline());
+        }
+        
+        if(scholarship.getFormLink()!= null){
+            updatedScholarship.setFormLink(scholarship.getFormLink());
+        }
+        
+        
         if(scholarship.getScholarshipImage()!= null){
             updatedScholarship.setScholarshipImage(scholarship.getScholarshipImage());
         }

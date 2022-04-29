@@ -30,29 +30,7 @@ console.log(data)
 useEffect(() => {
             getData();
 
-        }, []);
-
-       
-
-
-    // return(
-        
-    //     data.length === 0 ?
-    //     <div>
-
-    //         <h1>
-    //         No members are in the group yet!
-    //         </h1>
-            
-    //     </div>  :
-    //     <div>
-    //         <h4> Members who are/involved in {groupName}, {groupYear}</h4>
-
-    //         <AdminMemberList data = {data} />
-    //     </div>
-
-        
-        
+        }, [id]);
 
         
     // )
