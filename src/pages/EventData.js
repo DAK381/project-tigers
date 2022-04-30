@@ -26,12 +26,15 @@ function EventData(props){
    
 
    const[past, setPast] = useState([]);
-
+                                        
     async function getData( ){
-        axios.get("/admin/event/all-event").then((response) =>{
+        axios.get("/admin/event/all-event")
+        .then((response) =>
+        {
             setEvents(response.data)
           
-        })
+        }
+        )
     }
 
     // const event = {

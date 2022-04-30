@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 
-function UpcomingEvent(){
+function UpcomingEvent(props){
 
     return( 
 
@@ -37,7 +37,7 @@ function UpcomingEvent(){
 
 
 
-    <Col md>
+    {/* <Col md>
   <Card className = "mb-3">
     <Card.Img variant="top" src= {photoT} />
     <Card.Body>
@@ -73,7 +73,7 @@ function UpcomingEvent(){
       <small className="text-muted">Added 10 days ago</small>
     </Card.Footer>
   </Card>
-  </Col>
+  </Col> */}
   </Row>
 
 </CardGroup>

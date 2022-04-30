@@ -7,14 +7,38 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { queryByDisplayValue } from "@testing-library/react";
+import { Button } from "react-bootstrap";
+import { getEvents } from "../AxiosRequests/axios";
+import { useState, useEffect } from "react";
 
 function Home(props) {
     const userData = props.userData;
+
+
+    const [event, setEvents] = useState([]);
+
+    useEffect(() => {
+      getEvents()
+        .then((response) => {
+          console.log(response.data);
+          setEvents(response.data);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }, []);
+
 
     return (
         <div>
             
         <Slider userData={userData}/>
+
+        <Button>
+                CHoose which events and scholarships to display on the homepage
+            </Button>
+
+
 
         <section className = "section">
             <div className = "container">
@@ -35,7 +59,7 @@ function Home(props) {
               
 
         
-
+           
 
            {/* <div className = "underline2"></div> */}
  
