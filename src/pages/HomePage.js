@@ -1,12 +1,5 @@
 import Slider from "../component/layout/Slider";
-import { Link } from "react-router-dom";
 import UpcomingEvent from "./UpcomingEvent";
-import CardGroup from 'react-bootstrap/CardGroup'
-import Card from 'react-bootstrap/Card'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import { queryByDisplayValue } from "@testing-library/react";
 
 function Home(props) {
     const userData = props.userData;
@@ -20,7 +13,7 @@ function Home(props) {
             <div className = "container">
                 <div className = "row">
 
-                    <div classname = "col-md-12 text center">
+                    <div className = "col-md-12 text center">
                         <h3 className = "heading">WELCOME</h3>
 
                         <div className = "underline"></div>

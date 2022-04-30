@@ -49,7 +49,7 @@ console.log(location.state.name)
             
         })
             .then(res=>{console.log(res.data);
-            navigate('/admin-scholarship-view');
+            navigate('/scholarship');
           }).catch(err=>console.log(err))
 
           
