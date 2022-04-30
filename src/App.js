@@ -22,7 +22,6 @@ import AdminProfile from './component/Admin/AdminProfile';
 import AdminRemoveMember from './component/Admin/AdminRemoveMember';
 import AdminContact from './component/Admin/AdminContact';
 import AdminEventAdd from './component/Admin/AdminEventAdd';
-import AdminEventView from './component/Admin/AdminEventsView';
 import AdminMemberView from './component/Admin/AdminMemberView';
 import AdminScholarshipAdd from './component/Admin/AdminScholarshipAdd';
 import { Dashboard } from './dashboard';
@@ -32,7 +31,6 @@ import { fetchUserData } from './authenticationService';
 import EventDetails from './pages/EventDetails';
 import AdminEventUpdate from './component/Admin/AdminEventUpdate';
 import AdminScholarshipUpdate from './component/Admin/AdminScholarshipUpdate';
-import AdminScholarshipView from './component/Admin/AdminScholarshipView';
 import AdminMemberProfile from './component/Admin/AdminMember/AdminMemberProfile';
 import ProfileEdit from './pages/Profile/UserEdit';
 import UpdatedProfile from './pages/Profile/UpdatedProfile';
@@ -77,7 +75,7 @@ function App() {
         { !token && <Route path="/forget-password" element={<ForgetPasswordPage />} /> }
 
         <Route path="/events" element={<EventPage userData = {userData}/>} />
-        <Route path="/scholarship" element={<Scholarship/>} />
+        <Route path="/scholarship" element={<Scholarship userData = {userData}/>} />
         <Route path="/contact-us" element={<Contact/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/about" element={<About/>}/>
@@ -88,9 +86,6 @@ function App() {
         { userData.role === "ADMIN" && <Route path="/admin-member-search" element={<AdminMemberSearch/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-profile" element={<AdminProfile/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-contact" element={<AdminContact/>} /> }
-        { userData.role === "ADMIN" && <Route path="/admin-event-view" element={<AdminEventView/>} /> }
- 
-        { userData.role === "ADMIN" && <Route path="/admin-scholarship-view" element={<AdminScholarshipView/>} /> }
 
         { userData.role === "ADMIN" && <Route path="/admin-event-update" element={<AdminEventUpdate/>} /> }
 

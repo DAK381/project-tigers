@@ -2,7 +2,7 @@ import axios from '../../axios';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
-import { Row, CardGroup } from 'react-bootstrap';
+import { Row, CardGroup, Alert } from 'react-bootstrap';
 import Image from './Image';
 
 
@@ -13,6 +13,15 @@ function Pictures (props){
         selectedFile: undefined,
         previewImage: undefined
     });
+
+    const [showError, setShowError] = useState(false);
+    var errorMessage = ""
+    if(props.isCarousel){
+      errorMessage = "Please select at least 1 image."
+    }
+    else{
+      errorMessage = "Please select only 1 image."
+    }
 
     const loadPictures = () => {
       axios.get("/getAllImages/all").then((response)=>{
@@ -47,30 +56,32 @@ function Pictures (props){
     };
     
     const setPictures = () => {
-      if (props.isCarousel){
-      const carouselPictures = []
-        for (const picture of set) {
-          carouselPictures.push(picture);
-        }
-        console.log(carouselPictures);
-        axios.post("/changeCarousel",  carouselPictures).then(() => {
-          window.location.reload();
-        }).catch((e) => {
-          console.log(e);
-        });
+      if(props.isCarousel){
+        if (set.size > 0){
+          const carouselPictures = [];
+          for (const picture of set) {
+            carouselPictures.push(picture);
+          }
+          axios.post("/changeCarousel",  carouselPictures).then(() => {
+            window.location.reload();
+          }).catch((e) => {
+            console.log(e);
+          });
 
+        }
+        else{
+          setShowError(true);
+        }
       }
       else {
         if (set.size === 1){
           for (const picture of set) {
             props.setImage(picture);
           }
-          console.log(set);
           props.onHide();
         }
         else{
-          console.log("false");
-          console.log(set);
+          setShowError(true);
         }
       }
     }
@@ -86,7 +97,12 @@ function Pictures (props){
 
     return (
         <Modal show={props.show} onHide={props.onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-			  <Modal.Header closeButton>
+          {showError &&
+            <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+              <Alert.Heading>{errorMessage}</Alert.Heading>
+            </Alert>
+          }
+        <Modal.Header closeButton>
 			  	<Modal.Title><h1>Select Pictures</h1></Modal.Title>
 			  </Modal.Header>
 			  <Modal.Body>

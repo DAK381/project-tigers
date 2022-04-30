@@ -51,7 +51,7 @@ export default function AdminEventUpdate(props) {
             eventName, eventDescription, eventImage, eventDate, startTime, endTime, paymentAmount
         })
             .then(res=>{console.log(res.data);
-            navigate('/admin-event-view');
+            navigate('/events');
           }).catch(err=>console.log(err))
 
           

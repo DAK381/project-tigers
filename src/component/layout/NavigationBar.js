@@ -1,13 +1,9 @@
-import { Link } from 'react-router-dom';
-import classes from './Nav.module.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Nav, Navbar, Container, NavDropdown, Offcanvas} from 'react-bootstrap';
+import { Nav, Navbar, Container } from 'react-bootstrap';
 import logo from "./logo.png"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { fetchUserData } from '../../authenticationService';
-import { useState } from 'react';
+
 
 function NavigationBar(props){
   const userData = props.userData;

@@ -50,7 +50,7 @@ function ScholarshipData(props) {
 
                     {scholarships.map(scholarship => (
                         <div key={scholarship.scholarshipId}>
-                            <ScholarshipCard scholarship={scholarship} admin = {props.admin}/>
+                            <ScholarshipCard scholarship={scholarship} userData={props.userData}/>
                         </div>
                     ))}
 

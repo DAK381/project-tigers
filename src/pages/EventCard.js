@@ -113,7 +113,7 @@ function EventCard(props) {
 						</CardHeader> : <CardHeader>
 						 {eventInfo.remaining}</CardHeader>}
 
-						<Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + eventInfo.eventImage} width={400} height={400} alt='...'  />
+						<Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + eventInfo.eventImage} alt='...'  />
 						
 						<Card.Body>
 							<Card.Title>{eventInfo.eventName}</Card.Title>
@@ -154,15 +154,15 @@ function EventCard(props) {
 								</Modal.Footer>
 							</Modal>
 
-						{props.admin && < Button onClick = {() => {updateEvent()}}>Update Event</Button>}
+						{props.userData.role === "ADMIN" && < Button onClick = {() => {updateEvent()}}>Update Event</Button>}
 
-						{props.admin && < Button onClick = {() => {RSVPmembers()}}>Registered Members</Button>}
+						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPmembers()}}>Registered Members</Button>}
 						
 						</Card.Body>
 						
 						<CardFooter>
 						{ 
-						!props.admin && 
+						!(props.userData.role === "ADMIN") && 
 						<Button disabled = {past} onClick={eventSignUp}>Register for the event</Button>
 						}
 						<CardFooter>
