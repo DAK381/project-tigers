@@ -3,21 +3,21 @@ import { useState, useEffect } from "react";
 import axios from '../../../axios';
 import AdminMemberList from "../AdminMember/AdminMemberList"
 
-export default function AdminGroupMemberList(){
+export default function LabelMembers(){
 
     const location = new useLocation();
     const id = location.state.id;
 
-    const groupName = location.state.name;
-    const groupYear = location.state.year;
+    const labelName = location.state.name;
+    const labelCreated = location.state.year;
     const[data, setData] = useState([]);
 
     async function getData( ){
-        axios.get(`/search/membersByPreset${id}`)
+        axios.get(`/search/membersByPreset/${id}`)
             .then(
                 (response) =>
                 {
-                    //console.log(response.data)
+                   
                     setData(response.data)
                 }
             )

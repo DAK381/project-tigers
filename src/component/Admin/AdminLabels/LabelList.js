@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
-
+import axios from "../../../axios";
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
@@ -20,11 +19,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Button } from "react-bootstrap";
 
-import AdminAddMemberToGroup from "./AdminAddMemberToGroup";
-
-export default function AdminMemberList(props)
-{
-    
+export default function LabelList(props){
     const { ExportCSVButton } = CSVExport;
     
     const MyExportCSV = (props) =>{
@@ -38,45 +33,37 @@ export default function AdminMemberList(props)
         )
     }    
 
-   var data = props.data;
-  
+   const users = props.userInfo;
+   console.log(users)
 
-   const [groupL, setGroup] = useState([""]);
+const[selected, setSelected] = useState([])
 
-   for (var i = 0; i < data.length; i++) {
-    const user = data[i];
-    var groupList = "";
-    for(var j = 0; j < user.test.length; j ++)
+const[LabelToBeAdded, setLabelToBeAdded] = useState();
+
+const addMembers = () => {
+  console.log(LabelToBeAdded)
+  users.map(
+    (userId) =>
     {
-        var group = user.test[j];
+      
+      axios.put(`/addMemberToPreset/${LabelToBeAdded}/${userId}`)
+      .then(
+        res => {
+          console.log(userId, LabelToBeAdded)
+          navigate('/admin-group-all');
+        }
         
-        // setGroup((prev) => [...prev, group.groupName])
-
-        groupList += group.groupName + " "
-        
+      ).catch(err => console.log(err))
     }
+  )
 
+}
 
-    user["groupList"] = groupList;
-
-} 
-
-const[selectedEmail, setSelectedEmail] = useState([])
-const[selectedId, setSelectedId] = useState([])
     
-    
-    const columns = [
-        {dataField: 'id', text: "ID", hidden: true},
-        {dataField: 'firstName', text: "First Name", sort: true, filter: textFilter()},
-        {dataField: 'maidenName', text: "Maiden Name", sort: true, filter: textFilter()},
-        {dataField: 'lastName', text: "Last Name", sort: true,filter: textFilter()},
-        {dataField: 'address', text: "Address", filter: textFilter()},
-        {dataField: 'city', text: "City", filter: textFilter()},
-        {dataField: 'zip', text: "Zip", filter: textFilter()},
-        {dataField: 'state', text: "State", filter: textFilter()},
-        {dataField: 'membership', text: "Memebership", sort: true, filter: textFilter()},
-        {dataField: 'groupList', text: "Group", sort: true, filter: textFilter()}
-
+        const columns = [
+        {dataField: 'presetId', text: "Label Id", sort: true, filter: textFilter()},
+        {dataField: 'presetName', text: "Label Name", sort: true, filter: textFilter()},
+        {dataField: 'dateAdded', text: "Added", sort: true, filter: textFilter()}
     ]
 
 
@@ -99,13 +86,14 @@ const[selectedId, setSelectedId] = useState([])
                 console.log('sizePerPage', this.sizePerPage);
             }
 
-
         }
     )
 
         const rowEvents = {
             onDoubleClick: (e, row, rowIndex) => {
+              console.log(row.presetId)
               showDetails(row);
+              
             }
           }
 
@@ -115,71 +103,53 @@ const[selectedId, setSelectedId] = useState([])
             hideSelectAll: false,
             bgColor: 'gold',
             onSelect: (row, isSelect, rowIndex, e) => {
-                setSelectedEmail((prev) => [...prev, row.email])
-                setSelectedId((prev) => [...prev, row.id])
-                
-                console.log(row.email)
+                setLabelToBeAdded(row.presetId)
+                console.log(LabelToBeAdded)
              
               }
 
           };
 
           const navigate = useNavigate();
+
           
           function showDetails(row){
-            navigate('/admin-member-profile', {state:
+
+            console.log(row.presetId)
+
+            navigate('/label-members', {state:
                 {
-                    id: row.id
+                    id: row.presetId,
+                    name: row.presetName,
+                    dateAdded: row.dateAdded
+                    
                 }
             });
 
-          
-        }
-        
-        function emailPeople(){
-            navigate('/admin-member-email', {state:
-                {
-                    arrayId: selectedEmail
-                }
-            });
-
-        }
-
-
-        function addMemberToGroup(){
-            navigate('/admin-group-all', {state:
-                {
-                    arrayId: selectedId,
-                    userSent: true
-                }
-            });
-
+           
         }
 
         return(
 
             <div>
-                <Container fluid>
 
-{/* <AdminAddMemberToGroup selected = {selectedId} /> */}
+                <Container>
 
-<Button onClick = {emailPeople}>Email Selected</Button>
-
-<Button onClick = {addMemberToGroup}>Add to Group</Button>
-
-<Button onClick = {addMemberToGroup}>Create Label</Button>
-
-
+                  {
+                    users && <Button onClick = {addMembers}>
+                    Add Members to the Selected Label
+                  </Button>
+                  }
+                  
 
 
 <ToolkitProvider
-  keyField="id"
+  keyField="presetId"
   data={ props.data}
   columns={ columns }
   exportCSV={ { onlyExportFiltered: true, exportAll: false } }
   search
 >
-
     
   {
     props => (
@@ -193,6 +163,7 @@ const[selectedId, setSelectedId] = useState([])
           filter={ filterFactory() }
           rowEvents={rowEvents}
           selectRow = {selectRow}
+
         />
       </div>
     )

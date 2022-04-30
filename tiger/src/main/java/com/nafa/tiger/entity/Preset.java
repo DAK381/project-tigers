@@ -30,6 +30,7 @@ public class Preset {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long presetId;
 	private String presetName;
+	private String dateAdded;
 	
 	@ManyToMany(mappedBy = "presetUser", cascade = CascadeType.ALL)
 	@JsonIgnore

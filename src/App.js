@@ -44,6 +44,11 @@ import AdminGroupSearch from './component/Admin/AdminGroup/AdminGroupSearch';
 import AdminAllGroup from './component/Admin/AdminGroup/AdminAllGroup';
 import AdminGroupMemberList from './component/Admin/AdminGroup/AdminGroupMemberList';
 import AdminAddMemberToGroup from './component/Admin/AdminMember/AdminAddMemberToGroup';
+import ShowLabels from './component/Admin/AdminLabels/ShowLabels';
+import CreateLabel from './component/Admin/AdminLabels/CreateLabel';
+import LabelMembers from './component/Admin/AdminLabels/LabelMembers';
+
+
 
 function App() {
 
@@ -113,6 +118,13 @@ function App() {
         { userData.role === "ADMIN" && <Route path="/admin-group-member" element={<AdminGroupMemberList/>} /> }
 
         { userData.role === "ADMIN" && <Route path="/admin-add-member-group" element={<AdminAddMemberToGroup/>} /> }
+
+        { userData.role === "ADMIN" && <Route path="/admin-add-label" element={<CreateLabel/>} /> }
+
+        { userData.role === "ADMIN" && <Route path="/admin-show-label" element={<ShowLabels/>} /> }
+
+
+        { userData.role === "ADMIN" && <Route path="/label-members" element={<LabelMembers/>} /> }
 
 
         { token && <Route path="/user-profile" element={<Profile userData={userData}/>} /> }

@@ -21,7 +21,7 @@ public class PresetController {
     @Autowired
 	private PresetService presetService;
 
-    @PutMapping("/addPreset")
+    @PostMapping("/addPreset")
 	public String addPreset(@RequestBody Preset preset, final HttpServletRequest request) {
 		return presetService.addPreset(preset);
 	}
