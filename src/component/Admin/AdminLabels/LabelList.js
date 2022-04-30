@@ -50,7 +50,7 @@ const addMembers = () => {
       .then(
         res => {
           console.log(userId, LabelToBeAdded)
-          navigate('/admin-group-all');
+          navigate('/admin-show-label');
         }
         
       ).catch(err => console.log(err))
@@ -59,7 +59,6 @@ const addMembers = () => {
 
 }
 
-    
         const columns = [
         {dataField: 'presetId', text: "Label Id", sort: true, filter: textFilter()},
         {dataField: 'presetName', text: "Label Name", sort: true, filter: textFilter()},
