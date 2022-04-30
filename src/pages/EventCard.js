@@ -33,6 +33,7 @@ function EventCard(props) {
 	// const eventDate = dayjs(eventInfo.eventDate).format('DD/MMMM/YYYY')
 	const startTime = dayjs(eventInfo.startTime, ["HH.mm"]).format('hh:mm A')
 	const endTime = dayjs(eventInfo.endTime, ["HH.mm"]).format('hh:mm A')
+	const eventDate = dayjs(eventInfo.eventDate).format("dddd, MMMM D YYYY")
 
 	// const[isPast, setIsPast] = useState(true)
 
@@ -129,7 +130,8 @@ function EventCard(props) {
 								<Modal.Body>Details: {eventInfo.eventDescription}</Modal.Body>
 								{/* {eventInfo.eventDate != null && <Modal.Body>When: {eventInfo.eventDate} </Modal.Body>} */}
 
-								{eventInfo.eventDate != null && <Modal.Body>When: <DayJS format="MMMM-DD-YYYY">{eventInfo.eventDate}</DayJS>
+								{/* {eventInfo.eventDate != null && <Modal.Body>When: <DayJS format="MMMM-DD-YYYY">{eventInfo.eventDate}</DayJS> */}
+								{eventInfo.eventDate != null && <Modal.Body>When: {eventDate}
  </Modal.Body>}
 								
 								{/* {eventInfo.startTime!= null && <Modal.Body>Starts at: {moment(eventInfo.startTime, ["HH.mm"]).format("hh:mm a")} </Modal.Body>} */}

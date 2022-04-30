@@ -177,7 +177,7 @@ const[selectedId, setSelectedId] = useState([])
 
 <Button onClick = {addMemberToGroup}>Add to Group</Button>
 
-<Button onClick = {addMemberToLabel}>Add to Laebl</Button>
+<Button onClick = {addMemberToLabel}>Add to Label</Button>
 
 
 

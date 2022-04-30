@@ -11,10 +11,13 @@ export default function CreateLabel(){
 
     var now = dayjs();
 
+    dayjs(now, "MM-DD-YYYY")
+
+   
 
 
     const [presetName, setLabelName] = useState("");
-    const [dateAdded, setDateAdded] = useState(now);
+    const [dateAdded, setDateAdded] = useState(now.format("YYYY-MM-DD"));
 
     const navigate = useNavigate();
   

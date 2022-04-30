@@ -13,6 +13,7 @@ import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 
 import ToolkitProvider, {CSVExport} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
 
+import DeleteLabel from "./DeleteLabel";
 
 import { Container, Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -36,20 +37,19 @@ export default function LabelList(props){
    const users = props.userInfo;
    console.log(users)
 
-const[selected, setSelected] = useState([])
 
-const[LabelToBeAdded, setLabelToBeAdded] = useState();
+const[selectedLabel, setSelectedLabel] = useState();
 
 const addMembers = () => {
-  console.log(LabelToBeAdded)
+  console.log(selectedLabel)
   users.map(
     (userId) =>
     {
       
-      axios.put(`/addMemberToPreset/${LabelToBeAdded}/${userId}`)
+      axios.put(`/addMemberToPreset/${selectedLabel}/${userId}`)
       .then(
         res => {
-          console.log(userId, LabelToBeAdded)
+          console.log(userId, selectedLabel)
           navigate('/admin-show-label');
         }
         
@@ -102,8 +102,8 @@ const addMembers = () => {
             hideSelectAll: false,
             bgColor: 'gold',
             onSelect: (row, isSelect, rowIndex, e) => {
-                setLabelToBeAdded(row.presetId)
-                console.log(LabelToBeAdded)
+                setSelectedLabel(row.presetId)
+                console.log(selectedLabel)
              
               }
 
@@ -138,6 +138,12 @@ const addMembers = () => {
                     users && <Button onClick = {addMembers}>
                     Add Members to the Selected Label
                   </Button>
+                  }
+
+                  {
+                      selectedLabel && <DeleteLabel id = {selectedLabel} />
+                  
+                      
                   }
                   
 
