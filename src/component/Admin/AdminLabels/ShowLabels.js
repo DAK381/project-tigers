@@ -2,10 +2,10 @@ import React from "react";
 import { useState } from "react";
 import axios from '../../../axios';
 import { useEffect} from "react";
-import AdminGroupSearch from "./AdminGroupSearch";
 import { useLocation } from "react-router-dom";
+import LabelList from "./LabelList";
 
-export default function AdminAllGroup(){
+export default function ShowLabels(){
 
 
     const location = useLocation();
@@ -15,7 +15,7 @@ export default function AdminAllGroup(){
     const[data, setData] = useState([]);
     
     async function getData( ){
-        axios.get("/search/allgroup"
+        axios.get("/search/allPresets"
             )
             .then(
                 (response) =>
@@ -27,6 +27,8 @@ export default function AdminAllGroup(){
                 }
             )
     }
+
+    console.log(data)
 
     
     
@@ -44,13 +46,13 @@ console.log(location.state)
     if(location.state)
 {
     return (
-    <AdminGroupSearch data = {data} userInfo = {location.state.arrayId}/>
+    <LabelList data = {data} userInfo = {location.state.arrayId}/>
     )
 }
 
 else{
     return (
-        <AdminGroupSearch data = {data}/>
+        <LabelList data = {data}/>
         )
 } 
 
@@ -60,5 +62,3 @@ else{
 
     
 }
-
-

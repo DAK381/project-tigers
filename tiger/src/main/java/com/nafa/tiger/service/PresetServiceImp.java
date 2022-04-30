@@ -48,6 +48,13 @@ public class PresetServiceImp implements PresetService{
            return new User();
 
 	}
+    
+    @Override
+    public String deletePreset(Long presetId) {
+    	presetRepository.deleteById(presetId);
+        return "deleted";
+    }
+    
 
     @Override
     public Collection<User> getMembersByPreset(Long presetId){

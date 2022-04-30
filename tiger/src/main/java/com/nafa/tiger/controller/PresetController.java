@@ -21,7 +21,7 @@ public class PresetController {
     @Autowired
 	private PresetService presetService;
 
-    @PutMapping("/addPreset")
+    @PostMapping("/addPreset")
 	public String addPreset(@RequestBody Preset preset, final HttpServletRequest request) {
 		return presetService.addPreset(preset);
 	}
@@ -35,6 +35,11 @@ public class PresetController {
 	public void addMemberToPreset(@PathVariable("presetId") Long presetId,@PathVariable("userId") Long userId){
 		presetService.addMemberToPreset(presetId,userId);
 	}
+    
+    @DeleteMapping("/preset/delete/{presetId}")
+    public String deleteEvent(@PathVariable("presetId") Long presetId){
+        return presetService.deletePreset(presetId);
+    }
 
     @GetMapping("/search/membersByPreset/{presetId}")
 	public Collection<User> getMembersByPreset(@PathVariable("presetId") Long presetId){
