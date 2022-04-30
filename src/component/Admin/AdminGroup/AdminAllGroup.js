@@ -29,9 +29,6 @@ export default function AdminAllGroup(){
     }
 
     
-    
-
-    
     useEffect(() => {
             getData();
 

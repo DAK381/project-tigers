@@ -1,5 +1,5 @@
 import AdminNavigation from "./AdminNavigation";
-import UpcomingEvent from "../../pages/UpcomingEvent";
+import UpcomingEvent from "../../pages/EventsForHome";
 import { Container } from "react-bootstrap";
 
 import AdminScholarshipAddForm from "../Forms/AdminScholarshipAddForm";

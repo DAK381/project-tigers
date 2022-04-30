@@ -1,6 +1,6 @@
 import Slider from "../component/layout/Slider";
 import { Link } from "react-router-dom";
-import UpcomingEvent from "./UpcomingEvent";
+import UpcomingEvent from "./EventsForHome";
 import CardGroup from 'react-bootstrap/CardGroup'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
@@ -69,7 +69,7 @@ function Home(props) {
                         <h3 className = "heading">Upcoming Events</h3>
 
                         <div className = "underline"></div>
-                        <UpcomingEvent />
+                        <UpcomingEvent/>
                     </div>
                 </div>
             </div>

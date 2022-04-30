@@ -2,15 +2,37 @@ import CardGroup from 'react-bootstrap/CardGroup'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import photoT from "../Images/tempevent.jpg"
-
+import axios from '../axios';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
+import { getEvents } from "../AxiosRequests/axios";
+import { useState, useEffect } from "react";
 
 function UpcomingEvent(props){
 
+  const [event, setEvents] = useState([]);
+
+  async function getData( ){
+    axios.get("/admin/event/all-event")
+    .then((response) =>
+    {
+        setEvents(response.data)
+    }
+    )
+}
+
+
     return( 
+<div>
+
+
+
+
+      
+      <Button>
+      Choose which events and scholarships to display on the homepage
+  </Button>
 
       <Container>
         <div>
@@ -18,11 +40,11 @@ function UpcomingEvent(props){
   <Row>
     <Col md>
   <Card className = "mb-3">
-    <Card.Img va driant="top" src= {photoT} />
+    <Card.Img va driant="top" src= {event.eventImage} />
     <Card.Body>
       <Card.Title>EVENT 1</Card.Title>
       <Card.Text>
-      Description
+      {event.eventDate}
       </Card.Text>
     </Card.Body>
     <Button variant = "warning"> Read More</Button>
@@ -80,7 +102,7 @@ function UpcomingEvent(props){
         </div>
         </Container>
 
-
+        </div>
 
 
     )
