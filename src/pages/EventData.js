@@ -109,7 +109,7 @@ function EventData(props){
 
 
                             
-                            <EventCard event={event} userData = {props.userData} admin = {props.admin}/>
+                            <EventCard event={event} userData={props.userData} />
                         </div>
                     ))}  
 

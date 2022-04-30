@@ -45,7 +45,7 @@ function ScholarshipCard(props) {
 						 <CardHeader>
 						 Deadline {scholarship.remaining}. </CardHeader>}
 
-						<Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + scholarship.scholarshipImage} width={400} height={400} alt='...' />
+						<Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + scholarship.scholarshipImage} alt='...' />
 						<Card.Body>
 							<Card.Title>{scholarship.scholarshipName}</Card.Title>
 
@@ -88,7 +88,7 @@ function ScholarshipCard(props) {
 								</Modal.Footer>
 							</Modal>
 
-							{props.admin && < Button onClick = {() => {updateScholarship()}}>Update Scholarship</Button>}
+							{props.userData.role === "ADMIN" && < Button onClick = {() => {updateScholarship()}}>Update Scholarship</Button>}
 									
 						</Card.Body>
 

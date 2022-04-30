@@ -2,9 +2,7 @@ import { Nav } from 'react-bootstrap';
 import { NavDropdown } from 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar'
 import { Container } from 'react-bootstrap';
-import AdminProfile from './AdminProfile';
 import logo from "./logo.png"
-import AdminScholarshipView from './AdminScholarshipView';
 
 function AdminNavigation(){
 
@@ -25,26 +23,26 @@ function AdminNavigation(){
     <Nav className="justify-content-end flex-grow-1 pe-3">
       
       <NavDropdown title="Members" id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
-        <NavDropdown.Item href="admin-member"><h4>View Members</h4></NavDropdown.Item>
-        <NavDropdown.Item href="admin-member-add"><h4>Add Members</h4></NavDropdown.Item>
+        <NavDropdown.Item href="admin-member"><h5>View Members</h5></NavDropdown.Item>
+        <NavDropdown.Item href="admin-member-add"><h5>Add Members</h5></NavDropdown.Item>
         <NavDropdown.Divider />
-        <NavDropdown.Item href="admin-contact">Contact Members</NavDropdown.Item>
+        <NavDropdown.Item href="admin-contact"><h5>Contact Members</h5></NavDropdown.Item>
       </NavDropdown>
 
 
       <NavDropdown title="Groups" id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
-        <NavDropdown.Item href="admin-group-all">View Groups</NavDropdown.Item>
-        <NavDropdown.Item href="admin-group-create">Create Group</NavDropdown.Item>
+        <NavDropdown.Item href="admin-group-all"><h5>View Groups</h5></NavDropdown.Item>
+        <NavDropdown.Item href="admin-group-create"><h5>Create Group</h5></NavDropdown.Item>
       </NavDropdown>
 
       <NavDropdown title="Events" id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
-        <NavDropdown.Item href="admin-event-view">View Events</NavDropdown.Item>
-        <NavDropdown.Item href="admin-event-add">Add Events</NavDropdown.Item>
+        <NavDropdown.Item href="events"><h5>View Events</h5></NavDropdown.Item>
+        <NavDropdown.Item href="admin-event-add"><h5>Add Events</h5></NavDropdown.Item>
       </NavDropdown>
 
       <NavDropdown title="Scholarships" id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
-        <NavDropdown.Item href="admin-scholarship-view">View Scholarships</NavDropdown.Item>
-        <NavDropdown.Item href="admin-scholarship-add">Add Scholarships</NavDropdown.Item>
+        <NavDropdown.Item href="scholarship"><h5>View Scholarships</h5></NavDropdown.Item>
+        <NavDropdown.Item href="admin-scholarship-add"><h5>Add Scholarships</h5></NavDropdown.Item>
       </NavDropdown>
 
       <Nav.Link href="user-profile" style={{fontSize: "28px"}}>Profile</Nav.Link> 

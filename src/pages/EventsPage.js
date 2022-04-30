@@ -10,7 +10,7 @@ function EventPage(props){
        
       </h1>
       <Container fluid>
-        <EventData userData = {props.userData} admin = {false}/>
+        <EventData userData={props.userData}/>
       </Container>
       
     </div>

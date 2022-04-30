@@ -1,7 +1,7 @@
 import { Container } from "react-bootstrap";
 import ScholarshipData from './ScholarshipData';
 
-function Scholarship(){
+function Scholarship(props){
 
   return(
     <div>
@@ -9,7 +9,7 @@ function Scholarship(){
         Scholarships
       </h1> 
       <Container fluid>
-        <ScholarshipData />
+        <ScholarshipData userData={props.userData}/>
       </Container>
     </div>
   )
