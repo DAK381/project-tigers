@@ -6,6 +6,7 @@ import { Tagged } from 'react-tagged'
 import { useNavigate } from 'react-router-dom';
 import 'react-tagged/dist/index.css' // styles
 import AttendedEventCard from './AttendedEventCard';
+import Relationship from './Relationship';
 
 
 function Profile(props) {
@@ -114,6 +115,7 @@ function Profile(props) {
 
                                 <div className="buttons"> <button className="btn btn-outline-primary" onClick = {updateProfile}>Edit Profile</button> <button
                                     className="btn btn-outline-primary">Activity</button> </div>
+                                    <Relationship />
                             </div>
                         </div>
                     </div>
