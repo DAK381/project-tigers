@@ -33,6 +33,7 @@ return (
     
         <Nav className="justify-content-end flex-grow-1 pe-3" >
         <Nav.Link href="./"> <h2> Home </h2></Nav.Link>
+        <Nav.Link href="about"> <h2> About </h2></Nav.Link>
         <Nav.Link href="events"><h2>Events</h2></Nav.Link>
         <Nav.Link href="scholarship"><h2> Scholarships </h2></Nav.Link>
         { !token && <Nav.Link href="log-in"> <h2> Log In </h2></Nav.Link> }
