@@ -10,8 +10,7 @@ import axios from '../../axios';
 
 
 function UpcomingScholarships(props){
-  const[events, setEvents] = useState([]);
-  const navigate = useNavigate();
+    const [scholarships, setScholarships] = useState([]);  const navigate = useNavigate();
 
 
   const dayjs = require('dayjs');
@@ -27,7 +26,7 @@ function UpcomingScholarships(props){
  
   async function getData(){
       axios.get("/scholarship/get-all-scholarship").then((response) =>{
-          setEvents(response.data)
+        setScholarships(response.data)
         
       })
     
@@ -38,21 +37,21 @@ function UpcomingScholarships(props){
 
 }, []);
 
-console.log(events)
+console.log(scholarships)
 
-function eventSignUp(){
-  console.log(props.userData)
+// function eventSignUp(){
+//   console.log(props.userData)
  
-    navigate('/event-signup', {state:
-      {
-        event: events[0],
-        user : props.userData
+//     navigate('/event-signup', {state:
+//       {
+//         event: events[0],
+//         user : props.userData
 
-      }
-    });
+//       }
+//     });
 
 
-}
+// }
 
  
 
@@ -68,7 +67,7 @@ function eventSignUp(){
 
 {
 
-events[0] && 
+scholarships[0] && 
 
 (
 
@@ -76,15 +75,15 @@ events[0] &&
 <Card className = "mb-3">
   <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/tempevent.jpg'} />
   <Card.Body>
-    <Card.Title>{events[0].eventName}</Card.Title>
+    <Card.Title>{scholarships[0].scholarshipName}</Card.Title>
     <Card.Text>
-    {dayjs(events[0].eventDate).format("dddd, MMMM D YYYY")}
+    Deadline: {dayjs(scholarships[0].deadline).format("dddd, MMMM D YYYY")}
     </Card.Text>
   </Card.Body>
   {/* <Button variant = "warning"> Read More</Button> */}
   <Card.Footer>
   
-    <small className="text-muted"> days ago</small>
+    <small className="text-muted">{dayjs(scholarships[0].addedDate).fromNow()}</small>
   </Card.Footer>
 </Card>
 </Col>
@@ -97,20 +96,20 @@ events[0] &&
 
 
 {
-  events[1] && (
+  scholarships[1] && (
     <Col md>
 <Card className = "mb-3">
   <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/tempevent.jpg'} />
   <Card.Body>
-    <Card.Title>{events[1].eventName}</Card.Title>
+    <Card.Title>{scholarships[1].scholarshipName}</Card.Title>
     <Card.Text>
-    {dayjs(events[1].eventDate).format("dddd, MMMM D YYYY")}
+    Deadline: {dayjs(scholarships[1].deadline).format("dddd, MMMM D YYYY")}
     </Card.Text>
   </Card.Body>
   {/* <Button variant = "warning" onClick = {eventSignUp}> Read More</Button> */}
   <Card.Footer>
   
-    <small className="text-muted">Added 5 days ago</small>
+    <small className="text-muted">{dayjs(scholarships[1].addedDate).fromNow()}</small>
   </Card.Footer>
 </Card>
 </Col>
@@ -121,20 +120,20 @@ events[0] &&
 
 
 {
-  events[2] && (
+  scholarships[2] && (
     <Col md>
 <Card className = "mb-3">
   <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/tempevent.jpg'} />
   <Card.Body>
-    <Card.Title>events[2].eventName</Card.Title>
+    <Card.Title>{scholarships[2].scholarshipName}</Card.Title>
     <Card.Text>
-   {dayjs(events[2].eventDate).format("dddd, MMMM D YYYY")}
+   Deadline: {dayjs(scholarships[2].deadline).format("dddd, MMMM D YYYY")}
     </Card.Text>
   </Card.Body>
   {/* <Button variant = "warning"> Read More</Button> */}
   <Card.Footer>
   
-    <small className="text-muted">Added 5 days ago</small>
+    <small className="text-muted">{dayjs(scholarships[2].addedDate).fromNow()}</small>
   </Card.Footer>
 </Card>
 </Col>

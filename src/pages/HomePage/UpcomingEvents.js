@@ -10,7 +10,7 @@ import axios from '../../axios';
 
 
 function UpcomingEvent(props){
-  
+
   const[events, setEvents] = useState([]);
   const navigate = useNavigate();
 
@@ -42,19 +42,7 @@ function UpcomingEvent(props){
 
 console.log(events)
 
-function eventSignUp(){
-  console.log(props.userData)
- 
-    navigate('/event-signup', {state:
-      {
-        event: events[0],
-        user : props.userData
 
-      }
-    });
-
-
-}
 
  
 

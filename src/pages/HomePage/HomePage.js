@@ -1,6 +1,8 @@
 import Slider from "../../component/layout/Slider";
 import UpcomingEvent from "./UpcomingEvents";
 import { Nav, Link } from "react-bootstrap";
+import UpcomingScholarships from "./UpcomingScholarships";
+
 function Home(props) {
     const userData = props.userData;
 
@@ -54,13 +56,13 @@ function Home(props) {
                 <h3 className = "heading">Latest Scholarships</h3>
 
                 <div className = "underline"></div>
-                <UpcomingEvent />
+                <UpcomingScholarships/>
             </div>
 
             <div>
 <Nav.Link  href={`/events`}>
   <hr />
-  <h5 className="text-center text-warning">View More Events</h5>
+  <h5 className="text-center text-warning">View More Scholarships</h5>
 </Nav.Link>
 </div>
 
