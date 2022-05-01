@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from "../../axios";
+import axios from "../../../axios";
 import { useHistory, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import AdminEventDelete from './AdminEventDelete';
 import { Form } from "react-bootstrap";
-import Pictures from "../layout/Pictures";
+import Pictures from "../../layout/Pictures";
 import Button from 'react-bootstrap/Button';
 
 export default function AdminEventUpdate(props) {

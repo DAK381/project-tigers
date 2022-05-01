@@ -1,11 +1,11 @@
-import axios from '../axios';
+import axios from '../../axios';
 import { useEffect, useState } from 'react';
 import EventCard from './EventCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { LoadingSpinner } from '../component/Loader/Loader';
+import { LoadingSpinner } from '../../component/Loader/Loader';
 
 function EventData(props){
 

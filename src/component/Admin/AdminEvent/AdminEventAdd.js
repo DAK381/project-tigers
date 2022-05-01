@@ -1,7 +1,7 @@
-import AdminNavigation from "./AdminNavigation";
+import AdminNavigation from "../AdminNavigation";
 import { Container } from "react-bootstrap";
 
-import AdminEventAddForm from "../Forms/AdminEventAddForm";
+import AdminEventAddForm from "./AdminEventAddForm";
 
 function AdminEventAdd(){
 

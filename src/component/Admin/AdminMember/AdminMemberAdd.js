@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import {useNavigate,Link} from 'react-router-dom'
-import axios from "../../axios";
+import axios from "../../../axios";
 
 function SignUpForm(props){
   const [firstName, setfirstName] = useState('');

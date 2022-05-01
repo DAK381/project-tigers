@@ -6,39 +6,33 @@ import LogInPage from './component/Forms/LogInForm';
 import SignUpForm from './component/Forms/SignUpForm';
 import ForgetPasswordPage from './component/Forms/Forget';
 import NewUserInfo from './component/NewUserInfo';
-import Scholarship from './pages/Scholarships';
-import EventPage from './pages/EventsPage';
+import Scholarship from './pages/Scholarship/Scholarships';
+import EventPage from './pages/Events/EventsPage';
 import Contact from './pages/ContactUs';
 import About from './pages/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css"
 import Footer from './pages/Footer';
 import AdminHome from './component/Admin/AdminHome';
-import AdminMemberAdd from './component/Admin/AdminMemberAdd';
-import AdminMembers from './component/Admin/AdminMembers';
-import AdminMemberSearch from './component/Admin/AdminMemberSearch';
+import AdminMemberAdd from './component/Admin/AdminMember/AdminMemberAdd';
 import AdminNavigation from './component/Admin/AdminNavigation';
-import AdminProfile from './component/Admin/AdminProfile';
-import AdminRemoveMember from './component/Admin/AdminRemoveMember';
 import AdminContact from './component/Admin/AdminContact';
-import AdminEventAdd from './component/Admin/AdminEventAdd';
-import AdminMemberView from './component/Admin/AdminMemberView';
-import AdminScholarshipAdd from './component/Admin/AdminScholarshipAdd';
+import AdminEventAdd from './component/Admin/AdminEvent/AdminEventAdd';
+import AdminScholarshipAdd from './component/Admin/AdminScholarship/AdminScholarshipAdd';
 import { Dashboard } from './dashboard';
 import Profile from './pages/Profile/Profile';
 import React, { useState } from 'react';
 import { fetchUserData } from './authenticationService';
-import EventDetails from './pages/EventDetails';
-import AdminEventUpdate from './component/Admin/AdminEventUpdate';
-import AdminScholarshipUpdate from './component/Admin/AdminScholarshipUpdate';
+import EventDetails from './pages/Events/EventDetails';
+import AdminEventUpdate from './component/Admin/AdminEvent/AdminEventUpdate';
+import AdminScholarshipUpdate from './component/Admin/AdminScholarship/AdminScholarshipUpdate';
 import AdminMemberProfile from './component/Admin/AdminMember/AdminMemberProfile';
 import ProfileEdit from './pages/Profile/UserEdit';
-import UpdatedProfile from './pages/Profile/UpdatedProfile';
 import AdminMemberEmail from './component/Admin/AdminMember/AdminMemberEmail';
-import EventRegistration from './component/Forms/EventRegistration';
+import EventRegistration from './pages/Events/EventRegistration';
 import AdminMemberAll from './component/Admin/AdminMember/AdminMemberAll';
 import AdminMemberRSVP from './component/Admin/AdminMember/AdminMemberRSVP';
-import EventCalendar from './pages/EventCalendar';
+import EventCalendar from './pages/Events/EventCalendar';
 import AdminGroupCreate from './component/Admin/AdminGroup/AdminGroupCreate';
 import AdminGroupSearch from './component/Admin/AdminGroup/AdminGroupSearch';
 import AdminAllGroup from './component/Admin/AdminGroup/AdminAllGroup';
@@ -91,15 +85,12 @@ function App() {
         { userData.role === "ADMIN" && <Route path="/admin" element={<AdminHome/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-member" element={<AdminMemberAll/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-member-add" element={<AdminMemberAdd/>} /> }
-        { userData.role === "ADMIN" && <Route path="/admin-member-search" element={<AdminMemberSearch/>} /> }
-        { userData.role === "ADMIN" && <Route path="/admin-profile" element={<AdminProfile/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-contact" element={<AdminContact/>} /> }
 
         { userData.role === "ADMIN" && <Route path="/admin-event-update" element={<AdminEventUpdate/>} /> }
 
         { userData.role === "ADMIN" && <Route path="/admin-event-add" element={<AdminEventAdd/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-scholarship-add" element={<AdminScholarshipAdd/>} /> }
-        { userData.role === "ADMIN" && <Route path="/admin-member-view" element={<AdminMemberView/>} /> }
 
         { userData.role === "ADMIN" && <Route path="/admin-member-profile" element={<AdminMemberProfile/>} /> }
 

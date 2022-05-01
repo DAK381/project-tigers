@@ -1,9 +1,9 @@
-import axios from '../axios';
+import axios from '../../axios';
 import { useEffect, useState } from 'react';
 import ScholarshipCard from './ScholarshipCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
-import { LoadingSpinner } from '../component/Loader/Loader';
+import { LoadingSpinner } from '../../component/Loader/Loader';
 
 function ScholarshipData(props) {
 

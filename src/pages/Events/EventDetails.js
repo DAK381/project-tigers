@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { CardBody, List } from "reactstrap";
 import { Container, Card} from "react-bootstrap";
-import EventRegistration from "../component/Forms/EventRegistration";
+import EventRegistration from "./EventRegistration";
 function EventDetails(){
 
 const navigate = useNavigate();

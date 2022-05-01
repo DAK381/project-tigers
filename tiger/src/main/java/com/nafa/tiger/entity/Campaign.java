@@ -15,6 +15,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="campaign")
 public class Campaign {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,7 @@ public class Campaign {
     private String campaignName;
     private String campaignDescription;
    
-    @ManyToMany(mappedBy = "user_campaign", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "userCampaign", cascade = CascadeType.ALL)
     @JsonIgnore
     private Collection<User> campaignUser = new ArrayList<>();
 

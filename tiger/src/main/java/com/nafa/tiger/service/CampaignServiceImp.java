@@ -1,7 +1,6 @@
 package com.nafa.tiger.service;
 
 import com.nafa.tiger.entity.Campaign;
-import com.nafa.tiger.entity.Group;
 import com.nafa.tiger.entity.User;
 import com.nafa.tiger.repository.CampaignRepository;
 import com.nafa.tiger.repository.MemberRepositrory;
@@ -32,8 +31,8 @@ public class CampaignServiceImp  implements CampaignService{
     }
 
     @Override
-    public String deleteCampaign(Long eventId) {
-        campaignRepository.deleteById(eventId);
+    public String deleteCampaign(Long campaignId) {
+        campaignRepository.deleteById(campaignId);
         return "deleted";
     }
 
@@ -66,8 +65,8 @@ public class CampaignServiceImp  implements CampaignService{
 
     @Override
     public Collection<User> getMembersByCampaign(Long campaignId) {
-    	Campaign event = campaignRepository.findById(campaignId).get();
-        return event.getCampaignUser();
+    	Campaign campaign = campaignRepository.findById(campaignId).get();
+        return campaign.getCampaignUser();
     }
 
 

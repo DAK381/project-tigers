@@ -21,11 +21,11 @@ public class CampaignController {
     }
 
     @PutMapping("/update-campaign/{campaignId}")
-    public Campaign updateScholarship(@PathVariable("scholarshipId") Long campaignId, @RequestBody Campaign campaign){
+    public Campaign update(@PathVariable("campaignId") Long campaignId, @RequestBody Campaign campaign){
         return  campaignService.update(campaignId,campaign);
     }
     @PostMapping("/add-campaign")
-    public String addScholarship(@RequestBody Campaign campaign){
+    public String addCampaign(@RequestBody Campaign campaign){
         return campaignService.addCampaign(campaign);
 
     }

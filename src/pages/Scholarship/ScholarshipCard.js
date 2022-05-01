@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal'
 import { CardFooter } from 'reactstrap';
 
-import './Card.css';
+import './../Card.css';
 import { ModalBody } from 'react-bootstrap';
 
 /*This creates a grid of Sholarship Cards */
