@@ -41,8 +41,9 @@ import AdminAddMemberToGroup from './component/Admin/AdminMember/AdminAddMemberT
 import ShowLabels from './component/Admin/AdminLabels/ShowLabels';
 import CreateLabel from './component/Admin/AdminLabels/CreateLabel';
 import LabelMembers from './component/Admin/AdminLabels/LabelMembers';
-
-
+import AddCampaign from './component/Admin/AdminCampaign/AddCampaign';
+import CampaignPage from './pages/Campaigns/CampaignPage';
+import UpdateCampaign from './component/Admin/AdminCampaign/UpdateCampaign';
 
 function App() {
 
@@ -78,6 +79,7 @@ function App() {
 
         <Route path="/events" element={<EventPage userData = {userData}/>} />
         <Route path="/scholarship" element={<Scholarship userData = {userData}/>} />
+        <Route path="/campaign" element={<CampaignPage userData = {userData}/>} />
         <Route path="/contact-us" element={<Contact/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/about" element={<About/>}/>
@@ -117,6 +119,9 @@ function App() {
 
         { userData.role === "ADMIN" && <Route path="/admin-show-label" element={<ShowLabels/>} /> }
         { userData.role === "ADMIN" && <Route path="/label-members" element={<LabelMembers/>} /> }
+
+        { userData.role === "ADMIN" && <Route path="/add-campaigns" element={<AddCampaign/>} /> }
+        { userData.role === "ADMIN" && <Route path="/update-campaigns" element={<UpdateCampaign/>} /> }
 
 
         { token && <Route path="/user-profile" element={<Profile userData={userData} isloading = {isLoading}/>} /> }

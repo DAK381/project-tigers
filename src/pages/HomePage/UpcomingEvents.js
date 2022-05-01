@@ -68,7 +68,7 @@ events[0] &&
   <Card.Body>
     <Card.Title>{events[0].eventName}</Card.Title>
     <Card.Text>
-    {events[0].eventDescription}
+    Deadline: {dayjs(events[0].eventDate).format("dddd, MMMM D YYYY")}
     </Card.Text>
   </Card.Body>
   {/* <Button variant = "warning"> Read More</Button> */}
@@ -94,8 +94,7 @@ events[0] &&
   <Card.Body>
     <Card.Title>{events[1].eventName}</Card.Title>
     <Card.Text>
-    {events[2].eventDescription}
-    </Card.Text>
+    Deadline: {dayjs(events[1].eventDate).format("dddd, MMMM D YYYY")}    </Card.Text>
   </Card.Body>
   {/* <Button variant = "warning" onClick = {eventSignUp}> Read More</Button> */}
   <Card.Footer>
@@ -116,10 +115,9 @@ events[0] &&
 <Card className = "mb-3">
   <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/tempevent.jpg'} />
   <Card.Body>
-    <Card.Title>events[2].eventName</Card.Title>
+    <Card.Title>{events[2].eventName}</Card.Title>
     <Card.Text>
-    events[2].eventDescription
-    </Card.Text>
+    Deadline: {dayjs(events[1].eventDate).format("dddd, MMMM D YYYY")}    </Card.Text>
   </Card.Body>
   {/* <Button variant = "warning"> Read More</Button> */}
   <Card.Footer>
