@@ -8,7 +8,8 @@ import 'react-tagged/dist/index.css' // styles
 import AttendedEventCard from './AttendedEventCard';
 import Relationship from './Relationship';
 import { LoadingSpinner } from '../../component/Loader/Loader';
-import RelationshipCard from './RelationshipCard';
+import RelationshipData from './RelationshipData';
+
 
 function Profile(props) {
     const userData = props.userData;
@@ -47,10 +48,10 @@ function Profile(props) {
             
         }).catch(err => console.log(err))
 
-        axios.get(`getallRelationship/${userData.id}`).then(res => {
-            setRelationshipData(res.data)
-            // console.log(relationshipData)
-        }).catch(err => console.log(err))
+        // axios.get(`getallRelationship/${userData.id}`).then(res => {
+        //     setRelationshipData(res.data)
+        //     // console.log(relationshipData)
+        // }).catch(err => console.log(err))
         
         
     }, [props.userData])
@@ -264,18 +265,12 @@ function Profile(props) {
                                     
                                     <div>
                                     <h1>Relationships:</h1>
-                                        {relationshipData.length}
-                                
-                                                {
+                                        
                                                 
-                                                relationshipData.map(
-                                                    (data) => {
+                                               {
 
-                                                    <RelationshipCard data = {data} />
-
-                                                }
-                                                )}
-                                                
+                                                    userData.id && <RelationshipData id = {userData.id} />
+                                               } 
                                           
                                     </div>
                                 

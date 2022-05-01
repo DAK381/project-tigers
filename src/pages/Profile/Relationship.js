@@ -59,7 +59,7 @@ export default function Relationship(props){
                  setData(response.data)
 
      
-                const options = data.map(d => ({
+               const options = data && data.map(d => ({
 
                     "value" : d.id,
                     "label" : d.firstName + " " + d.maidenName + " " + d.lastName
