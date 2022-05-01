@@ -1,35 +1,51 @@
-import React from 'react';
-import './Footer.css';
-import { Link } from 'react-router-dom';
-
-function Footer() {
+import React from "react";
+import ReactDOM from 'react-dom';
+import { SocialIcon } from 'react-social-icons';
+import {
+  Box,
+  Container,
+  Row,
+  Column,
+  Heading,
+} from "./FooterStyles";
+  
+const Footer = () => {
   return (
-    
-    <div className='footer-container'>
-      <section className='footer-heading'>
-        <p className='footer-heading'>
-          JOIN THE NAFA TODAY!
-        </p>
-        <p className='footer-heading-text'>
-        <Link to='sign-up'> Be a part of the Neville Family. </Link>
-        </p>
-
-      </section>
-      <div className ='footer-links'>
-        
-          <div className='footer-link-items'>
-            <h2>Stay Connected</h2>
-            <Link to='/'>Instagram</Link>
-            <Link to='/'>Facebook</Link>
-            <Link to='/'>Youtube</Link>
-            <Link to='/'>Twitter</Link>
-        
-        </div>
-      </div>
-
-     
-    </div>
+    <Box>
+      <h1 style={{ color: "gold", 
+                   textAlign: "center", 
+                   marginTop: "-50px" }}>
+        Find us on social media!
+      </h1>
+      <Container>
+        <Row>
+          <Column>
+            <Heading>Facebook</Heading>
+                <span style={{ marginLeft: "20px" }}>
+                <SocialIcon url="https://www.facebook.com/Neville-Alumni-and-Friends-Association-310455590523" />
+                </span>
+          </Column>
+          <Column>
+            <Heading>Instagram</Heading>
+                <span style={{ marginLeft: "20px" }}>
+                  <SocialIcon url="https://www.instagram.com/nevillehighschoolmonroe/" />
+                </span>
+          </Column>
+          <Column>
+            <Heading>Twitter</Heading>
+                <span style={{ marginLeft: "20px" }}>
+                <SocialIcon url="https://twitter.com/highneville" />
+                </span>
+          </Column>
+          <Column>
+            <Heading>Youtube</Heading>
+                <span style={{ marginLeft: "20px" }}>
+                  <SocialIcon url="https://www.youtube.com/channel/UC3gcyZzJzF1FHkoaCwTCs0g" />
+                </span>
+          </Column>
+        </Row>
+      </Container>
+    </Box>
   );
-}
-
+};
 export default Footer;

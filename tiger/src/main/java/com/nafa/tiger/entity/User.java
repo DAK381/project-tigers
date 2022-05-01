@@ -7,18 +7,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -68,7 +57,7 @@ public class User implements UserDetails{
 	private boolean enabled = false;
 	private Boolean locked =false;
 	@Column(name = "graduated_year")
-	private String graduatedYear; 
+	private String graduatedYear;
 	
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -93,6 +82,22 @@ public class User implements UserDetails{
 			inverseJoinColumns = @JoinColumn(name = "presetId", referencedColumnName = "presetId"))
 	@JsonIgnore
 	private Collection<Preset> presetUser = new ArrayList<>();
+
+//	@JsonIgnore
+//	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	@JoinTable(name="relationships")
+//	@JoinColumns({@JoinColumn(name="user_id",referencedColumnName = "user_id"),
+//			@JoinColumn(name="relationship", referencedColumnName = "relationship")})
+//	private Collection<User> relationships = new ArrayList<>();
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name= "relationship_user",
+		joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "relationof"))
+	@JsonIgnore
+	private Collection<UserRelationship> relationOfUser = new ArrayList<>();
+
+
+
 
 	//Test
 	public void setUserGroup(Set<Group> userGroup) {
