@@ -120,8 +120,8 @@ function App() {
         { userData.role === "ADMIN" && <Route path="/admin-show-label" element={<ShowLabels/>} /> }
         { userData.role === "ADMIN" && <Route path="/label-members" element={<LabelMembers/>} /> }
 
-        { userData.role === "ADMIN" && <Route path="/add-campaigns" element={<AddCampaign/>} /> }
-        { userData.role === "ADMIN" && <Route path="/update-campaigns" element={<UpdateCampaign/>} /> }
+        { userData.role === "ADMIN" && <Route path="/add-campaign" element={<AddCampaign/>} /> }
+        { userData.role === "ADMIN" && <Route path="/update-campaign" element={<UpdateCampaign/>} /> }
 
 
         { token && <Route path="/user-profile" element={<Profile userData={userData} isloading = {isLoading}/>} /> }
