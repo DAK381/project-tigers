@@ -1,5 +1,5 @@
 import Slider from "../component/layout/Slider";
-import UpcomingEvent from "./UpcomingEvent";
+import UpcomingEvent from "./UpcomingEvents";
 
 function Home(props) {
     const userData = props.userData;
@@ -35,10 +35,10 @@ function Home(props) {
            
             <div className = "container">
                 
-                        <h3 className = "heading">Upcoming Events</h3>
+                        <h3 className = "heading"> Events</h3>
 
                         <div className = "underline"></div>
-                        <UpcomingEvent />
+                        <UpcomingEvent userData = {userData}/>
                     </div>
                 </div>
             </div>

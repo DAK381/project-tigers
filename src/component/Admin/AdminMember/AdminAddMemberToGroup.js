@@ -32,7 +32,7 @@ export default function AdminAddMemberToGroup(props){
 
       
 
-    }, [])
+    }, [users])
 
     const addMembers = () => {
       console.log(selectedId)
@@ -53,7 +53,7 @@ export default function AdminAddMemberToGroup(props){
               navigate('/admin-group-all');
             }
             
-          ).catch(err => console.log(err))
+          ).catch(err => navigate('/admin-group-all'))
         }
       )
   }

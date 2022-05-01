@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import EventCard from './EventCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
-import Moment from 'react-moment';
-import moment from 'moment';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -34,19 +32,6 @@ function EventData(props){
         })
     }
 
-    // const event = {
-    //     eventDate: "2022-02-21",
-    //     startTime: "20:30",
-    //     endTime: "22:30"
-    //   };
-      
-    //   function getDates({eventDate, startTime, endTime}) {
-    //       const dt = eventDate.split('-');
-    //     dt[1]--; // fix month
-    //     const range= [new Date(...dt, ...startTime.split(':'), 0), new Date(...dt, ...endTime.split(':'), 0)];
-    //   }
-      
-    //   console.log(getDates(event));
 
     events.map(
         (event) => {

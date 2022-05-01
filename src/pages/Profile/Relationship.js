@@ -5,7 +5,7 @@ import { Modal, ModalBody } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 
 
-export default function Relationship(){
+export default function Relationship(props){
 
 
   const [show, setShow] = useState(false);

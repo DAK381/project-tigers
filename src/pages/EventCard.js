@@ -85,7 +85,7 @@ function EventCard(props) {
 			});
 		}
 		else{
-			console.log("have to login to register")
+			alert("have to login to register")
 		}
 
 	}

@@ -10,6 +10,8 @@ export default function ShowLabels(){
 
     const location = useLocation();
 
+    const[loading, setLoading] = useState(true);
+
     
    
     const[data, setData] = useState([]);
@@ -21,8 +23,7 @@ export default function ShowLabels(){
                 (response) =>
                 {
 
-                     setData(response.data)
-                      
+                     setData(response.data)                      
 
                 }
             )
@@ -36,6 +37,7 @@ export default function ShowLabels(){
     
     useEffect(() => {
             getData();
+            setLoading(false)
 
         }, []);
 

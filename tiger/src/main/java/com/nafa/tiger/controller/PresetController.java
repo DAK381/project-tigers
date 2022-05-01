@@ -36,6 +36,12 @@ public class PresetController {
 		presetService.addMemberToPreset(presetId,userId);
 	}
     
+    
+    @DeleteMapping("/removeMemberFromPreset/{presetId}/{userId}")
+	public void removeMemberFromPreset(@PathVariable("presetId") Long presetId,@PathVariable("userId") Long userId){
+		presetService.removeMemberfromPreset(presetId,userId);
+	}
+    
     @DeleteMapping("/preset/delete/{presetId}")
     public String deleteEvent(@PathVariable("presetId") Long presetId){
         return presetService.deletePreset(presetId);
