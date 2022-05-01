@@ -5,10 +5,7 @@ function EventPage(props){
 
   return(
     <div>
-      <h1>
-        Events
-       
-      </h1>
+      
       <Container fluid>
         <EventData userData={props.userData}/>
       </Container>

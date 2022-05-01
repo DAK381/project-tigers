@@ -5,9 +5,7 @@ function Scholarship(props){
 
   return(
     <div>
-      <h1>
-        Scholarships
-      </h1> 
+      
       <Container fluid>
         <ScholarshipData userData={props.userData}/>
       </Container>

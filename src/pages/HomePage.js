@@ -1,5 +1,5 @@
 import Slider from "../component/layout/Slider";
-import UpcomingEvent from "./UpcomingEvent";
+import UpcomingEvent from "./UpcomingEvents";
 
 function Home(props) {
     const userData = props.userData;

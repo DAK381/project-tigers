@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import ScholarshipCard from './ScholarshipCard';
 import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
-
+import { LoadingSpinner } from '../component/Loader/Loader';
 
 function ScholarshipData(props) {
 
@@ -19,9 +19,13 @@ function ScholarshipData(props) {
 
 
     const [scholarships, setScholarships] = useState([]);
+    const[loading, setLoading]= useState(true);
+
+
     async function getData() {
         axios.get("/scholarship/get-all-scholarship").then((response) => {
             setScholarships(response.data)
+            setLoading(false)
         })
     }
 
@@ -44,7 +48,22 @@ function ScholarshipData(props) {
     }, []);
 
     return (
+
         <div>
+
+{
+            loading?
+            <LoadingSpinner />
+            :
+
+
+
+        
+        <div>
+
+<h1>
+        Scholarships
+      </h1> 
             <CardGroup>
                 <Row className='row-cols-1 row-cols-md-3 p-2 g-4'>
 
@@ -59,6 +78,12 @@ function ScholarshipData(props) {
             </CardGroup>
 
         </div>
+
+        }
+
+        </div>
+
+        
 
     )
 

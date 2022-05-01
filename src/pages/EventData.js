@@ -5,11 +5,13 @@ import { Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-
+import { LoadingSpinner } from '../component/Loader/Loader';
 
 function EventData(props){
 
     const[events, setEvents] = useState([]);
+
+    const[loading, setLoading]= useState(true);
 
     const dayjs = require('dayjs');
 	var customParseFormat = require('dayjs/plugin/customParseFormat')
@@ -28,7 +30,7 @@ function EventData(props){
     async function getData( ){
         axios.get("/admin/event/all-event").then((response) =>{
             setEvents(response.data)
-          
+            setLoading(false)
         })
     }
 
@@ -81,7 +83,17 @@ function EventData(props){
     
     return(
         <div>
-            <Button onClick = {calendar}>
+            {
+                loading? 
+                <LoadingSpinner />
+                :
+<div>
+<h1>
+        Events
+       
+      </h1>
+
+                <Button onClick = {calendar}>
                 Event calendar
             </Button>
             <CardGroup>
@@ -101,6 +113,11 @@ function EventData(props){
                 </Row>
 
             </CardGroup>
+
+            </div>
+
+            }
+            
 
         </div>
 
