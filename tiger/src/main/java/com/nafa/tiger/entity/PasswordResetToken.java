@@ -28,7 +28,7 @@ public class PasswordResetToken {
 	private static final int EXPIRATION_TIME = 10;
 	
 	@OneToOne(fetch =FetchType.EAGER,cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", nullable = false, 
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id",nullable = false,
 	foreignKey = @ForeignKey(name = "FK_USER_PASSWORD_TOKEN"))
 	private User user;
 

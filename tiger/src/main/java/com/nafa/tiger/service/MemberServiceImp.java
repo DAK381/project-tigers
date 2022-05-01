@@ -6,14 +6,10 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import com.nafa.tiger.entity.*;
 import com.nafa.tiger.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.nafa.tiger.entity.Events;
-import com.nafa.tiger.entity.Group;
-import com.nafa.tiger.entity.PendingGroupRequest;
-import com.nafa.tiger.entity.User;
 
 import ch.qos.logback.classic.Logger;
 import lombok.extern.slf4j.Slf4j;
@@ -120,6 +116,12 @@ public class MemberServiceImp implements MemberService {
 //        }
         return updatedUser;
     }
+
+	@Override
+	public Collection<UserRelationship> getRelationship(Long userId) {
+		User user = memberRepository.findById(userId).get();
+		return user.getRelationOfUser();
+	}
 
 //	@Override
 //	public ArrayList<User> getAllByGraduatedYear(int graduatedYear) 

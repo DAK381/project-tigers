@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.nafa.tiger.entity.UserRelationship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +26,8 @@ import com.nafa.tiger.service.MemberService;
 
 @RestController
 @CrossOrigin(origins ="*")
-public class MemberController {
+public class
+MemberController {
 	@Autowired
 	private MemberService memberService;
 //	@PostMapping("/user/{userId}/addactivities")
@@ -67,4 +69,6 @@ public class MemberController {
 			}
 		}
 	}
+
+
 }
