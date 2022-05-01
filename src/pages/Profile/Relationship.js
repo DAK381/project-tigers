@@ -20,20 +20,20 @@ export default function Relationship(props){
   const relationshipOptions = [
 	{
 		value: "1",
-		label: "Parent"
+		label: "PARENT"
 	},
 	{
 		value: "2",
-		label: "Children"
+		label: "CHILDREN"
 	},
 	{
 		value: "3",
-		label: "Spouse"
+		label: "SPOUSE"
 	},
 
     {
 		value: "4",
-		label: "Sibling"
+		label: "SIBLING"
 	}
 	
 ]
@@ -58,9 +58,7 @@ export default function Relationship(props){
 
                  setData(response.data)
 
-                
-              
-
+     
                 const options = data.map(d => ({
 
                     "value" : d.id,
@@ -74,6 +72,8 @@ export default function Relationship(props){
             }
         )
 }
+
+
 
 useEffect(() => {
         getData();
@@ -102,10 +102,16 @@ const onOptionChangeRelative = useCallback(
     []
   );
 
-  function addRelation(){
+  function addRelation(e){
 
-    console.log("You have added ", selected.label, " with id ", selected.value, " as your ", relationship)
-    window.location.reload();
+   
+    e.preventDefault()
+    axios.post(`/relationship/${props.userData.id}/${relationship}/${selectedId}`).then(res => {
+      console.log(res.data)
+      console.log("You have added ", selected.label, " with id ", selected.value, " as your ", relationship)
+      window.location.reload();
+  }).catch(err => console.log(err))
+   
 
   }
 
