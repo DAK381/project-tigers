@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 
-function UpcomingEvent(){
+function Upcoming(){
 
     return( 
 
@@ -86,4 +86,4 @@ function UpcomingEvent(){
 
 }
 
-export default UpcomingEvent;
+export default Upcoming;

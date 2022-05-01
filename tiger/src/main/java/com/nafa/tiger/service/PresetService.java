@@ -15,6 +15,8 @@ public interface PresetService {
     String deletePreset(Long presetId);
 
     User addMemberToPreset(Long presetId, Long userId);
+    
+    User removeMemberfromPreset(Long presetId, Long userId);
 
     Collection<User> getMembersByPreset(Long presetId);
     

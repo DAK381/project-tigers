@@ -49,6 +49,20 @@ public class PresetServiceImp implements PresetService{
 
 	}
     
+    
+    @Override
+    public User removeMemberfromPreset(Long presetId, Long userId){
+		User user = memberRepository.findById(userId).get();
+		Preset preset = presetRepository.findById(presetId).get();
+
+		if (!user.getPresetUser().contains(preset)) {
+            user.getPresetUser().remove(preset);
+           }
+           return new User();
+
+	}
+    
+    
     @Override
     public String deletePreset(Long presetId) {
     	presetRepository.deleteById(presetId);

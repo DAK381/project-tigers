@@ -54,6 +54,8 @@ function App() {
 
   const token = localStorage.getItem('USER_KEY');
   const [userData,setUserData]=useState({});
+  const[isLoading, setLoading] = useState(false);
+
   const notLoggedIn = {
     role: 'Na'
   }
@@ -63,6 +65,7 @@ function App() {
         setUserData(response.data);
     }).catch((e)=>{
         localStorage.clear();
+        setLoading(true)
     })
   },[])
 
@@ -122,12 +125,10 @@ function App() {
         { userData.role === "ADMIN" && <Route path="/admin-add-label" element={<CreateLabel/>} /> }
 
         { userData.role === "ADMIN" && <Route path="/admin-show-label" element={<ShowLabels/>} /> }
-
-
         { userData.role === "ADMIN" && <Route path="/label-members" element={<LabelMembers/>} /> }
 
 
-        { token && <Route path="/user-profile" element={<Profile userData={userData}/>} /> }
+        { token && <Route path="/user-profile" element={<Profile userData={userData} isloading = {isLoading}/>} /> }
 
         {/* { token && userData.role === "ADMIN" && <Route path="/admin-user-profile" element={<Profile />} /> } */}
 

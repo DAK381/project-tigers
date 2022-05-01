@@ -6,7 +6,8 @@ import { Tagged } from 'react-tagged'
 import { useNavigate } from 'react-router-dom';
 import 'react-tagged/dist/index.css' // styles
 import AttendedEventCard from './AttendedEventCard';
-
+import Relationship from './Relationship';
+import { LoadingSpinner } from '../../component/Loader/Loader';
 
 function Profile(props) {
     const userData = props.userData;
@@ -38,6 +39,7 @@ function Profile(props) {
         axios.get(`admin/event/search/membersEvent/${userData.id}`).then(res => {
             setEvents(res.data)
         }).catch(err => console.log(err))
+        
         
     }, [userData])
 
@@ -93,9 +95,18 @@ function Profile(props) {
 		});
 	}
 
+    console.log(props.isLoading)
     
     return (
-        <div className="container bootstrap snippets bootdey">
+        <div>
+
+       
+        {
+            props.isLoading? 
+
+            <LoadingSpinner /> :
+
+            <div className="container bootstrap snippets bootdey">
             <div className="row">
 
                 <div className="profile-nav col-md-3">
@@ -114,6 +125,7 @@ function Profile(props) {
 
                                 <div className="buttons"> <button className="btn btn-outline-primary" onClick = {updateProfile}>Edit Profile</button> <button
                                     className="btn btn-outline-primary">Activity</button> </div>
+                                    <Relationship />
                             </div>
                         </div>
                     </div>
@@ -287,6 +299,11 @@ function Profile(props) {
                 </div>
             </div>
         </div>
+
+        }
+
+</div>
+        
     )
 }
 
