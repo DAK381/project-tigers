@@ -47,8 +47,4 @@ export const Heading = styled.p`
   margin-bottom: 10px;
   font-weight: bold;
   font-style: normal;
-
-  &:hover {
-    color: gold;
-    transition: 200ms ease-in;
 `;
