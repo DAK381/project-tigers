@@ -23,4 +23,5 @@ public class Scholarship {
     private String deadline;
     private String formLink;
     private String addedDate;
+    private String scholarshipAmount;
 }

@@ -30,6 +30,7 @@ public class Events {
     private String eventLocation;
     private String eventImage;
     private String addedDate;
+    private ArrayList <String> photosFromEvents;
     @ManyToMany(mappedBy = "userEvent", cascade = CascadeType.ALL)
     @JsonIgnore
     private Collection<User> eventUser = new ArrayList<>();

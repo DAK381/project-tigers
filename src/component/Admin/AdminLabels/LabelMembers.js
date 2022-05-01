@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from '../../../axios';
 import AdminMemberList from "../AdminMember/AdminMemberList"
+import { LoadingSpinner } from "../../Loader/Loader";
 
 export default function LabelMembers(){
 
@@ -11,6 +12,7 @@ export default function LabelMembers(){
     const labelName = location.state.name;
     const labelCreated = location.state.year;
     const[data, setData] = useState([]);
+    const[loading, setLoading] = useState(true);
 
     async function getData( ){
         axios.get(`/search/membersByPreset/${id}`)
@@ -19,6 +21,7 @@ export default function LabelMembers(){
                 {
                    
                     setData(response.data)
+                    setLoading(false)
                 }
             )
     }
@@ -32,16 +35,41 @@ useEffect(() => {
 
         
     // )
-    if(data.length >0){
-        return (
-            <AdminMemberList data = {data} />
-        )
-    }
+    // if(data.length >0){
+    //     return (
+    //         <AdminMemberList data = {data} />
+    //     )
+    // }
 
-    else{
-        return (
-            <h1> No one here</h1>
-        )
-    }
+    // else{
+    //     return (
+    //         <h1> No one here</h1>
+    //     )
+    // }
+
+    return(
+        <div>
+
+{
+            loading? <LoadingSpinner />:
+
+            <div>
+                {
+                    data.length > 0?
+                    <AdminMemberList data = {data} />
+                    :
+                    <h1> No one here</h1>
+
+                }
+                
+
+            </div>
+             
+
+        }
+
+            </div>
+       
+    )
 
 }

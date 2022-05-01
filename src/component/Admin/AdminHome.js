@@ -1,5 +1,5 @@
 import AdminNavigation from "./AdminNavigation";
-import Home from "../../pages/HomePage";
+import Home from "../../pages/HomePage/HomePage";
 
 function AdminHome(){
 

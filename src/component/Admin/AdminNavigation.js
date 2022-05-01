@@ -50,6 +50,11 @@ function AdminNavigation(){
         <NavDropdown.Item href="admin-scholarship-add"><h5>Add Scholarships</h5></NavDropdown.Item>
       </NavDropdown>
 
+      <NavDropdown title="Campaigns " id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
+        <NavDropdown.Item href="campaign"><h5>View Campaigns</h5></NavDropdown.Item>
+        <NavDropdown.Item href="add-campaign"><h5>Add Campaign</h5></NavDropdown.Item>
+      </NavDropdown>
+
       <Nav.Link href="user-profile" style={{fontSize: "28px"}}>Profile</Nav.Link> 
 
       <Nav.Link href="./" onClick={() =>logOut()} style={{fontSize: "28px"}}>Logout</Nav.Link>

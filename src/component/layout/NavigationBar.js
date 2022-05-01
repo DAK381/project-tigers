@@ -36,6 +36,8 @@ return (
         <Nav.Link href="about"> <h2> About </h2></Nav.Link>
         <Nav.Link href="events"><h2>Events</h2></Nav.Link>
         <Nav.Link href="scholarship"><h2> Scholarships </h2></Nav.Link>
+        <Nav.Link href="campaign"><h2> Campaigns </h2></Nav.Link>
+
         { !token && <Nav.Link href="log-in"> <h2> Log In </h2></Nav.Link> }
         { !token && <Nav.Link href="sign-up"><h2>Sign Up </h2></Nav.Link> }
         <Nav.Link href="contact-us"><h2>Contact Us </h2></Nav.Link>
