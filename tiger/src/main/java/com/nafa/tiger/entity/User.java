@@ -74,6 +74,17 @@ public class User implements UserDetails{
 			inverseJoinColumns = @JoinColumn(name = "eventId", referencedColumnName = "eventId"))
 	@JsonIgnore
 	private Collection<Events> userEvent = new ArrayList<>();
+	
+	
+	
+///Campaign many to many************************
+////Event many to many*****************************************************
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name= "user_campaign",
+			joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "campaignId", referencedColumnName = "campaignId"))
+	@JsonIgnore
+	private Collection<Campaign> userCampaign = new ArrayList<>();
 
 	////Preset many to many*****************************************************
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
