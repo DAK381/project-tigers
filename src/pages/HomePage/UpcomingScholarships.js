@@ -6,10 +6,10 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { useNavigate } from 'react-router-dom';
-import axios from '../axios';
+import axios from '../../axios';
 
 
-function UpcomingEvent(props){
+function UpcomingScholarships(props){
   const[events, setEvents] = useState([]);
   const navigate = useNavigate();
 
@@ -25,8 +25,8 @@ function UpcomingEvent(props){
   dayjs.extend(isSameOrBefore)
 
  
-  async function getData( ){
-      axios.get("/admin/event/all-event").then((response) =>{
+  async function getData(){
+      axios.get("/scholarship/get-all-scholarship").then((response) =>{
           setEvents(response.data)
         
       })
@@ -35,7 +35,6 @@ function UpcomingEvent(props){
 
   useEffect(() => {
     getData();
-
 
 }, []);
 
@@ -79,10 +78,10 @@ events[0] &&
   <Card.Body>
     <Card.Title>{events[0].eventName}</Card.Title>
     <Card.Text>
-    {events[0].eventDescription}
+    {dayjs(events[0].eventDate).format("dddd, MMMM D YYYY")}
     </Card.Text>
   </Card.Body>
-  <Button variant = "warning"> Read More</Button>
+  {/* <Button variant = "warning"> Read More</Button> */}
   <Card.Footer>
   
     <small className="text-muted"> days ago</small>
@@ -105,10 +104,10 @@ events[0] &&
   <Card.Body>
     <Card.Title>{events[1].eventName}</Card.Title>
     <Card.Text>
-    {events[2].eventDescription}
+    {dayjs(events[1].eventDate).format("dddd, MMMM D YYYY")}
     </Card.Text>
   </Card.Body>
-  <Button variant = "warning" onClick = {eventSignUp}> Read More</Button>
+  {/* <Button variant = "warning" onClick = {eventSignUp}> Read More</Button> */}
   <Card.Footer>
   
     <small className="text-muted">Added 5 days ago</small>
@@ -129,10 +128,10 @@ events[0] &&
   <Card.Body>
     <Card.Title>events[2].eventName</Card.Title>
     <Card.Text>
-    events[2].eventDescription
+   {dayjs(events[2].eventDate).format("dddd, MMMM D YYYY")}
     </Card.Text>
   </Card.Body>
-  <Button variant = "warning"> Read More</Button>
+  {/* <Button variant = "warning"> Read More</Button> */}
   <Card.Footer>
   
     <small className="text-muted">Added 5 days ago</small>
@@ -161,4 +160,4 @@ events[0] &&
 
 }
 
-export default UpcomingEvent;
+export default UpcomingScholarships;

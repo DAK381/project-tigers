@@ -29,39 +29,10 @@ function EventCard(props) {
 	var customParseFormat = require('dayjs/plugin/customParseFormat')
 	dayjs.extend(customParseFormat)
 
-
-	// const eventDate = dayjs(eventInfo.eventDate).format('DD/MMMM/YYYY')
 	const startTime = dayjs(eventInfo.startTime, ["HH.mm"]).format('hh:mm A')
 	const endTime = dayjs(eventInfo.endTime, ["HH.mm"]).format('hh:mm A')
 	const eventDate = dayjs(eventInfo.eventDate).format("dddd, MMMM D YYYY")
 
-	// const[isPast, setIsPast] = useState(true)
-
-
-
-	// useEffect(() => {
-
-	// 		// if(moment(eventInfo.eventDate) < moment()){
-	// 		// 	setPast(true)
-	// 		// 	setBg("secondary")
-	// 		// }
-			
-	
-	// 	if(dayjs().isSameOrBefore(eventInfo.eventDate, 'day')){
-	// 		setIsPast(false)
-	// 		//console.log(eventInfo.eventName, "   is in the future")
-	// 	}
-	
-	// 	else{
-	// 		//console.log(eventInfo.eventName, "   is in the past")
-	// 	}
-			
-
-    // }, []);
-
-	
-
-	
 
 
 	function updateEvent(){
