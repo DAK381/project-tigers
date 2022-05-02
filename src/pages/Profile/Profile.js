@@ -9,7 +9,7 @@ import AttendedEventCard from './AttendedEventCard';
 import Relationship from './Relationship';
 import { LoadingSpinner } from '../../component/Loader/Loader';
 import RelationshipData from './RelationshipData';
-
+import MemberGroup from './MemberGroup';
 
 function Profile(props) {
     const userData = props.userData;
@@ -244,6 +244,10 @@ function Profile(props) {
                                                     />
                                                     <br></br>
                                                     <button type="button" className="btn-primary btn" onClick={saveTags}>Save</button>
+
+                                                    {
+                                                        userData && <MemberGroup id = {userData.id} />
+                                                    }
                                                 
                                             </div>
                                         </div>
