@@ -16,7 +16,7 @@ import Footer from './pages/Footer';
 import AdminHome from './component/Admin/AdminHome';
 import AdminMemberAdd from './component/Admin/AdminMember/AdminMemberAdd';
 import AdminNavigation from './component/Admin/AdminNavigation';
-import AdminContact from './component/Admin/AdminContact';
+import AdminContact from './component/Admin/AdminMember/AdminContact';
 import AdminEventAdd from './component/Admin/AdminEvent/AdminEventAdd';
 import AdminScholarshipAdd from './component/Admin/AdminScholarship/AdminScholarshipAdd';
 import { Dashboard } from './dashboard';

@@ -115,14 +115,62 @@ const[selectedId, setSelectedId] = useState([])
             hideSelectAll: false,
             bgColor: 'gold',
             onSelect: (row, isSelect, rowIndex, e) => {
-                setSelectedEmail((prev) => [...prev, row.email])
-                setSelectedId((prev) => [...prev, row.id])
+               var addedEmails = selectedEmail;
+               var addedId = selectedId;
+                if(isSelect){
+
+                    
+                    if(!selectedEmail.includes({ value: row.id, label: row.email }))
+                {
+                    addedEmails = [
+                        ...selectedEmail, {
+                            value: row.id,
+                            label: row.email
+        
+                        }]
+
+                        addedId =[...selectedId, row.id]
+
+                }
+
+                else{
+                    addedEmails = [...selectedEmail]
+                    addedId =[...selectedId]
+
+                }
+
+                }
+
+                else{
+
+                    if(addedEmails.lenght !== 0){
+
+                        addedEmails = addedEmails.filter(
+                            (e) => e.value !== row.id
+                        )
+
+                        addedId = addedId.filter(
+                            (e) => e != row.id
+                        )
+                        
+                    }
+                    
+                }
+
+                setSelectedEmail(addedEmails)
                 
-                console.log(row.email)
+
+                setSelectedId(
+                   addedId
+                )
+                
+                
              
               }
 
-          };
+          }
+
+          console.log(selectedEmail)
 
           const navigate = useNavigate();
           
@@ -137,7 +185,7 @@ const[selectedId, setSelectedId] = useState([])
         }
         
         function emailPeople(){
-            navigate('/admin-member-email', {state:
+            navigate('/admin-contact', {state:
                 {
                     arrayId: selectedEmail
                 }
