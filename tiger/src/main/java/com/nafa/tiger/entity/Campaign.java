@@ -24,6 +24,7 @@ public class Campaign {
     private String campaignDescription;
     private String amountGoal;
     private String addedDate;
+    private String campaignImage;
    
     @ManyToMany(mappedBy = "userCampaign", cascade = CascadeType.ALL)
     @JsonIgnore
