@@ -5,6 +5,7 @@ import { Container } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import RelationshipCard from "./RelationshipCard";
 
+
 export default function RelationshipData(props){
 
     const[relationShipData, setData] = useState([]);
@@ -21,20 +22,20 @@ export default function RelationshipData(props){
                 {
                          setData(response.data)
 
-                         relationShipData.map(
-                            (data) =>{
-                               axios.get(`admin/member/${data.relatedTo}`).then(res => {
-                                   setRelative(res.data.firstName)
+                        //  relationShipData.map(
+                        //     (data) =>{
+                        //        axios.get(`admin/member/${data.relatedTo}`).then(res => {
+                        //            setRelative(res.data.firstName)
 
-                               }).catch(err => console.log(err))
+                        //        }).catch(err => console.log(err))
 
-                               data["relative"] = relative;
+                        //        data["relative"] = relative;
 
                                
-                            }
-                        )
+                        //     }
+                        // )
                          
-    
+                        setLoading(false)
                 }
             )
     }
@@ -61,7 +62,7 @@ export default function RelationshipData(props){
                         //      }
                         //  )
 
-                         console.log(relationShipData)
+            
     
              
         }, [props.id]);
@@ -72,33 +73,70 @@ export default function RelationshipData(props){
 
 
 
-   if(relationShipData.length === 0){
-       return (
-           <div> 
-               No one related to you
-           </div>
-       )
-   }
+//    if(relationShipData.length === 0){
+//        return (
+//            <div> 
+//                No one related to you
+//            </div>
+//        )
+//    }
 
-   else{
+//    else{
 
 
-   return(
+//    return(
+//     <div>
+//         <h1> You relations:</h1>
+//         {
+//              relationShipData.map(
+//                 (data) => {
+//                     <RelationshipCard key = {data.id} data = {data} />
+
+//                 }
+//             )
+//         }
+        
+//     </div>
+// )
+       
+//    }
+return (
     <div>
-        <h1> You relations:</h1>
         {
-             relationShipData.map(
-                (data) => {
-                    <RelationshipCard key = {data.id} data = {data} />
+    loading? <LoadingSpinner />: 
+    relationShipData.length === 0? 
+    <h2>
+        No on here
+    </h2>:
+    <div>
+        You have {relationShipData.length } relations here. 
+        {
+            relationShipData.map(
+                (data) => (
+                    <div key = {data.id}>
 
-                }
+
+                    <RelationshipCard data = {data} />
+
+                    </div>
+                )
             )
         }
         
+        </div>
+
+
+}
+
     </div>
 )
-       
-   }
+
+
+
+
+
+   
+   
 
        
 }

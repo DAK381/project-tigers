@@ -1,16 +1,53 @@
 import axios from "../../axios";
 import React, { useState, useEffect, useCallback} from 'react';
+import { Card } from "react-bootstrap";
 
 export default function RelationshipCard(props){
 
-    console.log("made it to here", data);
     const data = props.data;
+
+    console.log("made it to here", data.relatedTo);
+    
+    const[relative, setRelative] = useState();
+
+    async function getData( ){
+       
+
+                     
+                               axios.get(`admin/member/${data.relatedTo}`).then(res => {
+                                   setRelative(res.data.firstName)
+
+                               }).catch(err => console.log(err))
+
+                        
+           
+    }
+    
+
+    
+    useEffect(() => {
+            getData();             
+        }, [data]);
+
 
     
 
     return(
         <div>
-            {data.id}
+           
+           
+           
+
+           <Card>
+
+           {relative}  - {data.relationship}
+           </Card>
+
+               
+
+            
+        
+            
 
         </div>
     )

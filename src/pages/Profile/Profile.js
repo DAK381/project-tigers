@@ -139,7 +139,7 @@ function Profile(props) {
 
                                 <div className="buttons"> <button className="btn btn-outline-primary" onClick = {updateProfile}>Edit Profile</button> <button
                                     className="btn btn-outline-primary">Activity</button> </div>
-                                    <Relationship userData = {userData}/>
+                                    
                             </div>
                         </div>
                     </div>
@@ -270,7 +270,11 @@ function Profile(props) {
                                                {
 
                                                     userData.id && <RelationshipData id = {userData.id} />
+
+
                                                } 
+
+                                                <Relationship userData = {userData}/>
                                           
                                     </div>
                                 
