@@ -35,8 +35,6 @@ export default function AdminAllGroup(){
     useEffect(() => {
             getData();
 
-            // console.log(typeof location.state.arrayId)
-
         }, []);
 
 

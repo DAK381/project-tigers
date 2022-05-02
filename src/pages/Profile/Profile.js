@@ -1,11 +1,14 @@
 import './profile.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import axios from "../../axios";
 import { Tagged } from 'react-tagged'
 import { useNavigate } from 'react-router-dom';
 import 'react-tagged/dist/index.css' // styles
 import AttendedEventCard from './AttendedEventCard';
+import Relationship from './Relationship';
+import { LoadingSpinner } from '../../component/Loader/Loader';
+import RelationshipData from './RelationshipData';
 
 
 function Profile(props) {
@@ -13,6 +16,7 @@ function Profile(props) {
     const [groups, setGroups] = useState([]);
     const [memberGroups, setMemberGroups] = useState([]);
     const [events, setEvents] = useState([]);
+    const[relationshipData, setRelationshipData] = useState([]);
 
     const map = new Map();
     const groupNames = [];
@@ -27,6 +31,9 @@ function Profile(props) {
         memberGroupNames.push(memberGroups[i].groupName);
     }
 
+    console.log(events)
+
+    
     React.useEffect(() => {
         axios.get("/search/allgroup").then(res => {
             setGroups(res.data)
@@ -37,9 +44,21 @@ function Profile(props) {
 
         axios.get(`admin/event/search/membersEvent/${userData.id}`).then(res => {
             setEvents(res.data)
+
+            
         }).catch(err => console.log(err))
+
+        // axios.get(`getallRelationship/${userData.id}`).then(res => {
+        //     setRelationshipData(res.data)
+        //     // console.log(relationshipData)
+        // }).catch(err => console.log(err))
         
-    }, [userData])
+        
+    }, [props.userData])
+
+
+    console.log(relationshipData)
+    
 
     const saveTags = () => {
         console.log(memberGroupNames)
@@ -93,9 +112,15 @@ function Profile(props) {
 		});
 	}
 
+
     
     return (
-        <div className="container bootstrap snippets bootdey">
+        <div>
+
+       
+       
+
+            <div className="container bootstrap snippets bootdey">
             <div className="row">
 
                 <div className="profile-nav col-md-3">
@@ -114,6 +139,7 @@ function Profile(props) {
 
                                 <div className="buttons"> <button className="btn btn-outline-primary" onClick = {updateProfile}>Edit Profile</button> <button
                                     className="btn btn-outline-primary">Activity</button> </div>
+                                    
                             </div>
                         </div>
                     </div>
@@ -229,6 +255,36 @@ function Profile(props) {
                     </div>
                     </div>
                     <br />
+
+                    <div className="activities-info">
+                    <div className="card">
+                        <div className="card-body">
+
+                            <div className="panel">
+                                
+                                    
+                                    <div>
+                                    <h1>Relationships:</h1>
+                                        
+                                                
+                                               {
+
+                                                    userData.id && <RelationshipData id = {userData.id} />
+
+
+                                               } 
+
+                                                <Relationship userData = {userData}/>
+                                          
+                                    </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+
+
                     <div className="card">
                         <div className="card-body">
 
@@ -287,6 +343,11 @@ function Profile(props) {
                 </div>
             </div>
         </div>
+
+    
+
+</div>
+        
     )
 }
 

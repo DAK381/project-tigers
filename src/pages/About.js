@@ -25,8 +25,18 @@ const AboutPage = () => {
     <p>Jay Traylor, Class of 1980 <br></br>
        NAFA President 2017-2019</p>
     <div>
-      
-      
+    
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br> 
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
     </div></>
   )};
 

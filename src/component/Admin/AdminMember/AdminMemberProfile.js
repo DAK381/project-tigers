@@ -16,6 +16,8 @@ export default function AdminMemberProfile(){
 
     const[data, setData] = useState({});
 
+    const[isLoading, setLoading] = useState(true)
+
     async function getData(){
         axios.get(`admin/member/${id}`
             )
@@ -24,6 +26,8 @@ export default function AdminMemberProfile(){
                 {
                     
                     setData(response.data)
+                    setLoading = false;
+
                     
                 }
             )
@@ -39,7 +43,7 @@ export default function AdminMemberProfile(){
         <div>
 
             
-                <Profile key={id} userData={data} admin = {true}/>
+                <Profile key={id} userData={data} admin = {true} isLoading = {isLoading}/>
 
  
         </div>

@@ -156,6 +156,16 @@ const[selectedId, setSelectedId] = useState([])
 
         }
 
+        function addMemberToLabel(){
+            navigate('/admin-show-label', {state:
+                {
+                    arrayId: selectedId,
+                    userSent: true
+                }
+            });
+
+        }
+
         return(
 
             <div>
@@ -166,6 +176,9 @@ const[selectedId, setSelectedId] = useState([])
 <Button onClick = {emailPeople}>Email Selected</Button>
 
 <Button onClick = {addMemberToGroup}>Add to Group</Button>
+
+<Button onClick = {addMemberToLabel}>Add to Label</Button>
+
 
 
 

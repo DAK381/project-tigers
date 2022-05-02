@@ -55,10 +55,17 @@ const addMembers = () => {
       .then(
         res => {
           console.log(userId, groupToBeAdded)
-          navigate('/admin-group-all');
+          navigate(`/admin-group-member`, {state:
+            {
+                id: groupToBeAdded,
+                //name: row.groupName,
+                //year:row.groupYear
+                
+            }
+        });
         }
         
-      ).catch(err => console.log(err))
+      ).catch(navigate(`/admin-group-member`))
     }
   )
 
@@ -121,7 +128,7 @@ const addMembers = () => {
           function showDetails(row){
 
             console.log(row.id)
-            navigate('/admin-group-member', {state:
+            navigate(`/admin-group-member`, {state:
                 {
                     id: row.groupId,
                     name: row.groupName,

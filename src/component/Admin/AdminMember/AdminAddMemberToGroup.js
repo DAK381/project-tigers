@@ -30,33 +30,9 @@ export default function AdminAddMemberToGroup(props){
             setGroups(res.data)
         }).catch(err => console.log(err))
 
-        // users.map(
-        //   (userId) => {
-        //     axios.get(`/search/membersGroups/${userId}`).then(res => {
-              
-              
-        //       var alreadyAddedGroup = res.data;
-        //       console.log(alreadyAddedGroup)
+      
 
-        //       // if(alreadyAddedGroup.length !== 0){
-
-        //       //   alreadyAddedGroup.map(
-        //       //     (current) =>
-        //       //     {
-        //       //       console.log(userId, current.groupId)
-        //       //       if(current.groupId === selGrp){
-        //       //         alert("Selected members are already in the selected group. You can't add them to the same group")
-        //       //       }
-        //       //     }
-        //       //   )
-        //       // }
-
-
-        //   }).catch(err => console.log(err))
-        //   }
-        // )
-
-    }, [])
+    }, [users])
 
     const addMembers = () => {
       console.log(selectedId)
@@ -77,7 +53,7 @@ export default function AdminAddMemberToGroup(props){
               navigate('/admin-group-all');
             }
             
-          ).catch(err => console.log(err))
+          ).catch(err => navigate('/admin-group-all'))
         }
       )
   }

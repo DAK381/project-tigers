@@ -12,9 +12,6 @@ export default function AdminGroupCreate(){
 
     const navigate = useNavigate();
   
-  
-  
-
     function addGroup(e) { 
       
       e.preventDefault();
@@ -36,19 +33,6 @@ export default function AdminGroupCreate(){
               <h1 className="display-4 text-center">Create Group</h1>
               <br></br>
               <div>
-                {/* <Button variant="primary" onClick={handleShow}>
-                          Choose Image
-                      </Button>
-                <br></br>
-                {groupImage && (
-                  <div>
-                    <img className="preview" src={process.env.PUBLIC_URL + '/upload/' + groupImage} alt="" style={{border: '1px solid #ddd',
-                                                                                                                   borderRadius: '4px',
-                                                                                                                   padding: '5px',
-                                                                                                                   width: '150px'}}/>
-                  </div>
-                )}
-                <Pictures show={show} onHide={handleClose} setImage={setGroupImage} isCarousel={false} /> */}
 
                 <form onSubmit={addGroup}>
                 

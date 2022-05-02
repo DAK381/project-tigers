@@ -35,6 +35,11 @@ function AdminNavigation(){
         <NavDropdown.Item href="admin-group-create"><h5>Create Group</h5></NavDropdown.Item>
       </NavDropdown>
 
+      <NavDropdown title="Labels" id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
+        <NavDropdown.Item href="admin-show-label"><h5>View Labels</h5></NavDropdown.Item>
+        <NavDropdown.Item href="admin-add-label"><h5>Create Labels</h5></NavDropdown.Item>
+      </NavDropdown>
+
       <NavDropdown title="Events" id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
         <NavDropdown.Item href="events"><h5>View Events</h5></NavDropdown.Item>
         <NavDropdown.Item href="admin-event-add"><h5>Add Events</h5></NavDropdown.Item>
@@ -43,6 +48,11 @@ function AdminNavigation(){
       <NavDropdown title="Scholarships" id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
         <NavDropdown.Item href="scholarship"><h5>View Scholarships</h5></NavDropdown.Item>
         <NavDropdown.Item href="admin-scholarship-add"><h5>Add Scholarships</h5></NavDropdown.Item>
+      </NavDropdown>
+
+      <NavDropdown title="Campaigns " id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
+        <NavDropdown.Item href="campaign"><h5>View Campaigns</h5></NavDropdown.Item>
+        <NavDropdown.Item href="add-campaign"><h5>Add Campaign</h5></NavDropdown.Item>
       </NavDropdown>
 
       <Nav.Link href="user-profile" style={{fontSize: "28px"}}>Profile</Nav.Link> 
