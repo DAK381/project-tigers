@@ -15,7 +15,7 @@ export default function RelationshipCard(props){
 
                      
                                axios.get(`admin/member/${data.relatedTo}`).then(res => {
-                                   setRelative(res.data.firstName)
+                                   setRelative(res.data.firstName + " " + res.data.maidenName + " " + res.data.lastName )
 
                                }).catch(err => console.log(err))
 
