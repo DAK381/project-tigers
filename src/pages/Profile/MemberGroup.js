@@ -2,87 +2,44 @@ import axios from "../../axios";
 import { useState, useEffect, useCallback} from 'react';
 import Select from 'react-select'
 import { LoadingSpinner } from "../../component/Loader/Loader";
-import { Button } from "react-bootstrap";
-
+import { Button, ModalBody } from "react-bootstrap";
+import MemberGroupShow from "./MemberGroupShow";
+import { Modal } from "react-bootstrap";
 
 
 export default function MemberGroup(props){
 
-    const[data, setData] = useState();
-
-  const[options, setOptions] = useState();
-
-  const [current, setCurrent] = useState([]);
-
-  const [currentGroup, setCurrentGroup] = useState([]);
-
   const[addSelected, setAddSelected] = useState([]);
-
   const[removeSelected, setRemoveSelected] = useState([]);
-
-
-  const[final, setFinal] = useState();
-
-
   const[loading, setLoading] = useState(true);
 
-  async function getGroupData( ){
-    // axios.get(`/search/membersGroups/${props.id}`
-    axios.get("/search/allgroup")
-        .then(
-            (response) =>
-            {
 
-                 setData(response.data)
+  const [show, setShow] = useState(false);
 
-     
-               const options = data && data.map(d => ({
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+ const options = props.groups && props.groups.map(d => ({
 
                     "value" : d.groupId,
                     "label" : d.groupName + " " + d.groupYear
               
                   }))
 
-                  setOptions(options)
-                
-
-            }
-            
-        )
-}
-
-async function getCurrent( ){
-    axios.get(`/search/membersGroups/${props.id}`
-   )
-        .then(
-            (response) =>
-            {
-                setCurrentGroup(response.data)
-               const current = currentGroup && currentGroup.map(d => ({
+  
+ const current = props.memberGroups && props.memberGroups.map(d => ({
 
                     "value" : d.groupId,
                     "label" : d.groupName + " " + d.groupYear
               
                   }))
 
-                  setCurrent(current)
-                  setLoading(false)
-                
-
-            }
-            
-        )
-}
-
+  
 console.log(options)
 console.log(current)
 
-useEffect(() => {
-    getGroupData();
-    getCurrent()
-    
 
-}, [props.id]);
 
 
 const onOptionChangeAdd = useCallback(
@@ -113,36 +70,116 @@ function addGroup(e){
     addSelected.map(
     (group) => {
         axios.put(`/addUserToGroup/${group.value}/${props.id}`).then(() => {
-            window.location.reload();
-        }).catch((e) => {
+            // window.location.reload();
+                  }).catch((e) => {
             console.log(e);
         });
+        
 
     }
     )
 }
 
+function removeGroup(e){
+  e.preventDefault();
+
+  removeSelected.map(
+  (group) => {
+      axios.delete(`/user/${props.id}/remove/${group.value}`).then(() => {
+         
+      }).catch((e) => {
+          console.log(e);
+      });
+      // window.location.reload();
+
+  }
+  )
+}
 
 
-return(
 
-    <div>
+// return(
+
+//     <div>
 
     
-    {loading?
+//     {/* {loading?
 
-    <LoadingSpinner />
+//     <LoadingSpinner />
 
-    :
-<div>
+//     : */}
+// <div>
 
 
-    <h2>
-        Select groups you want to add yourselves to.
-    </h2>
-    <Select
+//     <h2>
+//         Select groups you want to add yourselves to.
+//     </h2>
+//     <Select
 
     
+//        options={options}
+//        isMulti
+//        onChange={(e) => onOptionChangeAdd (e)}
+//      />
+   
+//    <Button variant="secondary" onClick={addGroup}>
+// 										Save
+// 									</Button>
+    
+
+// <h2>
+//     Select groups you want to remove yourselves from
+// </h2>
+
+
+//      <Select
+
+
+//        options={current}
+//        isMulti
+//        onChange={(e) => onOptionChangeRemove(e)}
+//      />
+
+//      </div>
+//      {/* } */}
+
+// <div>
+
+
+
+// </div>
+     
+
+
+// </div>
+
+
+     
+     
+     
+// )
+
+return (
+  <div>
+    <Button variant="primary" onClick={handleShow}>
+       Edit Groups
+      </Button>
+
+      <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Groups</Modal.Title>
+        </Modal.Header>
+
+        <ModalBody>
+
+        
+
+       <h4>
+         Add your groups</h4> 
+         <br>
+         </br>
+
+        <Select
        options={options}
        isMulti
        onChange={(e) => onOptionChangeAdd (e)}
@@ -151,46 +188,35 @@ return(
    <Button variant="secondary" onClick={addGroup}>
 										Save
 									</Button>
-    
+        <br>
+        </br>
+        <br>
+        </br>
 
-<h2>
-    Select groups you want to remove yourselves from
-</h2>
-
-
-     <Select
-
-
+        <h4>
+         Remove your groups</h4> 
+         <br>
+         </br>
+        <Select
        options={current}
        isMulti
-       onChange={(e) => onOptionChangeRemove(e)}
+       onChange={(e) => onOptionChangeRemove (e)}
      />
 
-     </div>
-     }
+<Button variant="secondary" onClick={removeGroup}>
+										Save
+									</Button>
 
-<div>
-
-{
-         current.map(
-             (group) => (
-                 <list key = {group.groupId}>
-                     {group.groupName} {group.groupYear}
-                 </list>
-             )
-         )
-     }
-
-</div>
-     
+</ModalBody>
 
 
-</div>
+    
 
 
-     
-     
-     
+        </Modal>
+
+
+  </div>
 )
 
 
