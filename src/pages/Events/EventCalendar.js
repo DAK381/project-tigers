@@ -64,7 +64,8 @@ console.log(events)
             {
                 event: selectedEvent,
                 user : props.user,
-                past: props.past
+                past: props.past,
+                profile: props.profile
 
             }
         });
@@ -112,6 +113,7 @@ console.log(events)
                     </Modal.Body>
 
                 
+                    
                     <Modal.Footer>
 									<Button variant="secondary" onClick={eventSignUp}>
 										More information

@@ -62,7 +62,7 @@ export default function ProfileCalendar(props){
 								</Modal.Header>
 								<Modal.Body>
 
-                                    <EventCalendar events = {events} user = {props.userData} past = {past}/>
+                                    <EventCalendar events = {events} user = {props.userData} past = {past} profile = {true}/>
                                     
                                     </Modal.Body>
 										
@@ -74,19 +74,6 @@ export default function ProfileCalendar(props){
 									</Button>
 								</Modal.Footer>
 							</Modal>
-
-
-
-
-
-
-
-
-
-
-
-            
-            
 
         </div>
 

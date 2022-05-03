@@ -17,6 +17,10 @@ function EventRegistration(){
 	  const handleClose = () => setShow(false);
 	  const handleShow = () => setShow(true);
 
+    const[already, setAlready] = useState(false);
+
+    const [userEvents, setUserEvents] = useState();
+
         const location = new useLocation();
         const navigate = new useNavigate();
 
@@ -27,25 +31,45 @@ function EventRegistration(){
 
         const eventId = event.eventId;
         const userId = user.id;
-
-
         const [loggedIn, setLoggedIn] = useState(false);
-
-       
+     
         console.log(location.state.event)
 
-       
 
         useEffect(()=>{
 
           if(Object.keys(user).length !== 0)
           {
             setLoggedIn(true);
+            axios.get(`admin/event/search/membersEvent/${user.id}`).then(res => {
+              setUserEvents(res.data)
+              console.log(userEvents);
+              
+          }).catch(err => console.log(err))
           }
-      },[])
+
+          
+
+
+
+      },[location.state])
+
+      
+
 
         function registerForEvent() {  
 
+         userEvents.map(event => {
+
+          if(event.eventId === eventId){
+
+            alert("alredy regostered")
+
+
+          }
+
+         }
+         )
          
 
             console.log(event.id) 
