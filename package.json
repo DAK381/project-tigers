@@ -69,5 +69,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "checking changes on new branch",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DAK381/project-tigers.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DAK381/project-tigers/issues"
+  },
+  "homepage": "https://github.com/DAK381/project-tigers#readme"
 }

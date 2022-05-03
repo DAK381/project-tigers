@@ -4,11 +4,7 @@ import com.nafa.tiger.entity.UserRelationship;
 import com.nafa.tiger.service.MemberService;
 import com.nafa.tiger.service.RelationshipService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
@@ -29,5 +25,9 @@ public class RelationshipController {
     @GetMapping("getallRelationship/{user_id}")
     Collection<UserRelationship> getRelationship(@PathVariable("user_id") Long userId){
         return memberService.getRelationship(userId);
+    }
+    @PutMapping("removeRelationship/{userId1}/with/{userId2}")
+    String removeRelatonship(@PathVariable("userId1") Long userId1, @PathVariable("userId2") Long userId2){
+        return relationshipService.removeRelationship(userId1,userId2);
     }
 }
