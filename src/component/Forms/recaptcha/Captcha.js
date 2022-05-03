@@ -1,16 +1,17 @@
 import React from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
-const RecaptchaComponent = ({ handleRecapthca }) => {
-
-  
+const RecaptchaComponent = () => {
+  function onChange(value) {
+    console.log('Captcha value:', value);
+  }
   return (
-    <ReCAPTCHA
-      sitekey="6Lc8H-keAAAAAL5rCKgRycyv2NR2Shkx3MON-dni"
-      onChange={handleRecapthca}
-      theme = "dark"
-    />
+    <div className="RecaptchaComponent">
+      <ReCAPTCHA
+        sitekey="6Lesc7wfAAAAANkBrpuKvNbmQxWbjja3YoM0J8nE"
+        onChange={onChange}
+      />
+    </div>
   );
 };
-
 export default RecaptchaComponent;
