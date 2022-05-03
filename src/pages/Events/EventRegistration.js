@@ -29,7 +29,7 @@ function EventRegistration(){
         const userId = user.id;
 
 
-        const [loggedIn, setLoggedIn] = useState(true);
+        const [loggedIn, setLoggedIn] = useState(false);
 
        
         console.log(location.state.event)

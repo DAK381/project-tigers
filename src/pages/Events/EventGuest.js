@@ -14,7 +14,7 @@ export default function EventGuest(props){
 
 
     const [firstName, setFirstName] = useState('');
-  const [middleName, setMiddleName] = useState('');
+  // const [middleName, setMiddleName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -32,7 +32,7 @@ export default function EventGuest(props){
    
 
     // check for all required fields
-    const allFilled = !((firstName==='')||(middleName==='')||(lastName==='')||(phone==='')||(email===''))
+    const allFilled = !((firstName==='')||(lastName==='')||(phone==='')||(email===''))
     if(allFilled){
       setShowError(false);
 
@@ -42,7 +42,7 @@ export default function EventGuest(props){
         setShowInvalidEmail(false);
 
         // address
-        axios.post(`register/guest/${props.event.eventId}`,{firstName,middleName,lastName,email,phone}).then(res=>{console.log(res.data);
+        axios.post(`register/guest/${props.event.eventId}`,{firstName,lastName,email,phone}).then(res=>{console.log(res.data);
           navigate('/');
         }).catch(err=>console.log(err))
       }
@@ -104,7 +104,7 @@ export default function EventGuest(props){
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group controlId="middleName">
+              {/* <Form.Group controlId="middleName">
                 <Form.Label>Middle Name *</Form.Label>
                 <Form.Control
                   type="text"
@@ -112,7 +112,7 @@ export default function EventGuest(props){
                   name="Middle Name"
                   onChange={(e) => setMiddleName(e.target.value)}
                 />
-              </Form.Group>
+              </Form.Group> */}
             </Col>
             <Col>
               <Form.Group controlId="lastName">

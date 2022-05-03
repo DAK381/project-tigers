@@ -15,7 +15,7 @@ export default function EventCalendar(props){
     const location = new useLocation();
     var customParseFormat = require('dayjs/plugin/customParseFormat')
 	dayjs.extend(customParseFormat)
-    
+
     const events = props.events;
 
     const [modalIsOpen,setModalIsOpen] = useState(false);
@@ -56,22 +56,21 @@ console.log(events)
       }, []);
 
    
-      function moreInfo(){
-		console.log(location.state.userData)
-		if(Object.keys(location.state.userData).length !== 0){
-			navigate('/event-signup', {state:
-				{
-					event: selectedEvent,
-					user : location.state.userData
+     
 
-				}
-			});
-		}
-		else{
-			console.log("have to login to register")
-		}
+    function eventSignUp(e){
+		
+        navigate('/event-signup', {state:
+            {
+                event: selectedEvent,
+                user : props.user,
+                past: props.past
 
-	}
+            }
+        });
+    
+
+}
 
 console.log(events)
     return(
@@ -114,7 +113,7 @@ console.log(events)
 
                 
                     <Modal.Footer>
-									<Button variant="secondary" onClick={moreInfo}>
+									<Button variant="secondary" onClick={eventSignUp}>
 										More information
 									</Button>
 					</Modal.Footer>

@@ -67,23 +67,6 @@ function EventData(props){
     console.log(props.userData)
     const navigate = new useNavigate();
 
-   
-
-    function calendar(){
-
-
-        console.log(props.userData)
-
-        navigate("/event-calendar", {state:
-			{
-				events: events,
-                userData: props.userData
-                
-
-			}
-		})
-
-    }
 
 
     
@@ -108,7 +91,7 @@ function EventData(props){
 								</Modal.Header>
 								<Modal.Body>
 
-                                    <EventCalendar events = {events} user = {props.userData} />
+                                    <EventCalendar events = {events} user = {props.userData} past = {past}/>
                                     
                                     </Modal.Body>
 										
