@@ -8,6 +8,8 @@ import { CardBody } from "reactstrap";
 import { Modal } from "react-bootstrap";
 import { Link} from "react-router-dom";
 import EventGuest from "./EventGuest";
+import { Toast } from "react-bootstrap";
+
 
 function EventRegistration(){
 
@@ -63,8 +65,7 @@ function EventRegistration(){
 
           if(event.eventId === eventId){
 
-            alert("alredy regostered")
-
+            alert("You are already registred for the event.")
 
           }
 
@@ -73,8 +74,9 @@ function EventRegistration(){
          
 
             console.log(event.id) 
+          
           // e.preventDefault();
-          axios.put(`admin/event/userRsvp/${userId}/${eventId}`).then(res=>{
+          axios.put(`admin/event/userRsvp/${user.id}/${event.eventId}`).then(res=>{
             console.log(user.firstName);
             console.log(event.eventName);
             navigate('/events');

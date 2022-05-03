@@ -18,6 +18,8 @@ export default function EventGuest(props){
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+
+
   
 
   const [showError, setShowError] = useState(false);
@@ -42,7 +44,7 @@ export default function EventGuest(props){
         setShowInvalidEmail(false);
 
         // address
-        axios.post(`register/guest/${props.event.eventId}`,{firstName,lastName,email,phone}).then(res=>{console.log(res.data);
+        axios.post(`admin/event/register/guest/${props.event.eventId}`,{firstName,lastName,email,phone}).then(res=>{console.log(res.data);
           navigate('/');
         }).catch(err=>console.log(err))
       }

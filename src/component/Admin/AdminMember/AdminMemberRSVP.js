@@ -34,7 +34,7 @@ export default function AdminMemberRSVP(){
                 }
             )
 
-            axios.get(`/search/guestByEvent/${location.state.event.eventId}`)
+            axios.get(`admin/event/search/guestByEvent/${location.state.event.eventId}`)
             .then(
                 (response) =>
                 {
@@ -72,7 +72,7 @@ export default function AdminMemberRSVP(){
             <div>
                {guestEmpty?
                <h2> No one has signed up as a guest</h2>:
-               <GuestList data = {data} />}
+               <GuestList data = {guestData} />}
             </div>
       
     </div>
