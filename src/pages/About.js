@@ -1,12 +1,17 @@
 import React from 'react'
+import { Container, Form, Card, Button, Row, Col } from "react-bootstrap";
+
 import { MDBContainer } from 'mdbreact';
 
 const AboutPage = () => {
   return(
+    <Container>
+      <br></br>
   <><div>
       <h1>About Us</h1>
+      <br></br>
 
-      <h5>Mission Statement</h5>
+      <h5>Mission Statement:</h5>
 
       <p>It is the mission of NAFA to provide supplemental funding for programs or projects to enhance the quality of instructional delivery and student life, and to
         promote excellence in higher education at NHS.
@@ -34,6 +39,7 @@ const AboutPage = () => {
     <br></br>
     <br></br>
     </div></>
+    </Container>
   )};
 
 export default AboutPage;

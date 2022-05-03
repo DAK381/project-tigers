@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Container, Form, Card, Button, Row, Col } from "react-bootstrap";
+
 import './ContactUs.css';
 
 const FORM_ENDPOINT = "";
@@ -21,35 +23,52 @@ const Contact = () => {
   }
 
   return (
-    
-    <form class ="d-flex-column justify-content-start align-items-start ms-3"
+    <Container>
+      <br></br>
+      <Row className="row justify-content-center">
+      <Col className="col-lg-6 ml-auto">
+      <Card>
+        <Card.Body>
+      <Card.Header><h3 className="text-center display-6"> <strong> Contact Us </strong></h3></Card.Header><br></br>
+
+    <Form
       action={FORM_ENDPOINT}
       onSubmit={handleSubmit}
       method="POST"
       target="_blank"
     >
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+    <Form.Label className=" font-weight-bolder"><h5>Your Name</h5></Form.Label>
+    <Form.Control type="text" 
+               placeholder="Your Name"
+               name="email" required ={true}
+               
+                />
+  </Form.Group>
+
+  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+    <Form.Label className=" font-weight-bolder"><h5>Email address</h5></Form.Label>
+    <Form.Control type="email" 
+               placeholder="Enter email"
+               name="email" required ={true}
+               
+                />
+  </Form.Group>
+  <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+    <Form.Label className=" font-weight-bolder"><h5>Your message</h5></Form.Label>
+    <Form.Control as="textarea" rows={4} type="text" 
+               placeholder="Message Here!!"
+               />
+  </Form.Group>
       <div>
-      <h1>
-        CONTACT US FORM
-       
-      </h1>
+        <Button variant="danger" type="submit"> Send a message </Button>
       </div>
-      <div>
-        <label class ="mb-2" style = {{fontSize: 20}} className="ContactRequirements">Enter Your Name:</label>
-        <input  class="w-50 p-2 d-flex" type="text" placeholder="Your Name" name="name" required />
-      </div>
-      <div>
-      <label class ="mb-2 mt-2" style = {{fontSize: 20}} className="ContactRequirements">Enter Your Email:</label>
-        <input class="w-50 p-2 d-flex" type="email" placeholder="Email" name="email" required />
-      </div>
-      <div>
-      <label class ="mb-2 mt-2" style = {{fontSize: 20}} className="ContactRequirements">Enter Your Message:</label>
-        <textarea class="w-50 p-2 d-flex" rows="5" placeholder="Your Message" name="message" required />
-      </div>
-      <div>
-        <button type="submit"> SEND A MESSAGE </button>
-      </div>
-    </form>
+    </Form>
+    </Card.Body>
+    </Card>
+    </Col>
+    </Row>
+    </Container>
   );
 };
 
