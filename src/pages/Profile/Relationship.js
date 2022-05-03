@@ -1,6 +1,6 @@
 import Select from 'react-select'
 import axios from "../../axios";
-import React, { useState, useEffect, useCallback} from 'react';
+import { useState, useEffect, useCallback} from 'react';
 import { Modal, ModalBody } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 

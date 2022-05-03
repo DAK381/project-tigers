@@ -20,7 +20,9 @@ const Contact = () => {
   }
 
   return (
-    <form
+
+
+    <><form
       action={FORM_ENDPOINT}
       onSubmit={handleSubmit}
       method="POST"
@@ -38,7 +40,9 @@ const Contact = () => {
       <div>
         <button type="submit"> Send a message </button>
       </div>
-    </form>
+    </form></>
+
+
   );
 };
 

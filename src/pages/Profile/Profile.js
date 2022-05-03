@@ -9,7 +9,9 @@ import AttendedEventCard from './AttendedEventCard';
 import Relationship from './Relationship';
 import { LoadingSpinner } from '../../component/Loader/Loader';
 import RelationshipData from './RelationshipData';
-
+import MemberGroup from './MemberGroup';
+import MemberGroupShow from './MemberGroupShow';
+import { Row } from 'react-bootstrap';
 
 function Profile(props) {
     const userData = props.userData;
@@ -244,6 +246,42 @@ function Profile(props) {
                                                     />
                                                     <br></br>
                                                     <button type="button" className="btn-primary btn" onClick={saveTags}>Save</button>
+
+                                                    {
+                                                        userData && <MemberGroup id = {userData.id} groups = {groups} memberGroups = {memberGroups} />
+                                                    }
+
+                                                    {/* {
+                                                        userData && 
+                                                        <Row className='row-cols-1 row-cols-md-3 p-2 g-4'>
+
+                                                        <MemberGroupShow id = {userData.id}  memberGroups = {memberGroups} />
+                                                            
+                                                            </Row>
+                                                    } */}
+
+{
+    
+    memberGroups.length === 0? 
+    <h2>
+        You are not in any groups
+    </h2>:
+    <div>
+
+        {
+            memberGroups.map(
+                (data) => (
+                    <div key = {data.id}>
+
+
+                    <MemberGroupShow data = {data} />
+
+                    </div>
+                )
+            )
+        }
+        </div>
+}
                                                 
                                             </div>
                                         </div>

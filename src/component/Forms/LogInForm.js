@@ -113,7 +113,14 @@ const LogInPage = ({loading,error,...props}) => {
  
      <p>First time? <Link to="/sign-up">Create an account</Link>.</p>
      <p>Forget Password? <Link to="/forget-password">Reset Password</Link>.</p>
- 
+
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
+    <br></br>
    </div>
  
      

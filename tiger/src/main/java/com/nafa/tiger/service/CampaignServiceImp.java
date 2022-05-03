@@ -51,6 +51,14 @@ public class CampaignServiceImp  implements CampaignService{
         if(campaign.getCampaignDescription()!= null){
         	updatedCampaign.setCampaignDescription(campaign.getCampaignDescription());
         }
+        
+        if(campaign.getAmountGoal()!= null){
+        	updatedCampaign.setAmountGoal(campaign.getAmountGoal());
+        }
+        
+        if(campaign.getCampaignImage()!= null){
+        	updatedCampaign.setCampaignImage(campaign.getCampaignImage());
+        }
        
         return  updatedCampaign;
     }

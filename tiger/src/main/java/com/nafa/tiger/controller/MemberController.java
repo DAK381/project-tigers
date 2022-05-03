@@ -40,7 +40,7 @@ MemberController {
 		return memberService.addUserToGroup(userId,groupId);
 	}
 	
-	@PutMapping("/user/{userId}/remove/{groupId}")
+	@DeleteMapping("/user/{userId}/remove/{groupId}")
 	public Collection<Group> removeUserFromGroup(@PathVariable("userId") Long userId, @PathVariable("groupId") Long groupId){
 		return memberService.removeUserFromGroup(userId,groupId);
 	}

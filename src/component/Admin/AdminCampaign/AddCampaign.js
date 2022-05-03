@@ -27,9 +27,9 @@ function AddCampaign(){
       function registerCampaign(e){
        
         e.preventDefault();
-        axios.post("/scholarship/add-scholarship", {campaignName, campaignDescription, campaignImage, amountGoal, addedDate})
+        axios.post("campaign/add-campaign", {campaignName, campaignDescription, campaignImage, amountGoal, addedDate})
         .then(res=>{;
-            navigate('/admin-scholarship-view');
+            navigate('/campaign');
           }).catch(err=>console.log(err))
     }
 
