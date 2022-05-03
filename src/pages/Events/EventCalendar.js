@@ -15,7 +15,8 @@ export default function EventCalendar(props){
     const location = new useLocation();
     var customParseFormat = require('dayjs/plugin/customParseFormat')
 	dayjs.extend(customParseFormat)
-    const events = location.state.events;
+    
+    const events = props.events;
 
     const [modalIsOpen,setModalIsOpen] = useState(false);
 

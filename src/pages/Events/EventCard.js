@@ -7,8 +7,6 @@ import Col from 'react-bootstrap/Col'
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal'
 import './../Card.css';
-import Moment from 'react-moment';
-import moment from 'moment';
 import { CardFooter } from 'reactstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import DayJS from 'react-dayjs';
