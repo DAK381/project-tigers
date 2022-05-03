@@ -10,23 +10,34 @@ export default function RelationshipCard(props){
     
     const[relative, setRelative] = useState();
 
-    async function getData( ){
+    // async function getData( ){
        
 
                      
-                               axios.get(`admin/member/${data.relatedTo}`).then(res => {
-                                   setRelative(res.data.firstName + " " + res.data.maidenName + " " + res.data.lastName )
+    //                            axios.get(`admin/member/${data.relatedTo}`).then(res => {
+    //                                setRelative(res.data.firstName + " " + res.data.maidenName + " " + res.data.lastName )
 
-                               }).catch(err => console.log(err))
+    //                            }).catch(err => console.log(err))
 
                         
            
-    }
+    // }
     
-
+    
     
     useEffect(() => {
-            getData();             
+        
+       
+
+                     
+            axios.get(`admin/member/${data.relatedTo}`).then(res => {
+                setRelative(res.data.firstName + " " + res.data.maidenName + " " + res.data.lastName )
+
+            }).catch(err => console.log(err))
+
+     
+
+            
         }, [data]);
 
 

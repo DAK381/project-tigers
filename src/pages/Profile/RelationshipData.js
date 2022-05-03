@@ -13,9 +13,38 @@ export default function RelationshipData(props){
     const[dataToBeShown, setShown] = useState([{}]);
     var[relative, setRelative] = useState();
 
-    async function getData( ){
-        props.id &&
-        axios.get(`getallRelationship/${props.id}`
+    // async function getData( ){
+    //     props.userData.id &&
+    //     axios.get(`getallRelationship/${props.userData.id}`
+    //         )
+    //         .then(
+    //             (response) =>
+    //             {
+    //                      setData(response.data)
+
+    //                     //  relationShipData.map(
+    //                     //     (data) =>{
+    //                     //        axios.get(`admin/member/${data.relatedTo}`).then(res => {
+    //                     //            setRelative(res.data.firstName)
+
+    //                     //        }).catch(err => console.log(err))
+
+    //                     //        data["relative"] = relative;
+
+                               
+    //                     //     }
+    //                     // )
+                         
+    //                     setLoading(false)
+    //             }
+    //         )
+    // }
+    
+
+    
+    useEffect(() => {
+        props.userData.id &&
+        axios.get(`getallRelationship/${props.userData.id}`
             )
             .then(
                 (response) =>
@@ -38,12 +67,6 @@ export default function RelationshipData(props){
                         setLoading(false)
                 }
             )
-    }
-    
-
-    
-    useEffect(() => {
-            getData();
 
             
                         //  relationShipData.map(
@@ -65,7 +88,7 @@ export default function RelationshipData(props){
             
     
              
-        }, [props.id]);
+        }, [props.userData.id]);
 
         
 

@@ -7,7 +7,7 @@ import { Button } from 'react-bootstrap';
 
 export default function Relationship(props){
 
-
+  const userData=props.userData;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -49,8 +49,35 @@ export default function Relationship(props){
 
   
 
-  async function getData( ){
-    axios.get("/admin/allMembers"
+//   async function getData( ){
+//     axios.get("/admin/allMembers"
+//         )
+//         .then(
+//             (response) =>
+//             {
+
+//                  setData(response.data)
+
+     
+//                const options = data && data.map(d => ({
+
+//                     "value" : d.id,
+//                     "label" : d.firstName + " " + d.maidenName + " " + d.lastName
+              
+//                   }))
+
+//                   setOptions(options)
+                
+
+//             }
+//         )
+// }
+
+
+
+useEffect(() => {
+  console.log('this useEffect is reloading multiple times');
+  axios.get("/admin/allMembers"
         )
         .then(
             (response) =>
@@ -71,12 +98,6 @@ export default function Relationship(props){
 
             }
         )
-}
-
-
-
-useEffect(() => {
-        getData();
 
     }, [data]);
 
@@ -106,7 +127,7 @@ const onOptionChangeRelative = useCallback(
 
    
     e.preventDefault()
-    axios.post(`/relationship/${props.userData.id}/${relationship}/${selectedId}`).then(res => {
+    axios.post(`/relationship/${userData.id}/${relationship}/${selectedId}`).then(res => {
       console.log(res.data)
       console.log("You have added ", selected.label, " with id ", selected.value, " as your ", relationship)
       window.location.reload();
@@ -114,7 +135,7 @@ const onOptionChangeRelative = useCallback(
    
 
   }
-
+  console.log('Relationship component is reloading repeatedly');
 
 
     return(
