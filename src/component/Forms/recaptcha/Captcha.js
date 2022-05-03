@@ -8,7 +8,7 @@ const RecaptchaComponent = () => {
   return (
     <div className="RecaptchaComponent">
       <ReCAPTCHA
-        sitekey=""
+        sitekey="6Lesc7wfAAAAANkBrpuKvNbmQxWbjja3YoM0J8nE"
         onChange={onChange}
       />
     </div>
