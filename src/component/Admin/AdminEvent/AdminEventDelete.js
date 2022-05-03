@@ -21,7 +21,7 @@ export default function AdminEventDelete(props){
     axios.delete(`admin/event/delete/${props.id}`)
         .then(res=>{
           // console.log(res.data);
-            navigate('/admin-event-view');
+            navigate('/events');
 
       }).catch(err=>console.log(err))
 

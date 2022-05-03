@@ -68,6 +68,7 @@ const Contact = () => {
     </Card>
     </Col>
     </Row>
+    <br></br>
     </Container>
   );
 };

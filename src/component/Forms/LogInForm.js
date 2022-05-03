@@ -153,8 +153,11 @@ const LogInPage = ({loading,error,...props}) => {
   </Card>
   </Col>
   </Row>
+    <br></br>
   </Container>  
  
+    
+
    )
 };
 const mapStateToProps=({auth})=>{

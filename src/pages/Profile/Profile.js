@@ -39,14 +39,16 @@ function Profile(props) {
     React.useEffect(() => {
         axios.get("/search/allgroup").then(res => {
             setGroups(res.data)
+            console.log('groups');
         }).catch(err => console.log(err))
         axios.get("/search/membersGroups/"+userData.id).then(res => {
             setMemberGroups(res.data)
+            console.log('membergroups');
         }).catch(err => console.log(err))
 
         axios.get(`admin/event/search/membersEvent/${userData.id}`).then(res => {
             setEvents(res.data)
-
+            console.log('memberevents');
             
         }).catch(err => console.log(err))
 
@@ -56,7 +58,7 @@ function Profile(props) {
         // }).catch(err => console.log(err))
         
         
-    }, [props.userData])
+    }, [userData.id])
 
 
     console.log(relationshipData)
@@ -300,7 +302,7 @@ function Profile(props) {
                                                 
                                                {
 
-                                                    userData.id && <RelationshipData id = {userData.id} />
+                                                    userData && <RelationshipData userData = {userData} />
 
 
                                                } 

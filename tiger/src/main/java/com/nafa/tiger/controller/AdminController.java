@@ -38,6 +38,7 @@ public class AdminController {
 	@CrossOrigin(origins = "*")
 	@GetMapping("/allMembers")
 	public ArrayList<User> getAllUsers() {
+		System.out.println("***************************************************");
 		return memberService.getAllUsers();
 	}
 
