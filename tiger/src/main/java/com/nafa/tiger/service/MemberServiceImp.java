@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import com.nafa.tiger.entity.*;
+import com.nafa.tiger.exception.ResourceNotFoundException;
 import com.nafa.tiger.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,7 @@ public class MemberServiceImp implements MemberService {
 
 	@Override
 	public User getUserById(Long userId) {
-		return memberRepository.findById(userId).get();
+		return memberRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + userId));
 	}
 	
 	@Override
