@@ -2,6 +2,7 @@ package com.nafa.tiger.controller;
 
 import com.nafa.tiger.entity.Events;
 import com.nafa.tiger.entity.Group;
+import com.nafa.tiger.entity.Guest;
 import com.nafa.tiger.entity.User;
 import com.nafa.tiger.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,19 @@ public class EventController {
     
     
     @GetMapping("/search/membersByEvent/{eventId}")
-    public Collection<User> getMembersByEvent(@PathVariable("eventId") Long groupId){
-        return eventService.getMembersByEvent(groupId);
+    public Collection<User> getMembersByEvent(@PathVariable("eventId") Long eventId){
+        return eventService.getMembersByEvent(eventId);
+    }
+
+    ///for the Guest USer
+    @PostMapping("/register/guest/{eventId}")
+    public String registerGuest(@RequestBody Guest guest, @PathVariable("eventId") Long eventId){
+        return eventService.registerGuest(guest,eventId);
+
+    }
+
+    @GetMapping("/search/guestByEvent/{eventId}")
+    public Collection<Guest> getGuestByEvent(@PathVariable("eventId") Long eventId){
+        return eventService.getGuestByEvent(eventId);
     }
 }

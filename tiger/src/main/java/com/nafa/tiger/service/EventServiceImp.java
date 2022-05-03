@@ -2,8 +2,10 @@ package com.nafa.tiger.service;
 
 import com.nafa.tiger.entity.Events;
 import com.nafa.tiger.entity.Group;
+import com.nafa.tiger.entity.Guest;
 import com.nafa.tiger.entity.User;
 import com.nafa.tiger.repository.EventRepository;
+import com.nafa.tiger.repository.GuestRepository;
 import com.nafa.tiger.repository.MemberRepositrory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ public class EventServiceImp  implements EventService{
     private EventRepository eventRepository;
     @Autowired
     private MemberRepositrory memberRepositrory;
+    @Autowired
+    private GuestRepository guestRepository;
     @Override
     public ArrayList<Events> getAllEvents() {
         return (ArrayList<Events>) eventRepository.findAll();
@@ -100,6 +104,19 @@ public class EventServiceImp  implements EventService{
     public Collection<User> getMembersByEvent(Long eventId) {
         Events event = eventRepository.findById(eventId).get();
         return event.getEventUser();
+    }
+
+    @Override
+    public String registerGuest(Guest guest, Long eventId) {
+        guestRepository.save(guest);
+        guest.getGuestEvent().add(eventRepository.getById(eventId));
+        return "Sucess";
+    }
+
+    @Override
+    public Collection<Guest> getGuestByEvent(Long eventId) {
+        Events event = eventRepository.findById(eventId).get();
+        return event.getEventGuest();
     }
 
 

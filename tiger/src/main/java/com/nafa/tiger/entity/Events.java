@@ -35,4 +35,9 @@ public class Events {
     @JsonIgnore
     private Collection<User> eventUser = new ArrayList<>();
 
+
+    @ManyToMany(mappedBy = "guestEvent", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Collection<Guest> eventGuest = new ArrayList<>();
+
 }
