@@ -34,8 +34,8 @@ cloud:
     stack:
       auto: false
     credentials:
-      access-key: AKIA6KC2TLWNZ7T7IB77
-      secret-key: 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
+      access-key: 
+      secret-key: 
 
 jwt:
   auth:
