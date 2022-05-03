@@ -34,12 +34,15 @@ function EventRegistration(){
        
         console.log(location.state.event)
 
-        function log(user){
+       
+
+        useEffect(()=>{
+
           if(Object.keys(user).length !== 0)
           {
             setLoggedIn(true);
           }
-        }
+      },[])
 
         function registerForEvent() {  
 

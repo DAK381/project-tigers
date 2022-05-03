@@ -15,7 +15,7 @@ export default function AdminMemberRSVP(){
     const[isEmpty, setEmpty] = useState(true)
 
     const[guestData, setGuest] = useState([]);
-    const[guestEmpty, setGuestEmpty] = useState([]);
+    const[guestEmpty, setGuestEmpty] = useState(true);
 
     console.log(location.state.event.eventId)
 
@@ -26,6 +26,7 @@ export default function AdminMemberRSVP(){
                 (response) =>
                 {
                      setData(response.data)
+                     console.log(data)
                      if(data.length > 0){
                         setEmpty(false)
                     }
@@ -38,6 +39,7 @@ export default function AdminMemberRSVP(){
                 (response) =>
                 {
                     setGuest(response.data)
+                    console.log(guestData)
                      if(guestData.length > 0){
                         setGuestEmpty(false)
                     }
@@ -57,51 +59,24 @@ export default function AdminMemberRSVP(){
 
         
 
-        {
-            loading? 
-            <span>
-                <LoadingSpinner />
-                </span>
-            :
-
-            isEmpty? <h2>
-                    No one is a member of this group yet.
-                </h2>
-                :
+       {
+           loading?
+           <LoadingSpinner />:
 <div>
-
-                <div>
-                    <h2>
-                        Members who've signed up so far
-                    </h2>
-                    <AdminMemberList data = {data} guest = {false}/>
-                
-                </div>
-
-                {/* <div>
-                    guestEmpty?
-                <h2>
-                    No guest has signed up so far
-                </h2>
-
-                
-                    <div>
-
-                    <GuestList data = {data} />
-
-                    </div>
-                    </div> */}
-
-                
-            
-        </div>    
-
-
-
-
-        }
-
-
+           <div>
+               {isEmpty?
+               <h2> No member has signed up for the event</h2>:
+               <AdminMemberList data = {data} />}
+            </div>
+<br></br><br></br><br></br>
+            <div>
+               {guestEmpty?
+               <h2> No one has signed up as a guest</h2>:
+               <GuestList data = {data} />}
+            </div>
+      
+    </div>
+     }
        
         </div>
 
