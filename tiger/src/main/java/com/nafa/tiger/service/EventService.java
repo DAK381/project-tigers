@@ -1,6 +1,7 @@
 package com.nafa.tiger.service;
 
 import com.nafa.tiger.entity.Events;
+import com.nafa.tiger.entity.Guest;
 import com.nafa.tiger.entity.User;
 import org.springframework.stereotype.Service;
 
@@ -24,4 +25,8 @@ public interface EventService {
     Collection<Events> getEventByMember(Long userId);
 
     Collection<User> getMembersByEvent(Long groupId);
+
+    String registerGuest(Guest guest, Long eventId);
+
+    Collection<Guest> getGuestByEvent(Long eventId);
 }
