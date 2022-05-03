@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 public class ReCaptchaValidationService {
     private static final String GOOGLE_RECAPTCHA_ENDPOINT = "https://www.google.com/recaptcha/api/siteverify";
 
-  private final String RECAPTCHA_SECRET = "6Lf5YrwfAAAAAGhdVfuVgg8UALWu2PqGZbfErk6A";
+  private final String RECAPTCHA_SECRET = "yfukt\n";
 
     public boolean validateCaptcha(String captchaResponse){
         RestTemplate restTemplate = new RestTemplate();
