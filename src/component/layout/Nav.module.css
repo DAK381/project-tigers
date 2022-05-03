@@ -3,3 +3,11 @@
   padding: 15 px;
   height: 50000 px;
 }
+
+nav{
+  color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+  color: white !important;
+}

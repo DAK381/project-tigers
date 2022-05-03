@@ -43,9 +43,8 @@ function EventCard(props) {
 		});
 	}
 
-	function eventSignUp(){
-		console.log(props.userData)
-		if(Object.keys(props.userData).length !== 0){
+	function eventSignUp(e){
+		
 			navigate('/event-signup', {state:
 				{
 					event: eventInfo,
@@ -54,10 +53,7 @@ function EventCard(props) {
 
 				}
 			});
-		}
-		else{
-			alert("have to login to register")
-		}
+		
 
 	}
 
@@ -126,13 +122,13 @@ function EventCard(props) {
 									</Button>
 								</Modal.Footer>
 							</Modal>
-
+							
 						{props.userData.role === "ADMIN" && < Button onClick = {() => {updateEvent()}}>Update Event</Button>}
 
 						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPmembers()}}>Registered Members</Button>}
 						
 						</Card.Body>
-						
+
 						<CardFooter>
 						{ 
 						!(props.userData.role === "ADMIN") && 

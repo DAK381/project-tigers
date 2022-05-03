@@ -133,7 +133,7 @@ function App() {
         { token && <Route path="/user-updated-profile" element={<Profile userData={userData}/>} /> }
 
 
-    	  { token && <Route path="/event-signup" element={<EventRegistration />}/> }
+    	  { <Route path="/event-signup" element={<EventRegistration />}/> }
 
         <Route path="/event-calendar" element={<EventCalendar />}/>
 

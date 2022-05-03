@@ -7,30 +7,51 @@ import { useState, useEffect } from "react";
 import axios from '../../../axios';
 import Select from 'react-select'
 import { useCallback } from "react";
+import EmailForm from "./EmailForm";
 
 function AdminContact() {
 
+    const navigate = useNavigate();
     const location = useLocation();
 
     // const emails = location.state.arrayId;
     // console.log(emails)
 
+    const [email, setEmail] = useState({
+        subject: "",
+       body: ""
+     })
+
     const[options, setOptions] = useState([]);
 
     const[final, setFinal] = useState([]);
 
-    const navigate = useNavigate();
+    const[subject,setSubject] = useState();
+    const[body, setBody] = useState();
+
+    // const navigate = useNavigate();
 
 
     // const emailArray = location.state.arrayId;
 
-    const[subject, setSubject] = useState();
 
-    const[body, setBody] = useState();
 
     const[data, setData] = useState();
 
+      const emailSend = (email) => {
+
+    setEmail([
+                {
+                    subject: email.subject,
+                    body: email.body
+
+                }
     
+    ]);
+
+    setSubject(email.subject)
+    setBody(email.body)
+  };
 
 
 
@@ -68,14 +89,15 @@ function AdminContact() {
 
     const onOptionChange = useCallback(
         (option) => {
+            
           console.log("this is ", option);
     
-          setFinal(...final, option)
+          setFinal(option)
         },
         []
       );
-    
-      console.log(final)
+
+     console.log(final)
 
 
     for(var i = 0; i < final.length; i++){
@@ -84,42 +106,44 @@ function AdminContact() {
     }
 
 
-    //   function sendEmails(){
+      function sendEmails(){
 
-    //     final.map(
-    //         (email) => {
-    //             console.log(typeof email)
-    //             const toEmail = email.label
-
-    //             console.log(toEmail)
-
-    //             axios.get("admin/send-email", {toEmail, subject, body}).then(res=>{
-                    
-                    
-    //                 navigate('/admin-member');
-                    
-    //               }).catch(err=>
-    //                 {console.log("vayena")
-    //                 console.log(err)}
-    //               )
-    //             }
-
-    //     )
-    //         }
-
-    function sendEmails(e){
-        console.log("HHIHIHII")
-        e.preventDefault();
         final.map(
-            email => {
-                console.log(email.label)
-            }
+            (final) => {
+                console.log(email)
+                console.log(typeof email)
+
+                const toEmail = final.label
+
+                console.log(toEmail, subject,  body)
+
+                axios.post("admin/send-email", {toEmail, subject, body}).then(res=>{
+
+                    navigate('/admin-member');
+                    
+                  }).catch(err=>
+                    {console.log("vayena")
+                    console.log(err)}
+                  )
+                }
+
         )
-    }
+            }
+
+    // function sendEmails(e){
+
+    //     e.preventDefault();
+
+    //     console.log("HHIHIHII")
         
+    //     final.map(
+    //         email => {
+    //             console.log(email.label)
+    //         }
+    //     )
+    // }
 
-     
-
+    console.log(email)
 
     return (
 
@@ -129,41 +153,41 @@ function AdminContact() {
                     <CardBody>
                         <Card.Title>
                             <h3>Contact Members</h3></Card.Title>
-                        <Form className="form-control">
-                            
 
-<Select
+                            {
+                                location.state? 
+                                <Select
        
-       options={options}
-       isMulti
-    //    defaultValue = {emails.map(ele => ele)}
-       onChange={(e) => onOptionChange(e)}
+                         options={options}
+                             isMulti
+                 defaultValue = {location.state.arrayId.map(ele => ele)}
+                         onChange={(e) => {
+                        onOptionChange(e)
+    }}
 
-    //    onChange={(e) => onOptionChangeRelative(e)}
+     />:
+     <Select
+       
+                         options={options}
+                             isMulti
+                //  defaultValue = {emails.map(ele => ele)}
+                         onChange={(e) => {
+                        onOptionChange(e)
+    }}
+
      />
+                            }
+                        
+
+<EmailForm emailSend = {emailSend} />
 
 
 
-                                <Form.Label>Subject</Form.Label>
-                                <Form.Control type="text" placeholder="Email Subject" value = {subject} 
-                                name = "subject"  onChange={(e) => setSubject(e.target.value)}
-                                />
-
-
-                            <Form.Label>Body</Form.Label>
-                            <FloatingLabel controlId="floatingTextarea2" label="Comments">
-                            <Form.Control
-                            as="textarea"
-                            placeholder="Leave a comment here"
-                            name = "body"  onChange={(e) => setBody(e.target.value)}
-                            style={{ height: '100px' }}
-                            />
-                            </FloatingLabel>
-
-                            <Button variant="primary" type="submit" onCLick = {sendEmails}>
+                                
+                            <Button variant="primary" onClick = {sendEmails}>
                                 Send
                             </Button>
-                        </Form>
+                      
                     </CardBody>
                 </Card>
             </Container>

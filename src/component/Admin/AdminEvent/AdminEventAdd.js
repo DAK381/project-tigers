@@ -8,10 +8,6 @@ function AdminEventAdd(){
     return(
         <div>  
             <AdminEventAddForm />
-            
-            
-
-
         </div>
     )
 

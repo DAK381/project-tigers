@@ -60,7 +60,7 @@ function Home(props) {
             </div>
 
             <div>
-<Nav.Link  href={`/events`}>
+<Nav.Link  href={`/scholarship`}>
   <hr />
   <h5 className="text-center text-warning">View More Scholarships</h5>
 </Nav.Link>
