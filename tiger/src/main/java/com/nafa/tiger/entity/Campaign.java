@@ -19,11 +19,13 @@ import java.util.Date;
 public class Campaign {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long campaignId;
     private String campaignName;
     private String campaignDescription;
     private String amountGoal;
     private String addedDate;
+    private String campaignImage;
    
     @ManyToMany(mappedBy = "userCampaign", cascade = CascadeType.ALL)
     @JsonIgnore

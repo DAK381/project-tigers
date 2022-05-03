@@ -42,7 +42,7 @@ console.log(location.state.name)
 
     const updateAPIData = (e) => {
         e.preventDefault();
-        axios.put(`/scholarship/update-scholarship/${campaignId}`, {
+        axios.put(`/campaign/update-campaign/${campaignId}`, {
             campaignName, campaignDescription, campaignImage, amountGoal
             
         })

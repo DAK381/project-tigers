@@ -4,5 +4,5 @@ public enum Relationship {
     PARENT,
     SPOUSE,
     CHILDREN,
-    SIBILING
+    SIBLING
 }
