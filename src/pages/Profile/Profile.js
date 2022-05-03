@@ -251,14 +251,7 @@ function Profile(props) {
                                                         userData && <MemberGroup id = {userData.id} groups = {groups} memberGroups = {memberGroups} />
                                                     }
 
-                                                    {/* {
-                                                        userData && 
-                                                        <Row className='row-cols-1 row-cols-md-3 p-2 g-4'>
-
-                                                        <MemberGroupShow id = {userData.id}  memberGroups = {memberGroups} />
-                                                            
-                                                            </Row>
-                                                    } */}
+                                           
 
 {
     
