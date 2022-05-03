@@ -36,4 +36,6 @@ public interface MemberService {
 	 User update(Long User_id, User user);
 
     Collection<UserRelationship> getRelationship(Long userId);
+
+
 }

@@ -37,7 +37,23 @@ public class RelationshipService {
         UserRelationship relationship = new UserRelationship(Relationship.valueOf(relation),user2Id);
         relationShipRepository.save(relationship);
         User user1 = memberRepositrory.getById(user1Id);
-        User user2 = memberRepositrory.getById(user2Id);
         user1.getRelationOfUser().add(relationship);
+    }
+
+    public UserRelationship getRelationshipByrelatedTo(Long relatedUserId){
+      return relationShipRepository.findByRelatedTo(relatedUserId);
+    }
+
+    public String removeRelationship(Long userId1, Long userId2) {
+      User user1 = memberRepositrory.getById(userId1);
+      User user2 = memberRepositrory.getById(userId2);
+      UserRelationship relationship1 = relationShipRepository.findByRelatedTo(userId2);
+      UserRelationship relationship2 =relationShipRepository.findByRelatedTo(userId1);
+      user1.getRelationOfUser().remove(relationship1);
+      user2.getRelationOfUser().remove(relationship2);
+      relationShipRepository.delete(relationship1);
+      relationShipRepository.delete(relationship2);
+
+      return "removed sucessfully";
     }
 }
