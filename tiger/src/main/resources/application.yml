@@ -9,20 +9,12 @@ spring:
       ddl-auto:create
       globally_quoted_identifiers:'true'
   datasource:
-<<<<<<< HEAD
-=======
-
->>>>>>> 59b6f05d8fc85ad284663b0015f9697955240f11
 #        username: postgres
 #        url: jdbc:postgresql://localhost:5432/localhost
 #        password: Dnamodel10@
     username: tiger
     url: jdbc:postgresql://nafa.cp4e12t7aiyi.us-east-2.rds.amazonaws.com/registration
     password: nafatiger
-<<<<<<< HEAD
-=======
-
->>>>>>> 59b6f05d8fc85ad284663b0015f9697955240f11
 #  mail:
 #    properties:
 #      mail:
@@ -42,14 +34,8 @@ cloud:
     stack:
       auto: false
     credentials:
-<<<<<<< HEAD
-
-      access-key: A77
-      secret-key: 
-=======
       access-key:
       secret-key:
->>>>>>> 59b6f05d8fc85ad284663b0015f9697955240f11
 
 jwt:
   auth:
