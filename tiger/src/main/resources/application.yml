@@ -9,12 +9,14 @@ spring:
       ddl-auto:create
       globally_quoted_identifiers:'true'
   datasource:
-#        username: postgres
-#        url: jdbc:postgresql://localhost:5432/localhost
-#        password: Dnamodel10@
-    username: tiger
-    url: jdbc:postgresql://nafa.cp4e12t7aiyi.us-east-2.rds.amazonaws.com/registration
-    password: nafatiger
+
+#         username: postgres
+#         url: jdbc:postgresql://localhost:5432/localhost
+#         password: Dnamodel10@
+   username: tiger
+   url: jdbc:postgresql://nafa.cp4e12t7aiyi.us-east-2.rds.amazonaws.com/registration
+   password: nafatiger
+
 #  mail:
 #    properties:
 #      mail:
