@@ -19,6 +19,7 @@ import java.util.Date;
 public class Campaign {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long campaignId;
     private String campaignName;
     private String campaignDescription;
