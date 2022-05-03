@@ -2,6 +2,7 @@ package com.nafa.tiger.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -21,8 +22,8 @@ public class MemberServiceImp implements MemberService {
 	@Autowired
 	private MemberRepositrory memberRepository;
 
-//	@Autowired
-//	private VerificationTokenRepository verificationTokenRepository;
+	@Autowired
+	private VerificationTokenRepository verificationTokenRepository;
 	
 	
 	@Autowired
@@ -35,7 +36,7 @@ public class MemberServiceImp implements MemberService {
 	private AddGroupRequestRepository  addGroupRequestRepository;
 	@Override
 	public void deleteUser(Long userId) {
-//		verificationTokenRepository.deleteByUserId(1L);
+		verificationTokenRepository.deleteAllByIdInBatch(Collections.singleton(userId));
 		memberRepository.deleteById(userId);
 	}
 

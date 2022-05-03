@@ -12,7 +12,7 @@ public class EmailSenderService {
     @Autowired
     private MailSender mailSender;
 
-    public String sendSimpleEmail(String toEmail, String body, String subject){
+    public String sendSimpleEmail(String toEmail, String subject, String body){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("thapakhaji5@gmail.com");
         message.setTo(toEmail);
