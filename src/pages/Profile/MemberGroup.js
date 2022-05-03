@@ -74,10 +74,16 @@ function addGroup(e){
                   }).catch((e) => {
             console.log(e);
         });
+
+        
         
 
     }
+
+    
     )
+
+    window.location.reload();
 }
 
 function removeGroup(e){
@@ -86,14 +92,20 @@ function removeGroup(e){
   removeSelected.map(
   (group) => {
       axios.delete(`/user/${props.id}/remove/${group.value}`).then(() => {
+
+        console.log(group.label, " added.")
          
       }).catch((e) => {
           console.log(e);
       });
-      // window.location.reload();
+      
 
   }
+
+  
   )
+
+  window.location.reload();
 }
 
 

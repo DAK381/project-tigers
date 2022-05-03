@@ -12,12 +12,12 @@ function AdminContact() {
 
     const location = useLocation();
 
-    const emails = location.state.arrayId;
-    console.log(emails)
+    // const emails = location.state.arrayId;
+    // console.log(emails)
 
     const[options, setOptions] = useState([]);
 
-    const[final, setFinal] = useState(emails);
+    const[final, setFinal] = useState([]);
 
     const navigate = useNavigate();
 
@@ -70,29 +70,52 @@ function AdminContact() {
         (option) => {
           console.log("this is ", option);
     
-          setFinal(option)
+          setFinal(...final, option)
         },
         []
       );
     
       console.log(final)
 
-      function sendEmails(){
 
+    for(var i = 0; i < final.length; i++){
+        console.log(final[i].label)
+        console.log(typeof final[i])
+    }
+
+
+    //   function sendEmails(){
+
+    //     final.map(
+    //         (email) => {
+    //             console.log(typeof email)
+    //             const toEmail = email.label
+
+    //             console.log(toEmail)
+
+    //             axios.get("admin/send-email", {toEmail, subject, body}).then(res=>{
+                    
+                    
+    //                 navigate('/admin-member');
+                    
+    //               }).catch(err=>
+    //                 {console.log("vayena")
+    //                 console.log(err)}
+    //               )
+    //             }
+
+    //     )
+    //         }
+
+    function sendEmails(e){
+        console.log("HHIHIHII")
+        e.preventDefault();
         final.map(
-            (email) => {
-                var toEmail = email.label
-
-                axios.post("admin/send-email", {toEmail, subject, body}).then(res=>{
-                    
-                    
-                    navigate('/admin-member');
-                    
-                  }).catch(err=>console.log(err))
-                }
-
-        )
+            email => {
+                console.log(email.label)
             }
+        )
+    }
         
 
      
@@ -108,14 +131,12 @@ function AdminContact() {
                             <h3>Contact Members</h3></Card.Title>
                         <Form className="form-control">
                             
-                                {/* <Form.Label className="text-left">Email address</Form.Label>
-                                <Form.Control type="email" placeholder="Enter email" /> */}
 
 <Select
        
        options={options}
        isMulti
-       defaultValue = {emails.map(ele => ele)}
+    //    defaultValue = {emails.map(ele => ele)}
        onChange={(e) => onOptionChange(e)}
 
     //    onChange={(e) => onOptionChangeRelative(e)}
