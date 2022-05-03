@@ -13,6 +13,7 @@ export default function AdminScholarshipUpdate(props) {
     const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
+    const handleBack = () => navigate('/scholarship');
 
 
     const navigate = useNavigate();
@@ -59,9 +60,12 @@ console.log(location.state.name)
     return (
         <div>
             <div className="container">
+
+
                 <h1>{location.state.name}</h1>
                 <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                     <div class="jumbotron">
+                    <button onClick={handleBack}>Back</button>
                         <h1 class="display-4 text-center">Update {location.state.name}</h1>
                         <div>
                             <Button variant="primary" onClick={handleShow}>

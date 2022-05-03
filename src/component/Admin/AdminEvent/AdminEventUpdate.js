@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "../../../axios";
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import DatePicker from "react-datepicker";
 import AdminEventDelete from './AdminEventDelete';
@@ -14,7 +14,8 @@ export default function AdminEventUpdate(props) {
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 
-    
+
+
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -30,6 +31,7 @@ export default function AdminEventUpdate(props) {
     const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndime] = useState("");  
 
+  const handleBack = () => navigate('/events');
     
 
 
@@ -64,11 +66,17 @@ export default function AdminEventUpdate(props) {
             <div className="container">
 
 
+
+
                 <h1>{location.state.name}</h1>
+                
+
                 <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                     <div class="jumbotron">
+                    <button onClick={handleBack}>Back</button>
                         <h1 class="display-4 text-center">Update {location.state.event.eventName}</h1>
                         <div>
+                          
                             <Button variant="primary" onClick={handleShow}>
 				                Choose Image
 			                </Button>
