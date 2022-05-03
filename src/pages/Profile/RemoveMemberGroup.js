@@ -11,18 +11,11 @@ export default function RemoveMemberGroup(props){
 
 
   const[removeSelected, setRemoveSelected] = useState([]);
-  
-
-
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
 
-
-
-  
  const current = props.memberGroups && props.memberGroups.map(d => ({
 
                     "value" : d.groupId,

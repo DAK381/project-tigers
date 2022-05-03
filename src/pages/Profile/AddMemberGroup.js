@@ -34,14 +34,10 @@ export default function AddMemberGroup(props){
               
                   }))
 
-// const notAddedOptions = options.filter(x => !current.includes(x))
+
   
 const notAddedOptions = options.filter(({ value: id1 }) => !current.some(({ value: id2 }) => id2 === id1));
 console.log(notAddedOptions)
-// console.log(current)
-
-
-
 
 const onOptionChangeAdd = useCallback(
     (option) => {
