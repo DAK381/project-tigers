@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Form } from "react-bootstrap";
+import { Container, Form, Card, Button, Row, Col } from "react-bootstrap";
 import { connect } from 'react-redux';
 import { authenticate, authFailure, authSuccess } from '../../redux/authActions';
 import { Link, useNavigate } from "react-router-dom";
@@ -83,40 +83,77 @@ const LogInPage = ({loading,error,...props}) => {
   console.log("Loading ",loading);
  
    return (
-       <div>
-     <h1>Log In Form</h1>
-     <Form className="register-form" >
-       <Form.Group controlId="email">
-         <Form.Label>Email</Form.Label>
-         <Form.Control
-           type="email"
-           placeholder="Enter email"
-           name="email" required ={true}
-           value = {values.email}
-           onChange={handleChange}
-         />
-       </Form.Group>
-       <Form.Group controlId="password">
-         <Form.Label>Password</Form.Label>
-         <Form.Control
-           type="password"
-           placeholder="Enter password"
-           name="password" required = {true}
-           value = {values.password}
-           onChange={handleChange}
-         />
-       </Form.Group>
+  //      <div>
+  //    <h1>Log In Form</h1>
+  //    <Form className="register-form" >
+  //      <Form.Group controlId="email">
+  //        <Form.Label>Email</Form.Label>
+  //        <Form.Control
+  //          type="email"
+  //          placeholder="Enter email"
+  //          name="email" required ={true}
+  //          value = {values.email}
+  //          onChange={handleChange}
+  //        />
+  //      </Form.Group>
+  //      <Form.Group controlId="password">
+  //        <Form.Label>Password</Form.Label>
+  //        <Form.Control
+  //          type="password"
+  //          placeholder="Enter password"
+  //          name="password" required = {true}
+  //          value = {values.password}
+  //          onChange={handleChange}
+  //        />
+  //      </Form.Group>
  
-      <Captcha/>
-      <button type ="button" className="btn-primary btn" onClick={loginHandler} >Log in</button>
-     </Form>
+    //   <Captcha/>
+    //   <button type ="button" className="btn-primary btn" onClick={loginHandler} >Log in</button>
+    //  </Form>
+ 
+    //  <p>First time? <Link to="/sign-up">Create an account</Link>.</p>
+    //  <p>Forget Password? <Link to="/forget-password">Reset Password</Link>.</p>
+ 
+  //  </div>
+ 
+  <Container>
+  <br></br>
+  <Row className="row justify-content-center">
+  <Col className="col-lg-6 ml-auto">
+  <Card>
+    <Card.Header><h3 className="text-center display-6"> <strong> Login </strong></h3></Card.Header>
+    <Card.Body>
+      <Form>
+  
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Label className=" font-weight-bolder"><h5>Email address</h5></Form.Label>
+      <Form.Control type="email" 
+                 placeholder="Enter email"
+                 name="email" required ={true}
+                 value = {values.email}
+                 onChange={handleChange} />
+    </Form.Group>
+  
+      <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+      <Form.Label className="font-weight-bolder"><h5>Password</h5></Form.Label>
+      <Form.Control type="password" placeholder="Enter your password" 
+                 name="password" required = {true}
+                 value = {values.password}
+                 onChange={handleChange} />
+    </Form.Group>
+    
+  </Form>
+  <Captcha/>
  
      <p>First time? <Link to="/sign-up">Create an account</Link>.</p>
      <p>Forget Password? <Link to="/forget-password">Reset Password</Link>.</p>
- 
-   </div>
- 
-     
+  <div className="text-right">
+      <Button variant="danger" onClick={loginHandler}>Login</Button> </div>
+    </Card.Body>
+  </Card>
+  </Col>
+  </Row>
+  </Container>  
  
    )
 };
