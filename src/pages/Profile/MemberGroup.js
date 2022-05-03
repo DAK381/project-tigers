@@ -20,7 +20,7 @@ return(
   <div>
     <span>
 
-      <AddMemberGroup groups = {props.groups} memberGroups = {props.memberGroups} />
+      <AddMemberGroup id = {props.id} groups = {props.groups} memberGroups = {props.memberGroups} />
 
 
       
@@ -29,7 +29,7 @@ return(
     <span>
 
 
-      <RemoveMemberGroup groups = {props.groups} memberGroups = {props.memberGroups} />
+      <RemoveMemberGroup id = {props.id} groups = {props.groups} memberGroups = {props.memberGroups} />
 
 
       

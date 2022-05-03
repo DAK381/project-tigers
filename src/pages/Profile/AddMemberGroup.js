@@ -27,16 +27,17 @@ export default function AddMemberGroup(props){
                   }))
 
   
-//  const current = props.memberGroups && props.memberGroups.map(d => ({
+ const current = props.memberGroups && props.memberGroups.map(d => ({
 
-//                     "value" : d.groupId,
-//                     "label" : d.groupName + " " + d.groupYear
+                    "value" : d.groupId,
+                    "label" : d.groupName + " " + d.groupYear
               
-//                   }))
+                  }))
 
+// const notAddedOptions = options.filter(x => !current.includes(x))
   
-
-console.log(options)
+const notAddedOptions = options.filter(({ value: id1 }) => !current.some(({ value: id2 }) => id2 === id1));
+console.log(notAddedOptions)
 // console.log(current)
 
 
@@ -52,124 +53,21 @@ const onOptionChangeAdd = useCallback(
     
   );
 
-//   const onOptionChangeRemove = useCallback(
-//     (option) => {
-//       console.log("this is ", option);
-//       setRemoveSelected(option)
-      
-//     },
-//     []
-
-    
-//   );
-
  
 function addGroup(e){
-    e.preventDefault();
 
-    addSelected.map(
-    (group) => {
-        axios.put(`/addUserToGroup/${group.value}/${props.id}`).then(() => {
-            // window.location.reload();
-                  }).catch((e) => {
-            console.log(e);
-        });
 
-        
-        
-
-    }
-
-    
-    )
+        axios.put(`/addUserToGroup/${addSelected.value}/${props.id}`).then(() => {
+          
+                }).catch((e) => {
+          console.log(e);
+      });
 
     window.location.reload();
+
 }
 
-// function removeGroup(e){
-//   e.preventDefault();
 
-//   removeSelected.map(
-//   (group) => {
-//       axios.delete(`/user/${props.id}/remove/${group.value}`).then(() => {
-
-//         console.log(group.label, " added.")
-         
-//       }).catch((e) => {
-//           console.log(e);
-//       });
-      
-
-//   }
-
-  
-//   )
-
-//   window.location.reload();
-// }
-
-
-
-// return(
-
-//     <div>
-
-    
-//     {/* {loading?
-
-//     <LoadingSpinner />
-
-//     : */}
-// <div>
-
-
-//     <h2>
-//         Select groups you want to add yourselves to.
-//     </h2>
-//     <Select
-
-    
-//        options={options}
-//        isMulti
-//        onChange={(e) => onOptionChangeAdd (e)}
-//      />
-   
-//    <Button variant="secondary" onClick={addGroup}>
-// 										Save
-// 									</Button>
-    
-
-// <h2>
-//     Select groups you want to remove yourselves from
-// </h2>
-
-
-//      <Select
-
-
-//        options={current}
-//        isMulti
-//        onChange={(e) => onOptionChangeRemove(e)}
-//      />
-
-//      </div>
-//      {/* } */}
-
-// <div>
-
-
-
-// </div>
-     
-
-
-// </div>
-
-
-     
-     
-     
-// )
 
 return (
   <div>
@@ -187,12 +85,12 @@ return (
         
 
         <Select
-       options={options}
-       isMulti
+       options={notAddedOptions}
+      //  isMulti
        onChange={(e) => onOptionChangeAdd (e)}
      />
    
-   <Button variant="secondary" onClick={addGroup}>
+   <Button variant="secondary" onClick={(e) => addGroup(e)}>
 										Save
 									</Button>
         <br>

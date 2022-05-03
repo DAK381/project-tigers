@@ -51,90 +51,26 @@ console.log(current)
  
 
 
-function removeGroup(e){
-  e.preventDefault();
+function removeGroup(){
 
-  removeSelected.map(
-  (group) => {
-      axios.delete(`/user/${props.id}/remove/${group.value}`).then(() => {
 
-        console.log(group.label, " added.")
+  
+      axios.delete(`/user/${props.id}/remove/${removeSelected.value}`).then(() => {
+
+        // console.log(group.label, " removed.")
          
       }).catch((e) => {
           console.log(e);
       });
       
 
-  }
-
-  
-  )
 
   window.location.reload();
 }
 
 
 
-// return(
 
-//     <div>
-
-    
-//     {/* {loading?
-
-//     <LoadingSpinner />
-
-//     : */}
-// <div>
-
-
-//     <h2>
-//         Select groups you want to add yourselves to.
-//     </h2>
-//     <Select
-
-    
-//        options={options}
-//        isMulti
-//        onChange={(e) => onOptionChangeAdd (e)}
-//      />
-   
-//    <Button variant="secondary" onClick={addGroup}>
-// 										Save
-// 									</Button>
-    
-
-// <h2>
-//     Select groups you want to remove yourselves from
-// </h2>
-
-
-//      <Select
-
-
-//        options={current}
-//        isMulti
-//        onChange={(e) => onOptionChangeRemove(e)}
-//      />
-
-//      </div>
-//      {/* } */}
-
-// <div>
-
-
-
-// </div>
-     
-
-
-// </div>
-
-
-     
-     
-     
-// )
 
 return (
   <div>
@@ -152,11 +88,11 @@ return (
     
         <Select
        options={current}
-       isMulti
+      //  isMulti
        onChange={(e) => onOptionChangeRemove (e)}
      />
 
-<Button variant="secondary" onClick={removeGroup}>
+<Button variant="secondary" onClick={(e) => removeGroup(e)}>
 										Save
 									</Button>
 
