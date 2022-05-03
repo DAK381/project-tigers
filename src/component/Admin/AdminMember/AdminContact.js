@@ -153,7 +153,20 @@ function AdminContact() {
                     <CardBody>
                         <Card.Title>
                             <h3>Contact Members</h3></Card.Title>
-                        <Select
+
+                            {
+                                location.state? 
+                                <Select
+       
+                         options={options}
+                             isMulti
+                 defaultValue = {location.state.arrayId.map(ele => ele)}
+                         onChange={(e) => {
+                        onOptionChange(e)
+    }}
+
+     />:
+     <Select
        
                          options={options}
                              isMulti
@@ -163,6 +176,8 @@ function AdminContact() {
     }}
 
      />
+                            }
+                        
 
 <EmailForm emailSend = {emailSend} />
 
