@@ -26,16 +26,16 @@ spring:
 #    username: thapakhaji5@gmail.com
 #    password: eeeysijpgnftcgmb
 #    port: '587'
-cloud:
-  aws:
-    region:
-      static: us-east-1
-      auto: false
-    stack:
-      auto: false
-    credentials:
-      access-key: AKIA6KC2TLWNZ7T7IB77
-      secret-key: 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
+# cloud:
+#   aws:
+#     region:
+#       static: us-east-1
+#       auto: false
+#     stack:
+#       auto: false
+#     credentials:
+#       access-key: AKIA6KC2TLWNZ7T7IB77
+#       secret-key: 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
 
 jwt:
   auth:
