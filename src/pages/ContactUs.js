@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './ContactUs.css';
 
 const FORM_ENDPOINT = "";
 
@@ -20,29 +21,35 @@ const Contact = () => {
   }
 
   return (
-
-
-    <><form
+    
+    <form class ="d-flex-column justify-content-start align-items-start ms-3"
       action={FORM_ENDPOINT}
       onSubmit={handleSubmit}
       method="POST"
       target="_blank"
     >
       <div>
-        <input type="text" placeholder="Your name" name="name" required />
+      <h1>
+        CONTACT US FORM
+       
+      </h1>
       </div>
       <div>
-        <input type="email" placeholder="Email" name="email" required />
+        <label class ="mb-2" style = {{fontSize: 20}} className="ContactRequirements">Enter Your Name:</label>
+        <input  class="w-50 p-2 d-flex" type="text" placeholder="Your Name" name="name" required />
       </div>
       <div>
-        <textarea placeholder="Your message" name="message" required />
+      <label class ="mb-2 mt-2" style = {{fontSize: 20}} className="ContactRequirements">Enter Your Email:</label>
+        <input class="w-50 p-2 d-flex" type="email" placeholder="Email" name="email" required />
       </div>
       <div>
-        <button type="submit"> Send a message </button>
+      <label class ="mb-2 mt-2" style = {{fontSize: 20}} className="ContactRequirements">Enter Your Message:</label>
+        <textarea class="w-50 p-2 d-flex" rows="5" placeholder="Your Message" name="message" required />
       </div>
-    </form></>
-
-
+      <div>
+        <button type="submit"> SEND A MESSAGE </button>
+      </div>
+    </form>
   );
 };
 
