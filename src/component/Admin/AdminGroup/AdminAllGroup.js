@@ -4,6 +4,7 @@ import axios from '../../../axios';
 import { useEffect} from "react";
 import AdminGroupSearch from "./AdminGroupSearch";
 import { useLocation } from "react-router-dom";
+import { LoadingSpinner } from "../../Loader/Loader";
 
 export default function AdminAllGroup(){
 
@@ -11,7 +12,7 @@ export default function AdminAllGroup(){
     const location = useLocation();
 
     
-   
+   const[loading, setLoading] = useState(true);
     const[data, setData] = useState([]);
     
     async function getData( ){
@@ -22,6 +23,7 @@ export default function AdminAllGroup(){
                 {
 
                      setData(response.data)
+                     setLoading(false)
                       
 
                 }
@@ -41,16 +43,33 @@ export default function AdminAllGroup(){
 
 console.log(location.state)
 
+
     if(location.state)
 {
     return (
-    <AdminGroupSearch data = {data} userInfo = {location.state.arrayId}/>
+        <div>
+             {
+            loading?
+            <LoadingSpinner />:
+            <AdminGroupSearch data = {data} userInfo = {location.state.arrayId}/>
+        }
+
+        </div>
+       
+    
     )
 }
 
 else{
     return (
-        <AdminGroupSearch data = {data}/>
+        <div>
+             {
+            loading?
+            <LoadingSpinner />:
+            <AdminGroupSearch data = {data}/>
+             }
+        </div>
+        
         )
 } 
 

@@ -42,7 +42,7 @@ export default function CreateLabel(){
         <div className="container">
           <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
             <div className="jumbotron">
-              <h1 className="display-4 text-center">Create Group</h1>
+              <h1 className="display-4 text-center">Create Label</h1>
               <br></br>
               <div>
 
@@ -69,6 +69,13 @@ export default function CreateLabel(){
               </div>
             </div>
           </div>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br>
         </div>
       )
     }

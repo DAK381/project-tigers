@@ -67,7 +67,7 @@ function addGroup(e){
 
 return (
   <div>
-    <Button variant="primary" onClick={handleShow}>
+    <Button className ="btn btn-warning btn-outline-dark " onClick={handleShow}>
        Add Group
       </Button>
 
@@ -86,7 +86,7 @@ return (
        onChange={(e) => onOptionChangeAdd (e)}
      />
    
-   <Button variant="secondary" onClick={(e) => addGroup(e)}>
+   <Button className ="btn btn-warning btn-outline-dark " onClick={(e) => addGroup(e)}>
 										Save
 									</Button>
         <br>

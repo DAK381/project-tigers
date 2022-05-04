@@ -30,7 +30,7 @@ export default function AdminGroupSearch(props){
         };
         return (
             <div>
-                <Button onClick = {handleClick}>Export to CSV</Button>
+                <Button className ="btn btn-warning btn-outline-dark " onClick = {handleClick}>Export to CSV</Button>
             </div>
         )
     }    
@@ -147,7 +147,7 @@ const addMembers = () => {
                 <Container>
 
                   {
-                    users && <Button onClick = {addMembers}>
+                    users && <Button className ="btn btn-warning btn-outline-dark " onClick = {addMembers}>
                     Add Members to the Selected Group
                   </Button>
                   }
@@ -158,7 +158,7 @@ const addMembers = () => {
   keyField="groupId"
   data={ props.data}
   columns={ columns }
-  exportCSV={ { onlyExportFiltered: true, exportAll: false } }
+  exportCSV={ { onlyExportSelection: true, exportAll: false } }
   search
 >
     

@@ -32,8 +32,10 @@ export default function AdminMemberList(props)
             props.onExport();
         };
         return (
+            
+            
             <div>
-                <Button onClick = {handleClick}>Export to CSV</Button>
+                <Button className ="btn btn-warning btn-outline-dark" onClick = {handleClick}>Export to CSV</Button>
             </div>
         )
     }    
@@ -221,11 +223,12 @@ const[selectedId, setSelectedId] = useState([])
 
 {/* <AdminAddMemberToGroup selected = {selectedId} /> */}
 
-<Button onClick = {emailPeople}>Email Selected</Button>
+<Button className ="btn btn-warning btn-outline-dark " onClick = {emailPeople}>Email Selected</Button>
+<br/>
 
 {/* <Button onClick = {addMemberToGroup}>Add to Group</Button> */}
 
-<Button onClick = {addMemberToLabel}>Add to Label</Button>
+<Button className ="btn btn-warning btn-outline-dark " onClick = {addMemberToLabel}>Add to Label</Button>
 
 
 
@@ -255,6 +258,7 @@ const[selectedId, setSelectedId] = useState([])
       </div>
     )
   }
+  
 </ToolkitProvider>
 
             </Container>

@@ -29,7 +29,8 @@ export default function CampaignDelete(props){
 
 return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <div className="text-center"/>
+      <Button className ="btn btn-warning btn-outline-dark " onClick={handleShow}>
         Delete Campaign
       </Button>
       

@@ -9,7 +9,11 @@ function CampaignPage(props){
       <Container fluid>
         <CampaignData userData={props.userData}/>
       </Container>
-      
+    <br></br><br></br>
+    <br></br><br></br>
+    <br></br><br></br>
+    <br></br>
+    <br></br>
     </div>
   )
 }

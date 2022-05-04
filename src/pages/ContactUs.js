@@ -60,14 +60,15 @@ const Contact = () => {
                placeholder="Message Here!!"
                />
   </Form.Group>
-      <div>
-        <Button variant="danger" type="submit"> Send a message </Button>
+      <div className="text-center">
+        <Button className="btn btn-warning btn-lg btn-outline-dark" type="submit"> Send a message </Button>
       </div>
     </Form>
     </Card.Body>
     </Card>
     </Col>
     </Row>
+    <br></br>
     <br></br>
     </Container>
   );

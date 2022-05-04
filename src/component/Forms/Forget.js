@@ -30,6 +30,15 @@ function ForgetPasswordPage(props) {
                 <p>First time? <Link to="/sign-up">Create an account</Link>.</p>
                 <p><Link to="/">Back to Homepage</Link>.</p>
             </footer>
+            <br></br><br></br>
+            <br></br><br></br>
+            <br></br><br></br>
+            <br></br><br></br>
+            <br></br><br></br>
+            <br></br><br></br>
+            <br></br><br></br>
+            <br></br>
+            
         </div>
     )
 }

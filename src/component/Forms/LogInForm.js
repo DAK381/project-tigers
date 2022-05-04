@@ -142,17 +142,21 @@ const LogInPage = ({loading,error,...props}) => {
     </Form.Group>
     
   </Form>
-  <Captcha/>
  
      <p>First time? <Link to="/sign-up">Create an account</Link>.</p>
      <p>Forget Password? <Link to="/forget-password">Reset Password</Link>.</p>
-  <div className="text-right">
-      <Button variant="danger" onClick={loginHandler}>Login</Button> </div>
+  <div className="text-center">
+      <Button className ="btn btn-warning btn-lg btn-outline-dark " onClick={loginHandler}>Login
+      </Button> </div>
     </Card.Body>
   </Card>
   </Col>
   </Row>
-    <br></br>
+    <br></br><br></br>
+    <br></br><br></br>
+    <br></br><br></br>
+    <br></br><br></br>
+
   </Container>  
  
     

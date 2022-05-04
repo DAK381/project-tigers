@@ -73,11 +73,11 @@ export default function AdminEventUpdate(props) {
 
                 <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                     <div class="jumbotron">
-                    <button onClick={handleBack}>Back</button>
-                        <h1 class="display-4 text-center">Update {location.state.event.eventName}</h1>
+                    <button className ="btn btn-warning btn-outline-dark " onClick={handleBack}>Back</button>
+                        <h3 class="display-5 text-center">Update {location.state.event.eventName}</h3>
                         <div>
                           
-                            <Button variant="primary" onClick={handleShow}>
+                            <Button className ="btn btn-warning btn-outline-dark "  variant="primary" onClick={handleShow}>
 				                Choose Image
 			                </Button>
                             <br></br>
@@ -183,7 +183,7 @@ export default function AdminEventUpdate(props) {
 
 
                                 <div className="container text-center">
-                                    <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2"  onClick={e => updateAPIData(e)}>Update</button>
+                                    <button type="submit" className ="btn btn-warning btn-outline-dark "  onClick={e => updateAPIData(e)}>Update</button>
                                     <AdminEventDelete id = {location.state.event.eventId} />
                                 </div>
                             </form>
