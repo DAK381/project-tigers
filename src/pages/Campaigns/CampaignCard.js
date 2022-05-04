@@ -78,7 +78,7 @@ function CampaignCard(props) {
 								</Modal.Footer>
 							</Modal>
 
-							{props.userData.role === "ADMIN" && < Button onClick = {() => {updateCampaign()}}>Update Campaign</Button>}
+							{props.userData.role === "ADMIN" && < Button className ="btn btn-warning btn-outline-dark " onClick = {() => {updateCampaign()}}>Update Campaign</Button>}
 									
 						</Card.Body>
 

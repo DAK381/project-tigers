@@ -90,7 +90,7 @@ function ScholarshipCard(props) {
 								</Modal.Footer>
 							</Modal>
 
-							{props.userData.role === "ADMIN" && < Button onClick = {() => {updateScholarship()}}>Update Scholarship</Button>}
+							{props.userData.role === "ADMIN" && < Button className ="btn btn-warning btn-sm btn-outline-dark " onClick = {() => {updateScholarship()}}>Update Scholarship</Button>}
 									
 						</Card.Body>
 

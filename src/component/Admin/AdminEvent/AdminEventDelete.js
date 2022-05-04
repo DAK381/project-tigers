@@ -29,9 +29,11 @@ export default function AdminEventDelete(props){
 
 return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+    <div className="text-left">
+      <Button className ="btn btn-warning btn-outline-dark " onClick={handleShow}>
         Delete Event 
       </Button>
+      </div>
       
 
 

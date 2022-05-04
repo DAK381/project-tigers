@@ -9,6 +9,11 @@ import { Modal } from "react-bootstrap";
 import { Link} from "react-router-dom";
 import EventGuest from "./EventGuest";
 import { Toast } from "react-bootstrap";
+import { BsFillCalendar2EventFill } from "react-icons/bs";
+import { FcCalendar} from "react-icons/fc";
+import { FcAlarmClock} from "react-icons/fc";
+import { VscLocation} from "react-icons/vsc";
+
 
 
 function EventRegistration(){
@@ -93,35 +98,61 @@ function EventRegistration(){
         return (
           <div>
             
-
+             <br/>
             <Container>
               <Card>
-              <Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + event.eventImage} width={600} height={600} alt='...'  />
-              </Card>
-
-              <Card>
               <CardBody>
-              <Card.Title>{event.eventName}</Card.Title>
+              <div class="text-center">
+                
+              <Card.Title><h3>{event.eventName}</h3></Card.Title>
+              </div>
+              <hr/>
+               
+
+              <div class="text-left">
               <Card.Text>
-               Date: {event.eventDate}
+               <h5><FcCalendar/> Date: {event.eventDate}</h5>
               </Card.Text>
+              </div>
+              <br/>
+
+              <div class="text-right">
               <Card.Text>
-                Time: {event.startTime} - {event.endTime}
+              <h5><FcAlarmClock/> Time: {event.startTime} - {event.endTime}</h5>
               </Card.Text>
+              </div>
+              <br/>
+              
+
+              <div class="text-left">
+              <Card.Text>
+               <h5><VscLocation/>Location: {event.eventLocation}</h5>
+              </Card.Text>
+              </div>
+              
+              <hr/>
+
+
               {/* <Card.Text>
                 {event.description}
               </Card.Text> */}
-              </CardBody>
-              </Card>
+              
 
-            </Container>
+            
+              
+
+              <Card.Img class="rounded mx-auto d-block" ariant="top" src={process.env.PUBLIC_URL + '/upload/' + event.eventImage} height="400px"  alt='...'  />
+              
+              <br/>
+              <hr/>
+             
 
 
            
-            <Container>
-            <h3>
-              About {event.eventName}
-              </h3>
+            
+            <h4>
+              About {event.eventName}:
+              </h4>
               
             <p>
             {event.eventDescription}
@@ -141,7 +172,9 @@ function EventRegistration(){
               <h4>
                 This event is no longer available.
               </h4>:
+              
               <div>
+                <hr/>
                 {
                   loggedIn? 
                   <Button className ="btn btn-warning btn-lg btn-outline-dark " onClick = {registerForEvent}>
@@ -152,7 +185,7 @@ function EventRegistration(){
               <Button className ="btn btn-warning btn-lg btn-outline-dark " onClick = {handleShow}>
                 Register
               </Button> 
-              <hr/>
+              
               </div>
 
                 }
@@ -182,8 +215,10 @@ function EventRegistration(){
            
               </div>
             }
-
+              </CardBody>
+              </Card>
             </Container>
+            
 
             
 

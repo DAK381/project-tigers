@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Pictures from "../../layout/Pictures";
 import Button from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
+import CampaignDelete from './DeleteCampaign';
 
 
 export default function AdminScholarshipUpdate(props) {
@@ -60,14 +61,14 @@ console.log(location.state.name)
             <div className="container">
                 <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                     <div className="jumbotron">
-                    <button onClick={handleBack}>Back</button>
+                    <button className ="btn btn-warning btn-outline-dark " onClick={handleBack}>Back</button>
 
-                        <h1 className="display-4 text-center">UpdateCampaign</h1>
+                        <h1 className="display-5 text-center">Update Campaign</h1>
                         <div>
-                            <Button variant="primary" onClick={handleShow}>
+                        <Button className ="btn btn-warning btn-outline-dark "  variant="primary" onClick={handleShow}>
 				                Choose Image
 			                </Button>
-                            <br></br>
+                            <br/><br/>
                             {campaignImage&& (
                                 <div>
                                     <img className="preview" src={process.env.PUBLIC_URL + '/upload/' + campaignImage} alt="" style={{border: '1px solid #ddd',
@@ -78,11 +79,10 @@ console.log(location.state.name)
                             )}
                             <Pictures show={show} onHide={handleClose} setImage={setCampaignImage} isCarousel={false} />
                             <form onSubmit={updateAPIData}>
-        
-
+    
                             
                                 <Form.Group controlId="scholarshipName">
-                  <Form.Label>Campaign Name</Form.Label>
+                  <br/><Form.Label>Campaign Name</Form.Label>
                   <Form.Control
                     type="text"
                     class= "form-control"
@@ -106,10 +106,6 @@ console.log(location.state.name)
                   />
                 </Form.Group>
 
-
-
-        
-
                 <Form.Group controlId="formLink">
                   <Form.Label>Campaign Goal</Form.Label>
                   <Form.Control
@@ -124,7 +120,8 @@ console.log(location.state.name)
 
 
                                 <div className="container text-center">
-                                    <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2">Update Campaign</button>
+                                    <button type="submit" className ="btn btn-warning btn-outline-dark ">Update Campaign</button>
+                                    <CampaignDelete id = {location.state.campaign.campaignId}/>
                                     
                                 </div>
                             </form>

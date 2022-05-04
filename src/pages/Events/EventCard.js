@@ -132,13 +132,15 @@ function EventCard(props) {
 									</Button>
 								</Modal.Footer>
 							</Modal>
-							
-						{props.userData.role === "ADMIN" && < Button className="btn btn-warning btn-sm btn-outline-dark" onClick = {() => {updateEvent()}}>Update Event</Button>}
-
+						<div className='text-left'>	
+						{props.userData.role === "ADMIN" && < Button className="btn btn-warning btn-sm btn-outline-dark" onClick = {() => {updateEvent()}}>  Update Event</Button>}
+						</div>
+						<div className='text-left'>	
 						{props.userData.role === "ADMIN" && < Button className="btn btn-warning btn-sm btn-outline-dark" onClick = {() => {RSVPmembers()}}>RMembers RSVP List</Button>}
-
-						{props.userData.role === "ADMIN" && < Button className="btn btn-warning btn-sm btn-outline-dark" onClick = {() => {RSVPGuest()}}>Guest RSVP List</Button>}
-
+						</div>
+						<div className='text-left'>	
+						{props.userData.role === "ADMIN" && < Button className="btn btn-warning btn-sm btn-outline-dark" onClick = {() => {RSVPGuest()}}> Guest RSVP List</Button>}
+						</div>
 						
 						</Card.Body>
 

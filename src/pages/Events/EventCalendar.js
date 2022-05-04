@@ -115,9 +115,11 @@ console.log(events)
                 
                     
                     <Modal.Footer>
-									<Button variant="secondary" onClick={eventSignUp}>
+                                <div class="text-center">   
+									<Button className ="btn btn-warning btn-outline-dark " onClick={eventSignUp}>
 										More information
 									</Button>
+                                </div>
 					</Modal.Footer>
 
                 </Modal>

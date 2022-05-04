@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { LoadingSpinner } from '../../component/Loader/Loader';
 import { Modal } from 'react-bootstrap';
 import EventCalendar from './EventCalendar';
+import { FcCalendar} from "react-icons/fc";
 
 
 
@@ -84,20 +85,25 @@ function EventData(props){
  :
 <div>
 <br/>
-        <h1>
-        
+        <Row>
+        <div className='col-md-6'>
         <Container>
         
-        Events
+        <h1>Events</h1>
         </Container>
+        </div>
+        <div className='col-md-3'>
+        </div>
         
-        </h1>
         
-      
-
+        
+                
+                <div className='col-md-3'>
                 <Button onClick = {handleShow} className="btn btn-lg btn-warning btn-outline-secondary ">
-                Event calendar
+                <FcCalendar/> Event calendar
             </Button>
+            </div>
+            </Row>
             <hr/>
 
             <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>

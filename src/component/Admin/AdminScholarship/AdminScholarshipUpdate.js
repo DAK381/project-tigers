@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import Pictures from "../../layout/Pictures";
 import Button from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
-
+import AdminScholarshipDelete from './AdminScholarshipDelete';
 
 export default function AdminScholarshipUpdate(props) {
 
@@ -136,7 +136,7 @@ console.log(location.state.name)
                 </Form.Group>
                                 <div className="container text-center">
                                     <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2"  onClick={e => updateAPIData(e)}>Update</button>
-                                    
+                                    <AdminScholarshipDelete id = {location.state.scholarship.scholarshipId} />
                                 </div>
                             </form>
                         </div>

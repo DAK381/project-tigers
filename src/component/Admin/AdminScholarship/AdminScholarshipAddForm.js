@@ -46,7 +46,7 @@ console.log(formLink)
                     <div className="jumbotron">
                         <h1 className="display-4 text-center">Add Scholarship</h1>
                         <div>
-                            <Button variant="primary" onClick={handleShow}>
+                            <Button className ="btn btn-warning btn-outline-dark " onClick={handleShow}>
 				                Choose Image
 			                </Button>
                             <br></br>
@@ -64,7 +64,7 @@ console.log(formLink)
 
                             
                                 <Form.Group controlId="scholarshipName">
-                  <Form.Label>Scholarship Name</Form.Label>
+                  <br/><Form.Label>Scholarship Name</Form.Label>
                   <Form.Control
                     type="text"
                     class= "form-control"
@@ -87,7 +87,7 @@ console.log(formLink)
 
 
                                 <Form.Group controlId="deadline">
-                  <Form.Label>Application Deadline</Form.Label>
+                  <br/><Form.Label>Application Deadline</Form.Label>
                   <Form.Control
                     type="date"
                     data-date-format="DD MMMM YYYY"
@@ -111,7 +111,7 @@ console.log(formLink)
 
 
                                 <div className="container text-center">
-                                    <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2">Add Scholarship</button>
+                                    <br/><hr/><button type="submit" className ="btn btn-warning btn-lg btn-outline-dark ">Add Scholarship</button>
                                     
                                 </div>
                             </form>
