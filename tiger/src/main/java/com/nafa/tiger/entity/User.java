@@ -7,18 +7,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -47,28 +36,79 @@ public class User implements UserDetails{
 	private String firstName;
 	@Size(min = 2, message = "The Last Name should be at least 2 characters")
 	private String lastName;
+	private String middleName;
 	private String maidenName;
 	@Column(name = "email_address", nullable = false)
 	private String email;
 	@Column(length = 60)
 	private String password;
 	private String role;
+	@Column(name = "address")
 	private String address;
+	@Column(name = "address_2")
+	private String address2;
+	private String city;
+	private String state;
+	private String zip;
 	private String membership;
 	private Date birthdate;
 	private boolean isAlumni;
     private String phone;
 	private boolean enabled = false;
 	private Boolean locked =false;
-	private String graduatedYear; 
+	@Column(name = "graduated_year")
+	private String graduatedYear;
 	
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name= "UserGroup",
+	@JoinTable(name= "user_group",
 	joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"), 
 	inverseJoinColumns = @JoinColumn(name = "groupId", referencedColumnName = "groupId"))
 	@JsonIgnore
 	private Collection<Group> userGroup = new ArrayList<>();
+	
+	////Event many to many*****************************************************
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name= "user_event",
+			joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "eventId", referencedColumnName = "eventId"))
+	@JsonIgnore
+	private Collection<Events> userEvent = new ArrayList<>();
+	
+	
+	
+///Campaign many to many************************
+////Event many to many*****************************************************
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name= "user_campaign",
+			joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "campaignId", referencedColumnName = "campaignId"))
+	@JsonIgnore
+	private Collection<Campaign> userCampaign = new ArrayList<>();
+
+	////Preset many to many*****************************************************
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name= "preset_user",
+			joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "presetId", referencedColumnName = "presetId"))
+	@JsonIgnore
+	private Collection<Preset> presetUser = new ArrayList<>();
+
+//	@JsonIgnore
+//	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//	@JoinTable(name="relationships")
+//	@JoinColumns({@JoinColumn(name="user_id",referencedColumnName = "user_id"),
+//			@JoinColumn(name="relationship", referencedColumnName = "relationship")})
+//	private Collection<User> relationships = new ArrayList<>();
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name= "relationship_user",
+		joinColumns= @JoinColumn(name="user_id", referencedColumnName = "user_id"),
+		inverseJoinColumns = @JoinColumn(name = "relationof"))
+	@JsonIgnore
+	private Collection<UserRelationship> relationOfUser = new ArrayList<>();
+
+
+
 
 	//Test
 	public void setUserGroup(Set<Group> userGroup) {

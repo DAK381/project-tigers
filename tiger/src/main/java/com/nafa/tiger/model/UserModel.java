@@ -29,6 +29,7 @@ public class UserModel  {
 	private long id;
 	private String firstName;
 	private String maidenName;
+	private String middleName;
 	private String lastName;
 	private String email;
 	@Column(length = 60)
@@ -36,6 +37,10 @@ public class UserModel  {
 	private String matchingPassword;
 	private String role;
 	private String address;
+	private String address2;
+	private String city;
+	private String state;
+	private String zip;
 	private String membership;
 	private Date birthdate;
 	private boolean isAlumni;

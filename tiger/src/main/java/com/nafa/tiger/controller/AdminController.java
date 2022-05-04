@@ -38,6 +38,7 @@ public class AdminController {
 	@CrossOrigin(origins = "*")
 	@GetMapping("/allMembers")
 	public ArrayList<User> getAllUsers() {
+		System.out.println("***************************************************");
 		return memberService.getAllUsers();
 	}
 
@@ -74,7 +75,7 @@ public class AdminController {
 	}
 	
 	
-	@PutMapping("/member/update/{user_id}")
+	@PutMapping("update/{user_id}")
     public User update(@PathVariable("user_id") Long user_id,@RequestBody User user){
         return memberService.update(user_id, user);
     }

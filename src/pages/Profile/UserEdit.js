@@ -27,6 +27,7 @@ export default function ProfileEdit(){
   const [membership,setmembershipType]=useState('');
 
 
+const id = location.state.data.id;
 
   useEffect(() => {
     setFirstName(location.state.data.firstName)
@@ -43,7 +44,7 @@ console.log(location.state.data.role)
 
 const updateAPIData = (e) => {
     e.preventDefault();
-    axios.put(`admin/member/update/${location.state.data.id}`, 
+    axios.put(`admin/update/${id}`, 
     
         {firstName,lastName,maidenName,birthdate,graduatedYear,membership,address,phone}
     )
@@ -52,7 +53,7 @@ const updateAPIData = (e) => {
         
             location.state.admin && navigate('/admin-member-profile', {
                 state: {
-                    userData: res.data
+                    id: id
                 }
             });  
           
@@ -78,6 +79,7 @@ const updateAPIData = (e) => {
             type="text"
             placeholder="Enter first name"
             name="First Name"
+            defaultValue={location.state.data.firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
           </Form.Group>
@@ -87,6 +89,7 @@ const updateAPIData = (e) => {
             type="text"
             placeholder="Enter last name"
             name="Last Name"
+            defaultValue={location.state.data.lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
           </Form.Group>
@@ -96,6 +99,7 @@ const updateAPIData = (e) => {
             type="text"
             placeholder="Enter maiden name"
             name="Maiden Name"
+            defaultValue={location.state.data.maidenName}
             onChange={(e) => setMaidenName(e.target.value)}
           />
         
@@ -106,6 +110,7 @@ const updateAPIData = (e) => {
             type="text"
             placeholder="Enter mailing address"
             name="address"
+            defaultValue={location.state.data.address}
             onChange={(e) => setAddress(e.target.value)}
           />
         </Form.Group>
@@ -115,6 +120,7 @@ const updateAPIData = (e) => {
             type="date"
             placeholder="Enter date of birth"
             name="birthDate"
+            defaultValue={location.state.data.birthdate}
             onChange={(e) => setBirthdate(e.target.value)}
           />
         </Form.Group>
@@ -124,13 +130,15 @@ const updateAPIData = (e) => {
             type="text"
             placeholder="Enter phone number"
             name="phone"
+            defaultValue={location.state.data.phone}
             onChange={(e) => setPhone(e.target.value)}
           />
         </Form.Group>
       
         <Form.Group controlId="membership">
           <Form.Label>What type of membership do you have?</Form.Label>
-          <Form.Select onChange={(e) => setmembershipType(e.target.value)}>
+          <Form.Select onChange={(e) => setmembershipType(e.target.value)}
+          defaultValue={location.state.data.membership}>
             <option>None</option>
             <option>MemType1</option>
             <option>MemType2</option>
@@ -154,6 +162,7 @@ const updateAPIData = (e) => {
             type="text"
             placeholder="Enter Graduation Year"
             name="graduatedYear"
+            defaultValue={location.state.graduatedYear}
             onChange={(e) => setGraduatedYear(e.target.value)}
           />
         </Form.Group>

@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class ScholarshipServiceImp implements ScholarshipService{
 
     @Autowired
@@ -25,6 +28,19 @@ public class ScholarshipServiceImp implements ScholarshipService{
         }
         if(scholarship.getScholarshipDescription()!= null){
             updatedScholarship.setScholarshipDescription(scholarship.getScholarshipDescription());
+        }
+        
+        if(scholarship.getDeadline()!= null){
+            updatedScholarship.setDeadline(scholarship.getDeadline());
+        }
+        
+        if(scholarship.getFormLink()!= null){
+            updatedScholarship.setFormLink(scholarship.getFormLink());
+        }
+        
+        
+        if(scholarship.getScholarshipImage()!= null){
+            updatedScholarship.setScholarshipImage(scholarship.getScholarshipImage());
         }
         return updatedScholarship;
     }

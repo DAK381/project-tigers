@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.nafa.tiger.entity.EmailInformation;
+import com.nafa.tiger.service.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -37,6 +39,8 @@ public class RegistrationController {
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
+	@Autowired
+	private EmailSenderService emailSenderService;
 	
 	
 	@PostMapping("/register") 
@@ -44,13 +48,13 @@ public class RegistrationController {
 		User user = userService.registerUser(userModel);
 		publisher.publishEvent(new RegistrationCompleteEvent(user,
 				applicationUrl(request)));
-		return "Sucess";
+		return "Success";
 	}
 	@GetMapping("/verifyRegistration")
 	public String verifyRegistration(@RequestParam("token") String token) {
 		String result = userService.validateVerificationToken(token);
 		if(result.equalsIgnoreCase("valid")) {
-			return"User Verified sucessfully";
+			return"User Verified successfully";
 		}
 		else {
 			return"bad user";
@@ -72,6 +76,9 @@ public class RegistrationController {
 			userService.createPasswordResetTokenForUser(user,token);
 			url =passwordResetTokenMail(user, applicationUrl(request),token);
 		}
+		emailSenderService.sendSimpleEmail(passwordModel.getEmail(),"Reset Password",
+				"Click here to reset the password:  "+url);
+
 		return url;
 		
 	}
@@ -108,6 +115,7 @@ public class RegistrationController {
 	private String passwordResetTokenMail(User user, String applicationUrl, String token) {
 		String url =applicationUrl+"/savePassword?token="+token;		
 		//create sendVerificationEmail()
+		emailSenderService.sendSimpleEmail(user.getEmail(),"Verification Email","click the link to reset your password: "+url);
 		log.info("click the link to reset your password: {}",url);
 		return url;
 		
@@ -115,6 +123,7 @@ public class RegistrationController {
 	private void resendVerificationTokenMail(User user, String applicationUrl,VerificationToken token) {
 		String url =applicationUrl+"/verifyRegistration?token="+token.getToken();		
 		//create sendVerificationEmail()
+		emailSenderService.sendSimpleEmail(user.getEmail(),"Verification Email","click the link to verify your account: "+url);
 		log.info("click the link to verify your account: {}",url);
 		
 		

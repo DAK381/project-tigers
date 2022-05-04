@@ -2,7 +2,7 @@ import axios from '../../axios';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
-import { Row, CardGroup } from 'react-bootstrap';
+import { Row, CardGroup, Alert } from 'react-bootstrap';
 import Image from './Image';
 
 
@@ -14,12 +14,25 @@ function Pictures (props){
         previewImage: undefined
     });
 
+    const [showError, setShowError] = useState(false);
+    var errorMessage = ""
+    if(props.isCarousel){
+      errorMessage = "Please select at least 1 image."
+    }
+    else{
+      errorMessage = "Please select only 1 image."
+    }
+
+    const loadPictures = () => {
+      axios.get("/getAllImages/all").then((response)=>{
+        setImages(response.data); 
+      }).catch((e)=>{
+        console.log(e);
+      })
+    }
+
     React.useEffect(()=>{
-        axios.get("/getAllImages").then((response)=>{
-          setImages(response.data); 
-        }).catch((e)=>{
-          console.log(e);
-        })
+        loadPictures();
     }, [])
 
     const onFileChange = event => {
@@ -38,26 +51,45 @@ function Pictures (props){
                 "Content-Type": "multipart/form-data",
             }
         }).then((response)=>{
-            axios.get("/getAllImages").then((response)=>{
-                setImages(response.data); 
-            }).catch((e)=>{
-                console.log(e);
-            })
+          loadPictures();
         }).catch((e)=>{});
     };
     
     const setPictures = () => {
-        console.log(set);
+      if(props.isCarousel){
+        if (set.size > 0){
+          const carouselPictures = [];
+          for (const picture of set) {
+            carouselPictures.push(picture);
+          }
+          axios.post("/changeCarousel",  carouselPictures).then(() => {
+            window.location.reload();
+          }).catch((e) => {
+            console.log(e);
+          });
+
+        }
+        else{
+          setShowError(true);
+        }
+      }
+      else {
+        if (set.size === 1){
+          for (const picture of set) {
+            props.setImage(picture);
+          }
+          props.onHide();
+        }
+        else{
+          setShowError(true);
+        }
+      }
     }
 
     const removePictures = () => {
         for (const picture of set) {
             axios.post("/removeImages/" + picture ).then((response)=>{
-                axios.get("/getAllImages").then((response)=>{
-                    setImages(response.data); 
-                }).catch((e)=>{
-                    console.log(e);
-                })
+              loadPictures();
             }).catch((e)=>{});;
         }
     }
@@ -65,11 +97,15 @@ function Pictures (props){
 
     return (
         <Modal show={props.show} onHide={props.onHide} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-			  <Modal.Header closeButton>
-			  	<Modal.Title><h1>Pictures</h1></Modal.Title>
+          {showError &&
+            <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
+              <Alert.Heading>{errorMessage}</Alert.Heading>
+            </Alert>
+          }
+        <Modal.Header closeButton>
+			  	<Modal.Title><h1>Select Pictures</h1></Modal.Title>
 			  </Modal.Header>
 			  <Modal.Body>
-          <div><h3>All Pictures</h3></div>
             <CardGroup>
               <Row className='row-cols-1 row-cols-md-5 p-1 g-1'>
                 {images &&
@@ -84,13 +120,13 @@ function Pictures (props){
             </CardGroup>
           
         </Modal.Body>
-		<Modal.Footer>
-            <Button onClick={setPictures}>
-                Set
-			</Button>
-            <Button onClick={removePictures}>
-                Remove
-			</Button>
+		    <Modal.Footer>
+          <Button onClick={setPictures}>
+            Select
+			    </Button>
+          <Button onClick={removePictures}>
+            Remove
+			    </Button>
 
           <div>
             <p>Upload Pictures</p>
@@ -109,7 +145,7 @@ function Pictures (props){
 			  	<Button onClick={onFileUpload}>
             Upload
 			  	</Button>
-			</Modal.Footer>
+			  </Modal.Footer>
 			</Modal>
     )
 }

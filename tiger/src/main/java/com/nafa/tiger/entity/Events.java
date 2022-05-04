@@ -1,14 +1,14 @@
 package com.nafa.tiger.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -18,14 +18,26 @@ import java.util.Date;
 public class Events {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long eventId;
     private String eventName;
-    private Date eventDate;
+    private String eventDate;
     private String eventDay;
-    private Time startTime;
-    private Time endTime;
+    private String startTime;
+    private String endTime;
     private String eventDescription;
     private String paymentAmount;
     private String eventLocation;
+    private String eventImage;
+    private String addedDate;
+    private ArrayList <String> photosFromEvents;
+    @ManyToMany(mappedBy = "userEvent", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Collection<User> eventUser = new ArrayList<>();
+
+
+    @ManyToMany(mappedBy = "guestEvent", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Collection<Guest> eventGuest = new ArrayList<>();
 
 }

@@ -9,11 +9,11 @@ import com.nafa.tiger.entity.Group;
 import com.nafa.tiger.entity.User;
 import com.nafa.tiger.repository.GroupRepository;
 import com.nafa.tiger.repository.MemberRepositrory;
-import com.nafa.tiger.repository.UserReprository;
 
 import javax.transaction.Transactional;
 
 import java.sql.*;
+import java.util.Collection;
 
 
 @Service
@@ -82,8 +82,19 @@ public class GroupServiceImpl implements GroupService {
 		//return user;
 	}
 
+	@Override
+	public Collection<Group> getGroupByMember(Long userId) {
+		User user = memberRepository.findById(userId).get();
+		return user.getUserGroup();
+	}
 
-	
+	@Override
+	public Collection<User> getMembersByGroup(Long groupId) {
+		Group group = groupRepository.findById(groupId).get();
+		return group.getGroupUser();
+	}
+
+
 //	@Override
 //	public Group addGroup(Group group) {
 //		return groupRepository.save(group);

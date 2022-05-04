@@ -2,18 +2,16 @@ package com.nafa.tiger.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import com.nafa.tiger.entity.*;
+import com.nafa.tiger.exception.ResourceNotFoundException;
 import com.nafa.tiger.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.nafa.tiger.entity.Events;
-import com.nafa.tiger.entity.Group;
-import com.nafa.tiger.entity.PendingGroupRequest;
-import com.nafa.tiger.entity.User;
 
 import ch.qos.logback.classic.Logger;
 import lombok.extern.slf4j.Slf4j;
@@ -25,8 +23,8 @@ public class MemberServiceImp implements MemberService {
 	@Autowired
 	private MemberRepositrory memberRepository;
 
-//	@Autowired
-//	private VerificationTokenRepository verificationTokenRepository;
+	@Autowired
+	private VerificationTokenRepository verificationTokenRepository;
 	
 	
 	@Autowired
@@ -39,7 +37,7 @@ public class MemberServiceImp implements MemberService {
 	private AddGroupRequestRepository  addGroupRequestRepository;
 	@Override
 	public void deleteUser(Long userId) {
-//		verificationTokenRepository.deleteByUserId(1L);
+		verificationTokenRepository.deleteAllByIdInBatch(Collections.singleton(userId));
 		memberRepository.deleteById(userId);
 	}
 
@@ -50,7 +48,7 @@ public class MemberServiceImp implements MemberService {
 
 	@Override
 	public User getUserById(Long userId) {
-		return memberRepository.findById(userId).get();
+		return memberRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + userId));
 	}
 	
 	@Override
@@ -121,6 +119,12 @@ public class MemberServiceImp implements MemberService {
         return updatedUser;
     }
 
+	@Override
+	public Collection<UserRelationship> getRelationship(Long userId) {
+		User user = memberRepository.findById(userId).get();
+		return user.getRelationOfUser();
+	}
+
 //	@Override
 //	public ArrayList<User> getAllByGraduatedYear(int graduatedYear) 
 //	{
@@ -151,7 +155,7 @@ public class MemberServiceImp implements MemberService {
 		System.out.print(group);
 		user.getUserGroup().add(group);
 		//group.getGroupUser().add(user);
-		return new User();
+		return user;
 	}
 
 	@Override

@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
-import com.nafa.tiger.entity.Events;
-import com.nafa.tiger.entity.Group;
-import com.nafa.tiger.entity.PendingGroupRequest;
-import com.nafa.tiger.entity.User;
+import com.nafa.tiger.entity.*;
 
 
 public interface MemberService {
@@ -37,4 +34,8 @@ public interface MemberService {
 	PendingGroupRequest requestToaddGroup(String groupName, Long userId);
 	
 	 User update(Long User_id, User user);
+
+    Collection<UserRelationship> getRelationship(Long userId);
+
+
 }

@@ -1,0 +1,71 @@
+// import { Modal, ModalBody } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
+// import React, { useState } from "react";
+// import axios from "../../../axios";
+// import { useNavigate } from 'react-router-dom';
+// import { setISODay } from "date-fns";
+
+// export default function AdminAddMemberToGroup(props){
+
+//     const navigate = useNavigate();
+//     const [show, setShow] = useState(false);
+  
+//     const [id, selectedId] = useState();
+//     const handleClose = () => setShow(false);
+//     const handleShow = () => setShow(true);
+
+//     const [groups, setGroups] = useState([]);
+  
+    
+//     React.useEffect(() => {
+//         axios.get("/search/allgroup").then(res => {
+//             setGroups(res.data)
+//         }).catch(err => console.log(err))
+        
+//     }, [props])
+
+//     const addMembers = (e) => {
+//       e.preventDefault();
+//       console.log(props.id)
+     
+  
+//   }
+  
+//   return (
+//       <>
+//         <Button variant="primary" onClick={handleShow}>
+//           Add Selected Members to Group
+//         </Button>
+        
+        
+  
+  
+  
+//         <Modal show={show} onHide={handleClose}>
+//           <Modal.Header closeButton>
+//             <Modal.Title>Which group do you want to add these members to? </Modal.Title>
+//           </Modal.Header>
+//           <ModalBody>
+//              { groups.map(
+//                   (group) => {
+//                       return(
+//                       <button onCLick ={(e) => {selectedId(group.groupId)}}>
+//                       {groups.groupName} {groups.groupYear}
+//                   </button>)
+                      
+//                   }
+//               )
+//                 }
+//           </ModalBody>
+//           <Modal.Footer>
+//             <Button variant="secondary" onClick={addMembers}>
+//               Yes
+//             </Button>
+//             <Button variant="primary" onClick={handleClose}>
+//               No
+//             </Button>
+//           </Modal.Footer>
+//         </Modal>
+//       </>
+//     );
+//   }

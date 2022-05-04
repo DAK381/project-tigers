@@ -19,5 +19,9 @@ public class Scholarship {
     private Long scholarshipId;
     private String scholarshipName;
     private String scholarshipDescription;
-
+    private String scholarshipImage;
+    private String deadline;
+    private String formLink;
+    private String addedDate;
+    private String scholarshipAmount;
 }
