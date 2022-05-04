@@ -1,15 +1,25 @@
 package com.nafa.tiger.controller;
 
+import com.nafa.tiger.entity.Events;
 import com.nafa.tiger.entity.Staff;
 import com.nafa.tiger.service.StaffService;
+
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins ="*")
 public class StaffController {
 
     @Autowired
     StaffService staffService;
+    
+    @GetMapping("/all-staff")
+    public ArrayList<Staff> getAllStaff(){
+        return staffService.getAllStaff();
+    }
 
     @PostMapping("/staff/add")
     public String addStaff(@RequestBody Staff staff){

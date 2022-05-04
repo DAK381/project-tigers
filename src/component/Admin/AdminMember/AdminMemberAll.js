@@ -9,6 +9,7 @@ import { LoadingSpinner } from "../../Loader/Loader";
 export default function AdminMemberAll(){
 
 
+
     const[data, setData] = useState([]);
     const[loading, setLoading] = useState(true)
 
