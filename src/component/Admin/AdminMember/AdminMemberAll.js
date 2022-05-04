@@ -4,14 +4,17 @@ import axios from '../../../axios';
 import { useEffect} from "react";
 
 import AdminMemberList from "./AdminMemberList";
-
+import { LoadingSpinner } from "../../Loader/Loader";
 
 export default function AdminMemberAll(){
 
 
     const[data, setData] = useState([]);
-    
-    async function getData( ){
+    const[loading, setLoading] = useState(true)
+
+    const[isEmpty, setEmpty] = useState()
+
+    function getData( ){
         axios.get("/admin/allMembers"
             )
             .then(
@@ -19,7 +22,13 @@ export default function AdminMemberAll(){
                 {
 
                      setData(response.data)
+
+                     if(data.length > 0){
+                         setEmpty(false)
+                     }
                     //  console.log(data)
+
+                    setLoading(false)
 
                 }
             )
@@ -28,17 +37,31 @@ export default function AdminMemberAll(){
     useEffect(() => {
             getData();
 
-        }, [data]);
+        }, []);
 
         console.log(data)
 
 
-    return(
+        return(
+            <div>
+        
+                
+        
+            {
+                loading?
+                <LoadingSpinner />:
         <div>
-
-            <AdminMemberList data = {data} />
+                <div>
+                    {isEmpty?
+                    <h2> No members in the system yet.</h2>:
+                    <AdminMemberList data = {data} />}
+                 </div>
+        
+                 
+           
+         </div>
+          }
             
-        </div>
-
-    )
-}
+             </div>
+        )
+        }
