@@ -13,7 +13,6 @@ import MemberGroup from './MemberGroup';
 import MemberGroupShow from './MemberGroupShow';
 import ProfileCalendar from "./ProfileCalendar";
 import { Row , Col, Form,Card } from 'react-bootstrap';
-import ProfileCalendar from './ProfileCalendar';
 
 
 function Profile(props) {
