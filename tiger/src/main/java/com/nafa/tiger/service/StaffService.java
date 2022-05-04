@@ -1,9 +1,12 @@
 package com.nafa.tiger.service;
 
+import com.nafa.tiger.entity.Events;
 import com.nafa.tiger.entity.Staff;
 import com.nafa.tiger.repository.StaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 import javax.transaction.Transactional;
 
@@ -21,6 +24,10 @@ public class StaffService {
 
     public Staff getById(Long staffId) {
         return staffRepository.getById(staffId);
+    }
+    
+    public ArrayList<Staff> getAllStaff() {
+        return (ArrayList<Staff>) staffRepository.findAll();
     }
 
     public Staff updateStaff(Long staffId, Staff staff) {

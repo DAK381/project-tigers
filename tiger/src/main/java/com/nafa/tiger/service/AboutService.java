@@ -1,6 +1,7 @@
 package com.nafa.tiger.service;
 
 import com.nafa.tiger.entity.About;
+import com.nafa.tiger.entity.Events;
 import com.nafa.tiger.repository.AboutRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +15,18 @@ public class AboutService {
     @Autowired
     AboutRepository aboutRepository;
 
-    public String add(About about) {
-        aboutRepository.save(about);
-        return "sucessfully added";
+    public About add(About about) {
+        return aboutRepository.save(about);
+        
+    }
+    
+  
+    public About getAboutById(Long id) {
+        return aboutRepository.findById(id).get();
     }
 
-    public String update(Long aboutId, About about) {
-        About aboutDetails = aboutRepository.getById(aboutId);
+    public String update(Long id, About about) {
+        About aboutDetails = aboutRepository.getById(id);
         if (aboutDetails != null && about.getDescription()!= null){
             aboutDetails.setDescription(about.getDescription());
         }

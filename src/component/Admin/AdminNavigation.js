@@ -22,6 +22,14 @@ function AdminNavigation(){
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="justify-content-end flex-grow-1 pe-3">
       
+
+    <NavDropdown title="About" id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
+        <NavDropdown.Item href="/about"><h5>About Us</h5></NavDropdown.Item>
+        {/* <NavDropdown.Item href="admin-member-add"><h5>Edit Staff</h5></NavDropdown.Item>
+        <NavDropdown.Divider />
+        <NavDropdown.Item href="admin-contact"><h5>Contact Members</h5></NavDropdown.Item> */}
+      </NavDropdown>
+
       <NavDropdown title="Members" id="collasible-nav-dropdown" style={{fontSize: "28px"}}>
         <NavDropdown.Item href="admin-member"><h5>View Members</h5></NavDropdown.Item>
         <NavDropdown.Item href="admin-member-add"><h5>Add Members</h5></NavDropdown.Item>

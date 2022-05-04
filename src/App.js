@@ -9,7 +9,7 @@ import NewUserInfo from './component/NewUserInfo';
 import Scholarship from './pages/Scholarship/Scholarships';
 import EventPage from './pages/Events/EventsPage';
 import Contact from './pages/ContactUs';
-import About from './pages/About';
+import About from './pages/AboutUs/About';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css"
 import Footer from './pages/Footer';
@@ -44,6 +44,7 @@ import LabelMembers from './component/Admin/AdminLabels/LabelMembers';
 import AddCampaign from './component/Admin/AdminCampaign/AddCampaign';
 import CampaignPage from './pages/Campaigns/CampaignPage';
 import UpdateCampaign from './component/Admin/AdminCampaign/UpdateCampaign';
+
 import GuestRSVP from './component/Admin/AdminEvent/GuestRSVP.js';
 function App() {
 
@@ -82,7 +83,7 @@ function App() {
         <Route path="/campaign" element={<CampaignPage userData = {userData}/>} />
         <Route path="/contact-us" element={<Contact/>} />
         <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/about" element={<About/>}/>
+        <Route path="/about" element={<About  userData = {userData}/>}/>
 
         { userData.role === "ADMIN" && <Route path="/admin" element={<AdminHome/>} /> }
         { userData.role === "ADMIN" && <Route path="/admin-member" element={<AdminMemberAll/>} /> }

@@ -1,7 +1,6 @@
-export default function AddToLabel(){
+export default function DeleteStaff(){
     return(
         <div>
-            
             
         </div>
     )

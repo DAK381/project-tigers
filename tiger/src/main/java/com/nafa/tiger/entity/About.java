@@ -17,6 +17,5 @@ public class About {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-
     private String description;
 }
