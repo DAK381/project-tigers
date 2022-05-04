@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { LoadingSpinner } from '../../component/Loader/Loader';
 import { Modal } from 'react-bootstrap';
 import EventCalendar from './EventCalendar';
+import { FcCalendar} from "react-icons/fc";
 
 
 
@@ -83,14 +84,28 @@ function EventData(props){
  
  :
 <div>
-<h1>
-        Events
-       
-      </h1>
-
-                <Button onClick = {handleShow}>
-                Event calendar
+<br/>
+        <Row>
+        <div className='col-md-6'>
+        <Container>
+        
+        <h1>Events</h1>
+        </Container>
+        </div>
+        <div className='col-md-3'>
+        </div>
+        
+        
+        
+                
+                <div className='col-md-3'>
+                <Button onClick = {handleShow} className="btn btn-lg btn-warning btn-outline-secondary ">
+                <FcCalendar/> Event calendar
             </Button>
+            </div>
+            </Row>
+            <hr/>
+
             <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
 								<Modal.Header closeButton>
 									<Modal.Title>Event Calendar</Modal.Title>
@@ -119,7 +134,7 @@ function EventData(props){
 
 
 
-
+            <Container>
             <CardGroup>
                 <Row className='row-cols-1 row-cols-md-3 p-2 g-4'>
 
@@ -137,6 +152,7 @@ function EventData(props){
                 </Row>
 
             </CardGroup>
+            </Container>
             
             
             </div>

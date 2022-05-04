@@ -65,10 +65,10 @@ console.log(location.state.name)
                 <h1>{location.state.name}</h1>
                 <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
                     <div class="jumbotron">
-                    <button onClick={handleBack}>Back</button>
-                        <h1 class="display-4 text-center">Update {location.state.name}</h1>
+                    <button className ="btn btn-warning btn-outline-dark " onClick={handleBack}>Back</button>
+                        <h1 class="display-5 text-center">Update Scholarship {location.state.name}</h1><hr/>
                         <div>
-                            <Button variant="primary" onClick={handleShow}>
+                            <Button className ="btn btn-warning btn-outline-dark " onClick={handleShow}>
 				                Choose Image
 			                </Button>
                             <br></br>
@@ -135,7 +135,7 @@ console.log(location.state.name)
                   />
                 </Form.Group>
                                 <div className="container text-center">
-                                    <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2"  onClick={e => updateAPIData(e)}>Update</button>
+                                    <button type="submit" className ="btn btn-warning btn-outline-dark "  onClick={e => updateAPIData(e)}>Update</button>
                                     <AdminScholarshipDelete id = {location.state.scholarship.scholarshipId} />
                                 </div>
                             </form>

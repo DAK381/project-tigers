@@ -36,7 +36,7 @@ function AdminEventAddForm(){
     axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount, startTime, endTime, addedDate}).then(res=>{
       console.log(eventName);
       
-      navigate('/admin-event-view');
+      navigate('/events');
       
     }).catch(err=>console.log(err))
   }
@@ -49,12 +49,13 @@ function AdminEventAddForm(){
         <div className="w-75 mx-auto shadow p-5 mt-2 bg-light">
           <div className="jumbotron">
             <h1 className="display-4 text-center">Create Event</h1>
-            <br></br>
+            <hr/>
+            
             <div>
-              <Button variant="primary" onClick={handleShow}>
+              <Button className ="btn btn-warning btn-outline-dark " variant="primary" onClick={handleShow}>
 				        Choose Image
 			        </Button>
-              <br></br>
+              
               {eventImage && (
                 <div>
                   <img className="preview" src={process.env.PUBLIC_URL + '/upload/' + eventImage} alt="" style={{border: '1px solid #ddd',
@@ -67,7 +68,7 @@ function AdminEventAddForm(){
               <form onSubmit={registerEvent}>
               
 
-
+                <br/>
                 <Form.Group controlId="eventName">
                   <Form.Label>Event Name</Form.Label>
                   <Form.Control
@@ -142,7 +143,7 @@ function AdminEventAddForm(){
         </Form.Group>
 
                   <div className="container text-center">
-                    <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2">Save</button>                   
+                  <br/><hr/><button type="submit" className ="btn btn-warning btn-lg btn-outline-dark ">Save</button><br/>                
                   </div>
 
                 </form>

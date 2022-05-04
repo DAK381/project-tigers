@@ -83,7 +83,7 @@ function ScholarshipCard(props) {
 									scholarship.past? <ModalBody> We are no longer accepting contributions for this scholarhisp. </ModalBody>
 									:
 									<PayPalScriptProvider options={{ "client-id": "AQ06pCXblDolitWGlI8oGp2k5kmvfKusKYjurcQ87wo-_ZkX5t3lrgqd9qFnAHrmZBEGq4ECTbiZfVOS" }}>
-                <PayPalButtons
+                <PayPalButtons 
                     createOrder={(data, actions) => {
                       return actions.order.create({
 
@@ -118,7 +118,7 @@ function ScholarshipCard(props) {
 								</Modal.Footer>
 							</Modal>
 
-							{props.userData.role === "ADMIN" && < Button onClick = {() => {updateScholarship()}}>Update Scholarship</Button>}
+							{props.userData.role === "ADMIN" && < Button className ="btn btn-warning btn-sm btn-outline-dark " onClick = {() => {updateScholarship()}}>Update Scholarship</Button>}
 									
 						</Card.Body>
 

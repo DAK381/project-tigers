@@ -368,9 +368,10 @@ function SignUpForm(props){
                 </Form.Select>
               </Form.Group>
             </Col>
-            <Col md="2">
-              <Button className="btn-primary btn" onClick={signinHandler}>Sign Up</Button>
-            </Col>
+            <div class="text-left">
+              <Button className="btn btn-warning btn-lg btn-outline-dark" onClick={signinHandler}>Sign Up</Button>
+            </div>
+            
           </Row>
           
         </Form>

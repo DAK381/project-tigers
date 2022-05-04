@@ -67,7 +67,7 @@ function removeGroup(){
 
 return (
   <div>
-    <Button variant="primary" onClick={handleShow}>
+    <Button className ="btn btn-warning btn-outline-dark " onClick={handleShow}>
        Remove Groups
       </Button>
 
@@ -85,7 +85,7 @@ return (
        onChange={(e) => onOptionChangeRemove (e)}
      />
 
-<Button variant="secondary" onClick={(e) => removeGroup(e)}>
+<Button className ="btn btn-warning btn-outline-dark " onClick={(e) => removeGroup(e)}>
 										Save
 									</Button>
 

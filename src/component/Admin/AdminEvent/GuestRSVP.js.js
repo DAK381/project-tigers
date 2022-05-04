@@ -6,6 +6,8 @@ import AdminMemberList from "../AdminMember/AdminMemberList";
 import { useLocation } from "react-router-dom";
 import { LoadingSpinner } from "../../Loader/Loader";
 import GuestList from "../AdminGuest/GuestList";
+import ShowEmpty from "../ShowEmpty";
+
 
 export default function GuestRSVP(){
 
@@ -16,7 +18,7 @@ export default function GuestRSVP(){
 
    
     const[guestData, setGuest] = useState([]);
-    const[guestEmpty, setGuestEmpty] = useState();
+    const[guestEmpty, setGuestEmpty] = useState(true);
 
     console.log(location.state.event.eventId)
 
@@ -57,7 +59,7 @@ return(
         
          <div>
             {guestEmpty?
-            <h2> No one has signed up as a guest</h2>:
+            <ShowEmpty />:
             <GuestList data = {guestData} />}
          </div>
    

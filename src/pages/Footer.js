@@ -1,18 +1,18 @@
 import React from "react";
+import "./Footer.css";
 import { Row, Col, Container} from 'react-bootstrap';
 import { SocialIcon } from 'react-social-icons';
 
 
 const Footer = () => {
+  <body></body>
   return (
     <>
-    <div style={{background: "#242424",
-    padding: "45px 10px 20px"
-    
-    
-    
-    }}>
-      <Container fluid>
+    <div class="mt-auto">
+    <div class="min-vh-100,flex-column,justify-content-between" style={{background: "#242424",
+    padding: "85px 10px 20px", }}>
+     
+      <Container>
           <Row md="1">
             <h2 style={{color: "gold", 
                    marginTop: "-40px", textAlign: "center"}}>Find us on Social Media!</h2>
@@ -46,6 +46,8 @@ const Footer = () => {
           </Row>
       </Container>
     </div>
+    </div>
+    
 </>
 
 

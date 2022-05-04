@@ -29,9 +29,11 @@ export default function AdminScholarshipDelete(props){
 
 return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <div class="text-center">
+      <Button className ="btn btn-warning btn-outline-dark " onClick={handleShow}>
         Delete Scholarship
       </Button>
+      </div>
       
 
 

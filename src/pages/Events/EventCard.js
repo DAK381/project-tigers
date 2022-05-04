@@ -127,18 +127,20 @@ function EventCard(props) {
 								{/* <Modal.Body>{formattedDate}</Modal.Body> */}
 								
 								<Modal.Footer>
-									<Button variant="secondary" onClick={handleClose}>
+									<Button variant="secondary" className="btn btn-warning btn-sm btn-outline-dark" onClick={handleClose}>
 										Close
 									</Button>
 								</Modal.Footer>
 							</Modal>
-							
-						{props.userData.role === "ADMIN" && < Button onClick = {() => {updateEvent()}}>Update Event</Button>}
-
-						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPmembers()}}>RMembers RSVP List</Button>}
-
-						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPGuest()}}>Guest RSVP List</Button>}
-
+						<div className='text-left'>	
+						{props.userData.role === "ADMIN" && < Button className="btn btn-warning btn-sm btn-outline-dark" onClick = {() => {updateEvent()}}>  Update Event</Button>}
+						</div>
+						<div className='text-left'>	
+						{props.userData.role === "ADMIN" && < Button className="btn btn-warning btn-sm btn-outline-dark" onClick = {() => {RSVPmembers()}}>RMembers RSVP List</Button>}
+						</div>
+						<div className='text-left'>	
+						{props.userData.role === "ADMIN" && < Button className="btn btn-warning btn-sm btn-outline-dark" onClick = {() => {RSVPGuest()}}> Guest RSVP List</Button>}
+						</div>
 						
 						</Card.Body>
 
