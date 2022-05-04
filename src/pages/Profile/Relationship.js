@@ -3,19 +3,28 @@ import axios from "../../axios";
 import { useState, useEffect, useCallback} from 'react';
 import { Modal, ModalBody } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-
+import { LoadingSpinner } from '../../component/Loader/Loader';
 
 export default function Relationship(props){
 
   const userData=props.userData;
+  const members = props.members;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const[loading, setLoading] = useState(false);
+
   const[data, setData] = useState();
 
-  const[options, setOptions] = useState();
+  // const[options, setOptions] = useState();
+
+  const [relationship, setRelationship] = useState();
+
+  const[selectedId, setSelectedId] = useState();
+
+  const[selected, setSelected] = useState();
 
   const relationshipOptions = [
 	{
@@ -38,68 +47,48 @@ export default function Relationship(props){
 	
 ]
 
+console.log(members)
+const options = members && members.map(
+  d => ({
 
-  const [relationship, setRelationship] = useState();
+    "value" : d.id,
+    "label" : d.firstName + " " + d.maidenName + " " + d.lastName
 
-  const[selectedId, setSelectedId] = useState();
-
-  const[selected, setSelected] = useState();
-
+  }))
 
 
-  
 
-//   async function getData( ){
-//     axios.get("/admin/allMembers"
-//         )
-//         .then(
-//             (response) =>
-//             {
+// function getData( ){
+//   axios.get("/admin/allMembers"
+//       )
+//       .then(
+//           (response) =>
+//           {
 
-//                  setData(response.data)
+//                setData(response.data)
 
-     
-//                const options = data && data.map(d => ({
+//                setLoading(false)
+//               const options = data && data.map(d => ({
 
-//                     "value" : d.id,
-//                     "label" : d.firstName + " " + d.maidenName + " " + d.lastName
+//                 "value" : d.id,
+//                 "label" : d.firstName + " " + d.maidenName + " " + d.lastName
+          
+//               }))
+
+//               setOptions(options)
               
-//                   }))
+//           }
 
-//                   setOptions(options)
-                
-
-//             }
-//         )
+          
+//       )
 // }
 
+// useEffect(() => {
+//       getData();
+      
 
+//   }, [userData]);
 
-useEffect(() => {
-  console.log('this useEffect is reloading multiple times');
-  axios.get("/admin/allMembers"
-        )
-        .then(
-            (response) =>
-            {
-
-                 setData(response.data)
-
-     
-               const options = data && data.map(d => ({
-
-                    "value" : d.id,
-                    "label" : d.firstName + " " + d.maidenName + " " + d.lastName
-              
-                  }))
-
-                  setOptions(options)
-                
-
-            }
-        )
-
-    }, [data]);
 
 
 
@@ -125,7 +114,6 @@ const onOptionChangeRelative = useCallback(
 
   function addRelation(e){
 
-   
     e.preventDefault()
     axios.post(`/relationship/${userData.id}/${relationship}/${selectedId}`).then(res => {
       console.log(res.data)
@@ -147,21 +135,26 @@ const onOptionChangeRelative = useCallback(
 
       
 
-
+      
 
       <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
         <Modal.Header closeButton>
           <Modal.Title>Search members to add your relationship</Modal.Title>
         </Modal.Header>
 
-        <ModalBody>
+       
+
+          <ModalBody>
 
         <h3>Seach for a member: </h3>
+        {
+          loading? 
+          <LoadingSpinner />:
         <Select
        
         options={options}
         onChange={(e) => onOptionChangeRelative(e)}
-      />
+      />}
 
 <h3>Select relationship: </h3>
 
@@ -172,17 +165,22 @@ const onOptionChangeRelative = useCallback(
      />
 
 
-
-        </ModalBody>
-        
-
-        <Modal.Footer>
+<Modal.Footer>
 									<Button variant="secondary" onClick={addRelation}>
 										Add relation
 									</Button>
 								</Modal.Footer>
 
-      </Modal>
+        </ModalBody>
+        </Modal>
+        
+
+        
+        
+
+        
+
+     
     
 
 

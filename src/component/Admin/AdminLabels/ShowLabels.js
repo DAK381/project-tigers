@@ -4,7 +4,7 @@ import axios from '../../../axios';
 import { useEffect} from "react";
 import { useLocation } from "react-router-dom";
 import LabelList from "./LabelList";
-
+import { LoadingSpinner } from "../../Loader/Loader";
 export default function ShowLabels(){
 
 
@@ -16,7 +16,7 @@ export default function ShowLabels(){
    
     const[data, setData] = useState([]);
     
-    async function getData( ){
+    function getData( ){
         axios.get("/search/allPresets"
             )
             .then(
@@ -48,12 +48,17 @@ console.log(location.state)
     if(location.state)
 {
     return (
+        loading?
+        <LoadingSpinner />:
+
     <LabelList data = {data} userInfo = {location.state.arrayId}/>
     )
 }
 
 else{
     return (
+        loading?
+        <LoadingSpinner />:
         <LabelList data = {data}/>
         )
 } 

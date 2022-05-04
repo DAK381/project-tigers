@@ -21,6 +21,7 @@ function Profile(props) {
     const [memberGroups, setMemberGroups] = useState([]);
     const [events, setEvents] = useState([]);
     const[relationshipData, setRelationshipData] = useState([]);
+    const[allMembers, setMembers] = useState([]);
 
     const map = new Map();
     const groupNames = [];
@@ -51,13 +52,13 @@ function Profile(props) {
         axios.get(`admin/event/search/membersEvent/${userData.id}`).then(res => {
             setEvents(res.data)
             console.log('memberevents');
-            
+
         }).catch(err => console.log(err))
 
-        // axios.get(`getallRelationship/${userData.id}`).then(res => {
-        //     setRelationshipData(res.data)
-        //     // console.log(relationshipData)
-        // }).catch(err => console.log(err))
+        axios.get("/admin/allMembers").then(res => {
+            setMembers(res.data)
+
+        }).catch(err => console.log(err))
         
         
     }, [userData.id])
@@ -309,7 +310,7 @@ function Profile(props) {
 
                                                } 
 
-                                                <Relationship userData = {userData}/>
+                                                <Relationship userData = {userData} members = {allMembers}/>
                                           
                                     </div>
                                 
