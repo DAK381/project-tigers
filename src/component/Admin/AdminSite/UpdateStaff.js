@@ -9,14 +9,19 @@ import { CardBody } from "reactstrap";
 import { Col } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
 import { Row } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 export default function UpdatetSaff(props){
+    console.log(props.staff)
 
+    const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
     const [firstName, setFirstName] = useState(props.staff.firstName);
     const [middleName, setMiddleName] = useState(props.staff.middleName);
     const [lastName, setLastName] = useState(props.staff.lastName);
     const [email, setEmail] = useState(props.staff.email);
-    const [phoneNumber, setPhone] = useState(props.staff.phoneNumber);
+    const [phone, setPhone] = useState(props.staff.phone);
     const[position, setPosition] =  useState(props.staff.position)
 
     const [showError, setShowError] = useState(false);
@@ -29,7 +34,7 @@ export default function UpdatetSaff(props){
 
     // set graduatedYear to empty string if not an alumni
     // check for all required fields
-    const allFilled = !((firstName==='')||(middleName==='')||(lastName==='')||(phoneNumber==='')||(email===''))
+    const allFilled = !((firstName==='')||(middleName==='')||(lastName==='')||(phone==='')||(email===''))
     if(allFilled){
       setShowError(false);
 
@@ -39,7 +44,7 @@ export default function UpdatetSaff(props){
         setShowInvalidEmail(false);
 
         // address
-        axios.put(`/staff/add`,{firstName,middleName,lastName,email,phoneNumber, position}).then(res=>{console.log(res.data);
+        axios.put(`/update`,{firstName,middleName,lastName,email,phone, position}).then(res=>{console.log(res.data);
             console.log(position)
             window.location.reload();
         }).catch(err=>console.log(err))
@@ -55,6 +60,14 @@ export default function UpdatetSaff(props){
     } 
   }
 
+  function deleteStaff(){
+    axios.delete(`delete/${props.staff.id}`).then(res=>{console.log(res.data);
+        console.log(position)
+        window.location.reload();
+    }).catch(err=>console.log(err))
+  }
+  
+
 
     return(
 
@@ -62,7 +75,7 @@ export default function UpdatetSaff(props){
            <Card body style={{margin: "24px"}}>
       <Container fluid>
     
-        <h1>Add Staff</h1>
+        <h1>Update Staff</h1>
 
         {/* error alert for unfilled fields */}
         {showError &&
@@ -134,13 +147,14 @@ export default function UpdatetSaff(props){
           <Row md="2" sm="1" xs='1'>
 
           <Col>
-              <Form.Group controlId="phoneNumber">
+              <Form.Group controlId="phone">
                 <Form.Label>Phone Number *</Form.Label>
                 <Form.Control
                   type="text"
                   defaultValue = {props.staff.phoneNumber}
-                  placeholder= {props.staff.firstName}
-                  name="phoneNumber"
+                  placeholder= {props.staff.phoneNumber}
+                  name="Phone Number"
+                  value = {phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </Form.Group>
@@ -154,7 +168,8 @@ export default function UpdatetSaff(props){
                   type="Email"
                   defaultValue = {props.staff.email}
                   placeholder= {props.staff.email}
-                  name="email"
+                  name="Email"
+                  value = {email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Form.Group>
@@ -165,8 +180,9 @@ export default function UpdatetSaff(props){
                 <Form.Label>Position *</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder= {props.staff.firstName}
-                  name="position"
+                  placeholder= {props.staff.position}
+                  name="Position"
+                  value = {position}
                   onChange={(e) => setPosition(e.target.value)}
                 />
               </Form.Group>
@@ -177,11 +193,40 @@ export default function UpdatetSaff(props){
 
           
             <Col md="3">
-              <Button className="btn-primary btn" onClick={registrationHandler}>Register for the event</Button>
+            <Button onClick={registrationHandler} className="btn btn-warning btn-md btn-outline-dark">Update Staff</Button>
+            </Col>
+
+            <Col md="3">
+            <Button onClick={handleShow} className="btn btn-warning btn-md btn-outline-dark">Delete Staff</Button>
             </Col>
          
           
             </Form>
+
+            <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+								<Modal.Header closeButton>
+									
+
+	
+
+								</Modal.Header>
+								<Modal.Body>
+                                    <h3>
+                                        Are you sure you want to remove this staff?
+                                    </h3>
+                                    
+
+                                    
+                                    </Modal.Body>
+										
+								
+								<Modal.Footer>
+									<Button variant="secondary" onClick={deleteStaff}>
+										Delete
+									</Button>
+								</Modal.Footer>
+							</Modal>
+
 
 </Container>
 

@@ -16,7 +16,7 @@ export default function AddStaff(props){
     const [middleName, setMiddleName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [phoneNumber, setPhone] = useState('');
+    const [phone, setPhone] = useState('');
     const[position, setPosition] =  useState('')
 
     const [showError, setShowError] = useState(false);
@@ -29,7 +29,7 @@ export default function AddStaff(props){
 
     // set graduatedYear to empty string if not an alumni
     // check for all required fields
-    const allFilled = !((firstName==='')||(middleName==='')||(lastName==='')||(phoneNumber==='')||(email===''))
+    const allFilled = !((firstName==='')||(middleName==='')||(lastName==='')||(phone==='')||(email===''))
     if(allFilled){
       setShowError(false);
 
@@ -39,7 +39,7 @@ export default function AddStaff(props){
         setShowInvalidEmail(false);
 
         // address
-        axios.post(`/staff/add`,{firstName,middleName,lastName,email,phoneNumber, position}).then(res=>{console.log(res.data);
+        axios.post(`/staff/add`,{firstName,middleName,lastName,email,phone,position}).then(res=>{console.log(res.data);
             console.log(position)
             window.location.reload();
         }).catch(err=>console.log(err))
@@ -131,12 +131,12 @@ export default function AddStaff(props){
           <Row md="2" sm="1" xs='1'>
 
           <Col>
-              <Form.Group controlId="phoneNumber">
+              <Form.Group controlId="phone">
                 <Form.Label>Phone Number *</Form.Label>
                 <Form.Control
                   type="text"
                   placeholder="Enter phone number"
-                  name="phoneNumber"
+                  name="phone"
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </Form.Group>

@@ -26,17 +26,18 @@ public class StaffController {
         return staffService.addStaff(staff);
     }
 
-    @GetMapping("/search/staff/{staffId}")
-    public Staff getById(@PathVariable("staffId") Long staffId){
-        return staffService.getById(staffId);
+    @GetMapping("/search/staff/{id}")
+    public Staff getById(@PathVariable("id") Long id){
+        return staffService.getById(id);
     }
 
-    @PutMapping("/update/{staffId}")
-    public Staff updateStaff(@PathVariable("staffId") Long staffId, @RequestBody Staff staff){
-        return staffService.updateStaff(staffId,staff);
+    @CrossOrigin(origins ="*")
+    @PutMapping("/update/{id}")
+    public Staff updateStaff(@PathVariable("id") Long id, @RequestBody Staff staff){
+        return staffService.updateStaff(id,staff);
     }
-    @DeleteMapping("/delete/{staffId}")
-    public String deleteStaff(@PathVariable("staffId")Long staffId){
-        return staffService.deleteStaff(staffId);
+    @DeleteMapping("/delete/{id}")
+    public String deleteStaff(@PathVariable("id")Long id){
+        return staffService.deleteStaff(id);
     }
 }
