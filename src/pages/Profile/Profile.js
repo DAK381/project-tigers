@@ -19,6 +19,7 @@ function Profile(props) {
     const [memberGroups, setMemberGroups] = useState([]);
     const [events, setEvents] = useState([]);
     const[relationshipData, setRelationshipData] = useState([]);
+    const[allMembers, setMembers] = useState([]);
 
     const map = new Map();
     const groupNames = [];
@@ -49,60 +50,19 @@ function Profile(props) {
         axios.get(`admin/event/search/membersEvent/${userData.id}`).then(res => {
             setEvents(res.data)
             console.log('memberevents');
-            
+
         }).catch(err => console.log(err))
 
-        // axios.get(`getallRelationship/${userData.id}`).then(res => {
-        //     setRelationshipData(res.data)
-        //     // console.log(relationshipData)
-        // }).catch(err => console.log(err))
+        axios.get("/admin/allMembers").then(res => {
+            setMembers(res.data)
+
+        }).catch(err => console.log(err))
         
         
     }, [userData.id])
 
 
     console.log(relationshipData)
-    
-
-    const saveTags = () => {
-        console.log(memberGroupNames)
-        console.log(memberGroups)
-
-        const formData = new FormData();
-
-        // check which groups to add
-        for(var i=0; i<memberGroupNames.length; i++) {
-            var isIn=false;
-            for(var k=0; k< memberGroups.length; k++) {
-                if(memberGroupNames[i]===memberGroups[k].groupName) {
-                    isIn=true;
-                    break
-                }
-            }
-            if(!isIn) {
-                formData.append("add", map.get(memberGroupNames[i]));
-            }
-        }
-
-        //check which groups to remove
-        for(var i=0; i<memberGroups.length; i++) {
-            var isIn=false;
-            for(var k=0; k<memberGroupNames.length; k++) {
-                if(memberGroups[i].groupName===memberGroupNames[k]) {
-                    isIn=true;
-                    break
-                }
-            }
-            if(!isIn) {
-                formData.append("remove", map.get(memberGroups[i].groupName));
-            }
-        }
-        axios.put("updateUserGroups/" + userData.id, formData).then(() => {
-            window.location.reload();
-        }).catch((e) => {
-            console.log(e);
-        });
-    }
     
     const navigate = useNavigate();
 
@@ -246,21 +206,7 @@ function Profile(props) {
                                     <h1>Groups</h1>
                                         <div className="row">
                                             <div className="bio-row">
-                                                <p><span>Your activities:</span></p>
-                                                
-                                                    <Tagged
-                                                        initialTags={memberGroupNames}                          // initial tags (array of strings)
-                                                        suggestions={groupNames}                          // suggestions (array of strings)
-                                                        onChange={(tags) => {memberGroupNames=tags}}                  // called every a tag is added or removed, tags is an array of strings
-                                                        suggestionWrapPattern="<b><u>$1</u></b>"  // how to highlight search pattern in suggestions
-                                                        allowCustom={false}                       // when false, it will only allow tags from suggestions
-                                                        inputPlaceholder="Add new tag"            // the input placeholder
-                                                        suggestionsThreshold={1}                  // how many characters typed before suggestions appear
-                                                        autoFocus={false}                         // put focus into the input field
-                                                        reverse={false}                           // what should go first: tags or the input
-                                                    />
-                                                    <br></br>
-                                                    <button type="button" className="btn-primary btn" onClick={saveTags}>Save</button>
+                                        
 
                                                     {
                                                         userData && <MemberGroup id = {userData.id} groups = {groups} memberGroups = {memberGroups} />
@@ -320,7 +266,7 @@ function Profile(props) {
 
                                                } 
 
-                                                <Relationship userData = {userData}/>
+                                                <Relationship userData = {userData} members = {allMembers}/>
                                           
                                     </div>
                                 
