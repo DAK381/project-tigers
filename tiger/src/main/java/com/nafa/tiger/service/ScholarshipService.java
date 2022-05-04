@@ -11,4 +11,6 @@ public interface ScholarshipService {
     Scholarship updateScholarship(Long scholarshipId, Scholarship scholarship);
 
     String addScholarship(Scholarship scholarship);
+    
+    String deleteScholarship(Long scholarshipId);
 }

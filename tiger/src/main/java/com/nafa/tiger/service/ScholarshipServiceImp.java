@@ -50,4 +50,10 @@ public class ScholarshipServiceImp implements ScholarshipService{
         scholarshipRepository.save(scholarship);
         return "Scholarship saved";
     }
+    
+    @Override
+    public String deleteScholarship(Long scholarshipId) {
+        scholarshipRepository.deleteById(scholarshipId);
+        return "deleted";
+    }
 }
