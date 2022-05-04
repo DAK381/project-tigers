@@ -133,7 +133,6 @@ function EventCard(props) {
 								</Modal.Footer>
 							</Modal>
 							
-	
 						{props.userData.role === "ADMIN" && < Button onClick = {() => {updateEvent()}}>Update Event</Button>}
 
 						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPmembers()}}>RMembers RSVP List</Button>}
