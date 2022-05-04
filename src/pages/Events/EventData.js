@@ -1,11 +1,16 @@
 import axios from '../../axios';
 import { useEffect, useState } from 'react';
 import EventCard from './EventCard';
-import { Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { LoadingSpinner } from '../../component/Loader/Loader';
+
+
+
+
+
 
 function EventData(props){
 
@@ -86,20 +91,37 @@ function EventData(props){
             {
                 loading? 
                 <LoadingSpinner />
-                :
+ 
+ :
 <div>
-<h1>
-        Events
-       
-      </h1>
+<br/>
+<Container>
 
-                <Button onClick = {calendar}>
-                Event calendar
-            </Button>
-            <CardGroup>
-                <Row className='row-cols-1 row-cols-md-3 p-2 g-4'>
+    <Row>
+        <div className='col-md-6'>
+            <h1>Events</h1>
+        </div>
+        <div className='col-md-3'></div>
+        <div className='col-md-3'>
+        <Button onClick = {calendar} className="btn btn-warning btn-outline-danger btn-lg">
+                
+                Event calendar 
+                          
+                </Button>
+        </div>
+    </Row>
+                <hr/>
+    </Container>
+             <Container>
+             
+                
 
-                    {events.map(event => (
+                
+                <br/><br/>
+                    <CardGroup>
+                        <Row className='row-cols-1 row-cols-md-3 p-2 g-4'>
+
+                        {events.map(event => (
                         
 
                         <div key={event.eventId}>
@@ -113,13 +135,17 @@ function EventData(props){
                 </Row>
 
             </CardGroup>
-
+            </Container>
+            
             </div>
 
             }
             
+            <hr/>
 
         </div>
+                
+
 
     )
 

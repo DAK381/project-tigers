@@ -35,8 +35,8 @@ cloud:
       auto: false
     credentials:
 
-      access-key: A77
-      secret-key: 
+       access-key: AKIA6KC2TLWNZ7T7IB77
+       secret-key: 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
 
 jwt:
   auth:

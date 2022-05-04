@@ -90,7 +90,7 @@ function EventCard(props) {
 						<Card.Body>
 							<Card.Title>{eventInfo.eventName}</Card.Title>
 									
-							<Button variant="primary" onClick={handleShow}>
+							<Button variant="primary" className="btn btn-warning btn-sm btn-outline-dark" onClick={handleShow}>
 								More Event Information
 							</Button>
 
@@ -136,7 +136,7 @@ function EventCard(props) {
 						<CardFooter>
 						{ 
 						!(props.userData.role === "ADMIN") && 
-						<Button disabled = {past} onClick={eventSignUp}>Register for the event</Button>
+						<Button disabled = {past} onClick={eventSignUp} className="btn btn-warning btn-sm btn-outline-dark">Register for the event</Button>
 						}
 						<CardFooter>
 							Added {eventInfo.added}.

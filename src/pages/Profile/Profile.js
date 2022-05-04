@@ -11,7 +11,7 @@ import { LoadingSpinner } from '../../component/Loader/Loader';
 import RelationshipData from './RelationshipData';
 import MemberGroup from './MemberGroup';
 import MemberGroupShow from './MemberGroupShow';
-import { Row } from 'react-bootstrap';
+import { Row , Col, Form,Card } from 'react-bootstrap';
 
 function Profile(props) {
     const userData = props.userData;
@@ -117,27 +117,31 @@ function Profile(props) {
 
     
     return (
+        
         <div>
-
-       
-       
-
+            
             <div className="container bootstrap snippets bootdey">
             <div className="row">
-
+            <Container fluid>
+            <br></br>
+            <Row className="row justify-content-center">
+        
+            
+ 
+            
                 <div className="profile-nav col-md-3">
+                
 
                     <div className="card">
                         <div className="card-body">
 
 
                             <div className="panel">
-                                <div className="user-heading round">
                                     <div className="text-center"> 
-                                    </div>
-                                    <h1>{userData.firstName + ' ' + userData.lastName}</h1>
+                                    <h2>{userData.firstName + ' ' + userData.lastName}</h2>
                                     <p>{userData.email}</p>
-                                </div>
+                                    </div>
+                                    
 
                                 <div className="buttons"> <button className="btn btn-outline-primary" onClick = {updateProfile}>Edit Profile</button> <button
                                     className="btn btn-outline-primary">Activity</button> </div>
@@ -145,10 +149,19 @@ function Profile(props) {
                             </div>
                         </div>
                     </div>
-
+                    
                 </div>
+                <br/>
+    
+                </Row>
+                </Container>
+                
+                
+                
 
-                <div className="profile-info col-md-9">
+        
+
+                {/* <div className="profile-info col-md-9">
                     <div className="card">
                         <div className="card-body">
 
@@ -167,14 +180,13 @@ function Profile(props) {
                             </div>
                         </div>
                     </div>
-                </div>
-
+                </div> */}
+                 
                 <br/>
-
                 <div className="bio-info">
                 <div className="card">
                     <div className="card-body">
-
+                        <Container>
                         <div className="panel">
                             <div className="panel-body bio-graph-info">
                                 <h1>Bio Graph</h1>
@@ -217,6 +229,7 @@ function Profile(props) {
                             </div>
 
                         </div>
+                        </Container>
                     </div>
                     </div>
                     <br />
@@ -347,6 +360,7 @@ function Profile(props) {
                         </div>
                     </div>
                     <br />
+                    <Container>
                     <div className="card">
                         <div className="card-body">
 
@@ -378,12 +392,15 @@ function Profile(props) {
 
                         </div>
                     </div>
+                    </Container>
                 </div>
+                
             </div>
+            
         </div>
+        
 
     
-
 </div>
         
     )

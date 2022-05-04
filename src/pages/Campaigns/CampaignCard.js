@@ -49,7 +49,7 @@ function CampaignCard(props) {
 							<Card.Title>{campaign.campaignName}</Card.Title>
 
 							{/* This is the Modal for more scholarship Information */}
-							<Button variant="primary" onClick={handleShowInfo}>
+							<Button variant="primary" className="btn btn-warning btn-sm btn-outline-dark" onClick={handleShowInfo}>
 								More Information
 							</Button>
 							<Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
