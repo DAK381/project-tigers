@@ -67,6 +67,11 @@ export default function AdminGroupCreate(){
               </div>
             </div>
           </div>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br>
         </div>
       )
     }
