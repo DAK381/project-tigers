@@ -79,7 +79,7 @@ export default function AddStaff(props){
           <Alert variant="danger" onClose={() => setShowError(false)} dismissible>
             <Alert.Heading>Please use a valid email.</Alert.Heading>
             <p>
-              Please use a valid email address. Your email will never be shared with anyone.
+              Please use a valid email address. 
             </p>
           </Alert>
         }
@@ -149,7 +149,7 @@ export default function AddStaff(props){
                 <Form.Control
                   type="Email"
                   placeholder="Enter email address"
-                  name="email_address"
+                  name="email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Form.Group>

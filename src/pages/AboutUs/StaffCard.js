@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal'
 import './../Card.css';
 import { CardFooter } from 'reactstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
-
+import UpdateStaff from '../../component/Admin/AdminSite/UpdateStaff';
 
 export default function StaffCard(props){
 
@@ -50,6 +50,9 @@ export default function StaffCard(props){
 							<Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
 								<Modal.Header closeButton>
 									<Modal.Title>Update Staff</Modal.Title>
+
+									<UpdateStaff staff = {staff} />
+
 								</Modal.Header>
 								<Modal.Body>
                                     
