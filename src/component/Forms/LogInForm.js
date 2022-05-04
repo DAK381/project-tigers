@@ -143,7 +143,6 @@ const LogInPage = ({loading,error,...props}) => {
     </Form.Group>
     
   </Form>
-  {/* <Captcha/> */}
  
      <p>First time? <Link to="/sign-up">Create an account</Link>.</p>
      <p>Forget Password? <Link to="/forget-password">Reset Password</Link>.</p>
@@ -154,7 +153,11 @@ const LogInPage = ({loading,error,...props}) => {
   </Card>
   </Col>
   </Row>
-    <br></br>
+    <br></br><br></br>
+    <br></br><br></br>
+    <br></br><br></br>
+    <br></br><br></br>
+
   </Container>  
  
     

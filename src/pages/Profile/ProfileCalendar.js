@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Modal } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import { FcCalendar} from "react-icons/fc";
+
 
 
 export default function ProfileCalendar(props){
@@ -53,8 +55,8 @@ export default function ProfileCalendar(props){
        
    
 
-                <Button onClick = {handleShow}>
-                Event calendar
+                <Button className ="btn btn-warning btn-outline-dark " onClick = {handleShow}>
+                <FcCalendar/> Event calendar
             </Button>
             <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
 								<Modal.Header closeButton>

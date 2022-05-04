@@ -11,8 +11,8 @@ import { LoadingSpinner } from '../../component/Loader/Loader';
 import RelationshipData from './RelationshipData';
 import MemberGroup from './MemberGroup';
 import MemberGroupShow from './MemberGroupShow';
+import ProfileCalendar from "./ProfileCalendar";
 import { Row , Col, Form,Card } from 'react-bootstrap';
-import ProfileCalendar from './ProfileCalendar';
 
 function Profile(props) {
     const userData = props.userData;
@@ -86,13 +86,14 @@ function Profile(props) {
 
                             <div className="panel">
                                     <div className="text-center"> 
-                                    <h2>{userData.firstName + ' ' + userData.lastName}</h2>
-                                    <p>{userData.email}</p>
+                                    <h1>{userData.firstName + ' ' + userData.lastName}</h1>
+
                                     </div>
                                     
-
-                                <div className="buttons"> <button className="btn btn-outline-primary" onClick = {updateProfile}>Edit Profile</button> <button
-                                    className="btn btn-outline-primary">Activity</button> </div>
+                                <div className="text-center">
+                                <div className="buttons"> <button className ="btn btn-warning btn-outline-dark " onClick = {updateProfile}>Edit Profile</button> 
+                                </div>
+                                </div>
                                     
                             </div>
                         </div>
@@ -137,7 +138,8 @@ function Profile(props) {
                         <Container>
                         <div className="panel">
                             <div className="panel-body bio-graph-info">
-                                <h1>Bio Graph</h1>
+                                <h2>Bio Graph</h2>
+                                <hr/>
                                 <div className="row">
                                     <div className="bio-row">
                                         <p><span>First Name: </span>{userData.firstName}</p>
@@ -189,7 +191,8 @@ function Profile(props) {
                                 
                                     
                                     <div className="panel-body bio-graph-info">
-                                    <h1>Groups</h1>
+                                    <h2>Groups</h2>
+                                    <hr/>
                                         <div className="row">
                                             <div className="bio-row">
                                         
@@ -242,7 +245,8 @@ function Profile(props) {
                                 
                                     
                                     <div>
-                                    <h1>Relationships:</h1>
+                                    <h2>Relationships:</h2>
+                                    <hr/>
                                         
                                                 
                                                {
@@ -253,6 +257,7 @@ function Profile(props) {
                                                } 
 
                                                 <Relationship userData = {userData} members = {allMembers}/>
+                                                
                                           
                                     </div>
                                 
@@ -264,14 +269,15 @@ function Profile(props) {
 
                     
 
-
+                    <br/>
                     <div className="card">
                         <div className="card-body">
 
                             <div className="panel">
 
                                 <div className="panel-body bio-graph-info">
-                                    <h1>Events</h1>
+                                    <h2>Events</h2>
+                                    <hr/>
 
                                     <div>
                       {userData &&   <ProfileCalendar events = {events} />}
@@ -293,39 +299,9 @@ function Profile(props) {
                         </div>
                     </div>
                     <br />
-                    <Container>
-                    <div className="card">
-                        <div className="card-body">
-
-                            <div className="panel">
-
-                                <div className="panel-body bio-graph-info">
-                                    <h1>Contributions</h1>
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <div className="card">
-                                                <div className="card-body">
-                                                    <h3 className="text">Donation </h3>
-                                                    <h4 className="lead">$50.00 processed through paypal on 09/09/2019</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-md-4">
-                                            <div className="card">
-                                                <div className="card-body">
-                                                    <h3>Donation</h3>
-                                                    <h4 className="lead">$25.00 processed through paypal on 07/15/2020</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    </Container>
+                    
+                    
+                    
                 </div>
                 
             </div>

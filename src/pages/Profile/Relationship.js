@@ -8,7 +8,7 @@ import { LoadingSpinner } from '../../component/Loader/Loader';
 export default function Relationship(props){
 
   const userData=props.userData;
-  const members = props.allMembers;
+  const members = props.members;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -94,9 +94,10 @@ const onOptionChangeRelative = useCallback(
     return(
         <div>
 
-<Button variant="primary" onClick={handleShow}>
+<Button className ="btn btn-warning btn-outline-dark " onClick={handleShow}>
        Add Relationship
       </Button>
+      <br/>
 
       
 
@@ -131,9 +132,12 @@ const onOptionChangeRelative = useCallback(
 
 
 <Modal.Footer>
-									<Button variant="secondary" onClick={addRelation}>
+                <div class="text-center">
+									<Button className ="btn btn-warning btn-outline-dark " onClick={addRelation}>
 										Add relation
 									</Button>
+                </div>
+                
 								</Modal.Footer>
 
         </ModalBody>
@@ -151,5 +155,6 @@ const onOptionChangeRelative = useCallback(
 
 
         </div>
+        
     )
 }

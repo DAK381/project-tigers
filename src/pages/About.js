@@ -38,6 +38,7 @@ const AboutPage = () => {
     <br></br>
     <br></br>
     <br></br>
+    <br></br>
     </div></>
     </Container>
   )};

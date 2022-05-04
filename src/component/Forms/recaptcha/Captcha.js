@@ -1,5 +1,5 @@
-// // import React from "react";
-// // import ReCAPTCHA from "react-google-recaptcha";
+import React from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // const RecaptchaComponent = () => {
 //   function onChange(value) {

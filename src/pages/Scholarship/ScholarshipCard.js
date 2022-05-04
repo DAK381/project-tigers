@@ -1,13 +1,10 @@
 //imports needed packages for cards
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Button, Card, Container, Col, Modal, Alert } from 'react-bootstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import React, { useState } from 'react';
-import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
 import { useNavigate } from 'react-router-dom';
-import Modal from 'react-bootstrap/Modal'
 import { CardFooter } from 'reactstrap';
+import { PayPalScriptProvider,  PayPalButtons } from "@paypal/react-paypal-js";
 
 import './../Card.css';
 import { ModalBody } from 'react-bootstrap';
@@ -17,11 +14,15 @@ function ScholarshipCard(props) {
 	const scholarship = props.scholarship;
 
 	const navigate = useNavigate();
+	const price = "2.00";
 
 	const [show, setShow] = useState(false);
 	const handleClose = () => setShow(false);
 	const handleShowForm = () => setShow(true);
 	const handleShowInfo = () => setShow(true);
+
+	const [showComplete, SetShowComplete] = useState(false);
+	const [details, setDetails] = useState();
 
 	function updateScholarship(){
 		navigate('/admin-scholarship-update', {state:
@@ -54,6 +55,14 @@ function ScholarshipCard(props) {
 								More Scholarship Information
 							</Button>
 							<Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+								{showComplete &&
+          						<Alert variant="success" onClose={() => SetShowComplete(false)} dismissible>
+            						<Alert.Heading>Thank you for your contribution!!!</Alert.Heading>
+            						<p>
+              							Thank you! Your contribution is greatly appreciated and will go towards making Neville High School even better.
+            						</p>
+          						</Alert>
+        						}
 								<Modal.Header closeButton>
 									<Modal.Title>{scholarship.scholarshipName}</Modal.Title>
 								</Modal.Header>
@@ -73,11 +82,30 @@ function ScholarshipCard(props) {
 								{
 									scholarship.past? <ModalBody> We are no longer accepting contributions for this scholarhisp. </ModalBody>
 									:
-									<div class="text-center">
-									<Button className ="btn btn-warning btn-outline-dark ">
-										Click to make a contribution.
-									</Button>
-									</div>
+									<PayPalScriptProvider options={{ "client-id": "AQ06pCXblDolitWGlI8oGp2k5kmvfKusKYjurcQ87wo-_ZkX5t3lrgqd9qFnAHrmZBEGq4ECTbiZfVOS" }}>
+                <PayPalButtons 
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+
+                        purchase_units: [
+                          {
+                            amount: {
+                              value: price,
+                              currency_code: "USD"
+                            },
+                          },
+                        ],
+                      });
+                    }}
+                    onApprove={(data, actions) => {
+                      return actions.order.capture().then((details) => {
+                        setDetails(details);
+						console.log(details);
+                        SetShowComplete(true);
+                      });
+                    }}
+                  />
+                </PayPalScriptProvider>
 
 								}
 

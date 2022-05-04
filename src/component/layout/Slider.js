@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import Pictures from './Pictures';
 import axios from '../../axios';
+import Image from 'react-bootstrap/Image'
 
 
 function Slider (props){
@@ -24,9 +25,10 @@ function Slider (props){
   
 
   return(
-<Card>
+    
+<Card style={{margin: "10px 200px 10px 200px"}}>
   { userData.role === "ADMIN" && 
-    <div>
+    <div className="position-absolute" style={{ zIndex: 2 }}>
       <Button variant="primary" onClick={handleShow}>
 				Change Pictures
 			</Button>
@@ -39,7 +41,7 @@ function Slider (props){
   { carouselPictures &&
     carouselPictures.map((pic) => (
         <Carousel.Item key={pic.id}>
-          <img className="d-block w-100" src={process.env.PUBLIC_URL + '/upload/' + pic.name} alt=""/>
+          <Image className="d-block w-100" src={process.env.PUBLIC_URL + '/upload/' + pic.name} alt="" fluid/>
         </Carousel.Item>
     ))
   }
