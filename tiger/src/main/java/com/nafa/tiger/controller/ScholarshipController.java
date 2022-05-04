@@ -29,4 +29,9 @@ public class ScholarshipController {
         return scholarshipService.addScholarship(scholarship);
 
     }
+    
+    @DeleteMapping("/delete/{scholarshipId}")
+    public String deleteEvent(@PathVariable("scholarshipId") Long scholarshipId){
+        return scholarshipService.deleteScholarship(scholarshipId);
+}
 }
