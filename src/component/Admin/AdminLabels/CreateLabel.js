@@ -69,6 +69,13 @@ export default function CreateLabel(){
               </div>
             </div>
           </div>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br><br></br>
+          <br></br>
         </div>
       )
     }
