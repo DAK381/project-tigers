@@ -12,6 +12,8 @@ import RelationshipData from './RelationshipData';
 import MemberGroup from './MemberGroup';
 import MemberGroupShow from './MemberGroupShow';
 import { Row , Col, Form,Card } from 'react-bootstrap';
+import ProfileCalendar from './ProfileCalendar';
+
 
 function Profile(props) {
     const userData = props.userData;
