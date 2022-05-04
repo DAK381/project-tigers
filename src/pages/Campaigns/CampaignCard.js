@@ -61,10 +61,11 @@ function CampaignCard(props) {
 
 							
 								
-							
-									<Button>
+								<div class="text-center">
+									<Button type="button" className ="btn btn-warning btn-outline-dark ">
 										Click to make a contribution.
 									</Button>
+								</div>
 
 						
 

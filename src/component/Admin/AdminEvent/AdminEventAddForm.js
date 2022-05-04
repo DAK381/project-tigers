@@ -36,7 +36,7 @@ function AdminEventAddForm(){
     axios.post("admin/event/add-event", {eventName, eventDescription, eventImage, eventDate, eventLocation, paymentAmount, startTime, endTime, addedDate}).then(res=>{
       console.log(eventName);
       
-      navigate('/admin-event-view');
+      navigate('/events');
       
     }).catch(err=>console.log(err))
   }

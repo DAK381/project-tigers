@@ -73,9 +73,11 @@ function ScholarshipCard(props) {
 								{
 									scholarship.past? <ModalBody> We are no longer accepting contributions for this scholarhisp. </ModalBody>
 									:
-									<Button >
+									<div class="text-center">
+									<Button className ="btn btn-warning btn-outline-dark ">
 										Click to make a contribution.
 									</Button>
+									</div>
 
 								}
 

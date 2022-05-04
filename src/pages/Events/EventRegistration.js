@@ -144,12 +144,16 @@ function EventRegistration(){
               <div>
                 {
                   loggedIn? 
-                  <Button onClick = {registerForEvent}>
+                  <Button className ="btn btn-warning btn-lg btn-outline-dark " onClick = {registerForEvent}>
                 Register
+                
               </Button> :
-              <Button onClick = {handleShow}>
+              <div class="text-center">
+              <Button className ="btn btn-warning btn-lg btn-outline-dark " onClick = {handleShow}>
                 Register
               </Button> 
+              <hr/>
+              </div>
 
                 }
                 

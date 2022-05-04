@@ -83,14 +83,23 @@ function EventData(props){
  
  :
 <div>
-<h1>
+<br/>
+        <h1>
+        
+        <Container>
+        
         Events
-       
-      </h1>
+        </Container>
+        
+        </h1>
+        
+      
 
-                <Button onClick = {handleShow}>
+                <Button onClick = {handleShow} className="btn btn-lg btn-warning btn-outline-secondary ">
                 Event calendar
             </Button>
+            <hr/>
+
             <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
 								<Modal.Header closeButton>
 									<Modal.Title>Event Calendar</Modal.Title>
@@ -119,7 +128,7 @@ function EventData(props){
 
 
 
-
+            <Container>
             <CardGroup>
                 <Row className='row-cols-1 row-cols-md-3 p-2 g-4'>
 
@@ -137,6 +146,7 @@ function EventData(props){
                 </Row>
 
             </CardGroup>
+            </Container>
             
             
             </div>
