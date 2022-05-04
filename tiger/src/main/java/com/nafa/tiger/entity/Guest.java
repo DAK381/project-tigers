@@ -21,6 +21,7 @@ public class Guest {
     private Long guest_id;
     private String email;
     private String firstName;
+    private String middleName;
     private String lastName;
     private String phoneNumber;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
