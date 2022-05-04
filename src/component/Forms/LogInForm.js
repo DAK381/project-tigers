@@ -60,7 +60,7 @@ const LogInPage = ({loading,error,...props}) => {
 
           else{
               
-              props.loginFailure('Something Wrong!Please Try Again3'+err);
+              props.loginFailure('Something Wrong!Please Try Again'+err);
           }
               
 
