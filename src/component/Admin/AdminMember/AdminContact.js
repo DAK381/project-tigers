@@ -55,7 +55,7 @@ function AdminContact() {
 
 
 
-    async function getData( ){
+    function getData( ){
         axios.get("/admin/allMembers"
             )
             .then(
@@ -84,7 +84,7 @@ function AdminContact() {
     useEffect(() => {
         getData();
 
-    }, [data]);
+    }, []);
 
 
     const onOptionChange = useCallback(

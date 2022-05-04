@@ -48,7 +48,7 @@ export default function Staff(props){
 
 <div className = "underline"></div>
 
-{props.user.role === "ADMIN" && <Button onClick={handleShow} className="btn btn-warning btn-sm btn-outline-dark">Add Staff</Button>}
+{props.user.role === "ADMIN" && <Button onClick={handleShow} className="btn btn-warning btn-md btn-outline-dark">Add Staff</Button>}
 
     <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
 								<Modal.Header closeButton>

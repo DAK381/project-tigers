@@ -22,16 +22,16 @@ public class StaffService {
         return "staff saved sucessfully";
     }
 
-    public Staff getById(Long staffId) {
-        return staffRepository.getById(staffId);
+    public Staff getById(Long id) {
+        return staffRepository.getById(id);
     }
     
     public ArrayList<Staff> getAllStaff() {
         return (ArrayList<Staff>) staffRepository.findAll();
     }
 
-    public Staff updateStaff(Long staffId, Staff staff) {
-        Staff staff1 = staffRepository.getById(staffId);
+    public Staff updateStaff(Long id, Staff staff) {
+        Staff staff1 = staffRepository.getById(id);
         if(staff1!= null){
             if(staff.getFirstName()!= null){
                 staff1.setFirstName(staff.getFirstName());
@@ -48,15 +48,15 @@ public class StaffService {
             if(staff.getPhone()!= null){
                 staff1.setPhone(staff.getPhone());
             }
-            if(staff1.getPosition()!= null){
+            if(staff.getPosition()!= null){
                 staff1.setPosition(staff.getPosition());
             }
         }
-        return staff1;
+        return staffRepository.save(staff1);
     }
 
-    public String deleteStaff(Long staffId) {
-        staffRepository.deleteById(staffId);
+    public String deleteStaff(Long id) {
+        staffRepository.deleteById(id);
         return "Deleted";
     }
 }

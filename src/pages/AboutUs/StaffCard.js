@@ -34,11 +34,13 @@ export default function StaffCard(props){
 						<Card.Body>
 							<Card.Title> {staff.firstName} {staff.middleName} {staff.lastName} </Card.Title>
                             <Card.Body>
-                               Email: {staff.email}
+                               Email <br>
+							   </br>{staff.email}
                             </Card.Body>
 
                             <Card.Body>
-                               Phome: {staff.phoneNumber}
+                               Phone: <br>
+							   </br>{staff.phone}
                             </Card.Body>
 
 									
@@ -49,7 +51,7 @@ export default function StaffCard(props){
 
 							<Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
 								<Modal.Header closeButton>
-									<Modal.Title>Update Staff</Modal.Title>
+									
 
 									<UpdateStaff staff = {staff} />
 
@@ -75,8 +77,10 @@ export default function StaffCard(props){
 						<CardFooter>
 						{ 
 						(props.user.role === "ADMIN") && 
-						<Button onClick={handleShow} className="btn btn-warning btn-sm btn-outline-dark">Update Staff</Button>
+						<Button onClick={handleShow} className="btn btn-warning btn-md btn-outline-dark">Update Staff</Button>
 						}
+
+
 						</CardFooter>
 
 					</Card>
