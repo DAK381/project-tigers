@@ -32,7 +32,7 @@ public class StaffController {
     }
 
     @CrossOrigin(origins ="*")
-    @PutMapping("/update/{id}")
+    @PutMapping("staff/update/{id}")
     public Staff updateStaff(@PathVariable("id") Long id, @RequestBody Staff staff){
         return staffService.updateStaff(id,staff);
     }

@@ -43,8 +43,9 @@ export default function UpdatetSaff(props){
       if(res.test(String(email.toLowerCase()))){
         setShowInvalidEmail(false);
 
+        console.log(position)
         // address
-        axios.put(`/update`,{firstName,middleName,lastName,email,phone, position}).then(res=>{console.log(res.data);
+        axios.put(`/staff/update/${props.staff.id}`,{firstName,middleName,lastName,email,phone, position}).then(res=>{console.log(res.data);
             console.log(position)
             window.location.reload();
         }).catch(err=>console.log(err))

@@ -48,11 +48,11 @@ public class StaffService {
             if(staff.getPhone()!= null){
                 staff1.setPhone(staff.getPhone());
             }
-            if(staff1.getPosition()!= null){
+            if(staff.getPosition()!= null){
                 staff1.setPosition(staff.getPosition());
             }
         }
-        return staff1;
+        return staffRepository.save(staff1);
     }
 
     public String deleteStaff(Long id) {
