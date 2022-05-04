@@ -177,7 +177,7 @@ export default function EventGuest(props){
           <br />
 
           
-            <Col md="2">
+            <Col md="3">
               <Button className="btn-primary btn" onClick={registrationHandler}>Register for the event</Button>
             </Col>
          
