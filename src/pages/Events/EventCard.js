@@ -7,8 +7,6 @@ import Col from 'react-bootstrap/Col'
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal'
 import './../Card.css';
-import Moment from 'react-moment';
-import moment from 'moment';
 import { CardFooter } from 'reactstrap';
 import CardHeader from 'react-bootstrap/esm/CardHeader';
 import DayJS from 'react-dayjs';
@@ -68,6 +66,18 @@ function EventCard(props) {
 		})
 	}
 
+
+	function RSVPGuest(){
+
+		console.log(eventInfo)
+		navigate("/guest-rsvp", {state:
+			{
+				event: eventInfo,
+				past: past
+			}
+		})
+	}
+
 	return (
 
 		<Container fluid>
@@ -86,7 +96,7 @@ function EventCard(props) {
 						<Card.Body>
 							<Card.Title>{eventInfo.eventName}</Card.Title>
 									
-							<Button variant="primary" onClick={handleShow}>
+							<Button variant="primary" className="btn btn-warning btn-sm btn-outline-dark" onClick={handleShow}>
 								More Event Information
 							</Button>
 
@@ -125,14 +135,17 @@ function EventCard(props) {
 							
 						{props.userData.role === "ADMIN" && < Button onClick = {() => {updateEvent()}}>Update Event</Button>}
 
-						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPmembers()}}>Registered Members</Button>}
+						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPmembers()}}>RMembers RSVP List</Button>}
+
+						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPGuest()}}>Guest RSVP List</Button>}
+
 						
 						</Card.Body>
 
 						<CardFooter>
 						{ 
 						!(props.userData.role === "ADMIN") && 
-						<Button disabled = {past} onClick={eventSignUp}>Register for the event</Button>
+						<Button disabled = {past} onClick={eventSignUp} className="btn btn-warning btn-sm btn-outline-dark">Register for the event</Button>
 						}
 						<CardFooter>
 							Added {eventInfo.added}.

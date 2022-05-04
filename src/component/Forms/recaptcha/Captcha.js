@@ -1,5 +1,5 @@
-import React from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+// import React from "react";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 const RecaptchaComponent = () => {
   function onChange(value) {
@@ -8,7 +8,7 @@ const RecaptchaComponent = () => {
   return (
     <div className="RecaptchaComponent">
       <ReCAPTCHA
-        sitekey="6Lesc7wfAAAAANkBrpuKvNbmQxWbjja3YoM0J8nE"
+        sitekey=""
         onChange={onChange}
       />
     </div>

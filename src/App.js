@@ -31,7 +31,7 @@ import ProfileEdit from './pages/Profile/UserEdit';
 import AdminMemberEmail from './component/Admin/AdminMember/AdminMemberEmail';
 import EventRegistration from './pages/Events/EventRegistration';
 import AdminMemberAll from './component/Admin/AdminMember/AdminMemberAll';
-import AdminMemberRSVP from './component/Admin/AdminMember/AdminMemberRSVP';
+import AdminMemberRSVP from './component/Admin/AdminEvent/AdminMemberRSVP';
 import EventCalendar from './pages/Events/EventCalendar';
 import AdminGroupCreate from './component/Admin/AdminGroup/AdminGroupCreate';
 import AdminGroupSearch from './component/Admin/AdminGroup/AdminGroupSearch';
@@ -44,7 +44,7 @@ import LabelMembers from './component/Admin/AdminLabels/LabelMembers';
 import AddCampaign from './component/Admin/AdminCampaign/AddCampaign';
 import CampaignPage from './pages/Campaigns/CampaignPage';
 import UpdateCampaign from './component/Admin/AdminCampaign/UpdateCampaign';
-
+import GuestRSVP from './component/Admin/AdminEvent/GuestRSVP.js';
 function App() {
 
   const token = localStorage.getItem('USER_KEY');
@@ -100,6 +100,9 @@ function App() {
 
 
         { userData.role === "ADMIN" && <Route path="/admin-member-event-rsvp" element={<AdminMemberRSVP/>} /> }
+
+        { userData.role === "ADMIN" && <Route path="/guest-rsvp" element={<GuestRSVP/>} /> }
+
 
         { userData.role === "ADMIN" && <Route path="/admin-member-email" element={<AdminMemberEmail/>} /> }
 

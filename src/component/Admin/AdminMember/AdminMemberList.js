@@ -70,12 +70,12 @@ const[selectedId, setSelectedId] = useState([])
         {dataField: 'firstName', text: "First Name", sort: true, filter: textFilter()},
         {dataField: 'maidenName', text: "Maiden Name", sort: true, filter: textFilter()},
         {dataField: 'lastName', text: "Last Name", sort: true,filter: textFilter()},
-        {dataField: 'address', text: "Address", filter: textFilter()},
-        {dataField: 'city', text: "City", filter: textFilter()},
-        {dataField: 'zip', text: "Zip", filter: textFilter()},
-        {dataField: 'state', text: "State", filter: textFilter()},
+        // {dataField: 'address', text: "Address", filter: textFilter()},
+        // {dataField: 'city', text: "City", filter: textFilter()},
+        // {dataField: 'zip', text: "Zip", filter: textFilter()},
+        // {dataField: 'state', text: "State", filter: textFilter()},
         {dataField: 'membership', text: "Memebership", sort: true, filter: textFilter()},
-        {dataField: 'groupList', text: "Group", sort: true, filter: textFilter()}
+        // {dataField: 'groupList', text: "Group", sort: true, filter: textFilter()}
 
     ]
 
@@ -223,7 +223,7 @@ const[selectedId, setSelectedId] = useState([])
 
 <Button onClick = {emailPeople}>Email Selected</Button>
 
-<Button onClick = {addMemberToGroup}>Add to Group</Button>
+{/* <Button onClick = {addMemberToGroup}>Add to Group</Button> */}
 
 <Button onClick = {addMemberToLabel}>Add to Label</Button>
 

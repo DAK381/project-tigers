@@ -1,13 +1,24 @@
 import axios from '../../axios';
 import { useEffect, useState } from 'react';
 import EventCard from './EventCard';
-import { Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { LoadingSpinner } from '../../component/Loader/Loader';
+import { Modal } from 'react-bootstrap';
+import EventCalendar from './EventCalendar';
+
+
+
+
+
 
 function EventData(props){
+
+    const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
     const[events, setEvents] = useState([]);
 
@@ -61,23 +72,6 @@ function EventData(props){
     console.log(props.userData)
     const navigate = new useNavigate();
 
-   
-
-    function calendar(){
-
-
-        console.log(props.userData)
-
-        navigate("/event-calendar", {state:
-			{
-				events: events,
-                userData: props.userData
-                
-
-			}
-		})
-
-    }
 
 
     
@@ -86,16 +80,46 @@ function EventData(props){
             {
                 loading? 
                 <LoadingSpinner />
-                :
+ 
+ :
 <div>
 <h1>
         Events
        
       </h1>
 
-                <Button onClick = {calendar}>
+                <Button onClick = {handleShow}>
                 Event calendar
             </Button>
+            <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+								<Modal.Header closeButton>
+									<Modal.Title>Event Calendar</Modal.Title>
+								</Modal.Header>
+								<Modal.Body>
+
+                                    <EventCalendar events = {events} user = {props.userData} past = {past}/>
+                                    
+                                    </Modal.Body>
+										
+							
+								
+								<Modal.Footer>
+									<Button variant="secondary" onClick={handleClose}>
+										Close
+									</Button>
+								</Modal.Footer>
+							</Modal>
+
+
+
+
+
+
+
+
+
+
+
             <CardGroup>
                 <Row className='row-cols-1 row-cols-md-3 p-2 g-4'>
 
@@ -113,13 +137,17 @@ function EventData(props){
                 </Row>
 
             </CardGroup>
-
+            
+            
             </div>
 
             }
             
+            <hr/>
 
         </div>
+                
+
 
     )
 
