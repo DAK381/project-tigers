@@ -1,7 +1,7 @@
 import axios from '../../axios';
 import { useEffect, useState } from 'react';
 import CampaignCard from './CampaignCard';
-import { Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import { CardGroup } from 'react-bootstrap';
 import { LoadingSpinner } from '../../component/Loader/Loader';
 
@@ -60,10 +60,17 @@ function ScholarshipData(props) {
 
         
         <div>
-
+<br/>
 <h1>
+    <Container>
         Campaigns
+        <hr/>
+
+        </Container>
       </h1> 
+      <Container>
+      <br/>
+
             <CardGroup>
                 <Row className='row-cols-3 row-cols-sm-9 p-6 g-4'>
 
@@ -76,6 +83,8 @@ function ScholarshipData(props) {
                 </Row>
 
             </CardGroup>
+            </Container>
+
 
         </div>
 

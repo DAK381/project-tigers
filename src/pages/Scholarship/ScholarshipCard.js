@@ -50,7 +50,7 @@ function ScholarshipCard(props) {
 							<Card.Title>{scholarship.scholarshipName}</Card.Title>
 
 							{/* This is the Modal for more scholarship Information */}
-							<Button variant="primary" onClick={handleShowInfo}>
+							<Button  className="btn btn-warning btn-sm btn-outline-dark" onClick={handleShowInfo}>
 								More Scholarship Information
 							</Button>
 							<Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
@@ -73,7 +73,7 @@ function ScholarshipCard(props) {
 								{
 									scholarship.past? <ModalBody> We are no longer accepting contributions for this scholarhisp. </ModalBody>
 									:
-									<Button>
+									<Button >
 										Click to make a contribution.
 									</Button>
 
