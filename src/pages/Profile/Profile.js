@@ -21,21 +21,6 @@ function Profile(props) {
     const[relationshipData, setRelationshipData] = useState([]);
     const[allMembers, setMembers] = useState([]);
 
-    const map = new Map();
-    const groupNames = [];
-    var memberGroupNames = [];
-
-    for (let i=0; i<groups.length; i++) {
-        groupNames.push(groups[i].groupName)
-        map.set(groups[i].groupName, groups[i].groupId);
-    }
-
-    for (let i=0; i<memberGroups.length; i++) {
-        memberGroupNames.push(memberGroups[i].groupName);
-    }
-
-    console.log(events)
-
     
     React.useEffect(() => {
         axios.get("/search/allgroup").then(res => {
@@ -276,9 +261,7 @@ function Profile(props) {
                     </div>
                     </div>
 
-                    <div>
-                      {userData &&   <ProfileCalendar events = {events} />}
-                    </div>
+                    
 
 
                     <div className="card">
@@ -288,6 +271,10 @@ function Profile(props) {
 
                                 <div className="panel-body bio-graph-info">
                                     <h1>Events</h1>
+
+                                    <div>
+                      {userData &&   <ProfileCalendar events = {events} />}
+                    </div>
                                    
 
                                     {events.map(event => (

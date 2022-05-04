@@ -29,5 +29,10 @@ public class CampaignController {
         return campaignService.addCampaign(campaign);
 
     }
+    
+    @DeleteMapping("/delete/{campaignId}")
+    public String deleteEvent(@PathVariable("campaignId") Long campaignId){
+        return campaignService.deleteCampaign(campaignId);
+}
 }
 

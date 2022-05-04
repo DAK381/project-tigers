@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Pictures from "../../layout/Pictures";
 import Button from 'react-bootstrap/Button';
 import { Form } from "react-bootstrap";
+import CampaignDelete from './DeleteCampaign';
 
 
 export default function AdminScholarshipUpdate(props) {
@@ -62,7 +63,7 @@ console.log(location.state.name)
                     <div className="jumbotron">
                     <button onClick={handleBack}>Back</button>
 
-                        <h1 className="display-4 text-center">UpdateCampaign</h1>
+                        <h1 className="display-4 text-center">Update Campaign</h1>
                         <div>
                             <Button variant="primary" onClick={handleShow}>
 				                Choose Image
@@ -78,8 +79,7 @@ console.log(location.state.name)
                             )}
                             <Pictures show={show} onHide={handleClose} setImage={setCampaignImage} isCarousel={false} />
                             <form onSubmit={updateAPIData}>
-        
-
+    
                             
                                 <Form.Group controlId="scholarshipName">
                   <Form.Label>Campaign Name</Form.Label>
@@ -106,10 +106,6 @@ console.log(location.state.name)
                   />
                 </Form.Group>
 
-
-
-        
-
                 <Form.Group controlId="formLink">
                   <Form.Label>Campaign Goal</Form.Label>
                   <Form.Control
@@ -125,6 +121,7 @@ console.log(location.state.name)
 
                                 <div className="container text-center">
                                     <button type="submit" class="btn btn-outline-secondary my-2 text-center mr-2">Update Campaign</button>
+                                    <CampaignDelete id = {location.state.campaign.campaignId}/>
                                     
                                 </div>
                             </form>
