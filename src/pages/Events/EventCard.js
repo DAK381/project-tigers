@@ -66,6 +66,18 @@ function EventCard(props) {
 		})
 	}
 
+
+	function RSVPGuest(){
+
+		console.log(eventInfo)
+		navigate("/guest-rsvp", {state:
+			{
+				event: eventInfo,
+				past: past
+			}
+		})
+	}
+
 	return (
 
 		<Container fluid>
@@ -121,9 +133,13 @@ function EventCard(props) {
 								</Modal.Footer>
 							</Modal>
 							
+	
 						{props.userData.role === "ADMIN" && < Button onClick = {() => {updateEvent()}}>Update Event</Button>}
 
-						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPmembers()}}>Registered Members</Button>}
+						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPmembers()}}>RMembers RSVP List</Button>}
+
+						{props.userData.role === "ADMIN" && < Button onClick = {() => {RSVPGuest()}}>Guest RSVP List</Button>}
+
 						
 						</Card.Body>
 
