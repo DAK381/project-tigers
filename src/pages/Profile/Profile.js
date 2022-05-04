@@ -11,6 +11,7 @@ import { LoadingSpinner } from '../../component/Loader/Loader';
 import RelationshipData from './RelationshipData';
 import MemberGroup from './MemberGroup';
 import MemberGroupShow from './MemberGroupShow';
+import ProfileCalendar from "./ProfileCalendar";
 import { Row , Col, Form,Card } from 'react-bootstrap';
 
 function Profile(props) {

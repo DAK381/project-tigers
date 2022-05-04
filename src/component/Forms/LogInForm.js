@@ -6,6 +6,7 @@ import { authenticate, authFailure, authSuccess } from '../../redux/authActions'
 import { Link, useNavigate } from "react-router-dom";
 import {userLogin} from "../../authenticationService";
 import {Alert,Spinner} from 'react-bootstrap';
+import Captcha from './recaptcha/Captcha';
 // import Captcha from './recaptcha/Captcha';
 import App from '../../App';
 import './LoginForm.css';
