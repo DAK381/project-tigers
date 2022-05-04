@@ -8,7 +8,7 @@ import { LoadingSpinner } from '../../component/Loader/Loader';
 export default function Relationship(props){
 
   const userData=props.userData;
-  const members = props.members;
+  const members = props.allMembers;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -55,41 +55,6 @@ const options = members && members.map(
     "label" : d.firstName + " " + d.maidenName + " " + d.lastName
 
   }))
-
-
-
-// function getData( ){
-//   axios.get("/admin/allMembers"
-//       )
-//       .then(
-//           (response) =>
-//           {
-
-//                setData(response.data)
-
-//                setLoading(false)
-//               const options = data && data.map(d => ({
-
-//                 "value" : d.id,
-//                 "label" : d.firstName + " " + d.maidenName + " " + d.lastName
-          
-//               }))
-
-//               setOptions(options)
-              
-//           }
-
-          
-//       )
-// }
-
-// useEffect(() => {
-//       getData();
-      
-
-//   }, [userData]);
-
-
 
 
 const onOptionChangeRelative = useCallback(
