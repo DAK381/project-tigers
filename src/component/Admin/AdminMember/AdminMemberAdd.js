@@ -39,7 +39,7 @@ return (
           />
           </Form.Group>
           <Form.Group controlId="Last Name">
-          <Form.Label>lastName</Form.Label>
+          <Form.Label>Last Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Last Name"
@@ -48,7 +48,7 @@ return (
           />
           </Form.Group>
           <Form.Group controlId="maidenName">
-          <Form.Label>maidenName</Form.Label>
+          <Form.Label>Maiden Name</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Maiden Name"
@@ -60,13 +60,13 @@ return (
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="Email"
-            placeholder="Enter email"
+            placeholder="Enter Email"
             name="email_address"
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
         <Form.Group controlId="password">
-          <Form.Label>password</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type="Password"
             placeholder="Enter password"
@@ -75,16 +75,16 @@ return (
           />
         </Form.Group>
         <Form.Group controlId="address">
-          <Form.Label>Address</Form.Label>
+          <Form.Label>Home Address</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter address"
+            placeholder="Enter home address"
             name="address"
             onChange={(e) => setAddress(e.target.value)}
           />
         </Form.Group>
         <Form.Group controlId="birthDate">
-          <Form.Label>BirthDate</Form.Label>
+          <Form.Label>Birth Date</Form.Label>
           <Form.Control
             type="date"
             placeholder="Enter Birth date"
@@ -93,16 +93,16 @@ return (
           />
         </Form.Group>
         <Form.Group controlId="phone">
-          <Form.Label>Phone</Form.Label>
+          <Form.Label>Phone Number</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter phone"
+            placeholder="Enter phone number"
             name="phone"
             onChange={(e) => setPhone(e.target.value)}
           />
         </Form.Group>
         <Form.Group controlId="graduatedYear">
-          <Form.Label>Graduatd Year</Form.Label>
+          <Form.Label>Graduated Year</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Graduated Year"
@@ -111,8 +111,8 @@ return (
           />
         </Form.Group>
 
-        <button type ="button" className="btn-primary btn" onClick={signinHandler}>Sing Up</button>
-          Register
+        <button type ="button" className="btn-primary btn" onClick={signinHandler}>Sign Up</button>
+
 
       </Form>
     </div>
