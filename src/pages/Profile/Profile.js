@@ -12,6 +12,8 @@ import RelationshipData from './RelationshipData';
 import MemberGroup from './MemberGroup';
 import MemberGroupShow from './MemberGroupShow';
 import { Row } from 'react-bootstrap';
+import EventCalendar from '../Events/EventCalendar';
+import ProfileCalendar from './ProfileCalendar';
 
 function Profile(props) {
     const userData = props.userData;
@@ -315,6 +317,10 @@ function Profile(props) {
 
                         </div>
                     </div>
+                    </div>
+
+                    <div>
+                      {userData &&   <ProfileCalendar events = {events} />}
                     </div>
 
 

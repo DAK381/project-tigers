@@ -6,7 +6,7 @@ import { authenticate, authFailure, authSuccess } from '../../redux/authActions'
 import { Link, useNavigate } from "react-router-dom";
 import {userLogin} from "../../authenticationService";
 import {Alert,Spinner} from 'react-bootstrap';
-import Captcha from './recaptcha/Captcha';
+// import Captcha from './recaptcha/Captcha';
 import App from '../../App';
 import './LoginForm.css';
 
@@ -143,7 +143,7 @@ const LogInPage = ({loading,error,...props}) => {
     </Form.Group>
     
   </Form>
-  <Captcha/>
+  {/* <Captcha/> */}
  
      <p>First time? <Link to="/sign-up">Create an account</Link>.</p>
      <p>Forget Password? <Link to="/forget-password">Reset Password</Link>.</p>
