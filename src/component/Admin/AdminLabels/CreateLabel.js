@@ -22,7 +22,7 @@ export default function CreateLabel(){
     const navigate = useNavigate();
   
   
- 
+    console.log(dateAdded)
 
     function addGroup(e) { 
       

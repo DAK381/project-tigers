@@ -60,9 +60,9 @@ const addMembers = () => {
 }
 
         const columns = [
-        {dataField: 'presetId', text: "Label Id", sort: true, filter: textFilter()},
+        {dataField: 'presetId', text: "Label Id", sort: true, filter: textFilter(), hidden:true},
         {dataField: 'presetName', text: "Label Name", sort: true, filter: textFilter()},
-        {dataField: 'dateAdded', text: "Added", sort: true, filter: textFilter()}
+        {dataField: 'dateAdded', text: "Added Date", sort: true, filter: textFilter()}
     ]
 
 
