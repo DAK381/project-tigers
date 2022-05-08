@@ -20,7 +20,7 @@ export default function DeleteLabel(props){
     console.log(props.id)
     axios.delete(`preset/delete/${props.id}`)
         .then(res=>{
-          // console.log(res.data);
+          console.log(res.data);
           window.location.reload();
 
       }).catch(err=>console.log(err))

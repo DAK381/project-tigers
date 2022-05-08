@@ -140,11 +140,11 @@ const addMembers = () => {
                   </Button>
                   }
 
-                  {
+                  {/* {
                       selectedLabel && <DeleteLabel id = {selectedLabel} />
                   
                       
-                  }
+                  } */}
                   
 
 
