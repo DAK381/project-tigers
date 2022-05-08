@@ -22,7 +22,7 @@ function AdminContact() {
        body: ""
      })
 
-    const[options, setOptions] = useState([]);
+    // const[options, setOptions] = useState([]);
 
     const[final, setFinal] = useState([]);
 
@@ -54,37 +54,31 @@ function AdminContact() {
   };
 
 
+  function getData( ){
+    axios.get("/admin/allMembers"
+        )
+        .then(
+            (response) =>
+            {
 
-    function getData( ){
-        axios.get("/admin/allMembers"
-            )
-            .then(
-                (response) =>
-                {
-    
-                     setData(response.data)
-    
-                     
-         
-                   const options = data && data.map(d => ({
-    
-                        "value" : d.id,
-                        "label" : d.email
-                  
-                      }))
-    
-                      setOptions(options)
+                 setData(response.data)
 
-                    
-    
-                }
-            )
-    }
+            }
+        )
+}
 
-    useEffect(() => {
+useEffect(() => {
         getData();
 
     }, []);
+
+    const options = data && data.map(d => ({
+    
+        "value" : d.id,
+        "label" : d.email
+  
+      }))
+
 
 
     const onOptionChange = useCallback(
