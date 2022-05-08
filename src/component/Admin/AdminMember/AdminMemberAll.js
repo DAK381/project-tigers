@@ -27,8 +27,7 @@ export default function AdminMemberAll(){
                      if(data.length > 0){
                          setEmpty(false)
                      }
-                    //  console.log(data)
-
+                    
                     setLoading(false)
 
                 }

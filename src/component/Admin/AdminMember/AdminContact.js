@@ -111,12 +111,12 @@ useEffect(() => {
 
                 console.log(toEmail, subject,  body)
 
-                axios.post("admin/send-email", {toEmail, subject, body}).then(res=>{
+                axios.post("/admin/send-email", {toEmail, subject, body}).then(res=>{
 
                     navigate('/admin-member');
                     
                   }).catch(err=>
-                    {console.log("vayena")
+                    {
                     console.log(err)}
                   )
                 }
