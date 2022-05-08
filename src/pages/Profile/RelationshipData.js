@@ -51,85 +51,22 @@ export default function RelationshipData(props){
                 {
                          setData(response.data)
 
-                        //  relationShipData.map(
-                        //     (data) =>{
-                        //        axios.get(`admin/member/${data.relatedTo}`).then(res => {
-                        //            setRelative(res.data.firstName)
-
-                        //        }).catch(err => console.log(err))
-
-                        //        data["relative"] = relative;
-
-                               
-                        //     }
-                        // )
+                       
                          
                         setLoading(false)
                 }
             )
-
-            
-                        //  relationShipData.map(
-                        //      (data) =>{
-                        //         axios.get(`admin/member/${data.relatedTo}`).then(res => {
-                        //             const relative = res.data
-                        //             data["relative"] = relative.firstName;
-                        //             // console.log(data)
-                        //             setShown(
-                        //                 (prev) => [...prev, data]
-                        //             )
-
-                        //         }).catch(err => console.log(err))
-                                
-                                
-                        //      }
-                        //  )
-
-            
-    
              
         }, [props.userData.id]);
 
-        
 
-
-
-
-
-//    if(relationShipData.length === 0){
-//        return (
-//            <div> 
-//                No one related to you
-//            </div>
-//        )
-//    }
-
-//    else{
-
-
-//    return(
-//     <div>
-//         <h1> You relations:</h1>
-//         {
-//              relationShipData.map(
-//                 (data) => {
-//                     <RelationshipCard key = {data.id} data = {data} />
-
-//                 }
-//             )
-//         }
-        
-//     </div>
-// )
-       
-//    }
 return (
     <div>
         {
     loading? <LoadingSpinner />: 
     relationShipData.length === 0? 
     <h2>
-        No on here
+        You don't have any relation here.
     </h2>:
     <div>
         You have {relationShipData.length } relations here. 

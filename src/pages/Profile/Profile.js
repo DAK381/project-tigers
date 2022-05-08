@@ -13,18 +13,28 @@ import MemberGroup from './MemberGroup';
 import MemberGroupShow from './MemberGroupShow';
 import { Row , Col, Form,Card } from 'react-bootstrap';
 import ProfileCalendar from './ProfileCalendar';
-
+import { Modal } from 'react-bootstrap';
+import ProfileEdit from './UserEdit';
 
 function Profile(props) {
+
+    const[loading, setLoading] = useState(true)
     const userData = props.userData;
     const [groups, setGroups] = useState([]);
     const [memberGroups, setMemberGroups] = useState([]);
     const [events, setEvents] = useState([]);
     const[relationshipData, setRelationshipData] = useState([]);
     const[allMembers, setMembers] = useState([]);
+    const [show, setShow] = useState(false);
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 
     
+    
     React.useEffect(() => {
+       
+
+       
         axios.get("/search/allgroup").then(res => {
             setGroups(res.data)
             console.log('groups');
@@ -45,6 +55,9 @@ function Profile(props) {
 
         }).catch(err => console.log(err))
         
+        if(userData){
+            setLoading(false)
+        }
         
     }, [userData.id])
 
@@ -63,11 +76,20 @@ function Profile(props) {
 		});
 	}
 
+if(loading){
+    return(
+        <LoadingSpinner />
+    )
+}
+
+else{
+
 
     
     return (
         
-        <div>
+    
+            <div>
             
             <div className="container bootstrap snippets bootdey">
             <div className="row">
@@ -92,7 +114,7 @@ function Profile(props) {
                                     </div>
                                     
 
-                                <div className="buttons"> <button className="btn btn-outline-primary" onClick = {updateProfile}>Edit Profile</button> <button
+                                <div className="buttons"> <button className="btn btn-outline-primary" onClick = {handleShow}>Edit Profile</button> <button
                                     className="btn btn-outline-primary">Activity</button> </div>
                                     
                             </div>
@@ -101,6 +123,28 @@ function Profile(props) {
                     
                 </div>
                 <br/>
+
+                <Modal show={show} onHide={handleClose} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
+								<Modal.Header closeButton>
+									
+
+	
+
+								</Modal.Header>
+								<Modal.Body>
+                                    <h3>
+                                        Edit Profile Information
+                                    </h3>
+                                    
+                                    <ProfileEdit user = {userData} />
+
+                                    
+                                    </Modal.Body>
+										
+								
+								
+							</Modal>
+
     
                 </Row>
                 </Container>
@@ -110,26 +154,6 @@ function Profile(props) {
 
         
 
-                {/* <div className="profile-info col-md-9">
-                    <div className="card">
-                        <div className="card-body">
-
-
-                            <div className="panel">
-
-                                <form>
-                                    <textarea placeholder="Send a invite for upcoming event" rows="2"
-                                        className="form-control input-lg p-text-area"></textarea>
-                                </form>
-                                <br />
-                                <footer className="panel-footer">
-                                    <button className="btn btn-warning">Send</button>
-
-                                </footer>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
                  
                 <br/>
                 <div className="bio-info">
@@ -253,7 +277,7 @@ function Profile(props) {
 
                                                } 
 
-                                                <Relationship userData = {userData} members = {allMembers}/>
+                                                <Relationship userData = {userData} members = {allMembers} />
                                           
                                     </div>
                                 
@@ -337,7 +361,12 @@ function Profile(props) {
     
 </div>
         
+
+
+        
+        
     )
+}
 }
 
 export default Profile;

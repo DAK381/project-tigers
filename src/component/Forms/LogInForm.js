@@ -9,6 +9,8 @@ import {Alert,Spinner} from 'react-bootstrap';
 import Captcha from './recaptcha/Captcha';
 import App from '../../App';
 import './LoginForm.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const LogInPage = ({loading,error,...props}) => {
@@ -50,6 +52,8 @@ const LogInPage = ({loading,error,...props}) => {
               case 401:
                   console.log("401 status");
                   props.loginFailure("Authentication Failed.Bad Credentials");
+                  toast.dark("Uh Oh! Looks like you entered the wrong credential. Please try again.");
+
                   break;
               default:
                   props.loginFailure('Something Wrong!Please Try Again2'); 
@@ -153,7 +157,10 @@ const LogInPage = ({loading,error,...props}) => {
   </Col>
   </Row>
     <br></br>
+    <ToastContainer />
   </Container>  
+
+
  
     
 

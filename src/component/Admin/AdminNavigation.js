@@ -63,7 +63,7 @@ function AdminNavigation(){
         <NavDropdown.Item href="add-campaign"><h5>Add Campaign</h5></NavDropdown.Item>
       </NavDropdown>
 
-      <Nav.Link href="user-profile" style={{fontSize: "28px"}}>Profile</Nav.Link> 
+      {/* <Nav.Link href="user-profile" style={{fontSize: "28px"}}>Profile</Nav.Link>  */}
 
       <Nav.Link href="./" onClick={() =>logOut()} style={{fontSize: "28px"}}>Logout</Nav.Link>
 

@@ -18,8 +18,6 @@ export default function Relationship(props){
 
   const[data, setData] = useState();
 
-  // const[options, setOptions] = useState();
-
   const [relationship, setRelationship] = useState();
 
   const[selectedId, setSelectedId] = useState();
@@ -70,6 +68,7 @@ const onOptionChangeRelative = useCallback(
 
   const onOptionChangeRelationship = useCallback(
     (option) => {
+      
       console.log("this is ", option);
 
       setRelationship(option.label)
@@ -90,6 +89,28 @@ const onOptionChangeRelative = useCallback(
   }
   console.log('Relationship component is reloading repeatedly');
 
+  useEffect(() => {
+    userData.id &&
+    axios.get(`getallRelationship/${props.userData.id}`
+        )
+        .then(
+            (response) =>
+            {
+                     setData(response.data)
+
+                   
+                     
+                    setLoading(false)
+            }
+        )
+
+        
+                 
+
+        
+
+         
+    }, [props.userData.id]);
 
     return(
         <div>
