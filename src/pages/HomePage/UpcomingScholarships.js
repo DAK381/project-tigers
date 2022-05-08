@@ -73,7 +73,7 @@ scholarships[0] &&
 
   <Col md>
 <Card className = "mb-3">
-  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/tempevent.jpg'} />
+  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/' + scholarships[0].scholarshipImage} />
   <Card.Body>
     <Card.Title>{scholarships[0].scholarshipName}</Card.Title>
     <Card.Text>
@@ -99,7 +99,7 @@ scholarships[0] &&
   scholarships[1] && (
     <Col md>
 <Card className = "mb-3">
-  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/tempevent.jpg'} />
+  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/' + scholarships[2].scholarshipImage} />
   <Card.Body>
     <Card.Title>{scholarships[1].scholarshipName}</Card.Title>
     <Card.Text>
@@ -123,7 +123,7 @@ scholarships[0] &&
   scholarships[2] && (
     <Col md>
 <Card className = "mb-3">
-  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/tempevent.jpg'} />
+  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/' + scholarships[2].scholarshipImage}/>
   <Card.Body>
     <Card.Title>{scholarships[2].scholarshipName}</Card.Title>
     <Card.Text>

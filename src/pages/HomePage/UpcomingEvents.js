@@ -64,7 +64,7 @@ events[0] &&
 
   <Col md>
 <Card className = "mb-3">
-  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/tempevent.jpg'} />
+  <Card.Img variant="top" src={process.env.PUBLIC_URL + '/upload/' + events[0].eventImage}/>
   <Card.Body>
     <Card.Title>{events[0].eventName}</Card.Title>
     <Card.Text>
@@ -90,7 +90,7 @@ events[0] &&
   events[1] && (
     <Col md>
 <Card className = "mb-3">
-  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/tempevent.jpg'} />
+  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/' + events[1].eventImage} />
   <Card.Body>
     <Card.Title>{events[1].eventName}</Card.Title>
     <Card.Text>
@@ -113,11 +113,11 @@ events[0] &&
   events[2] && (
     <Col md>
 <Card className = "mb-3">
-  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/tempevent.jpg'} />
+  <Card.Img variant="top" src= {process.env.PUBLIC_URL + '/upload/' + events[2].eventImage} />
   <Card.Body>
     <Card.Title>{events[2].eventName}</Card.Title>
     <Card.Text>
-    Deadline: {dayjs(events[1].eventDate).format("dddd, MMMM D YYYY")}    </Card.Text>
+    Deadline: {dayjs(events[2].eventDate).format("dddd, MMMM D YYYY")}    </Card.Text>
   </Card.Body>
   {/* <Button variant = "warning"> Read More</Button> */}
   <Card.Footer>
